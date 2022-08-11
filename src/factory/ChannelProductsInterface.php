@@ -54,12 +54,12 @@ interface ChannelProductsInterface {
      * - ChannelProduct->images[]->success = true
      * - ChannelProduct->images[]->channel_image_code = "channel's unique id for the image"
      *
-     * @param dto\ChannelProduct[] $channelProducts
+     * @param dto\ChannelProducts $channelProducts
      * @param dto\Channel $channel
      * @param array $flagsMap vo\Flags::createMap
-     * @return dto\ChannelProduct[]
+     * @return dto\ChannelProducts
      */
-    public function sync(array $channelProducts, dto\Channel $channel, array $flagsMap): array;
+    public function sync(dto\ChannelProducts $channelProducts, dto\Channel $channel, array $flagsMap): dto\ChannelProducts;
 
     /**
      * Verify that products exist on a channel, given their
@@ -72,11 +72,11 @@ interface ChannelProductsInterface {
      * - ChannelProduct->variants[]->success = true
      * - ChannelProduct->images[]->success = true
      *
-     * @param dto\ChannelProduct[] $channelProducts
+     * @param dto\ChannelProducts $channelProducts
      * @param dto\Channel $channel
-     * @return dto\ChannelProduct[]
+     * @return dto\ChannelProducts
      */
-    public function getByCode(array $channelProducts, dto\Channel $channel): array;
+    public function getByCode(dto\ChannelProducts $channelProducts, dto\Channel $channel): dto\ChannelProducts;
 
     /**
      * Used so we can page through products on a channel and return their unique identifiers.
@@ -107,9 +107,9 @@ interface ChannelProductsInterface {
      * @param string $channel_product_code only return results greater than this
      * @param int $limit max records to return
      * @param dto\Channel $channel
-     * @return dto\ChannelProduct[]
+     * @return dto\ChannelProducts
      */
-    public function get(string $channel_product_code, int $limit, dto\Channel $channel): array;
+    public function get(string $channel_product_code, int $limit, dto\Channel $channel): dto\ChannelProducts;
 
 }
 
