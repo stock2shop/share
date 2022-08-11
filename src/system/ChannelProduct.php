@@ -4,7 +4,7 @@ namespace stock2shop\share\system;
 
 use stock2shop\share\dto;
 
-class ChannelProduct extends dto\ChannelProducts
+class ChannelProducts extends dto\ChannelProducts
 {
     function populate()
     {
