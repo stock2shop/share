@@ -4,16 +4,12 @@ namespace stock2shop\share\system;
 
 use stock2shop\share\dto;
 
-class ChannelProduct
+class ChannelProduct extends dto\ChannelProducts
 {
-    /**
-     * @param dto\ChannelProduct[] $cps
-     * @return dto\ChannelProduct[]
-     */
-    function populate(array $cps): array
+    function populate()
     {
         // This would read from DB
-        foreach ($cps as $cp) {
+        foreach ($this->channel_products as $cp) {
             $cp->source_product_code = $cp->id;
             $cp->title               = 'Title ' . $cp->id;
             $cv                      = new dto\ChannelVariant([
@@ -24,6 +20,5 @@ class ChannelProduct
             ]);
             $cp->variants = [$cv];
         }
-        return $cps;
     }
 }
