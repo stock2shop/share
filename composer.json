@@ -1,0 +1,17 @@
+{
+    "name": "stock2shop/share",
+    "description": "Shared Contracts",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "stock2shop\\share\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chrs Sohn",
+            "email": "chris@stock2shop.com"
+        }
+    ],
+    "require": {}
+}
