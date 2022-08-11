@@ -2,13 +2,13 @@
 
 namespace stock2shop\share\system;
 
-use stock2shop\share\vo;
+use stock2shop\share\dto;
 
 class ChannelProduct
 {
     /**
-     * @param vo\ChannelProduct[] $cps
-     * @return vo\ChannelProduct[]
+     * @param dto\ChannelProduct[] $cps
+     * @return dto\ChannelProduct[]
      */
     function populate(array $cps): array
     {
@@ -16,7 +16,7 @@ class ChannelProduct
         foreach ($cps as $cp) {
             $cp->source_product_code = $cp->id;
             $cp->title               = 'Title ' . $cp->id;
-            $cv                      = new vo\ChannelVariant([
+            $cv                      = new dto\ChannelVariant([
                 'sku'                 => 'sku-' . $cp->id,
                 'source_variant_code' => 'svc-' . $cp->id,
                 'price'               => 100 + $cp->id,

@@ -1,6 +1,6 @@
 <?php
 
-namespace stock2shop\share\vo;
+namespace stock2shop\share\dto;
 
 class Flag extends Base
 {

@@ -1,7 +1,7 @@
 <?php
 namespace stock2shop\share\factory;
 
-use stock2shop\share\vo;
+use stock2shop\share\dto;
 
 /**
  * Interface Orders
@@ -27,8 +27,8 @@ interface ChannelOrdersInterface {
      *
      * @param string $token
      * @param int $limit
-     * @param vo\Channel $channel
-     * @return vo\ChannelOrder[]
+     * @param dto\Channel $channel
+     * @return dto\ChannelOrder[]
      */
 //    public function get(string $token, int $limit, vo\Channel $channel): array;
 
@@ -44,9 +44,9 @@ interface ChannelOrdersInterface {
      * to this function do not have a `channel_order_code` set, then they are ignored
      * and the function must continue.
      *
-     * @param vo\ChannelOrder[] $orders
-     * @param vo\Channel $channel
-     * @return vo\ChannelOrder[]
+     * @param dto\ChannelOrder[] $orders
+     * @param dto\Channel $channel
+     * @return dto\ChannelOrder[]
      */
 //    public function getByCode(array $orders, vo\Channel $channel): array;
 
@@ -57,8 +57,8 @@ interface ChannelOrdersInterface {
      * coming into Stock2Shop into a `vo\ChannelOrder` object.
      *
      * @param mixed $webhookOrder
-     * @param vo\Channel $channel
-     * @return vo\ChannelOrder
+     * @param dto\Channel $channel
+     * @return dto\ChannelOrder
      */
 //    public function transform($webhookOrder, vo\Channel $channel): vo\ChannelOrder;
 

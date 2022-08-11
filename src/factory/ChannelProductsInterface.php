@@ -1,7 +1,7 @@
 <?php
 namespace stock2shop\share\factory;
 
-use stock2shop\share\vo;
+use stock2shop\share\dto;
 
 /**
  * Interface defining methods for interacting (syncing / fetching)
@@ -54,12 +54,12 @@ interface ChannelProductsInterface {
      * - ChannelProduct->images[]->success = true
      * - ChannelProduct->images[]->channel_image_code = "channel's unique id for the image"
      *
-     * @param vo\ChannelProduct[] $channelProducts
-     * @param vo\Channel $channel
+     * @param dto\ChannelProduct[] $channelProducts
+     * @param dto\Channel $channel
      * @param array $flagsMap vo\Flags::createMap
-     * @return vo\ChannelProduct[]
+     * @return dto\ChannelProduct[]
      */
-    public function sync(array $channelProducts, vo\Channel $channel, array $flagsMap): array;
+    public function sync(array $channelProducts, dto\Channel $channel, array $flagsMap): array;
 
     /**
      * Verify that products exist on a channel, given their
@@ -72,11 +72,11 @@ interface ChannelProductsInterface {
      * - ChannelProduct->variants[]->success = true
      * - ChannelProduct->images[]->success = true
      *
-     * @param vo\ChannelProduct[] $channelProducts
-     * @param vo\Channel $channel
-     * @return vo\ChannelProduct[]
+     * @param dto\ChannelProduct[] $channelProducts
+     * @param dto\Channel $channel
+     * @return dto\ChannelProduct[]
      */
-    public function getByCode(array $channelProducts, vo\Channel $channel): array;
+    public function getByCode(array $channelProducts, dto\Channel $channel): array;
 
     /**
      * Used so we can page through products on a channel and return their unique identifiers.
@@ -106,10 +106,10 @@ interface ChannelProductsInterface {
      *
      * @param string $channel_product_code only return results greater than this
      * @param int $limit max records to return
-     * @param vo\Channel $channel
-     * @return vo\ChannelProduct[]
+     * @param dto\Channel $channel
+     * @return dto\ChannelProduct[]
      */
-    public function get(string $channel_product_code, int $limit, vo\Channel $channel): array;
+    public function get(string $channel_product_code, int $limit, dto\Channel $channel): array;
 
 }
 

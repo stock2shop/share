@@ -1,7 +1,7 @@
 <?php
 namespace stock2shop\share\factory;
 
-use stock2shop\share\vo;
+use stock2shop\share\dto;
 
 interface ChannelFulfillmentsInterface {
 
@@ -11,7 +11,7 @@ interface ChannelFulfillmentsInterface {
      * This method synchronises Fulfillments from Stock2Shop to the channel.
      *
      * @param ChannelFulfillmentsSync $ChannelFulfillmentsSync
-     * @return vo\Fulfillment[]
+     * @return dto\Fulfillment[]
      */
 //    public function sync(vo\Fulfillment $ChannelFulfillments, vo\Channel $channel): array;
 
@@ -21,9 +21,9 @@ interface ChannelFulfillmentsInterface {
      * The following properties must be set:-
      * - channel_fulfillment_code
      *
-     * @param vo\Fulfillment[] $channelFulfillments
+     * @param dto\Fulfillment[] $channelFulfillments
      * @param array $channelOrderCodes
-     * @return vo\Fulfillment[]
+     * @return dto\Fulfillment[]
      */
 //    public function getFulfillmentsByOrderCode(array $channelOrderCodes, vo\Channel $channel): array;
 }
