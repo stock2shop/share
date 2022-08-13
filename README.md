@@ -1,4 +1,4 @@
-# share
+# DTO
 
 Stock2Shop Data Transfer Objects.
 
