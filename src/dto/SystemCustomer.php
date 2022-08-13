@@ -2,7 +2,7 @@
 
 namespace stock2shop\share\dto;
 
-class SystemCustomer extends Base
+class SystemCustomer extends BaseAbstract
 {
     /** @var bool|null $accepts_marketing */
     public $accepts_marketing;

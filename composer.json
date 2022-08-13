@@ -4,7 +4,8 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "stock2shop\\share\\": "src/"
+            "stock2shop\\share\\": "src/",
+            "tests\\": "tests/"
         }
     },
     "authors": [
@@ -13,5 +14,10 @@
             "email": "chris@stock2shop.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace stock2shop\share\dto;
 
-class Channel extends Base
+class Channel extends BaseAbstract
 {
 
     /** @var int|null $id */

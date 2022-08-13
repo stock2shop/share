@@ -3,7 +3,7 @@
 namespace stock2shop\share\dto;
 
 
-class Variant extends Base
+class Variant extends BaseAbstract
 {
     /** @var string|null $source_variant_code */
     public $source_variant_code;

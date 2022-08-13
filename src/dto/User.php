@@ -2,7 +2,7 @@
 
 namespace stock2shop\share\dto;
 
-class User extends Base
+class User extends BaseAbstract
 {
     /** @var int|null $customer_id */
     public $customer_id;

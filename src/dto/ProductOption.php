@@ -4,7 +4,7 @@ namespace stock2shop\share\dto;
 
 
 
-class ProductOption extends Base
+class ProductOption extends BaseAbstract
 {
     /** @var string|null $name */
     public $name;

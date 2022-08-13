@@ -10,7 +10,7 @@ namespace Stock2shop\Share\dto;
  * Class Meta
  * @package stock2shop\vo
  */
-class Meta extends Base
+class Meta extends BaseAbstract
 {
 
     /** @var string|null $key */
