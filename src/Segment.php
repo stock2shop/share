@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class Segment extends BaseAbstract
+class Segment extends  AbstractBase
 {
     /** @var string|null $type */
     public $type;

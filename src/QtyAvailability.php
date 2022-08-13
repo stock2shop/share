@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class QtyAvailability extends BaseAbstract
+class QtyAvailability extends  AbstractBase
 {
     /** @var string|null $description */
     public $description;

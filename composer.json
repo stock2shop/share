@@ -4,14 +4,16 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Stock2Shop\\DTO\\": "src/",
-            "Tests\\": "tests/"
+            "Stock2Shop\\DTO\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {"Stock2Shop\\DTO\\Tests": "tests/"}
     },
     "authors": [
         {
-            "name": "Chrs Sohn",
-            "email": "chris@stock2shop.com"
+            "name": "Stock2Shop PTY (Ltd)",
+            "email": "support@stock2shop.com"
         }
     ],
     "require": {

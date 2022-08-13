@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class Flag extends BaseAbstract
+class Flag extends  AbstractBase
 {
     /** @var int|null $client_id */
     public $client_id;

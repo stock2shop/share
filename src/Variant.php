@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class Variant extends BaseAbstract
+class Variant extends  AbstractBase
 {
     /** @var string|null $source_variant_code */
     public $source_variant_code;

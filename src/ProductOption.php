@@ -3,7 +3,7 @@
 namespace Stock2Shop\DTO;
 
 
-class ProductOption extends BaseAbstract
+class ProductOption extends  AbstractBase
 {
     /** @var string|null $name */
     public $name;

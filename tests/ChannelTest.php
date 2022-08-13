@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Stock2Shop\DTO\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\DTO;
@@ -30,7 +30,7 @@ class ChannelTest extends TestCase
         $item = new DTO\Channel($mockData);
 
         $this->assertInstanceOf('Stock2Shop\DTO\Channel', $item);
-        $this->assertInstanceOf('Stock2Shop\DTO\BaseAbstract', $item);
+        $this->assertInstanceOf('Stock2Shop\DTO\AbstractBase', $item);
         $this->assertInstanceOf('Stock2Shop\DTO\Meta', $item->meta[0]);
         $this->assertCount(9, (array) $item);
         $this->assertTrue(property_exists($item, 'id'));

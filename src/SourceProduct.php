@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class SourceProduct extends BaseAbstract
+class SourceProduct extends  AbstractBase
 {
     /** @var SourceProductSource $source */
     public $source;

@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class Address extends BaseAbstract
+class Address extends AbstractBase
 {
     /** @var int|null $customer_id */
     public $customer_id;

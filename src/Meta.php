@@ -10,7 +10,7 @@ namespace Stock2shop\DTO;
  * Class Meta
  * @package stock2shop\vo
  */
-class Meta extends BaseAbstract
+class Meta extends  AbstractBase
 {
 
     /** @var string|null $key */

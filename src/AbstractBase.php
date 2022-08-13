@@ -4,7 +4,7 @@ namespace Stock2Shop\DTO;
 
 use InvalidArgumentException;
 
-abstract class BaseAbstract
+abstract class AbstractBase
 {
     /**
      * Sorts a multidimensional array by key name.

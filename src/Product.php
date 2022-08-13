@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\DTO;
 
-class Product extends BaseAbstract
+class Product extends  AbstractBase
 {
     /** @var bool|null $active */
     public $active;
