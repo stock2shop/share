@@ -1,11 +1,11 @@
 {
-    "name": "stock2shop/share",
-    "description": "Shared Contracts",
+    "name": "stock2shop/dto",
+    "description": "Stock2Shop Data Transfer Objects",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "stock2shop\\share\\": "src/",
-            "tests\\": "tests/"
+            "Stock2Shop\\DTO\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace stock2shop\share\dto;
+namespace Stock2Shop\DTO;
 
 class User extends BaseAbstract
 {

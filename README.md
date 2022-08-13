@@ -1,12 +1,12 @@
 # share
 
-Stock2Shop Shared DTO's, Factories and Interfaces.
+Stock2Shop Data Transfer Objects.
 
 ## setup
 
 ```
-git clone https://github.com/stock2shop/share.git
-cd share
+git clone https://github.com/stock2shop/dto.git
+cd dto
 composer install
 ```
 

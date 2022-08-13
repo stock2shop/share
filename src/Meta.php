@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2shop\Share\dto;
+namespace Stock2shop\DTO;
 
 /**
  *
