@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2Shop\DTO\Tests;
+namespace Stock2Shop\Tests\DTO;
 
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\DTO;
