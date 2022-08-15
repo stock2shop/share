@@ -1,9 +1,9 @@
 <?php
 
-namespace Stock2Shop\Tests\DTO;
+namespace Stock2Shop\Tests\Share;
 
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\DTO;
+use Stock2Shop\Share\DTO;
 
 class ChannelTest extends TestCase
 {
@@ -29,9 +29,9 @@ class ChannelTest extends TestCase
 
         $item = new DTO\Channel($mockData);
 
-        $this->assertInstanceOf('Stock2Shop\DTO\Channel', $item);
-        $this->assertInstanceOf('Stock2Shop\DTO\AbstractBase', $item);
-        $this->assertInstanceOf('Stock2Shop\DTO\Meta', $item->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $item);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $item);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $item->meta[0]);
         $this->assertCount(9, (array) $item);
         $this->assertTrue(property_exists($item, 'id'));
         $this->assertTrue(property_exists($item, 'description'));

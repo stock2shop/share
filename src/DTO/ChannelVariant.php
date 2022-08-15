@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2Shop\DTO;
+namespace Stock2Shop\Share\DTO;
 
 class ChannelVariant extends Variant
 {

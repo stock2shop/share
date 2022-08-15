@@ -1,14 +1,14 @@
 {
     "name": "stock2shop/dto",
-    "description": "Stock2Shop Data Transfer Objects",
+    "description": "Stock2Shop DTO's, factories and interfaces",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Stock2Shop\\DTO\\": "src/"
+            "Stock2Shop\\Share\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-4": {"Stock2Shop\\Tests\\DTO": "tests/"}
+        "psr-4": {"Stock2Shop\\Tests\\Share\\": "tests/"}
     },
     "authors": [
         {

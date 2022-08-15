@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2Shop\DTO;
+namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
 
