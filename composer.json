@@ -1,5 +1,5 @@
 {
-    "name": "stock2shop/dto",
+    "name": "stock2shop/share",
     "description": "Stock2Shop DTO's, factories and interfaces",
     "type": "library",
     "autoload": {
