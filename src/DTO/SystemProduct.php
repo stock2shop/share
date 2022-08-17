@@ -55,4 +55,18 @@ class SystemProduct extends Product
         }
         return md5($productHash);
     }
+
+    /**
+     * @param array $data
+     * @return SystemProduct[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $cv  = new SystemProduct((array)$item);
+            $a[] = $cv;
+        }
+        return $a;
+    }
 }
