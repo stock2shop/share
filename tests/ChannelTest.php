@@ -52,4 +52,20 @@ class ChannelTest extends TestCase
         $this->assertTrue(is_bool($item->active));
         $this->assertTrue(is_array($item->meta));
     }
+
+    public function testCreateArray() {
+        $mockData = [
+            [
+                "id"               => "123"
+            ],
+            [
+                "id"               => "4"
+            ]
+        ];
+        $items = DTO\Channel::createArray($mockData);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $items[1]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $items[1]);
+    }
 }

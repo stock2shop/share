@@ -4,17 +4,35 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemProduct extends Product
 {
+    /** @var Channel[] $channels */
+    public $channels;
+
+    /** @var int|null $client_id */
+    public $client_id;
+
+    /** @var string|null $created */
+    public $created;
+
+    /** @var string|null $hash */
+    public $hash;
+
     /** @var int|null $id */
     public $id;
+
+    /** @var SystemImage[] $images */
+    public $images;
+
+    /** @var string|null $modified */
+    public $modified;
+
+    /** @var int|null $source_id */
+    public $source_id;
 
     /** @var string|null $source_product_code */
     public $source_product_code;
 
     /** @var SystemVariant[] $variants */
     public $variants;
-
-    /** @var SystemImage[] $images */
-    public $images;
 
     /**
      * SystemProduct constructor.
@@ -24,6 +42,7 @@ class SystemProduct extends Product
     {
         parent::__construct($data);
 
+        $this->channels            = Channel::createArray(static::arrayFrom($data, 'channels'));
         $this->id                  = static::intFrom($data, 'id');
         $this->source_product_code = static::stringFrom($data, 'source_product_code');
         $this->variants            = SystemVariant::createArray(static::arrayFrom($data, 'variants'));

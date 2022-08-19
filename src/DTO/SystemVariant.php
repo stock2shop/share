@@ -4,11 +4,23 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemVariant extends Variant
 {
+    /** @var int|null $client_id */
+    public $client_id;
+
+    /** @var string|null $hash */
+    public $hash;
+
     /** @var int|null $id */
     public $id;
 
+    /** @var int|null $image_id */
+    public $image_id;
+
     /** @var int|null $product_id */
     public $product_id;
+
+    /** @var string|null $source_variant_code */
+    public $source_variant_code;
 
     /**
      * SystemVariant constructor.

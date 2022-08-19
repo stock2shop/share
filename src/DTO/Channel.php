@@ -49,4 +49,18 @@ class Channel extends  AbstractBase
         $this->meta             = Meta::createArray(self::arrayFrom($data, "meta"));
     }
 
+    /**
+     * Creates an array of this class.
+     * @param array $data
+     * @return Channel[]
+     */
+    static function createArray(array $data): array
+    {
+        $returnable = [];
+        foreach ($data as $item) {
+            $returnable[] = new self((array)$item);
+        }
+        return $returnable;
+    }
+
 }
