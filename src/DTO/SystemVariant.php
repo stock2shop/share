@@ -30,8 +30,12 @@ class SystemVariant extends Variant
     {
         parent::__construct($data);
 
-        $this->id         = static::intFrom($data, 'id');
-        $this->product_id = static::intFrom($data, 'product_id');
+        $this->client_id           = static::intFrom($data, 'client_id');
+        $this->hash                = static::stringFrom($data, 'hash');
+        $this->id                  = static::intFrom($data, 'id');
+        $this->image_id            = static::intFrom($data, 'image_id');
+        $this->product_id          = static::intFrom($data, 'product_id');
+        $this->source_variant_code = static::stringFrom($data, 'source_variant_code');
     }
 
     /**

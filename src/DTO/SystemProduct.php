@@ -43,10 +43,15 @@ class SystemProduct extends Product
         parent::__construct($data);
 
         $this->channels            = Channel::createArray(static::arrayFrom($data, 'channels'));
+        $this->client_id           = static::intFrom($data, 'client_id');
+        $this->created             = static::stringFrom($data, 'created');
+        $this->hash                = static::stringFrom($data, 'hash');
         $this->id                  = static::intFrom($data, 'id');
+        $this->images              = SystemImage::createArray(static::arrayFrom($data, 'images'));
+        $this->modified            = static::stringFrom($data, 'modified');
+        $this->source_id           = static::intFrom($data, 'source_id');
         $this->source_product_code = static::stringFrom($data, 'source_product_code');
         $this->variants            = SystemVariant::createArray(static::arrayFrom($data, 'variants'));
-        $this->images              = SystemImage::createArray(static::arrayFrom($data, 'images'));
     }
 
     /**
@@ -63,10 +68,6 @@ class SystemProduct extends Product
     public function computeHash(): string
     {
         $productHash = parent::computeHash();
-        // More properties to include in the hash?
-        // Order is important.
-        // DO NOT include Stock2Shop DB IDs,
-        // auto-increment PK might be replaced by KSUID
         $this->sort();
         $productHash .= "\nsource_product_code=$this->source_product_code";
         foreach ($this->images as $i) {
