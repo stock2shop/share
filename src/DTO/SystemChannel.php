@@ -2,23 +2,29 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class Channel extends  AbstractBase
+class SystemChannel extends AbstractBase
 {
-
-    /** @var int|null $id */
-    public $id;
-
-    /** @var string|null $description */
-    public $description;
-
-    /** @var int|null $client_id */
-    public $client_id;
 
     /** @var bool|null $active */
     public $active;
 
-    /** @var string|null $type */
-    public $type;
+    /** @var int|null $client_id */
+    public $client_id;
+
+    /** @var string|null $client_id */
+    public $created;
+
+    /** @var string|null $description */
+    public $description;
+
+    /** @var int|null $id */
+    public $id;
+
+    /** @var Meta[] $meta */
+    public $meta;
+
+    /** @var string|null $modified */
+    public $modified;
 
     /** @var string|null $price_tier */
     public $price_tier;
@@ -29,8 +35,8 @@ class Channel extends  AbstractBase
     /** @var string|null $sync_token */
     public $sync_token;
 
-    /** @var Meta[] $meta */
-    public $meta;
+    /** @var string|null $type */
+    public $type;
 
     /**
      * Channel constructor.
@@ -38,15 +44,17 @@ class Channel extends  AbstractBase
      */
     public function __construct(array $data)
     {
-        $this->id               = static::intFrom($data, 'id');
-        $this->client_id        = static::intFrom($data, 'client_id');
-        $this->description      = static::stringFrom($data, 'description');
         $this->active           = static::boolFrom($data, 'active');
-        $this->type             = static::stringFrom($data, 'type');
+        $this->client_id        = static::intFrom($data, 'client_id');
+        $this->created          = static::stringFrom($data, 'created');
+        $this->description      = static::stringFrom($data, 'description');
+        $this->id               = static::intFrom($data, 'id');
+        $this->meta             = Meta::createArray(self::arrayFrom($data, "meta"));
+        $this->modified         = static::stringFrom($data, 'modified');
         $this->price_tier       = static::stringFrom($data, 'price_tier');
         $this->qty_availability = static::stringFrom($data, 'qty_availability');
         $this->sync_token       = static::stringFrom($data, 'sync_token');
-        $this->meta             = Meta::createArray(self::arrayFrom($data, "meta"));
+        $this->type             = static::stringFrom($data, 'type');
     }
 
     /**
@@ -58,7 +66,7 @@ class Channel extends  AbstractBase
     {
         $returnable = [];
         foreach ($data as $item) {
-            $returnable[] = new self((array)$item);
+            $returnable[] = new SystemChannel((array)$item);
         }
         return $returnable;
     }

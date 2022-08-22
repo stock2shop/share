@@ -4,7 +4,7 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemProduct extends Product
 {
-    /** @var Channel[] $channels */
+    /** @var SystemChannel[] $channels */
     public $channels;
 
     /** @var int|null $client_id */
@@ -42,7 +42,7 @@ class SystemProduct extends Product
     {
         parent::__construct($data);
 
-        $this->channels            = Channel::createArray(static::arrayFrom($data, 'channels'));
+        $this->channels            = SystemChannel::createArray(static::arrayFrom($data, 'channels'));
         $this->client_id           = static::intFrom($data, 'client_id');
         $this->created             = static::stringFrom($data, 'created');
         $this->hash                = static::stringFrom($data, 'hash');
