@@ -54,6 +54,16 @@ class SystemProduct extends Product
         $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
     }
 
+    public function __get($prop)
+    {
+        return $this->$prop;
+    }
+
+    public function __isset($prop) : bool
+    {
+        return isset($this->$prop);
+    }
+
     public function setChannels($arg)
     {
         $this->channels = SystemProductChannel::createArray($arg);
