@@ -5,22 +5,19 @@ namespace Stock2Shop\Share\DTO;
 class SystemVariant extends Variant
 {
     /** @var int|null $client_id */
-    public $client_id;
+    protected $client_id;
 
     /** @var string|null $hash */
-    public $hash;
+    protected $hash;
 
     /** @var int|null $id */
-    public $id;
+    protected $id;
 
     /** @var int|null $image_id */
-    public $image_id;
+    protected $image_id;
 
     /** @var int|null $product_id */
-    public $product_id;
-
-    /** @var string|null $source_variant_code */
-    public $source_variant_code;
+    protected $product_id;
 
     /**
      * SystemVariant constructor.
@@ -30,12 +27,36 @@ class SystemVariant extends Variant
     {
         parent::__construct($data);
 
-        $this->client_id           = static::intFrom($data, 'client_id');
-        $this->hash                = static::stringFrom($data, 'hash');
-        $this->id                  = static::intFrom($data, 'id');
-        $this->image_id            = static::intFrom($data, 'image_id');
-        $this->product_id          = static::intFrom($data, 'product_id');
-        $this->source_variant_code = static::stringFrom($data, 'source_variant_code');
+        $this->client_id  = static::intFrom($data, 'client_id');
+        $this->hash       = static::stringFrom($data, 'hash');
+        $this->id         = static::intFrom($data, 'id');
+        $this->image_id   = static::intFrom($data, 'image_id');
+        $this->product_id = static::intFrom($data, 'product_id');
+    }
+
+    public function setClientID($arg)
+    {
+        $this->client_id = self::toInt($arg);
+    }
+
+    public function setHash($arg)
+    {
+        $this->hash = self::toString($arg);
+    }
+
+    public function setID($arg)
+    {
+        $this->id = self::toInt($arg);
+    }
+
+    public function setImageID($arg)
+    {
+        $this->image_id = self::toInt($arg);
+    }
+
+    public function setProductID($arg)
+    {
+        $this->product_id = self::toInt($arg);
     }
 
     /**
@@ -46,21 +67,5 @@ class SystemVariant extends Variant
     {
         // Unlike SystemProduct there are no additional properties to include
         return parent::computeHash();
-    }
-
-    /**
-     * Creates an array of this class.
-     * @param array $data
-     * @return SystemVariant[]
-     */
-    static function createArray(array $data): array
-    {
-        $returnable = [];
-
-        foreach ($data as $item) {
-            $returnable[] = new SystemVariant((array)$item);
-        }
-
-        return $returnable;
     }
 }

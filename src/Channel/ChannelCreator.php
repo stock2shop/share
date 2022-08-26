@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2Shop\Factory;
+namespace Stock2Shop\Share\Channel;
 
 
 /**

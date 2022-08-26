@@ -10,17 +10,17 @@ namespace Stock2shop\Share\DTO;
  * Class Meta
  * @package stock2shop\vo
  */
-class Meta extends  AbstractBase
+class Meta extends AbstractBase
 {
 
     /** @var string|null $key */
-    public $key;
+    protected $key;
 
     /** @var string|null $value */
-    public $value;
+    protected $value;
 
     /** @var string|null $template_name */
-    public $template_name;
+    protected $template_name;
 
     /**
      * Meta constructor.
@@ -33,17 +33,34 @@ class Meta extends  AbstractBase
         $this->template_name = self::stringFrom($data, "template_name");
     }
 
-    /**
-     * @param array $data
-     * @return Meta[]
-     */
-    static function createArray(array $data): array
+    public function setKey($arg)
     {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new Meta((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
+        $this->key = self::toString($arg);
     }
+
+    public function setValue($arg)
+    {
+        $this->value = self::toString($arg);
+    }
+
+    public function setTemplateName($arg)
+    {
+        $this->template_name = self::toString($arg);
+    }
+
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+    public function getTemplateName(): string
+    {
+        return $this->template_name;
+    }
+
 }

@@ -21,44 +21,31 @@ class SystemChannelTest extends TestCase
             "qty_availability" => "test",
             "sync_token"       => "test",
             "meta"             => [
-                'key'           => 'size',
-                'value'         => '12',
-                'template_name' => 'template_a',
-                'encrypted'     => '1',
-                'created'       => '2017-08-09T13:22:00:000Z',
+                [
+                    'key'           => 'size',
+                    'value'         => '12',
+                    'template_name' => 'template_a',
+                    'encrypted'     => '1',
+                    'created'       => '2017-08-09T13:22:00:000Z',
+                ]
             ]
         ];
-
-        $item = new DTO\SystemChannel($mockData);
-
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $item);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $item);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $item->meta[0]);
-        $this->assertCount(11, (array)$item);
-        $this->assertObjectHasAttribute('id', $item);
-        $this->assertObjectHasAttribute('id', $item);
-        $this->assertObjectHasAttribute('created', $item);
-        $this->assertObjectHasAttribute('client_id', $item);
-        $this->assertObjectHasAttribute('description', $item);
-        $this->assertObjectHasAttribute('type', $item);
-        $this->assertObjectHasAttribute('sync_token', $item);
-        $this->assertObjectHasAttribute('active', $item);
-        $this->assertObjectHasAttribute('meta', $item);
-        $this->assertObjectHasAttribute('modified', $item);
-        $this->assertObjectHasAttribute('price_tier', $item);
-        $this->assertObjectHasAttribute('qty_availability', $item);
-        $this->assertIsString($item->created);
-        $this->assertIsString($item->created);
-        $this->assertIsString($item->description);
-        $this->assertIsString($item->modified);
-        $this->assertIsString($item->price_tier);
-        $this->assertIsString($item->qty_availability);
-        $this->assertIsString($item->sync_token);
-        $this->assertIsString($item->type);
-        $this->assertIsInt($item->id);
-        $this->assertIsInt($item->client_id);
-        $this->assertIsBool($item->active);
-        $this->assertIsArray($item->meta);
+        $c = new DTO\SystemChannel($mockData);
+        $this->assertSystemChannel($c);
+        $c->setActive(0);
+        $c->setClientID('1');
+        $c->setCreated('');
+        $c->setDescription('a');
+        $c->setID(0);
+        $c->setMeta([['key'=> 'a']]);
+        $c->setModified('a');
+        $c->setPriceTier('a');
+        $c->setQtyAvailability('a');
+        $c->setSyncToken('a');
+        $c->setType('a');
+        $this->assertSystemChannel($c);
+        $c = new DTO\SystemChannel([]);
+        $this->assertSystemChannelNull($c);
     }
 
     public function testCreateArray()
@@ -72,9 +59,45 @@ class SystemChannelTest extends TestCase
             ]
         ];
         $items    = DTO\SystemChannel::createArray($mockData);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $items[1]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $items[1]);
+        $this->assertSystemChannel($items[0]);
+        $this->assertSystemChannel($items[1]);
+        $items    = DTO\SystemChannel::createArray([[],[]]);
+        $this->assertSystemChannelNull($items[0]);
+        $this->assertSystemChannelNull($items[1]);
+    }
+
+    private function assertSystemChannel(DTO\SystemChannel $c) {
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->getMeta()[0]);
+        $this->assertIsBool($c->getActive());
+        $this->assertIsInt($c->getClientID());
+        $this->assertIsString($c->getCreated());
+        $this->assertIsString($c->getDescription());
+        $this->assertIsInt($c->getID());
+        $this->assertIsArray($c->getMeta());
+        $this->assertIsString($c->getMeta()[0]->getKey());
+        $this->assertIsString($c->getModified());
+        $this->assertIsString($c->getPriceTier());
+        $this->assertIsString($c->getQtyAvailability());
+        $this->assertIsString($c->getSyncToken());
+        $this->assertIsString($c->getType());
+    }
+
+    private function assertSystemChannelNull(DTO\SystemChannel $c) {
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
+        $this->assertNull($c->getActive());
+        $this->assertNull($c->getClientID());
+        $this->assertNull($c->getCreated());
+        $this->assertNull($c->getDescription());
+        $this->assertNull($c->getID());
+        $this->assertIsArray($c->getMeta());
+        $this->assertEmpty($c->getMeta());
+        $this->assertNull($c->getModified());
+        $this->assertNull($c->getPriceTier());
+        $this->assertNull($c->getQtyAvailability());
+        $this->assertNull($c->getSyncToken());
+        $this->assertNull($c->getType());
     }
 }

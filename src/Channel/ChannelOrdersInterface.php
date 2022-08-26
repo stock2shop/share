@@ -1,7 +1,7 @@
 <?php
-namespace Stock2Shop\Factory;
+namespace Stock2Shop\Share\Channel;
 
-use Stock2Shop\DTO;
+use Stock2Shop\Share\DTO;
 
 /**
  * Interface Orders

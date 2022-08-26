@@ -42,20 +42,6 @@ class Flag extends  AbstractBase
 
     /**
      * @param array $data
-     * @return Flag[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new Flag((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
-    }
-
-    /**
-     * @param array $data
      * @return array
      */
     static function createMap(array $data): array

@@ -20,18 +20,4 @@ class ProductOption extends  AbstractBase
         $this->name     = self::stringFrom($data, "name");
         $this->position = self::intFrom($data, "position");
     }
-
-    /**
-     * @param array $data
-     * @return ProductOption[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new ProductOption((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
-    }
 }

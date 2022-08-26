@@ -21,18 +21,4 @@ class SystemImage extends Image
         $this->active = self::boolFrom($data, "active");
         $this->id     = self::intFrom($data, 'id');
     }
-
-    /**
-     * @param array $data
-     * @return SystemImage[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new SystemImage((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
-    }
 }

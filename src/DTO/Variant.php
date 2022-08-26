@@ -2,53 +2,53 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class Variant extends  AbstractBase
+class Variant extends AbstractBase
 {
     /** @var string|null $source_variant_code */
-    public $source_variant_code;
+    protected $source_variant_code;
 
     /** @var string|null $sku */
-    public $sku;
+    protected $sku;
 
     /** @var bool|null $active */
-    public $active;
+    protected $active;
 
     /** @var int|null $qty
      * See issue https://github.com/stock2shop/app/issues/1490
      * Currently our ddb stores qty as unsigned int, meaning positive number only
      * Once we allow negatives the check below should be changed
      */
-    public $qty;
+    protected $qty;
 
     /** @var QtyAvailability[] $qty_availability */
-    public $qty_availability;
+    protected $qty_availability;
 
     /** @var float|null $price */
-    public $price;
+    protected $price;
 
     /** @var PriceTier[] $price_tiers */
-    public $price_tiers;
+    protected $price_tiers;
 
     /** @var string|null $barcode */
-    public $barcode;
+    protected $barcode;
 
     /** @var bool|null $inventory_management */
-    public $inventory_management;
+    protected $inventory_management;
 
     /** @var int|null $grams */
-    public $grams;
+    protected $grams;
 
     /** @var string|null $option1 */
-    public $option1;
+    protected $option1;
 
     /** @var string|null $option2 */
-    public $option2;
+    protected $option2;
 
     /** @var string|null $option3 */
-    public $option3;
+    protected $option3;
 
     /** @var Meta[] $meta */
-    public $meta;
+    protected $meta;
 
     /**
      * Variant constructor.
@@ -72,7 +72,79 @@ class Variant extends  AbstractBase
         $this->meta                 = Meta::createArray(self::arrayFrom($data, "meta"));
 
         // Remove once we allow negative values in DB.
-        if($this->qty < 0) $this->qty = 0;
+        if ($this->qty < 0) {
+            $this->qty = 0;
+        }
+    }
+
+    public function setSourceVariantCode($arg)
+    {
+        $this->source_variant_code = self::toString($arg);
+    }
+
+    public function setSKU($arg)
+    {
+        $this->sku = self::toString($arg);
+    }
+
+    public function setActive($arg)
+    {
+        $this->active = self::toBool($arg);
+    }
+
+    public function setQty($arg)
+    {
+        $this->qty = self::toInt($arg);
+    }
+
+    public function setQtyAvailability($arg)
+    {
+        $this->qty_availability = QtyAvailability::createArray($arg);
+    }
+
+    public function setPrice($arg)
+    {
+        $this->price = self::toFloat($arg);
+    }
+
+    public function setPriceTiers($arg)
+    {
+        $this->price_tiers = PriceTier::createArray($arg);
+    }
+
+    public function setBarcode($arg)
+    {
+        $this->barcode = self::toString($arg);
+    }
+
+    public function setInventoryManagement($arg)
+    {
+        $this->inventory_management = self::toBool($arg);
+    }
+
+    public function setGrams($arg)
+    {
+        $this->grams = self::toInt($arg);
+    }
+
+    public function setOption1($arg)
+    {
+        $this->option1 = self::toString($arg);
+    }
+
+    public function setOption2($arg)
+    {
+        $this->option2 = self::toString($arg);
+    }
+
+    public function setOption3($arg)
+    {
+        $this->option3 = self::toString($arg);
+    }
+
+    public function setMeta($arg)
+    {
+        $this->meta = Meta::createArray($arg);
     }
 
     /**
@@ -95,7 +167,6 @@ class Variant extends  AbstractBase
         $v = new Variant((array)$this);
         $v->sort();
         $json = json_encode($v);
-
         return md5($json);
     }
 }

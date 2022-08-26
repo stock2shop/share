@@ -4,35 +4,35 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemProduct extends Product
 {
-    /** @var SystemChannel[] $channels */
-    public $channels;
+    /** @var SystemProductChannel[] $channels */
+    protected $channels;
 
     /** @var int|null $client_id */
-    public $client_id;
+    protected $client_id;
 
     /** @var string|null $created */
-    public $created;
+    protected $created;
 
     /** @var string|null $hash */
-    public $hash;
+    protected $hash;
 
     /** @var int|null $id */
-    public $id;
+    protected $id;
 
     /** @var SystemImage[] $images */
-    public $images;
+    protected $images;
 
     /** @var string|null $modified */
-    public $modified;
+    protected $modified;
 
     /** @var int|null $source_id */
-    public $source_id;
+    protected $source_id;
 
     /** @var string|null $source_product_code */
-    public $source_product_code;
+    protected $source_product_code;
 
     /** @var SystemVariant[] $variants */
-    public $variants;
+    protected $variants;
 
     /**
      * SystemProduct constructor.
@@ -42,16 +42,116 @@ class SystemProduct extends Product
     {
         parent::__construct($data);
 
-        $this->channels            = SystemChannel::createArray(static::arrayFrom($data, 'channels'));
-        $this->client_id           = static::intFrom($data, 'client_id');
-        $this->created             = static::stringFrom($data, 'created');
-        $this->hash                = static::stringFrom($data, 'hash');
-        $this->id                  = static::intFrom($data, 'id');
-        $this->images              = SystemImage::createArray(static::arrayFrom($data, 'images'));
-        $this->modified            = static::stringFrom($data, 'modified');
-        $this->source_id           = static::intFrom($data, 'source_id');
-        $this->source_product_code = static::stringFrom($data, 'source_product_code');
-        $this->variants            = SystemVariant::createArray(static::arrayFrom($data, 'variants'));
+        $this->channels            = SystemProductChannel::createArray(self::arrayFrom($data, 'channels'));
+        $this->client_id           = self::intFrom($data, 'client_id');
+        $this->created             = self::stringFrom($data, 'created');
+        $this->hash                = self::stringFrom($data, 'hash');
+        $this->id                  = self::intFrom($data, 'id');
+        $this->images              = SystemImage::createArray(self::arrayFrom($data, 'images'));
+        $this->modified            = self::stringFrom($data, 'modified');
+        $this->source_id           = self::intFrom($data, 'source_id');
+        $this->source_product_code = self::stringFrom($data, 'source_product_code');
+        $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
+    }
+
+    public function setChannels($arg)
+    {
+        $this->channels = SystemProductChannel::createArray($arg);
+    }
+
+    public function setClientID($arg)
+    {
+        $this->client_id = self::toInt($arg);
+    }
+
+    public function setCreated($arg)
+    {
+        $this->created = self::toString($arg);
+    }
+
+    public function setHash($arg)
+    {
+        $this->hash = self::toString($arg);
+    }
+
+    public function setID($arg)
+    {
+        $this->id = self::toInt($arg);
+    }
+
+    public function setImages($arg)
+    {
+        $this->images = SystemImage::createArray($arg);
+    }
+
+    public function setModified($arg)
+    {
+        $this->modified = self::toString($arg);
+    }
+
+    public function setSourceID($arg)
+    {
+        $this->source_id = self::toInt($arg);
+    }
+
+    public function setSourceProductCode($arg)
+    {
+        $this->source_product_code = self::toString($arg);
+    }
+
+    public function setVariants($arg)
+    {
+        $this->variants = SystemVariant::createArray($arg);
+    }
+
+    public function getChannels()
+    {
+        return $this->channels;
+    }
+
+    public function getClientID()
+    {
+        return $this->client_id;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    public function getID()
+    {
+        return $this->id;
+    }
+
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    public function getSourceID()
+    {
+        return $this->source_id;
+    }
+
+    public function getSourceProductCode()
+    {
+        return $this->source_product_code;
+    }
+
+    public function getVariants(): array
+    {
+        return $this->variants;
     }
 
     /**
@@ -76,17 +176,4 @@ class SystemProduct extends Product
         return md5($productHash);
     }
 
-    /**
-     * @param array $data
-     * @return SystemProduct[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $cv  = new SystemProduct((array)$item);
-            $a[] = $cv;
-        }
-        return $a;
-    }
 }

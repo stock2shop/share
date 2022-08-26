@@ -20,17 +20,4 @@ class QtyAvailability extends  AbstractBase
         $this->qty         = self::intFrom($data, "qty");
     }
 
-    /**
-     * @param array $data
-     * @return QtyAvailability[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new QtyAvailability((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
-    }
 }

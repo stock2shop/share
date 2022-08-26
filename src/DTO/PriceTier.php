@@ -19,18 +19,4 @@ class PriceTier extends  AbstractBase
         $this->tier  = self::stringFrom($data, "tier");
         $this->price = self::floatFrom($data, "price");
     }
-
-    /**
-     * @param array $data
-     * @return PriceTier[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $pmd = new PriceTier((array)$item);
-            $a[] = $pmd;
-        }
-        return $a;
-    }
 }

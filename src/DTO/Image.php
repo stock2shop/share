@@ -15,19 +15,4 @@ class Image extends  AbstractBase
     {
         $this->src = self::stringFrom($data, 'src');
     }
-
-    /**
-     * Creates an array of this class
-     * @param array $data
-     * @return ChannelImage[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $ci  = new Image((array)$item);
-            $a[] = $ci;
-        }
-        return $a;
-    }
 }

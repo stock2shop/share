@@ -1,7 +1,7 @@
 <?php
-namespace Stock2Shop\Factory;
+namespace Stock2Shop\Share\Channel;
 
-use Stock2Shop\DTO;
+use Stock2Shop\Share\DTO;
 
 /**
  * Interface defining methods for interacting (syncing / fetching)
@@ -55,11 +55,11 @@ interface ChannelProductsInterface {
      * - ChannelProduct->images[]->channel_image_code = "channel's unique id for the image"
      *
      * @param DTO\ChannelProducts $channelProducts
-     * @param DTO\Channel $channel
+     * @param DTO\SystemChannel $channel
      * @param array $flagsMap DTO\Flags::createMap
      * @return DTO\ChannelProducts
      */
-    public function sync(DTO\ChannelProducts $channelProducts, DTO\Channel $channel, array $flagsMap): DTO\ChannelProducts;
+    public function sync(DTO\ChannelProducts $channelProducts, DTO\SystemChannel $channel, array $flagsMap): DTO\ChannelProducts;
 
     /**
      * Verify that products exist on a channel, given their
@@ -73,10 +73,10 @@ interface ChannelProductsInterface {
      * - ChannelProduct->images[]->success = true
      *
      * @param DTO\ChannelProducts $channelProducts
-     * @param DTO\Channel $channel
+     * @param DTO\SystemChannel $channel
      * @return DTO\ChannelProducts
      */
-    public function getByCode(DTO\ChannelProducts $channelProducts, DTO\Channel $channel): DTO\ChannelProducts;
+    public function getByCode(DTO\ChannelProducts $channelProducts, DTO\SystemChannel $channel): DTO\ChannelProducts;
 
     /**
      * Used so we can page through products on a channel and return their unique identifiers.
@@ -106,10 +106,10 @@ interface ChannelProductsInterface {
      *
      * @param string $channel_product_code only return results greater than this
      * @param int $limit max records to return
-     * @param DTO\Channel $channel
+     * @param DTO\SystemChannel $channel
      * @return DTO\ChannelProducts
      */
-    public function get(string $channel_product_code, int $limit, DTO\Channel $channel): DTO\ChannelProducts;
+    public function get(string $channel_product_code, int $limit, DTO\SystemChannel $channel): DTO\ChannelProducts;
 
 }
 

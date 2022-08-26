@@ -2,22 +2,16 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelVariant extends Variant
+class ChannelVariant extends SystemVariant
 {
-    /** @var int|null $id */
-    public $id;
-
-    /** @var int|null $product_id */
-    public $product_id;
-
     /** @var string|null $channel_variant_code */
-    public $channel_variant_code;
+    protected $channel_variant_code;
 
     /** @var bool|null $delete */
-    public $delete;
+    protected $delete;
 
     /** @var bool|null $success */
-    public $success;
+    protected $success;
 
     /**
      * @param array $data
@@ -26,11 +20,24 @@ class ChannelVariant extends Variant
     {
         parent::__construct($data);
 
-        $this->id                   = self::intFrom($data, 'id');
-        $this->product_id           = self::intFrom($data, 'product_id');
         $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
         $this->delete               = self::boolFrom($data, 'delete');
         $this->success              = self::boolFrom($data, 'success');
+    }
+
+    public function setChannelVariantCode($arg)
+    {
+        $this->channel_variant_code = self::toString($arg);
+    }
+
+    public function setDelete($arg)
+    {
+        $this->delete = self::toBool($arg);
+    }
+
+    public function setSuccess($arg)
+    {
+        $this->success = self::toBool($arg);
     }
 
     /**
@@ -54,25 +61,8 @@ class ChannelVariant extends Variant
     public function computeHash(): string
     {
         $variantHash = parent::computeHash();
-        // More properties to include in the hash?
-        // Order is important.
-        // DO NOT include Stock2Shop DB IDs,
-        // auto-increment PK might be replaced by KSUID
         $variantHash .= "\nchannel_variant_code=$this->channel_variant_code";
         return md5($variantHash);
     }
 
-    /**
-     * @param array $data
-     * @return ChannelVariant[]
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $cv  = new ChannelVariant((array)$item);
-            $a[] = $cv;
-        }
-        return $a;
-    }
 }

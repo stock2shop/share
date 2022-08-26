@@ -7,6 +7,25 @@ use InvalidArgumentException;
 abstract class AbstractBase
 {
     /**
+     * Creates an array of class instances, instantiated with data.
+     *
+     * @param array $data
+     * @return array
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $r = new \ReflectionClass(get_called_class());
+            try {
+                $a[]  = $r->newInstance($item);
+            } catch(\ReflectionException $e) {
+            }
+        }
+        return $a;
+    }
+
+    /**
      * Sorts a multidimensional array by key name.
      *
      * WARNING The $sortable array must be passed by reference
@@ -44,40 +63,8 @@ abstract class AbstractBase
     static function boolFrom(array $data, string $key)
     {
         if (array_key_exists($key, $data)) {
-            if (is_null($data[$key])) {
-                return null;
-            }
-            $type = gettype($data[$key]);
-            if ($type === "string") {
-                $s = strtolower($data[$key]);
-                if ($s === "false") {
-                    return false;
-                }
-                if ($s === "0") {
-                    return false;
-                }
-                if ($s === "") {
-                    return false;
-                }
-                return true;
-            }
-            if ($type === "integer") {
-                if ($data[$key] === 0) {
-                    return false;
-                }
-                return true;
-            }
-            if ($type === "double") {
-                if ($data[$key] === 0.0) {
-                    return false;
-                }
-                return true;
-            }
-            if ($type === "boolean") {
-                return $data[$key];
-            }
+            return self::toBool($data[$key]);
         }
-        // Missing properties parse as null
         return null;
     }
 
@@ -89,18 +76,8 @@ abstract class AbstractBase
     static function stringFrom(array $data, string $key)
     {
         if (array_key_exists($key, $data)) {
-            if (is_null($data[$key])) {
-                return null;
-            }
-            if (gettype($data[$key]) === "boolean") {
-                if ($data[$key] === false) {
-                    return "false";
-                }
-                return "true";
-            }
-            return (string)$data[$key];
+            return self::toString($data[$key]);
         }
-        // Missing properties parse as null
         return null;
     }
 
@@ -116,29 +93,8 @@ abstract class AbstractBase
     static function floatFrom(array $data, string $key)
     {
         if (array_key_exists($key, $data)) {
-            if (is_null($data[$key])) {
-                return null;
-            }
-            $type = gettype($data[$key]);
-            if ($type === "string") {
-                if (!is_numeric($data[$key])) {
-                    // Empty string considered null
-                    if (trim($data[$key]) === "") {
-                        return null;
-                    }
-
-                    // invalid
-                    throw new InvalidArgumentException(
-                        "value is not numeric"
-                    );
-                }
-            }
-            if ($type === "boolean") {
-                throw new InvalidArgumentException("value is a bool");
-            }
-            return (float)$data[$key];
+            return self::toFloat($data[$key]);
         }
-        // Missing properties parse as null
         return null;
     }
 
@@ -150,27 +106,8 @@ abstract class AbstractBase
     static function intFrom(array $data, string $key)
     {
         if (array_key_exists($key, $data)) {
-            if (is_null($data[$key])) {
-                return null;
-            }
-            $type = gettype($data[$key]);
-            if ($type === "string") {
-                // Empty string considered null
-                if (trim($data[$key]) === "") {
-                    return null;
-                }
-
-                // invalid
-                if (!is_numeric($data[$key])) {
-                    throw new InvalidArgumentException("value is not numeric");
-                }
-            }
-            if ($type === "boolean") {
-                throw new InvalidArgumentException("value is a bool");
-            }
-            return (int)$data[$key];
+            return self::toInt($data[$key]);
         }
-        // Missing properties parse as null
         return null;
     }
 
@@ -190,8 +127,107 @@ abstract class AbstractBase
                     return $data[$key];
             }
         }
-        // For everything else return empty array
         return [];
+    }
+
+    /**
+     * @param $arg
+     * @return int|null
+     */
+    static function toBool($arg)
+    {
+        if (is_null($arg)) {
+            return null;
+        }
+        $type = gettype($arg);
+        if ($type === "string") {
+            $s = strtolower($arg);
+            if ($s === "false") {
+                return false;
+            }
+            if ($s === "0") {
+                return false;
+            }
+            if ($s === "") {
+                return false;
+            }
+            return true;
+        }
+        if ($type === "integer") {
+            if ($arg === 0) {
+                return false;
+            }
+            return true;
+        }
+        if ($type === "double") {
+            if ($arg === 0.0) {
+                return false;
+            }
+            return true;
+        }
+        if ($type === "boolean") {
+            return $arg;
+        }
+    }
+
+    /**
+     * @param $arg
+     * @return int|null
+     */
+    static function toFloat($arg)
+    {
+        if (is_null($arg)) {
+            return null;
+        }
+        $type = gettype($arg);
+        if ($type === "string") {
+            if (!is_numeric($arg)) {
+                if (trim($arg) === "") {
+                    return null;
+                }
+                throw new InvalidArgumentException(
+                    "value is not numeric"
+                );
+            }
+        }
+        if ($type === "boolean") {
+            throw new InvalidArgumentException("value is a bool");
+        }
+        return (float)$arg;
+    }
+
+    /**
+     * @param $arg
+     * @return string|null
+     */
+    static function toString($arg)
+    {
+        if (is_null($arg)) {
+            return null;
+        }
+        if (gettype($arg) === "boolean") {
+            if ($arg === false) {
+                return "false";
+            }
+            return "true";
+        }
+        return (string)$arg;
+    }
+
+    /**
+     * @param $arg
+     * @return int|null
+     */
+    static function toInt($arg)
+    {
+        if (is_null($arg)) {
+            return null;
+        }
+        $num = self::toFloat($arg);
+        if (is_null($num)) {
+            return null;
+        }
+        return (int)$num;
     }
 
 }
