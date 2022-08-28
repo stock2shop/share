@@ -14,19 +14,12 @@ class ChannelProducts extends AbstractBase
 
     public function setChannelProducts(array $arg)
     {
-        $this->channel_products = ChannelProduct::createArray($arg);
+        $this->channel_products = ChannelProduct::createArray($arg['channel_products'] ?? []);
     }
 
-    /**
-     * @return ChannelProduct[]
-     */
     public function getChannelProducts(): array
     {
         return $this->channel_products;
     }
 
-//    public function getIDs(): array
-//    {
-//        return $this->channel_products;
-//    }
 }

@@ -50,10 +50,6 @@ class Variant extends AbstractBase
     /** @var Meta[] $meta */
     protected $meta;
 
-    /**
-     * Variant constructor.
-     * @param array $data
-     */
     function __construct(array $data)
     {
         $this->source_variant_code  = self::stringFrom($data, "source_variant_code");
@@ -145,6 +141,76 @@ class Variant extends AbstractBase
     public function setMeta($arg)
     {
         $this->meta = Meta::createArray($arg);
+    }
+
+    public function getSourceVariantCode()
+    {
+        return $this->source_variant_code;
+    }
+
+    public function getSKU()
+    {
+        return $this->sku;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    public function getQty()
+    {
+        return $this->qty;
+    }
+
+    public function getQtyAvailability()
+    {
+        return $this->qty_availability;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function getPriceTiers()
+    {
+        return $this->price_tiers;
+    }
+
+    public function getBarcode()
+    {
+        return $this->barcode;
+    }
+
+    public function getInventoryManagement()
+    {
+        return $this->inventory_management;
+    }
+
+    public function getGrams()
+    {
+        return $this->grams;
+    }
+
+    public function getOption1()
+    {
+        return $this->option1;
+    }
+
+    public function getOption2()
+    {
+        return $this->option2;
+    }
+
+    public function getOption3()
+    {
+        return $this->option3;
+    }
+
+    public function getMeta()
+    {
+        return $this->meta;
     }
 
     /**

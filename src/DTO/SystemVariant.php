@@ -19,10 +19,6 @@ class SystemVariant extends Variant
     /** @var int|null $product_id */
     protected $product_id;
 
-    /**
-     * SystemVariant constructor.
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         parent::__construct($data);
@@ -59,13 +55,37 @@ class SystemVariant extends Variant
         $this->product_id = self::toInt($arg);
     }
 
+    public function getClientID()
+    {
+        return $this->client_id;
+    }
+
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    public function getID()
+    {
+        return $this->id;
+    }
+
+    public function getImageID()
+    {
+        return $this->image_id;
+    }
+
+    public function getProductID()
+    {
+        return $this->product_id;
+    }
+
     /**
      * Computes a hash of the SystemVariant
      * @return string
      */
     public function computeHash(): string
     {
-        // Unlike SystemProduct there are no additional properties to include
         return parent::computeHash();
     }
 }

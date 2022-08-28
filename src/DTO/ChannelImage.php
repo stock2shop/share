@@ -2,27 +2,28 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelImage extends  SystemImage
+class ChannelImage extends SystemImage
 {
-    /** @var string|null $channel_image_code */
-    public $channel_image_code;
-
-    /** @var bool|null $delete */
-    public $delete;
-
-    /** @var bool|null $success */
-    public $success;
+    /** @var ChannelImageChannel $channel */
+    protected $channel;
 
     /**
-     * ChannelImage constructor.
      * @param array $data
      */
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->channel_image_code = self::stringFrom($data, "channel_image_code");
-        $this->delete             = self::boolFrom($data, 'delete');
-        $this->success            = self::boolFrom($data, 'success');
+        $this->channel = new ChannelImageChannel(self::arrayFrom($data, 'channel'));
+    }
+
+    public function setChannel($arg)
+    {
+        $this->channel = new ChannelImageChannel($arg);
+    }
+
+    public function getChannel()
+    {
+        return $this->channel;
     }
 
     /**

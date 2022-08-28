@@ -5,23 +5,14 @@ namespace Stock2Shop\Share\DTO;
 class ChannelProduct extends SystemProduct
 {
 
-    /** @var int|null $channel_id */
-    protected $channel_id;
+    /** @var ChannelProductChannel $channel */
+    protected $channel;
 
-    /** @var string $channel_product_code */
-    protected $channel_product_code;
-
-    /** @var bool|null $delete */
-    protected $delete;
+    /** @var ChannelImage[] $images */
+    protected $images;
 
     /** @var ChannelVariant[] $variants */
     protected $variants;
-
-    /** @var bool|null $success */
-    protected $success;
-
-    /** @var string|null $synced */
-    protected $synced;
 
     /**
      * @param array $data
@@ -29,27 +20,19 @@ class ChannelProduct extends SystemProduct
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->channel_id           = self::intFrom($data, 'channel_id');
-        $this->channel_product_code = self::stringFrom($data, 'channel_product_code');
-        $this->delete               = self::boolFrom($data, 'delete');
-        $this->variants             = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
-        $this->success              = self::boolFrom($data, 'success');
-        $this->synced               = self::stringFrom($data, 'synced');
+        $this->channel  = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
+        $this->images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));
+        $this->variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
     }
 
-    public function setChannelID($arg)
+    public function setChannel($arg)
     {
-        $this->channel_id = self::toInt($arg);
+        $this->channel = new ChannelProductChannel($arg);
     }
 
-    public function setChannelProductCode($arg)
+    public function setImages($arg)
     {
-        $this->channel_product_code = self::toString($arg);
-    }
-
-    public function setDelete($arg)
-    {
-        $this->delete = self::toBool($arg);
+        $this->variants = ChannelImage::createArray($arg);
     }
 
     public function setVariants($arg)
@@ -57,28 +40,19 @@ class ChannelProduct extends SystemProduct
         $this->variants = ChannelVariant::createArray($arg);
     }
 
-    public function setSuccess($arg)
+    public function getChannel()
     {
-        $this->success = self::toBool($arg);
+        return $this->channel;
     }
 
-    public function setSynced($arg)
+    public function getImages(): array
     {
-        $this->synced = self::toString($arg);
+        return $this->images;
     }
 
-    /**
-     * Returns true if a product is considered synced with a channel.
-     *
-     * @return bool
-     */
-    public function hasSyncedToChannel(): bool
+    public function getVariants(): array
     {
-        return (
-            $this->success &&
-            is_string($this->channel_product_code) &&
-            $this->channel_product_code !== ''
-        );
+        return $this->variants;
     }
 
     /**
@@ -98,14 +72,17 @@ class ChannelProduct extends SystemProduct
     {
         $productHash = parent::computeHash();
         $this->sort();
-        $productHash .= "\nchannel_product_code=$this->channel_product_code";
+        $cpc = $this->getChannel()->getChannelProductCode();
+        $productHash .= "\nchannel_product_code=$cpc";
 
         // TODO check this!
         foreach ($this->images as $i) {
-            $productHash .= "\nimage_$i->id=" . $i->src;
+            $id          = $i->getID();
+            $productHash .= "\nimage_$id=" . $i->getSrc();
         }
         foreach ($this->variants as $v) {
-            $productHash .= "\nvariant_$v->id=" . $v->computeHash();
+            $id          = $v->getID();
+            $productHash .= "\nvariant_$id=" . $v->computeHash();
         }
         return md5($productHash);
     }

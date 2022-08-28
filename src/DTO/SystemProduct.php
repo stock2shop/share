@@ -4,7 +4,7 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemProduct extends Product
 {
-    /** @var SystemProductChannel[] $channels */
+    /** @var Channel[] $channels */
     protected $channels;
 
     /** @var int|null $client_id */
@@ -34,15 +34,11 @@ class SystemProduct extends Product
     /** @var SystemVariant[] $variants */
     protected $variants;
 
-    /**
-     * SystemProduct constructor.
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         parent::__construct($data);
 
-        $this->channels            = SystemProductChannel::createArray(self::arrayFrom($data, 'channels'));
+        $this->channels            = Channel::createArray(self::arrayFrom($data, 'channels'));
         $this->client_id           = self::intFrom($data, 'client_id');
         $this->created             = self::stringFrom($data, 'created');
         $this->hash                = self::stringFrom($data, 'hash');
@@ -54,19 +50,9 @@ class SystemProduct extends Product
         $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
     }
 
-    public function __get($prop)
-    {
-        return $this->$prop;
-    }
-
-    public function __isset($prop) : bool
-    {
-        return isset($this->$prop);
-    }
-
     public function setChannels($arg)
     {
-        $this->channels = SystemProductChannel::createArray($arg);
+        $this->channels = Channel::createArray($arg);
     }
 
     public function setClientID($arg)
@@ -164,9 +150,6 @@ class SystemProduct extends Product
         return $this->variants;
     }
 
-    /**
-     * sort array properties of Product
-     */
     public function sort()
     {
         $this->sortArray($this->images, "id");
@@ -181,7 +164,8 @@ class SystemProduct extends Product
         $this->sort();
         $productHash .= "\nsource_product_code=$this->source_product_code";
         foreach ($this->images as $i) {
-            $productHash .= "\nimage_$i->id=" . $i->src;
+            $id          = $i->getID();
+            $productHash .= "\nimage_$id=" . $i->getSrc();
         }
         return md5($productHash);
     }

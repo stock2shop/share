@@ -1,6 +1,6 @@
 <?php
 
-namespace Stock2Shop\Tests\Share;
+namespace Stock2Shop\Tests\Share\DTO;
 
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
@@ -30,7 +30,7 @@ class SystemChannelTest extends TestCase
                 ]
             ]
         ];
-        $c = new DTO\SystemChannel($mockData);
+        $c = new DTO\Channel($mockData);
         $this->assertSystemChannel($c);
         $c->setActive(0);
         $c->setClientID('1');
@@ -44,30 +44,19 @@ class SystemChannelTest extends TestCase
         $c->setSyncToken('a');
         $c->setType('a');
         $this->assertSystemChannel($c);
-        $c = new DTO\SystemChannel([]);
+        $c = new DTO\Channel([]);
         $this->assertSystemChannelNull($c);
     }
 
     public function testCreateArray()
     {
-        $mockData = [
-            [
-                "id" => "123"
-            ],
-            [
-                "id" => "4"
-            ]
-        ];
-        $items    = DTO\SystemChannel::createArray($mockData);
-        $this->assertSystemChannel($items[0]);
-        $this->assertSystemChannel($items[1]);
-        $items    = DTO\SystemChannel::createArray([[],[]]);
+        $items    = DTO\Channel::createArray([[], []]);
         $this->assertSystemChannelNull($items[0]);
         $this->assertSystemChannelNull($items[1]);
     }
 
-    private function assertSystemChannel(DTO\SystemChannel $c) {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $c);
+    private function assertSystemChannel(DTO\Channel $c) {
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->getMeta()[0]);
         $this->assertIsBool($c->getActive());
@@ -84,8 +73,8 @@ class SystemChannelTest extends TestCase
         $this->assertIsString($c->getType());
     }
 
-    private function assertSystemChannelNull(DTO\SystemChannel $c) {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemChannel', $c);
+    private function assertSystemChannelNull(DTO\Channel $c) {
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
         $this->assertNull($c->getActive());
         $this->assertNull($c->getClientID());

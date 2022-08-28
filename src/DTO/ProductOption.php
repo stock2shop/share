@@ -6,18 +6,30 @@ namespace Stock2Shop\Share\DTO;
 class ProductOption extends  AbstractBase
 {
     /** @var string|null $name */
-    public $name;
+    protected $name;
 
     /** @var int|null $position */
-    public $position;
+    protected $position;
 
-    /**
-     * ProductOption constructor.
-     * @param array $data
-     */
     function __construct(array $data)
     {
         $this->name     = self::stringFrom($data, "name");
         $this->position = self::intFrom($data, "position");
+    }
+
+    public function setName($arg) {
+        $this->name = self::toFloat($arg);
+    }
+
+    public function setPosition($arg) {
+        $this->position = self::toString($arg);
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getPosition() {
+        return $this->position;
     }
 }

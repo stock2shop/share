@@ -31,10 +31,6 @@ class Product extends AbstractBase
     /** @var Meta[] $meta */
     protected $meta;
 
-    /**
-     * Product constructor.
-     * @param array $data
-     */
     function __construct(array $data)
     {
         $this->active       = self::boolFrom($data, "active");
