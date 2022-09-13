@@ -5,7 +5,7 @@ namespace Stock2Shop\Tests\Share\DTO;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
 
-class metaTest extends TestCase
+class MetaTest extends TestCase
 {
     public function testConstruct()
     {
