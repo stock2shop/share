@@ -4,20 +4,11 @@ namespace Stock2Shop\Share\DTO;
 
 class SystemVariant extends Variant
 {
-    /** @var int|null $client_id */
-    protected $client_id;
-
-    /** @var string|null $hash */
-    protected $hash;
-
-    /** @var int|null $id */
-    protected $id;
-
-    /** @var int|null $image_id */
-    protected $image_id;
-
-    /** @var int|null $product_id */
-    protected $product_id;
+    protected ?int      $client_id;
+    protected ?string   $hash;
+    protected ?int      $id;
+    protected ?int      $image_id;
+    protected ?int      $product_id;
 
     public function __construct(array $data)
     {
@@ -30,59 +21,58 @@ class SystemVariant extends Variant
         $this->product_id = static::intFrom($data, 'product_id');
     }
 
-    public function setClientID($arg)
+    public function setClientID($arg): void
     {
         $this->client_id = self::toInt($arg);
     }
 
-    public function setHash($arg)
+    public function setHash($arg): void
     {
         $this->hash = self::toString($arg);
     }
 
-    public function setID($arg)
+    public function setID($arg): void
     {
         $this->id = self::toInt($arg);
     }
 
-    public function setImageID($arg)
+    public function setImageID($arg): void
     {
         $this->image_id = self::toInt($arg);
     }
 
-    public function setProductID($arg)
+    public function setProductID($arg): void
     {
         $this->product_id = self::toInt($arg);
     }
 
-    public function getClientID()
+    public function getClientID(): ?int
     {
         return $this->client_id;
     }
 
-    public function getHash()
+    public function getHash(): ?string
     {
         return $this->hash;
     }
 
-    public function getID()
+    public function getID(): ?int
     {
         return $this->id;
     }
 
-    public function getImageID()
+    public function getImageID(): ?int
     {
         return $this->image_id;
     }
 
-    public function getProductID()
+    public function getProductID(): ?int
     {
         return $this->product_id;
     }
 
     /**
      * Computes a hash of the SystemVariant
-     * @return string
      */
     public function computeHash(): string
     {

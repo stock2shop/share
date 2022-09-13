@@ -5,34 +5,18 @@ namespace Stock2Shop\Share\DTO;
 class SystemProduct extends Product
 {
     /** @var Channel[] $channels */
-    protected $channels;
-
-    /** @var int|null $client_id */
-    protected $client_id;
-
-    /** @var string|null $created */
-    protected $created;
-
-    /** @var string|null $hash */
-    protected $hash;
-
-    /** @var int|null $id */
-    protected $id;
-
+    protected array     $channels;
+    protected ?int      $client_id;
+    protected ?string   $created;
+    protected ?string   $hash;
+    protected ?int      $id;
     /** @var SystemImage[] $images */
-    protected $images;
-
-    /** @var string|null $modified */
-    protected $modified;
-
-    /** @var int|null $source_id */
-    protected $source_id;
-
-    /** @var string|null $source_product_code */
-    protected $source_product_code;
-
+    protected array     $images;
+    protected ?string   $modified;
+    protected ?int      $source_id;
+    protected ?string   $source_product_code;
     /** @var SystemVariant[] $variants */
-    protected $variants;
+    protected array     $variants;
 
     public function __construct(array $data)
     {
@@ -50,101 +34,104 @@ class SystemProduct extends Product
         $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
     }
 
-    public function setChannels($arg)
+    public function setChannels($arg): void
     {
         $this->channels = Channel::createArray($arg);
     }
 
-    public function setClientID($arg)
+    public function setClientID($arg): void
     {
         $this->client_id = self::toInt($arg);
     }
 
-    public function setCreated($arg)
+    public function setCreated($arg): void
     {
         $this->created = self::toString($arg);
     }
 
-    public function setHash($arg)
+    public function setHash($arg): void
     {
         $this->hash = self::toString($arg);
     }
 
-    public function setID($arg)
+    public function setID($arg): void
     {
         $this->id = self::toInt($arg);
     }
 
-    public function setImages($arg)
+    public function setImages($arg): void
     {
         $this->images = SystemImage::createArray($arg);
     }
 
-    public function setModified($arg)
+    public function setModified($arg): void
     {
         $this->modified = self::toString($arg);
     }
 
-    public function setSourceID($arg)
+    public function setSourceID($arg): void
     {
         $this->source_id = self::toInt($arg);
     }
 
-    public function setSourceProductCode($arg)
+    public function setSourceProductCode($arg): void
     {
         $this->source_product_code = self::toString($arg);
     }
 
-    public function setVariants($arg)
+    public function setVariants($arg): void
     {
         $this->variants = SystemVariant::createArray($arg);
     }
 
-    public function getChannels()
+    /** @return Channel[] */
+    public function getChannels(): array
     {
         return $this->channels;
     }
 
-    public function getClientID()
+    public function getClientID(): ?int
     {
         return $this->client_id;
     }
 
-    public function getCreated()
+    public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    public function getHash()
+    public function getHash(): ?string
     {
         return $this->hash;
     }
 
-    public function getID()
+    public function getID(): ?int
     {
         return $this->id;
     }
 
-    public function getImages()
+    /** @return SystemImage[] */
+    public function getImages(): array
     {
         return $this->images;
     }
 
-    public function getModified()
+    public function getModified(): ?string
     {
         return $this->modified;
     }
 
-    public function getSourceID()
+    public function getSourceID(): ?int
     {
         return $this->source_id;
     }
 
-    public function getSourceProductCode()
+    public function getSourceProductCode(): ?string
     {
         return $this->source_product_code;
     }
 
+    /** @return SystemVariant[] */
     public function getVariants(): array
     {
         return $this->variants;
@@ -155,9 +142,6 @@ class SystemProduct extends Product
         $this->sortArray($this->images, "id");
     }
 
-    /**
-     * @return string
-     */
     public function computeHash(): string
     {
         $productHash = parent::computeHash();

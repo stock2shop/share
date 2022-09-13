@@ -12,19 +12,12 @@ namespace Stock2shop\Share\DTO;
  */
 class Meta extends DTO
 {
-
-    /** @var string|null $key */
-    protected $key;
-
-    /** @var string|null $value */
-    protected $value;
-
-    /** @var string|null $template_name */
-    protected $template_name;
+    protected ?string $key;
+    protected ?string $value;
+    protected ?string $template_name;
 
     /**
      * Meta constructor.
-     * @param array $data
      */
     function __construct(array $data)
     {
@@ -33,32 +26,32 @@ class Meta extends DTO
         $this->template_name = self::stringFrom($data, "template_name");
     }
 
-    public function setKey($arg)
+    public function setKey($arg): void
     {
         $this->key = self::toString($arg);
     }
 
-    public function setValue($arg)
+    public function setValue($arg): void
     {
         $this->value = self::toString($arg);
     }
 
-    public function setTemplateName($arg)
+    public function setTemplateName($arg): void
     {
         $this->template_name = self::toString($arg);
     }
 
-    public function getKey(): string
+    public function getKey(): ?string
     {
         return $this->key;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName(): ?string
     {
         return $this->template_name;
     }

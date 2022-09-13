@@ -4,51 +4,28 @@ namespace Stock2Shop\Share\DTO;
 
 class Variant extends DTO
 {
-    /** @var string|null $source_variant_code */
-    protected $source_variant_code;
-
-    /** @var string|null $sku */
-    protected $sku;
-
-    /** @var bool|null $active */
-    protected $active;
-
-    /** @var int|null $qty
+    protected ?string   $source_variant_code;
+    protected ?string   $sku;
+    protected ?bool     $active;
+    /**
      * See issue https://github.com/stock2shop/app/issues/1490
      * Currently our ddb stores qty as unsigned int, meaning positive number only
      * Once we allow negatives the check below should be changed
      */
-    protected $qty;
-
+    protected ?int      $qty;
     /** @var QtyAvailability[] $qty_availability */
-    protected $qty_availability;
-
-    /** @var float|null $price */
-    protected $price;
-
+    protected array     $qty_availability;
+    protected ?float    $price;
     /** @var PriceTier[] $price_tiers */
-    protected $price_tiers;
-
-    /** @var string|null $barcode */
-    protected $barcode;
-
-    /** @var bool|null $inventory_management */
-    protected $inventory_management;
-
-    /** @var int|null $grams */
-    protected $grams;
-
-    /** @var string|null $option1 */
-    protected $option1;
-
-    /** @var string|null $option2 */
-    protected $option2;
-
-    /** @var string|null $option3 */
-    protected $option3;
-
+    protected array     $price_tiers;
+    protected ?string   $barcode;
+    protected ?bool     $inventory_management;
+    protected ?int      $grams;
+    protected ?string   $option1;
+    protected ?string   $option2;
+    protected ?string   $option3;
     /** @var Meta[] $meta */
-    protected $meta;
+    protected array     $meta;
 
     function __construct(array $data)
     {
@@ -73,142 +50,145 @@ class Variant extends DTO
         }
     }
 
-    public function setSourceVariantCode($arg)
+    public function setSourceVariantCode($arg): void
     {
         $this->source_variant_code = self::toString($arg);
     }
 
-    public function setSKU($arg)
+    public function setSKU($arg): void
     {
         $this->sku = self::toString($arg);
     }
 
-    public function setActive($arg)
+    public function setActive($arg): void
     {
         $this->active = self::toBool($arg);
     }
 
-    public function setQty($arg)
+    public function setQty($arg): void
     {
         $this->qty = self::toInt($arg);
     }
 
-    public function setQtyAvailability($arg)
+    public function setQtyAvailability($arg): void
     {
         $this->qty_availability = QtyAvailability::createArray($arg);
     }
 
-    public function setPrice($arg)
+    public function setPrice($arg): void
     {
         $this->price = self::toFloat($arg);
     }
 
-    public function setPriceTiers($arg)
+    public function setPriceTiers($arg): void
     {
         $this->price_tiers = PriceTier::createArray($arg);
     }
 
-    public function setBarcode($arg)
+    public function setBarcode($arg): void
     {
         $this->barcode = self::toString($arg);
     }
 
-    public function setInventoryManagement($arg)
+    public function setInventoryManagement($arg): void
     {
         $this->inventory_management = self::toBool($arg);
     }
 
-    public function setGrams($arg)
+    public function setGrams($arg): void
     {
         $this->grams = self::toInt($arg);
     }
 
-    public function setOption1($arg)
+    public function setOption1($arg): void
     {
         $this->option1 = self::toString($arg);
     }
 
-    public function setOption2($arg)
+    public function setOption2($arg): void
     {
         $this->option2 = self::toString($arg);
     }
 
-    public function setOption3($arg)
+    public function setOption3($arg): void
     {
         $this->option3 = self::toString($arg);
     }
 
-    public function setMeta($arg)
+    public function setMeta($arg): void
     {
         $this->meta = Meta::createArray($arg);
     }
 
-    public function getSourceVariantCode()
+    public function getSourceVariantCode(): ?string
     {
         return $this->source_variant_code;
     }
 
-    public function getSKU()
+    public function getSKU(): ?string
     {
         return $this->sku;
     }
 
-    public function getActive()
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function getQty()
+    public function getQty(): ?int
     {
         return $this->qty;
     }
 
-    public function getQtyAvailability()
+    /** @return QtyAvailability[] */
+    public function getQtyAvailability(): array
     {
         return $this->qty_availability;
     }
 
-    public function getPrice()
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function getPriceTiers()
+    /** @return PriceTier[] */
+    public function getPriceTiers(): array
     {
         return $this->price_tiers;
     }
 
-    public function getBarcode()
+    public function getBarcode(): ?string
     {
         return $this->barcode;
     }
 
-    public function getInventoryManagement()
+    public function getInventoryManagement(): ?bool
     {
         return $this->inventory_management;
     }
 
-    public function getGrams()
+    public function getGrams(): ?int
     {
         return $this->grams;
     }
 
-    public function getOption1()
+    public function getOption1(): ?string
     {
         return $this->option1;
     }
 
-    public function getOption2()
+    public function getOption2(): ?string
     {
         return $this->option2;
     }
 
-    public function getOption3()
+    public function getOption3(): ?string
     {
         return $this->option3;
     }
 
-    public function getMeta()
+    /** @return Meta[] */
+    public function getMeta(): array
     {
         return $this->meta;
     }
@@ -225,8 +205,6 @@ class Variant extends DTO
 
     /**
      * computeHash of the Variant
-     *
-     * @return string
      */
     public function computeHash(): string
     {

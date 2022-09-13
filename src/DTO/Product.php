@@ -4,32 +4,17 @@ namespace Stock2Shop\Share\DTO;
 
 class Product extends DTO
 {
-    /** @var bool|null $active */
-    protected $active;
-
-    /** @var string|null $title */
-    protected $title;
-
-    /** @var string|null $body */
-    protected $body_html;
-
-    /** @var string|null $collection */
-    protected $collection;
-
-    /** @var string|null $productType */
-    protected $product_type;
-
-    /** @var string|null $tags */
-    protected $tags;
-
-    /** @var string|null $vendor */
-    protected $vendor;
-
+    protected ?bool     $active;
+    protected ?string   $title;
+    protected ?string   $body_html;
+    protected ?string   $collection;
+    protected ?string   $product_type;
+    protected ?string   $tags;
+    protected ?string   $vendor;
     /** @var ProductOption[] $options */
-    protected $options;
-
+    protected array $options;
     /** @var Meta[] $meta */
-    protected $meta;
+    protected array $meta;
 
     function __construct(array $data)
     {
@@ -44,92 +29,94 @@ class Product extends DTO
         $this->meta         = Meta::createArray(self::arrayFrom($data, "meta"));
     }
 
-    public function setActive($arg)
+    public function setActive($arg): void
     {
         $this->active = self::toBool($arg);
     }
 
-    public function setTitle($arg)
+    public function setTitle($arg): void
     {
         $this->title = self::toString($arg);
     }
 
-    public function setBodyHtml($arg)
+    public function setBodyHtml($arg): void
     {
-        $this->body_html = self::toBString($arg);
+        $this->body_html = self::toString($arg);
     }
 
-    public function setCollection($arg)
+    public function setCollection($arg): void
     {
         $this->collection = self::toString($arg);
     }
 
-    public function setProductType($arg)
+    public function setProductType($arg): void
     {
         $this->product_type = self::toString($arg);
     }
 
-    public function setTags($arg)
+    public function setTags($arg): void
     {
         $this->tags = self::toString($arg);
     }
 
-    public function setVendor($arg)
+    public function setVendor($arg): void
     {
         $this->vendor = self::toString($arg);
     }
 
-    public function setOptions($arg)
+    public function setOptions($arg): void
     {
         $this->options = ProductOption::createArray($arg);
     }
 
-    public function setMeta($arg)
+    public function setMeta($arg): void
     {
         $this->meta = Meta::createArray($arg);
     }
 
-    public function getActive()
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function getBodyHtml()
+    public function getBodyHtml(): ?string
     {
         return $this->body_html;
     }
 
-    public function getCollection()
+    public function getCollection(): ?string
     {
         return $this->collection;
     }
 
-    public function getProductType()
+    public function getProductType(): ?string
     {
         return $this->product_type;
     }
 
-    public function getTags()
+    public function getTags(): ?string
     {
         return $this->tags;
     }
 
-    public function getVendor()
+    public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    public function getOptions()
+    /** @return ProductOption[] */
+    public function getOptions(): array
     {
         return $this->options;
     }
 
-    public function getMeta()
+    /** @return Meta[] */
+    public function getMeta(): array
     {
         return $this->meta;
     }
@@ -146,9 +133,6 @@ class Product extends DTO
         }
     }
 
-    /**
-     * @return string
-     */
     public function computeHash(): string
     {
         $p = new Product((array)$this);

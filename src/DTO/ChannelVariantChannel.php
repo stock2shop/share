@@ -4,22 +4,11 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelVariantChannel extends DTO
 {
+    protected ?int      $channel_id;
+    protected ?string   $channel_variant_code;
+    protected ?bool     $delete;
+    protected ?bool     $success;
 
-    /** @var int|null $channel_id */
-    protected $channel_id;
-
-    /** @var string $channel_variant_code */
-    protected $channel_variant_code;
-
-    /** @var bool|null $delete */
-    protected $delete;
-
-    /** @var bool|null $success */
-    protected $success;
-
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->channel_id           = self::intFrom($data, 'channel_id');
@@ -28,42 +17,42 @@ class ChannelVariantChannel extends DTO
         $this->success              = self::boolFrom($data, 'success');
     }
 
-    public function setChannelID($arg)
+    public function setChannelID($arg): void
     {
         $this->channel_id = self::toInt($arg);
     }
 
-    public function setChannelVariantCode($arg)
+    public function setChannelVariantCode($arg): void
     {
         $this->channel_variant_code = self::toString($arg);
     }
 
-    public function setDelete($arg)
+    public function setDelete($arg): void
     {
         $this->delete = self::toBool($arg);
     }
 
-    public function setSuccess($arg)
+    public function setSuccess($arg): void
     {
         $this->success = self::toBool($arg);
     }
 
-    public function getChannelID()
+    public function getChannelID(): ?int
     {
         return $this->channel_id;
     }
 
-    public function getChannelVariantCode()
+    public function getChannelVariantCode(): ?string
     {
         return $this->channel_variant_code;
     }
 
-    public function getDelete()
+    public function getDelete(): ?bool
     {
         return $this->delete;
     }
 
-    public function getSuccess()
+    public function getSuccess(): ?bool
     {
         return $this->success;
     }

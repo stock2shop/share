@@ -4,11 +4,8 @@ namespace Stock2Shop\Share\DTO;
 
 class QtyAvailability extends DTO
 {
-    /** @var string|null $description */
-    protected $description;
-
-    /** @var float|null $qty */
-    protected $qty;
+    protected ?string $description;
+    protected ?float $qty;
 
     function __construct(array $data)
     {
@@ -16,22 +13,22 @@ class QtyAvailability extends DTO
         $this->qty         = self::intFrom($data, "qty");
     }
 
-    public function setDescription($arg)
+    public function setDescription($arg): void
     {
         $this->description = self::toString($arg);
     }
 
-    public function setQty($arg)
+    public function setQty($arg): void
     {
         $this->qty = self::toInt($arg);
     }
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function getQty()
+    public function getQty(): ?float
     {
         return $this->qty;
     }

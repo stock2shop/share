@@ -5,18 +5,13 @@ namespace Stock2Shop\Share\DTO;
 class ChannelProduct extends SystemProduct
 {
 
-    /** @var ChannelProductChannel $channel */
-    protected $channel;
-
+    protected ChannelProductChannel $channel;
     /** @var ChannelImage[] $images */
-    protected $images;
-
+    protected array $images;
     /** @var ChannelVariant[] $variants */
-    protected $variants;
+    protected array $variants;
 
-    /**
-     * @param array $data
-     */
+
     public function __construct(array $data)
     {
         parent::__construct($data);
@@ -25,31 +20,33 @@ class ChannelProduct extends SystemProduct
         $this->variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
     }
 
-    public function setChannel($arg)
+    public function setChannel($arg): void
     {
         $this->channel = new ChannelProductChannel($arg);
     }
 
-    public function setImages($arg)
+    public function setImages($arg): void
     {
         $this->variants = ChannelImage::createArray($arg);
     }
 
-    public function setVariants($arg)
+    public function setVariants($arg): void
     {
         $this->variants = ChannelVariant::createArray($arg);
     }
 
-    public function getChannel()
+    public function getChannel(): ?ChannelProductChannel
     {
         return $this->channel;
     }
 
+    /** @return ChannelImage[] */
     public function getImages(): array
     {
         return $this->images;
     }
 
+    /** @return ChannelVariant[] */
     public function getVariants(): array
     {
         return $this->variants;
@@ -66,7 +63,6 @@ class ChannelProduct extends SystemProduct
 
     /**
      * Computes a hash of the ChannelProduct
-     * @return string
      */
     public function computeHash(): string
     {

@@ -17,7 +17,7 @@ class ChannelImage extends SystemImage
         $this->channel = new ChannelImageChannel($arg);
     }
 
-    public function getChannel(): ?ChannelImageChannel
+    public function getChannel(): ChannelImageChannel
     {
         return $this->channel;
     }

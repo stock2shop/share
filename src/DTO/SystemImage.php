@@ -5,7 +5,7 @@ namespace Stock2Shop\Share\DTO;
 class SystemImage extends Image
 {
 
-    protected ?int $id;
+    protected ?int  $id;
     protected ?bool $active;
 
     public function __construct(array $data)

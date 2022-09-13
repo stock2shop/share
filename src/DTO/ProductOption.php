@@ -5,11 +5,8 @@ namespace Stock2Shop\Share\DTO;
 
 class ProductOption extends  DTO
 {
-    /** @var string|null $name */
-    protected $name;
-
-    /** @var int|null $position */
-    protected $position;
+    protected ?string   $name;
+    protected ?int      $position;
 
     function __construct(array $data)
     {
@@ -17,19 +14,23 @@ class ProductOption extends  DTO
         $this->position = self::intFrom($data, "position");
     }
 
-    public function setName($arg) {
+    public function setName($arg): void
+    {
         $this->name = self::toFloat($arg);
     }
 
-    public function setPosition($arg) {
+    public function setPosition($arg): void
+    {
         $this->position = self::toString($arg);
     }
 
-    public function getName() {
+    public function getName(): ?string
+    {
         return $this->name;
     }
 
-    public function getPosition() {
+    public function getPosition(): ?int
+    {
         return $this->position;
     }
 }

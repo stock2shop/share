@@ -4,15 +4,11 @@ namespace Stock2Shop\Share\DTO;
 
 class PriceTier extends  DTO
 {
-    /** @var string|null $tier */
-    protected $tier;
-
-    /** @var float|null $price */
-    protected $price;
+    protected ?string   $tier;
+    protected ?float    $price;
 
     /**
      * PriceTier constructor.
-     * @param array $data
      */
     function __construct(array $data)
     {
@@ -20,19 +16,23 @@ class PriceTier extends  DTO
         $this->price = self::floatFrom($data, "price");
     }
 
-    public function setPrice($arg) {
+    public function setPrice($arg): void
+    {
         $this->price = self::toFloat($arg);
     }
 
-    public function setTier($arg) {
+    public function setTier($arg): void
+    {
         $this->tier = self::toString($arg);
     }
 
-    public function getTier() {
+    public function getTier(): ?string
+    {
         return $this->tier;
     }
 
-    public function getPrice() {
+    public function getPrice(): ?float
+    {
         return $this->price;
     }
 }
