@@ -39,6 +39,7 @@ class ChannelTest extends TestCase
 
     private function assertChannel(DTO\Channel $c)
     {
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertIsInt($c->getID());
         $this->assertIsInt($c->getClientID());
         $this->assertIsBool($c->getActive());
