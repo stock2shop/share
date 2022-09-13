@@ -123,7 +123,6 @@ class SystemProductsTest extends TestCase
         ];
         $c        = new DTO\SystemProducts($mockData);
         $this->assertSystemProducts($c);
-        $this->assertSystemProducts($c);
         $c = new DTO\SystemProducts([]);
         $this->assertSystemProductsNull($c);
     }
