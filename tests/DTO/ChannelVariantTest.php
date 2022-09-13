@@ -12,7 +12,7 @@ class ChannelVariantTest extends TestCase
         $mockData = [
             'channel'  => [
                 'channel_id'            => 1,
-                'channel_variant_code'    => 'x',
+                'channel_variant_code'  => 'x',
                 'delete'                => 'false',
                 'success'               => 'true',
             ],
