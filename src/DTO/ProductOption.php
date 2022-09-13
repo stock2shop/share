@@ -16,12 +16,12 @@ class ProductOption extends  DTO
 
     public function setName($arg): void
     {
-        $this->name = self::toFloat($arg);
+        $this->name = self::toString($arg);
     }
 
     public function setPosition($arg): void
     {
-        $this->position = self::toString($arg);
+        $this->position = self::toInt($arg);
     }
 
     public function getName(): ?string
