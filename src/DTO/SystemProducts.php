@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class SystemProducts extends AbstractBase
+class SystemProducts extends DTO
 {
     /** @var SystemProduct[] $system_products */
     protected $system_products;

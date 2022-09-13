@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class PriceTier extends  AbstractBase
+class PriceTier extends  DTO
 {
     /** @var string|null $tier */
     protected $tier;

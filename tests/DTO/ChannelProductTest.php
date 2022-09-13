@@ -64,13 +64,13 @@ class ChannelProductTest extends TestCase
 
     private function assertChannelProduct(DTO\ChannelProduct $c)
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c->getChannel());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c->getVariants()[0]->getChannel());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->getVariants()[0]->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->getVariants()[0]->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c->getVariants()[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c->getImages()[0]->getChannel());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->getImages()[0]->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->getImages()[0]->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c->getImages()[0]);
         $this->assertIsInt($c->getChannel()->getChannelID());
@@ -96,7 +96,7 @@ class ChannelProductTest extends TestCase
 
     private function assertChannelProductNull(DTO\ChannelProduct $c)
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c->getChannel());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->getChannel());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->getChannel());
         $this->assertNull($c->getChannel()->getChannelID());
         $this->assertEmpty($c->getVariants());

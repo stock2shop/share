@@ -2,46 +2,22 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class Channel extends AbstractBase
+class Channel extends DTO
 {
 
-    /** @var bool|null $active */
-    protected $active;
-
-    /** @var int|null $client_id */
-    protected $client_id;
-
-    /** @var string|null $client_id */
-    protected $created;
-
-    /** @var string|null $description */
-    protected $description;
-
-    /** @var int|null $id */
-    protected $id;
-
+    protected ?bool $active;
+    protected ?int $client_id;
+    protected ?string $created;
+    protected ?string $description;
+    protected ?int $id;
     /** @var Meta[] $meta */
-    protected $meta;
+    protected array $meta;
+    protected ?string $modified;
+    protected ?string $price_tier;
+    protected ?string $qty_availability;
+    protected ?string $sync_token;
+    protected ?string $type;
 
-    /** @var string|null $modified */
-    protected $modified;
-
-    /** @var string|null $price_tier */
-    protected $price_tier;
-
-    /** @var string|null $qty_availabilty */
-    protected $qty_availability;
-
-    /** @var string|null $sync_token */
-    protected $sync_token;
-
-    /** @var string|null $type */
-    protected $type;
-
-    /**
-     * Channel constructor.
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->active           = self::boolFrom($data, 'active');
@@ -57,112 +33,112 @@ class Channel extends AbstractBase
         $this->type             = self::stringFrom($data, 'type');
     }
 
-    public function setActive($arg)
+    public function setActive($arg): void
     {
         $this->active = self::toBool($arg);
     }
 
-    public function setClientID($arg)
+    public function setClientID($arg): void
     {
         $this->client_id = self::toInt($arg);
     }
 
-    public function setCreated($arg)
+    public function setCreated($arg): void
     {
         $this->created = self::toString($arg);
     }
 
-    public function setDescription($arg)
+    public function setDescription($arg): void
     {
         $this->description = self::toString($arg);
     }
 
-    public function setID($arg)
+    public function setID($arg): void
     {
         $this->id = self::toInt($arg);
     }
 
-    public function setMeta($arg)
+    public function setMeta($arg): void
     {
         $this->meta = Meta::createArray($arg);
     }
 
-    public function setModified($arg)
+    public function setModified($arg): void
     {
         $this->modified = self::toString($arg);
     }
 
-    public function setPriceTier($arg)
+    public function setPriceTier($arg): void
     {
         $this->price_tier = self::toString($arg);
     }
 
-    public function setQtyAvailability($arg)
+    public function setQtyAvailability($arg): void
     {
         $this->qty_availability = self::toString($arg);
     }
 
-    public function setSyncToken($arg)
+    public function setSyncToken($arg): void
     {
         $this->sync_token = self::toString($arg);
     }
 
-    public function setType($arg)
+    public function setType($arg): void
     {
         $this->type = self::toString($arg);
     }
 
-    public function getActive()
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function getClientID()
+    public function getClientID(): ?int
     {
         return $this->client_id;
     }
 
-    public function getCreated()
+    public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function getID()
+    public function getID(): ?int
     {
         return $this->id;
     }
 
-    public function getMeta()
+    public function getMeta(): array
     {
         return $this->meta;
     }
 
-    public function getModified()
+    public function getModified(): ?string
     {
         return $this->modified;
     }
 
-    public function getPriceTier()
+    public function getPriceTier(): ?string
     {
         return $this->price_tier;
     }
 
-    public function getQtyAvailability()
+    public function getQtyAvailability(): ?string
     {
         return $this->qty_availability;
     }
 
-    public function getSyncToken()
+    public function getSyncToken(): ?string
     {
         return $this->sync_token;
     }
 
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }

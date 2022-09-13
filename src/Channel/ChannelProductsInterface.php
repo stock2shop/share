@@ -4,25 +4,23 @@ namespace Stock2Shop\Share\Channel;
 use Stock2Shop\Share\DTO;
 
 /**
- * Interface defining methods for interacting (syncing / fetching)
- * product data for a channel instance.
- *
- * @package stock2shop\dal\channel
+ * Methods for interacting (syncing / fetching)
+ * product data for a channel.
  */
 interface ChannelProductsInterface {
 
     /**
-     * Syncs products to channel.
+     * Syncs a batch of ChannelProducts (DTO) to a channel.
      *
-     * This means that ChannelProducts must be persisted (or removed depending on the instruction)
+     * ChannelProducts must be persisted (or removed if ChannelProduct->delete=true)
      * to the channel. Regardless of the current state of the channel, after this sync function
      * is called, the channels state should represent the ChannelProducts given.
      *
      * This method should:-
      *
-     * - Allow for products to be configured on the channel, depending on channel settings (Channel->meta)
-     * - Make request to the channel to update product state on the channel.
-     * - Update ChannelProducts, marking which products have updated successfully.
+     * - Allow for products to be configured on the channel, based on channel settings (Channel->meta)
+     * - Make requests to the channel to update product state on the channel.
+     * - Update ChannelProducts success status, marking which products have updated successfully.
      *
      * A ChannelProduct consists of a product with variants and images.
      * The product, variants and images are treated separately and need to be
@@ -30,7 +28,7 @@ interface ChannelProductsInterface {
      *
      * Each of the above data classes have the following properties:-
      *
-     * - success (did this product update to the channel)
+     * - success (did this product update to the channel?)
      * - delete (if true, remove it from the channel)
      *
      * How to define a successful sync for a ChannelProduct?
@@ -54,9 +52,6 @@ interface ChannelProductsInterface {
      * - ChannelProduct->images[]->success = true
      * - ChannelProduct->images[]->channel_image_code = "channel's unique id for the image"
      *
-     * @param DTO\ChannelProducts $channelProducts
-     * @param DTO\Channel $channel
-     * @return DTO\ChannelProducts
      */
     public function sync(DTO\ChannelProducts $channelProducts, DTO\Channel $channel): DTO\ChannelProducts;
 
@@ -103,10 +98,6 @@ interface ChannelProductsInterface {
      *
      * If $channel_product_code is blank, the first products in the ordered list must be returned.
      *
-     * @param string $channel_product_code only return results greater than this
-     * @param int $limit max records to return
-     * @param DTO\Channel $channel
-     * @return DTO\ChannelProducts
      */
     public function get(string $channel_product_code, int $limit, DTO\Channel $channel): DTO\ChannelProducts;
 

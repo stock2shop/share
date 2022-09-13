@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelImageChannel extends AbstractBase
+class ChannelImageChannel extends DTO
 {
 
     /** @var int|null $channel_id */

@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class Image extends  AbstractBase
+class Image extends  DTO
 {
     /** @var string|null $src */
     protected $src;

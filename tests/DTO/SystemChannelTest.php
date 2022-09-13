@@ -57,7 +57,7 @@ class SystemChannelTest extends TestCase
 
     private function assertSystemChannel(DTO\Channel $c) {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->getMeta()[0]);
         $this->assertIsBool($c->getActive());
         $this->assertIsInt($c->getClientID());
@@ -75,7 +75,7 @@ class SystemChannelTest extends TestCase
 
     private function assertSystemChannelNull(DTO\Channel $c) {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\AbstractBase', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertNull($c->getActive());
         $this->assertNull($c->getClientID());
         $this->assertNull($c->getCreated());

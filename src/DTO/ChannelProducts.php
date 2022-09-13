@@ -2,7 +2,7 @@
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelProducts extends AbstractBase
+class ChannelProducts extends DTO
 {
     /** @var ChannelProduct[] $channel_products */
     protected $channel_products;
