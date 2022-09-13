@@ -35,22 +35,22 @@ interface ChannelProductsInterface {
      *
      * For the product the following properties must be set on ChannelProduct:
      *
-     * - ChannelProduct->success = true
-     * - ChannelProduct->channel_product_code = "channel's unique id for the product"
+     * - ChannelProduct->channel->success = true
+     * - ChannelProduct->channel->channel_product_code = "channel's unique id for the product"
      *
      * For the variants the following properties must be set on ChannelProduct:
      *
-     * - ChannelProduct->success = true
-     * - ChannelProduct->channel_product_code = "channel's unique id for the product"
-     * - ChannelProduct->variants[]->success = true
-     * - ChannelProduct->variants[]->channel_variant_code = "channel's unique id for the variant"
+     * - ChannelProduct->channel->success = true
+     * - ChannelProduct->channel->channel_product_code = "channel's unique id for the product"
+     * - ChannelProduct->variants[]->channel->success = true
+     * - ChannelProduct->variants[]->channel->channel_variant_code = "channel's unique id for the variant"
      *
      * For the images the following properties must be set on ChannelProduct:
      *
-     * - ChannelProduct->success = true
-     * - ChannelProduct->channel_product_code = "channel's unique id for the product"
-     * - ChannelProduct->images[]->success = true
-     * - ChannelProduct->images[]->channel_image_code = "channel's unique id for the image"
+     * - ChannelProduct->channel->success = true
+     * - ChannelProduct->channel->channel_product_code = "channel's unique id for the product"
+     * - ChannelProduct->images[]->channel->success = true
+     * - ChannelProduct->images[]->channel->channel_image_code = "channel's unique id for the image"
      *
      */
     public function sync(DTO\ChannelProducts $channelProducts, DTO\Channel $channel): DTO\ChannelProducts;
@@ -62,9 +62,9 @@ interface ChannelProductsInterface {
      * To confirm that a product, its variants and images are synced with
      * a channel, set the following properties:-
      *
-     * - ChannelProduct->success = true
-     * - ChannelProduct->variants[]->success = true
-     * - ChannelProduct->images[]->success = true
+     * - ChannelProduct->channel->success = true
+     * - ChannelProduct->channel->variants[]->success = true
+     * - ChannelProduct->channel->images[]->success = true
      *
      * @param DTO\ChannelProducts $channelProducts
      * @param DTO\Channel $channel
@@ -90,9 +90,9 @@ interface ChannelProductsInterface {
      * 4. get('22', 10, $channel) -> no more products returned
      *
      * The following properties must be set on the returned ChannelProducts:-
-     * - ChannelProduct->channel_product_code
-     * - ChannelProduct->variant[]->channel_variant_code
-     * - ChannelProduct->variant[]->sku
+     * - ChannelProduct->channel->channel_product_code
+     * - ChannelProduct->variant[]->channel->channel_variant_code
+     * - ChannelProduct->variant[]->channel->sku
      *
      * You can optionally set ChannelProduct->images[]->channel_image_code if the image exists.
      *

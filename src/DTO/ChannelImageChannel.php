@@ -5,21 +5,11 @@ namespace Stock2Shop\Share\DTO;
 class ChannelImageChannel extends DTO
 {
 
-    /** @var int|null $channel_id */
-    protected $channel_id;
+    protected ?int $channel_id;
+    protected ?string $channel_image_code;
+    protected ?bool $delete;
+    protected ?bool $success;
 
-    /** @var string $channel_image_code */
-    protected $channel_image_code;
-
-    /** @var bool|null $delete */
-    protected $delete;
-
-    /** @var bool|null $success */
-    protected $success;
-
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->channel_id         = self::intFrom($data, 'channel_id');

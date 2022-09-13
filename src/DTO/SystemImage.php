@@ -5,11 +5,8 @@ namespace Stock2Shop\Share\DTO;
 class SystemImage extends Image
 {
 
-    /** @var int $id */
-    protected $id;
-
-    /** @var bool $active */
-    protected $active;
+    protected ?int $id;
+    protected ?bool $active;
 
     public function __construct(array $data)
     {
@@ -18,22 +15,22 @@ class SystemImage extends Image
         $this->id     = self::intFrom($data, 'id');
     }
 
-    public function setID($arg)
+    public function setID($arg): void
     {
         $this->id = self::toInt($arg);
     }
 
-    public function setActive($arg)
+    public function setActive($arg): void
     {
         $this->active = self::toBool($arg);
     }
 
-    public function getID()
+    public function getID(): ?int
     {
         return $this->id;
     }
 
-    public function getActive()
+    public function getActive(): ?int
     {
         return $this->active;
     }
