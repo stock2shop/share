@@ -13,9 +13,5 @@ abstract class ChannelCreator
 
     abstract public function createChannelProducts(): ChannelProductsInterface;
 
-    abstract public function createChannelOrders(): ChannelOrdersInterface;
-
-    abstract public function createChannelFulfillments(): ChannelFulfillmentsInterface;
-
 }
 
