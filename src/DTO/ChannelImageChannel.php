@@ -5,9 +5,9 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelImageChannel extends DTO
 {
-    public ?int      $channel_id;
+    public readonly ?int      $channel_id;
     public ?string   $channel_image_code;
-    public ?bool     $delete;
+    public readonly ?bool     $delete;
     public ?bool     $success;
 
     public function __construct(array $data)
@@ -16,5 +16,18 @@ class ChannelImageChannel extends DTO
         $this->channel_image_code = self::stringFrom($data, 'channel_image_code');
         $this->delete             = self::boolFrom($data, 'delete');
         $this->success            = self::boolFrom($data, 'success');
+    }
+
+    /**
+     * Returns true if the image is synced with a channel.
+     */
+    public function hasSyncedToChannel(): bool
+    {
+        return (
+            $this->success &&
+            is_string($this->channel_image_code) &&
+            $this->channel_image_code !== ''
+
+        );
     }
 }

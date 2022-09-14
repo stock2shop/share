@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
@@ -33,20 +34,24 @@ abstract class DTO
      * WARNING The $sortable array must be passed by reference
      * https://stackoverflow.com/a/10483117
      */
-    protected function sortArray(array &$sortable, string $keyName): void
+    protected function sortArray(array $sortable, string $keyName): array
     {
         usort($sortable, function ($a, $b) use ($keyName) {
             return $a->$keyName <=> $b->$keyName;
         });
+        return $sortable;
     }
 
-    protected function sortCSV(string &$str): void
+    protected function sortCSV(?string $str): ?string
     {
+        if(is_null($str)) {
+            return null;
+        }
         $sortable = explode(',', $str);
         usort($sortable, function ($a, $b) {
             return $a <=> $b;
         });
-        $str = implode(",", $sortable);
+        return implode(",", $sortable);
     }
 
     static function boolFrom(array $data, string $key): ?bool
@@ -122,7 +127,7 @@ abstract class DTO
             return true;
         }
         if (is_numeric($arg)) {
-            if ( (int) $arg === 0) {
+            if ((int)$arg === 0) {
                 return false;
             }
             return true;

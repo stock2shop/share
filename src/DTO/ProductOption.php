@@ -6,8 +6,8 @@ namespace Stock2Shop\Share\DTO;
 
 class ProductOption extends  DTO
 {
-    public ?string   $name;
-    public ?int      $position;
+    public readonly ?string   $name;
+    public readonly ?int      $position;
 
     function __construct(array $data)
     {

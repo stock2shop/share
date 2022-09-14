@@ -4,7 +4,8 @@ Stock2Shop DTOs, Factories and Interfaces
 
 ## DTO (Data Transfer Objects)
 
-See [this description](https://martinfowler.com/eaaCatalog/dataTransferObject.html) defining what a DTO is.
+See [this description](https://martinfowler.com/eaaCatalog/dataTransferObject.html).
+
 
 ## Channel Factory
 

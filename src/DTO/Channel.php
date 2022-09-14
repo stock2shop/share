@@ -5,18 +5,18 @@ namespace Stock2Shop\Share\DTO;
 
 class Channel extends DTO
 {
-    public ?bool $active;
-    public ?int $client_id;
-    public ?string $created;
-    public ?string $description;
-    public ?int $id;
+    public readonly ?bool $active;
+    public readonly ?int $client_id;
+    public readonly ?string $created;
+    public readonly ?string $description;
+    public readonly ?int $id;
     /** @var Meta[] $meta */
-    public array $meta;
-    public ?string $modified;
-    public ?string $price_tier;
-    public ?string $qty_availability;
-    public ?string $sync_token;
-    public ?string $type;
+    public readonly array $meta;
+    public readonly ?string $modified;
+    public readonly ?string $price_tier;
+    public readonly ?string $qty_availability;
+    public readonly ?string $sync_token;
+    public readonly ?string $type;
 
     public function __construct(array $data)
     {
