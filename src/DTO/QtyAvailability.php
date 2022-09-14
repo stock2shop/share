@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class QtyAvailability extends DTO
 {
-    public ?string $description;
-    public ?float $qty;
+    public readonly ?string $description;
+    public readonly ?float $qty;
 
     function __construct(array $data)
     {

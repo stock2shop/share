@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2shop\Share\DTO;
@@ -13,9 +14,9 @@ namespace Stock2shop\Share\DTO;
  */
 class Meta extends DTO
 {
-    public ?string $key;
-    public ?string $value;
-    public ?string $template_name;
+    public readonly ?string $key;
+    public readonly ?string $value;
+    public readonly ?string $template_name;
 
     /**
      * Meta constructor.
