@@ -24,8 +24,11 @@ class SystemProduct extends Product
     {
         parent::__construct($data);
 
-        $images                    = SystemImage::createArray(self::arrayFrom($data, 'images'));
-        $this->channels            = Channel::createArray(self::arrayFrom($data, 'channels'));
+        $images   = SystemImage::createArray(self::arrayFrom($data, 'images'));
+        $variants = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
+        $channels = Channel::createArray(self::arrayFrom($data, 'channels'));
+
+        $this->channels            = $this->sortArray($channels, 'id');
         $this->client_id           = self::intFrom($data, 'client_id');
         $this->created             = self::stringFrom($data, 'created');
         $this->hash                = self::stringFrom($data, 'hash');
@@ -34,7 +37,7 @@ class SystemProduct extends Product
         $this->modified            = self::stringFrom($data, 'modified');
         $this->source_id           = self::intFrom($data, 'source_id');
         $this->source_product_code = self::stringFrom($data, 'source_product_code');
-        $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
+        $this->variants            = $this->sortArray($variants, 'id');
     }
 
     public function computeHash(): string

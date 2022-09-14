@@ -44,7 +44,7 @@ abstract class DTO
 
     protected function sortCSV(?string $str): ?string
     {
-        if(is_null($str)) {
+        if (is_null($str)) {
             return null;
         }
         $sortable = explode(',', $str);

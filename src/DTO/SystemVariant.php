@@ -1,15 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class SystemVariant extends Variant
 {
-    public readonly ?int      $client_id;
-    public readonly ?string   $hash;
-    public readonly ?int      $id;
-    public readonly ?int      $image_id;
-    public readonly ?int      $product_id;
+    public readonly ?int $client_id;
+    public readonly ?string $hash;
+    public readonly ?int $id;
+    public readonly ?int $image_id;
+    public readonly ?int $product_id;
 
     public function __construct(array $data)
     {

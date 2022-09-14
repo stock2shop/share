@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class PriceTier extends  DTO
+class PriceTier extends DTO
 {
-    public readonly ?string   $tier;
-    public readonly ?float    $price;
+    public readonly ?string $tier;
+    public readonly ?float $price;
 
     /**
      * PriceTier constructor.

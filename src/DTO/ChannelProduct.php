@@ -15,8 +15,10 @@ class ChannelProduct extends SystemProduct
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $images = ChannelImage::createArray(self::arrayFrom($data, 'images'));
-        $variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
+
+        $images         = ChannelImage::createArray(self::arrayFrom($data, 'images'));
+        $variants       = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
+
         $this->channel  = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
         $this->images   = $this->sortArray($images, "id");
         $this->variants = $this->sortArray($variants, "id");

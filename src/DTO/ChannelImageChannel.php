@@ -1,14 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class ChannelImageChannel extends DTO
 {
-    public readonly ?int      $channel_id;
-    public ?string   $channel_image_code;
-    public readonly ?bool     $delete;
-    public ?bool     $success;
+    public readonly ?int $channel_id;
+    public ?string $channel_image_code;
+    public readonly ?bool $delete;
+    public ?bool $success;
 
     public function __construct(array $data)
     {

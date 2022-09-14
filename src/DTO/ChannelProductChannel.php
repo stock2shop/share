@@ -1,23 +1,24 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class ChannelProductChannel extends DTO
 {
-    public readonly ?int      $channel_id;
-    public ?string   $channel_product_code;
-    public readonly ?bool     $delete;
-    public ?bool     $success;
-    public ?string   $synced;
+    public readonly ?int $channel_id;
+    public ?string $channel_product_code;
+    public readonly ?bool $delete;
+    public ?bool $success;
+    public ?string $synced;
 
     public function __construct(array $data)
     {
-        $this->channel_id = self::intFrom($data, 'channel_id');
+        $this->channel_id           = self::intFrom($data, 'channel_id');
         $this->channel_product_code = self::stringFrom($data, 'channel_product_code');
-        $this->delete = self::boolFrom($data, 'delete');
-        $this->success = self::boolFrom($data, 'success');
-        $this->synced = self::stringFrom($data, 'synced');
+        $this->delete               = self::boolFrom($data, 'delete');
+        $this->success              = self::boolFrom($data, 'success');
+        $this->synced               = self::stringFrom($data, 'synced');
     }
 
     /**

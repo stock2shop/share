@@ -20,9 +20,10 @@ class Product extends DTO
 
     function __construct(array $data)
     {
-        $options = ProductOption::createArray(self::arrayFrom($data, "options"));
-        $meta = Meta::createArray(self::arrayFrom($data, "meta"));
-        $tags = self::stringFrom($data, "tags");
+        $options            = ProductOption::createArray(self::arrayFrom($data, "options"));
+        $meta               = Meta::createArray(self::arrayFrom($data, "meta"));
+        $tags               = self::stringFrom($data, "tags");
+
         $this->active       = self::boolFrom($data, "active");
         $this->title        = self::stringFrom($data, "title");
         $this->body_html    = self::stringFrom($data, "body_html");
@@ -36,7 +37,7 @@ class Product extends DTO
 
     public function computeHash(): string
     {
-        $p = new Product((array)$this);
+        $p    = new Product((array)$this);
         $json = json_encode($p);
         return md5($json);
     }

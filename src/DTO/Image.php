@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Image extends  DTO
+class Image extends DTO
 {
     public readonly ?string $src;
 
