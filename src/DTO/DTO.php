@@ -122,7 +122,7 @@ abstract class DTO
             return true;
         }
         if (is_numeric($arg)) {
-            if ($arg === 0) {
+            if ( (int) $arg === 0) {
                 return false;
             }
             return true;
