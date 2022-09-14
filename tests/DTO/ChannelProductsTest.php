@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
-use phpDocumentor\Reflection\Type;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
 
