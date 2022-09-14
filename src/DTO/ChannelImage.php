@@ -5,22 +5,12 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelImage extends SystemImage
 {
-    protected ChannelImageChannel $channel;
+    public ChannelImageChannel $channel;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
         $this->channel = new ChannelImageChannel(self::arrayFrom($data, 'channel'));
-    }
-
-    public function setChannel(array $arg): void
-    {
-        $this->channel = new ChannelImageChannel($arg);
-    }
-
-    public function getChannel(): ChannelImageChannel
-    {
-        return $this->channel;
     }
 
     /**

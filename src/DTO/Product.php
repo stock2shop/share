@@ -5,17 +5,17 @@ namespace Stock2Shop\Share\DTO;
 
 class Product extends DTO
 {
-    protected ?bool     $active;
-    protected ?string   $title;
-    protected ?string   $body_html;
-    protected ?string   $collection;
-    protected ?string   $product_type;
-    protected ?string   $tags;
-    protected ?string   $vendor;
+    public ?bool     $active;
+    public ?string   $title;
+    public ?string   $body_html;
+    public ?string   $collection;
+    public ?string   $product_type;
+    public ?string   $tags;
+    public ?string   $vendor;
     /** @var ProductOption[] $options */
-    protected array $options;
+    public array $options;
     /** @var Meta[] $meta */
-    protected array $meta;
+    public array $meta;
 
     function __construct(array $data)
     {
@@ -28,98 +28,6 @@ class Product extends DTO
         $this->vendor       = self::stringFrom($data, "vendor");
         $this->options      = ProductOption::createArray(self::arrayFrom($data, "options"));
         $this->meta         = Meta::createArray(self::arrayFrom($data, "meta"));
-    }
-
-    public function setActive($arg): void
-    {
-        $this->active = self::toBool($arg);
-    }
-
-    public function setTitle($arg): void
-    {
-        $this->title = self::toString($arg);
-    }
-
-    public function setBodyHtml($arg): void
-    {
-        $this->body_html = self::toString($arg);
-    }
-
-    public function setCollection($arg): void
-    {
-        $this->collection = self::toString($arg);
-    }
-
-    public function setProductType($arg): void
-    {
-        $this->product_type = self::toString($arg);
-    }
-
-    public function setTags($arg): void
-    {
-        $this->tags = self::toString($arg);
-    }
-
-    public function setVendor($arg): void
-    {
-        $this->vendor = self::toString($arg);
-    }
-
-    public function setOptions($arg): void
-    {
-        $this->options = ProductOption::createArray($arg);
-    }
-
-    public function setMeta($arg): void
-    {
-        $this->meta = Meta::createArray($arg);
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function getBodyHtml(): ?string
-    {
-        return $this->body_html;
-    }
-
-    public function getCollection(): ?string
-    {
-        return $this->collection;
-    }
-
-    public function getProductType(): ?string
-    {
-        return $this->product_type;
-    }
-
-    public function getTags(): ?string
-    {
-        return $this->tags;
-    }
-
-    public function getVendor(): ?string
-    {
-        return $this->vendor;
-    }
-
-    /** @return ProductOption[] */
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    /** @return Meta[] */
-    public function getMeta(): array
-    {
-        return $this->meta;
     }
 
     /**

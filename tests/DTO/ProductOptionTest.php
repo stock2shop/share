@@ -11,13 +11,10 @@ class ProductOptionTest extends TestCase
     public function testConstruct()
     {
         $mockData = [
-            'name' => 'name',
-            'position' => 1
+            'name'      => 'name',
+            'position'  => 1
         ];
         $c = new DTO\ProductOption($mockData);
-        $this->ProductOption($c);
-        $c->setName('name 21');
-        $c->setPosition(2);
         $this->ProductOption($c);
         $c = new DTO\ProductOption([]);
         $this->assertChannelNull($c);
@@ -27,8 +24,6 @@ class ProductOptionTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);
-        $this->assertIsString($c->getName());
-        $this->assertIsInt($c->getPosition());
     }
 
     private function assertChannelNull(DTO\ProductOption $c)

@@ -6,18 +6,18 @@ namespace Stock2Shop\Share\DTO;
 class SystemProduct extends Product
 {
     /** @var Channel[] $channels */
-    protected array     $channels;
-    protected ?int      $client_id;
-    protected ?string   $created;
-    protected ?string   $hash;
-    protected ?int      $id;
+    public array     $channels;
+    public ?int      $client_id;
+    public ?string   $created;
+    public ?string   $hash;
+    public ?int      $id;
     /** @var SystemImage[] $images */
-    protected array     $images;
-    protected ?string   $modified;
-    protected ?int      $source_id;
-    protected ?string   $source_product_code;
+    public array     $images;
+    public ?string   $modified;
+    public ?int      $source_id;
+    public ?string   $source_product_code;
     /** @var SystemVariant[] $variants */
-    protected array     $variants;
+    public array     $variants;
 
     public function __construct(array $data)
     {
@@ -33,109 +33,6 @@ class SystemProduct extends Product
         $this->source_id           = self::intFrom($data, 'source_id');
         $this->source_product_code = self::stringFrom($data, 'source_product_code');
         $this->variants            = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
-    }
-
-    public function setChannels($arg): void
-    {
-        $this->channels = Channel::createArray($arg);
-    }
-
-    public function setClientID($arg): void
-    {
-        $this->client_id = self::toInt($arg);
-    }
-
-    public function setCreated($arg): void
-    {
-        $this->created = self::toString($arg);
-    }
-
-    public function setHash($arg): void
-    {
-        $this->hash = self::toString($arg);
-    }
-
-    public function setID($arg): void
-    {
-        $this->id = self::toInt($arg);
-    }
-
-    public function setImages($arg): void
-    {
-        $this->images = SystemImage::createArray($arg);
-    }
-
-    public function setModified($arg): void
-    {
-        $this->modified = self::toString($arg);
-    }
-
-    public function setSourceID($arg): void
-    {
-        $this->source_id = self::toInt($arg);
-    }
-
-    public function setSourceProductCode($arg): void
-    {
-        $this->source_product_code = self::toString($arg);
-    }
-
-    public function setVariants($arg): void
-    {
-        $this->variants = SystemVariant::createArray($arg);
-    }
-
-    /** @return Channel[] */
-    public function getChannels(): array
-    {
-        return $this->channels;
-    }
-
-    public function getClientID(): ?int
-    {
-        return $this->client_id;
-    }
-
-    public function getCreated(): ?string
-    {
-        return $this->created;
-    }
-
-    public function getHash(): ?string
-    {
-        return $this->hash;
-    }
-
-    public function getID(): ?int
-    {
-        return $this->id;
-    }
-
-    /** @return SystemImage[] */
-    public function getImages(): array
-    {
-        return $this->images;
-    }
-
-    public function getModified(): ?string
-    {
-        return $this->modified;
-    }
-
-    public function getSourceID(): ?int
-    {
-        return $this->source_id;
-    }
-
-    public function getSourceProductCode(): ?string
-    {
-        return $this->source_product_code;
-    }
-
-    /** @return SystemVariant[] */
-    public function getVariants(): array
-    {
-        return $this->variants;
     }
 
     public function sort()
@@ -154,5 +51,4 @@ class SystemProduct extends Product
         }
         return md5($productHash);
     }
-
 }

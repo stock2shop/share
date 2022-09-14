@@ -20,9 +20,6 @@ class ChannelVariantTest extends TestCase
         ];
         $c = new DTO\ChannelVariant($mockData);
         $this->assertChannelVariant($c);
-        $c->getChannel()->setChannelID(2);
-        $c->getChannel()->setSuccess('any string is cast to true...');
-        $this->assertChannelVariant($c);
         $c = new DTO\ChannelVariant([]);
         $this->assertChannelNull($c);
     }
@@ -30,17 +27,19 @@ class ChannelVariantTest extends TestCase
     private function assertChannelVariant(DTO\ChannelVariant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->getChannel());
-        $this->assertIsInt($c->getChannel()->getChannelID());
-        $this->assertIsBool($c->getChannel()->getDelete());
-        $this->assertIsBool($c->getChannel()->getSuccess());
-        $this->assertIsString($c->getChannel()->getChannelVariantCode());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->channel);
+        $this->assertEquals(true, $c->channel->success);
+        $this->assertEquals(false, $c->channel->delete);
     }
 
     private function assertChannelNull(DTO\ChannelVariant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->getChannel());
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->channel);
     }
 
 }

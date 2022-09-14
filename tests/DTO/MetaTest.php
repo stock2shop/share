@@ -11,13 +11,11 @@ class MetaTest extends TestCase
     public function testConstruct()
     {
         $mockData = [
-            'key' => 'key',
-            'value' => 'value',
+            'key'           => 'key',
+            'value'         => 'value',
             'template_name' => 'template_name'
         ];
         $c = new DTO\Meta($mockData);
-        $this->assertMeta($c);
-        $c->setKey('new key');
         $this->assertMeta($c);
         $c = new DTO\Meta([]);
         $this->assertChannelNull($c);
@@ -27,9 +25,6 @@ class MetaTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);
-        $this->assertIsString($c->getKey());
-        $this->assertIsString($c->getValue());
-        $this->assertIsString($c->getTemplateName());
     }
 
     private function assertChannelNull(DTO\Meta $c)

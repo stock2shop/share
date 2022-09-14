@@ -25,13 +25,14 @@ class SystemProductTest extends TestCase
                     'template_name' => 'template_name 1'
                 ]
             ],
-            'channel'  => [
-                'channel_id'           => 1,
-                'channel_product_code' => 'x',
-                'delete'               => 'false',
-                'success'              => 'true',
-                'synced'               => '2022-02-01',
-
+            'channels'  => [
+                [
+                    'channel_id'           => 1,
+                    'channel_product_code' => 'x',
+                    'delete'               => 'false',
+                    'success'              => 'true',
+                    'synced'               => '2022-02-01',
+                ]
             ],
             'variants' => [
                 [
@@ -63,11 +64,7 @@ class SystemProductTest extends TestCase
             'modified' => 'now',
             'created' => 'now'
         ];
-        $c        = new DTO\SystemProduct($mockData);
-        $this->assertSystemProduct($c);
-        $c->setCollection('colletion 2');
-        $c->setHash('hash 2');
-        $c->setTags('tag 2');
+        $c = new DTO\SystemProduct($mockData);
         $this->assertSystemProduct($c);
         $c = new DTO\SystemProduct([]);
         $this->assertSystemProductNull($c);
@@ -77,50 +74,35 @@ class SystemProductTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
-        foreach ($c->getMeta() as $meta) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);
-            $this->assertIsString($meta->getKey());
-            $this->assertIsString($meta->getValue());
-            $this->assertIsString($meta->getTemplateName());
-        }
-        foreach ($c->getOptions() as $option) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $option);
-            $this->assertIsString($option->getName());
-            $this->assertIsInt($option->getPosition());
-        }
-        foreach ($c->getImages() as $image) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $image);
-            $this->assertIsString($image->getSrc());
-        }
-        foreach ($c->getChannels() as $channel) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $channel);
-            $this->assertIsInt($channel->getID());
-            $this->assertIsInt($channel->getClientID());
-            $this->assertIsBool($channel->getActive());
-            $this->assertIsString($channel->getCreated());
-            $this->assertIsString($channel->getModified());
-            $this->assertIsString($channel->getDescription());
-            $this->assertIsString($channel->getPriceTier());
-            $this->assertIsString($channel->getQtyAvailability());
-            $this->assertIsString($channel->getSyncToken());
-        }
-        foreach ($c->getVariants() as $variant) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $variant);
-        }
-        $this->assertIsInt($c->getID());
-        $this->assertIsInt($c->getClientID());
-        $this->assertIsInt($c->getSourceID());
-        $this->assertIsString($c->getSourceProductCode());
-        $this->assertIsString($c->getModified());
-        $this->assertIsString($c->getCreated());
-        $this->assertIsString($c->getHash());
+        $this->assertIsArray($c->meta);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
+        $this->assertIsArray($c->options);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0] );
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0] );
+        $this->assertIsArray($c->images);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
+        $this->assertIsArray($c->options);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0]);
+        $this->assertIsArray($c->channels);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channels[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c->channels[0]);
+        $this->assertIsArray($c->variants);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c->variants[0]);
     }
 
     private function assertSystemProductNull(DTO\SystemProduct $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
-        $this->assertEmpty($c->getOptions());
-        $this->assertEmpty($c->getMeta());
+        $this->assertIsArray($c->meta);
+        $this->assertIsArray($c->options);
+        $this->assertIsArray($c->images);
+        $this->assertIsArray($c->options);
+        $this->assertIsArray($c->channels);
+        $this->assertIsArray($c->variants);
     }
 }

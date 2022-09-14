@@ -15,8 +15,6 @@ class ImageTest extends TestCase
         ];
         $c = new DTO\Image($mockData);
         $this->assertImage($c);
-        $c->setSrc('any src will do...');
-        $this->assertImage($c);
         $c = new DTO\Image([]);
         $this->assertChannelNull($c);
     }
@@ -25,7 +23,6 @@ class ImageTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);
-        $this->assertIsString($c->getSrc());
     }
 
     private function assertChannelNull(DTO\Image $c)

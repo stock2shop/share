@@ -18,9 +18,6 @@ class ChannelVariantChannelTest extends TestCase
         ];
         $c = new DTO\ChannelVariantChannel($mockData);
         $this->assertChannelVariantChannel($c);
-        $c->setChannelID(2);
-        $c->setSuccess('any string is cast to true...');
-        $this->assertChannelVariantChannel($c);
         $c = new DTO\ChannelVariantChannel([]);
         $this->assertChannelNull($c);
     }
@@ -29,10 +26,8 @@ class ChannelVariantChannelTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c);
-        $this->assertIsInt($c->getChannelID());
-        $this->assertIsBool($c->getDelete());
-        $this->assertIsBool($c->getSuccess());
-        $this->assertIsString($c->getChannelVariantCode());
+        $this->assertEquals(true, $c->success);
+        $this->assertEquals(false, $c->delete);
     }
 
     private function assertChannelNull(DTO\ChannelVariantChannel $c)
@@ -40,5 +35,4 @@ class ChannelVariantChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c);
     }
-
 }
