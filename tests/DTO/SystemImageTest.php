@@ -18,7 +18,7 @@ class SystemImageTest extends TestCase
         $c = new DTO\SystemImage($mockData);
         $this->assertSystemImage($c);
         $c = new DTO\SystemImage([]);
-        $this->assertChannelNull($c);
+        $this->assertSystemImageNull($c);
     }
 
     private function assertSystemImage(DTO\SystemImage $c)
@@ -27,7 +27,7 @@ class SystemImageTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c);
     }
 
-    private function assertChannelNull(DTO\SystemImage $c)
+    private function assertSystemImageNull(DTO\SystemImage $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c);

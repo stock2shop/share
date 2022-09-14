@@ -17,7 +17,7 @@ class QtyAvailabilityTest extends TestCase
         $c = new DTO\QtyAvailability($mockData);
         $this->assertQtyAvailability($c);
         $c = new DTO\QtyAvailability([]);
-        $this->assertChannelNull($c);
+        $this->assertQtyAvailabilityNull($c);
     }
 
     private function assertQtyAvailability(DTO\QtyAvailability $c)
@@ -26,7 +26,7 @@ class QtyAvailabilityTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c);
     }
 
-    private function assertChannelNull(DTO\QtyAvailability $c)
+    private function assertQtyAvailabilityNull(DTO\QtyAvailability $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c);

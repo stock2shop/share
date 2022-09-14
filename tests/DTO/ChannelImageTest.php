@@ -21,7 +21,7 @@ class ChannelImageTest extends TestCase
         $c = new DTO\ChannelImage($mockData);
         $this->assertChannelImage($c);
         $c = new DTO\ChannelImage([]);
-        $this->assertChannelNull($c);
+        $this->assertChannelImageNull($c);
     }
 
     private function assertChannelImage(DTO\ChannelImage $c)
@@ -32,7 +32,7 @@ class ChannelImageTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->channel);
     }
 
-    private function assertChannelNull(DTO\ChannelImage $c)
+    private function assertChannelImageNull(DTO\ChannelImage $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImage', $c);

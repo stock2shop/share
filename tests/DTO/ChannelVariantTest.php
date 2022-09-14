@@ -21,7 +21,7 @@ class ChannelVariantTest extends TestCase
         $c = new DTO\ChannelVariant($mockData);
         $this->assertChannelVariant($c);
         $c = new DTO\ChannelVariant([]);
-        $this->assertChannelNull($c);
+        $this->assertChannelVariantNull($c);
     }
 
     private function assertChannelVariant(DTO\ChannelVariant $c)
@@ -34,7 +34,7 @@ class ChannelVariantTest extends TestCase
         $this->assertEquals(false, $c->channel->delete);
     }
 
-    private function assertChannelNull(DTO\ChannelVariant $c)
+    private function assertChannelVariantNull(DTO\ChannelVariant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);

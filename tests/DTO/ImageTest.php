@@ -16,7 +16,7 @@ class ImageTest extends TestCase
         $c = new DTO\Image($mockData);
         $this->assertImage($c);
         $c = new DTO\Image([]);
-        $this->assertChannelNull($c);
+        $this->assertImageNull($c);
     }
 
     private function assertImage(DTO\Image $c)
@@ -25,7 +25,7 @@ class ImageTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);
     }
 
-    private function assertChannelNull(DTO\Image $c)
+    private function assertImageNull(DTO\Image $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);

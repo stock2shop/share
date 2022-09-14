@@ -17,7 +17,7 @@ class ProductOptionTest extends TestCase
         $c = new DTO\ProductOption($mockData);
         $this->ProductOption($c);
         $c = new DTO\ProductOption([]);
-        $this->assertChannelNull($c);
+        $this->assertProductOptionNull($c);
     }
 
     private function ProductOption(DTO\ProductOption $c)
@@ -26,7 +26,7 @@ class ProductOptionTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);
     }
 
-    private function assertChannelNull(DTO\ProductOption $c)
+    private function assertProductOptionNull(DTO\ProductOption $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);

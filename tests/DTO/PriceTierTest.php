@@ -17,7 +17,7 @@ class PriceTierTest extends TestCase
         $c = new DTO\PriceTier($mockData);
         $this->assertPriceTier($c);
         $c = new DTO\PriceTier([]);
-        $this->assertChannelNull($c);
+        $this->assertPriceTierNull($c);
     }
 
     private function assertPriceTier(DTO\PriceTier $c)
@@ -26,7 +26,7 @@ class PriceTierTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c);
     }
 
-    private function assertChannelNull(DTO\PriceTier $c)
+    private function assertPriceTierNull(DTO\PriceTier $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c);

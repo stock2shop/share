@@ -18,7 +18,7 @@ class MetaTest extends TestCase
         $c = new DTO\Meta($mockData);
         $this->assertMeta($c);
         $c = new DTO\Meta([]);
-        $this->assertChannelNull($c);
+        $this->assertMetaNull($c);
     }
 
     private function assertMeta(DTO\Meta $c)
@@ -27,7 +27,7 @@ class MetaTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);
     }
 
-    private function assertChannelNull(DTO\Meta $c)
+    private function assertMetaNull(DTO\Meta $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);

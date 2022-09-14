@@ -45,7 +45,7 @@ class VariantTest extends TestCase
         $c = new DTO\Variant($mockData);
         $this->assertVariant($c);
         $c = new DTO\Variant([]);
-        $this->assertChannelNull($c);
+        $this->assertVariantNull($c);
     }
 
     private function assertVariant(DTO\Variant $c)
@@ -63,7 +63,7 @@ class VariantTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c->price_tiers[0]);
     }
 
-    private function assertChannelNull(DTO\Variant $c)
+    private function assertVariantNull(DTO\Variant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c);
