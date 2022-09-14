@@ -1,58 +1,23 @@
 <?php
+declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class ChannelProduct extends SystemProduct
 {
-
-    /** @var ChannelProductChannel $channel */
-    protected $channel;
-
+    public ChannelProductChannel $channel;
     /** @var ChannelImage[] $images */
-    protected $images;
-
+    public array $images;
     /** @var ChannelVariant[] $variants */
-    protected $variants;
+    public array $variants;
 
-    /**
-     * @param array $data
-     */
+
     public function __construct(array $data)
     {
         parent::__construct($data);
         $this->channel  = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
         $this->images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));
         $this->variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
-    }
-
-    public function setChannel($arg)
-    {
-        $this->channel = new ChannelProductChannel($arg);
-    }
-
-    public function setImages($arg)
-    {
-        $this->variants = ChannelImage::createArray($arg);
-    }
-
-    public function setVariants($arg)
-    {
-        $this->variants = ChannelVariant::createArray($arg);
-    }
-
-    public function getChannel()
-    {
-        return $this->channel;
-    }
-
-    public function getImages(): array
-    {
-        return $this->images;
-    }
-
-    public function getVariants(): array
-    {
-        return $this->variants;
     }
 
     /**
@@ -66,13 +31,12 @@ class ChannelProduct extends SystemProduct
 
     /**
      * Computes a hash of the ChannelProduct
-     * @return string
      */
     public function computeHash(): string
     {
         $productHash = parent::computeHash();
         $this->sort();
-        $cpc = $this->getChannel()->getChannelProductCode();
+        $cpc = $this->channel->getChannelProductCode();
         $productHash .= "\nchannel_product_code=$cpc";
 
         // TODO check this!

@@ -1,30 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
 class ChannelVariant extends SystemVariant
 {
+    public ChannelVariantChannel $channel;
 
-    /** @var ChannelVariantChannel $channel */
-    protected $channel;
-
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         parent::__construct($data);
         $this->channel = new ChannelVariantChannel(self::arrayFrom($data, 'channel'));
-    }
-
-    public function setChannel($arg)
-    {
-        $this->channel = new ChannelVariantChannel($arg);
-    }
-
-    public function getChannel()
-    {
-        return $this->channel;
     }
 
     /**
@@ -40,5 +26,4 @@ class ChannelVariant extends SystemVariant
             $this->channel_product_code !== ''
         );
     }
-
 }

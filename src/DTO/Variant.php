@@ -1,54 +1,32 @@
 <?php
+declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Variant extends AbstractBase
+class Variant extends DTO
 {
-    /** @var string|null $source_variant_code */
-    protected $source_variant_code;
-
-    /** @var string|null $sku */
-    protected $sku;
-
-    /** @var bool|null $active */
-    protected $active;
-
-    /** @var int|null $qty
+    public ?string   $source_variant_code;
+    public ?string   $sku;
+    public ?bool     $active;
+    /**
      * See issue https://github.com/stock2shop/app/issues/1490
      * Currently our ddb stores qty as unsigned int, meaning positive number only
      * Once we allow negatives the check below should be changed
      */
-    protected $qty;
-
+    public ?int      $qty;
     /** @var QtyAvailability[] $qty_availability */
-    protected $qty_availability;
-
-    /** @var float|null $price */
-    protected $price;
-
+    public array     $qty_availability;
+    public ?float    $price;
     /** @var PriceTier[] $price_tiers */
-    protected $price_tiers;
-
-    /** @var string|null $barcode */
-    protected $barcode;
-
-    /** @var bool|null $inventory_management */
-    protected $inventory_management;
-
-    /** @var int|null $grams */
-    protected $grams;
-
-    /** @var string|null $option1 */
-    protected $option1;
-
-    /** @var string|null $option2 */
-    protected $option2;
-
-    /** @var string|null $option3 */
-    protected $option3;
-
+    public array     $price_tiers;
+    public ?string   $barcode;
+    public ?bool     $inventory_management;
+    public ?int      $grams;
+    public ?string   $option1;
+    public ?string   $option2;
+    public ?string   $option3;
     /** @var Meta[] $meta */
-    protected $meta;
+    public array     $meta;
 
     function __construct(array $data)
     {
@@ -73,146 +51,6 @@ class Variant extends AbstractBase
         }
     }
 
-    public function setSourceVariantCode($arg)
-    {
-        $this->source_variant_code = self::toString($arg);
-    }
-
-    public function setSKU($arg)
-    {
-        $this->sku = self::toString($arg);
-    }
-
-    public function setActive($arg)
-    {
-        $this->active = self::toBool($arg);
-    }
-
-    public function setQty($arg)
-    {
-        $this->qty = self::toInt($arg);
-    }
-
-    public function setQtyAvailability($arg)
-    {
-        $this->qty_availability = QtyAvailability::createArray($arg);
-    }
-
-    public function setPrice($arg)
-    {
-        $this->price = self::toFloat($arg);
-    }
-
-    public function setPriceTiers($arg)
-    {
-        $this->price_tiers = PriceTier::createArray($arg);
-    }
-
-    public function setBarcode($arg)
-    {
-        $this->barcode = self::toString($arg);
-    }
-
-    public function setInventoryManagement($arg)
-    {
-        $this->inventory_management = self::toBool($arg);
-    }
-
-    public function setGrams($arg)
-    {
-        $this->grams = self::toInt($arg);
-    }
-
-    public function setOption1($arg)
-    {
-        $this->option1 = self::toString($arg);
-    }
-
-    public function setOption2($arg)
-    {
-        $this->option2 = self::toString($arg);
-    }
-
-    public function setOption3($arg)
-    {
-        $this->option3 = self::toString($arg);
-    }
-
-    public function setMeta($arg)
-    {
-        $this->meta = Meta::createArray($arg);
-    }
-
-    public function getSourceVariantCode()
-    {
-        return $this->source_variant_code;
-    }
-
-    public function getSKU()
-    {
-        return $this->sku;
-    }
-
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    public function getQty()
-    {
-        return $this->qty;
-    }
-
-    public function getQtyAvailability()
-    {
-        return $this->qty_availability;
-    }
-
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    public function getPriceTiers()
-    {
-        return $this->price_tiers;
-    }
-
-    public function getBarcode()
-    {
-        return $this->barcode;
-    }
-
-    public function getInventoryManagement()
-    {
-        return $this->inventory_management;
-    }
-
-    public function getGrams()
-    {
-        return $this->grams;
-    }
-
-    public function getOption1()
-    {
-        return $this->option1;
-    }
-
-    public function getOption2()
-    {
-        return $this->option2;
-    }
-
-    public function getOption3()
-    {
-        return $this->option3;
-    }
-
-    public function getMeta()
-    {
-        return $this->meta;
-    }
-
     /**
      * sort array properties of Variant
      */
@@ -225,8 +63,6 @@ class Variant extends AbstractBase
 
     /**
      * computeHash of the Variant
-     *
-     * @return string
      */
     public function computeHash(): string
     {

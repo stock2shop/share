@@ -1,22 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Image extends  AbstractBase
+class Image extends  DTO
 {
-    /** @var string|null $src */
-    protected $src;
+    public ?string $src;
 
     public function __construct(array $data)
     {
         $this->src = self::stringFrom($data, 'src');
-    }
-
-    public function setSrc($arg) {
-        $this->src = self::toString($arg);
-    }
-
-    public function getSrc() {
-        return $this->src;
     }
 }

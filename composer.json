@@ -8,7 +8,9 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {"Stock2Shop\\Tests\\Share\\": "tests/"}
+        "psr-4": {
+            "Stock2Shop\\Tests\\Share\\": "tests/"
+        }
     },
     "authors": [
         {
@@ -17,7 +19,7 @@
         }
     ],
     "require": {
-        "php": ">=7.3"
+        "php": ">=8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
