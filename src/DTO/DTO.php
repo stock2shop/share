@@ -23,7 +23,7 @@ abstract class DTO
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new static($item);
+            $a[] = new static((array) $item);
         }
         return $a;
     }

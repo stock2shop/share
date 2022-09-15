@@ -43,9 +43,9 @@ class SystemProduct extends Product
     public function computeHash(): string
     {
         $productHash = parent::computeHash();
-        $productHash .= sprintf('\nsource_product_code=%s', $this->source_product_code);
+        $productHash .= sprintf("\nsource_product_code=%s", $this->source_product_code);
         foreach ($this->images as $i) {
-            $productHash .= sprintf('\nimage_%d=%s', $i->id, $i->src);
+            $productHash .= sprintf("\nimage_%d=%s", $i->id, $i->src);
         }
         return md5($productHash);
     }
