@@ -63,4 +63,29 @@ class ProductTest extends TestCase
         $this->assertIsArray($c->meta);
         $this->assertIsArray($c->options);
     }
+
+    public function testComputeHash()
+    {
+        $mockData = $this->getTestResourceAsArray(
+            'TestProduct_ComputeHash');
+        $compareProduct = 'fce560b33580b53e33245a762dcefd45';
+
+        $p = new DTO\Product($mockData);
+        $this->assertEquals($compareProduct, $p->computeHash());
+
+        $mockData = $this->getTestResourceAsArray(
+            'TestProduct_ComputeHash_2');
+        $compareProduct = '1f1654769bbb21a34f1647c6680ed813';
+
+        $p = new DTO\Product($mockData);
+        $this->assertEquals($compareProduct, $p->computeHash());
+    }
+
+    /**
+     * Returns a test resources' contents as an array.
+     */
+    private function getTestResourceAsArray(string $fileName): array {
+        return json_decode(file_get_contents(
+            __DIR__ . '/TestResources/' . $fileName . '.json'), true);
+    }
 }

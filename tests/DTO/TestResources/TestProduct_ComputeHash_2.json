@@ -1,0 +1,41 @@
+{
+    "id": 123,
+    "source_product_code": "abc",
+    "active": true,
+    "title": "title",
+    "body_html": "body_html",
+    "collection": "collection",
+    "product_type": "product_type",
+    "tags": "tags",
+    "vendor": "vendor",
+    "images": [
+      {
+        "id": 123,
+        "src": "https://example.com/1.jpg"
+      }
+    ],
+    "options": [
+        {
+            "name": "name2",
+            "position": 1
+        },
+        {
+            "name": "name1",
+            "position": 2
+        }
+    ],
+    "meta": [
+        {
+            "key": "bbb",
+            "value": ""
+        },
+        {
+            "key": "",
+            "value": "ccc"
+        },
+        {
+            "key": "aaa",
+            "value": "aaa"
+        }
+    ]
+}
