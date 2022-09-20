@@ -1,0 +1,32 @@
+{
+    "id": 123,
+    "source_product_code": "abc",
+    "active": true,
+    "title": null,
+    "body_html": null,
+    "collection": null,
+    "product_type": null,
+    "tags": null,
+    "vendor": null,
+    "options": null,
+    "meta": null,
+    "variants": [
+        {
+            "id": 456,
+            "active": true,
+            "sku": "def",
+            "source_variant_code": "ghi",
+            "qty": 10,
+            "qty_availability": null,
+            "price": 1.23,
+            "price_tiers": null,
+            "barcode": null,
+            "inventory_management": null,
+            "grams": null,
+            "option1": null,
+            "option2": null,
+            "option3": null,
+            "meta": null
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "id": 123,
+    "source_product_code": "abc",
+    "active": true,
+    "title": null,
+    "body_html": null,
+    "collection": null,
+    "product_type": null,
+    "tags": null,
+    "vendor": null,
+    "options": null,
+    "meta": null
+}

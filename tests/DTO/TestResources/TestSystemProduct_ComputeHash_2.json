@@ -1,0 +1,95 @@
+{
+    "id": 123,
+    "source_product_code": "abc",
+    "active": true,
+    "title": "title",
+    "body_html": "body_html",
+    "collection": "collection",
+    "product_type": "product_type",
+    "tags": "tags",
+    "vendor": "vendor",
+    "images": [
+      {
+        "id": 123,
+        "src": "https://example.com/1.jpg"
+      }
+    ],
+    "options": [
+        {
+            "name": "name2",
+            "position": 1
+        },
+        {
+            "name": "name1",
+            "position": 2
+        }
+    ],
+    "meta": [
+        {
+            "key": "bbb",
+            "value": ""
+        },
+        {
+            "key": "",
+            "value": "ccc"
+        },
+        {
+            "key": "aaa",
+            "value": "aaa"
+        }
+    ],
+    "variants": [
+        {
+            "id": 456,
+            "active": true,
+            "sku": "def",
+            "source_variant_code": "ghi",
+            "qty": 10,
+            "qty_availability": [
+                {
+                    "description": "descriptionB",
+                    "qty": 123
+                },
+                {
+                    "description": "descriptionA",
+                    "qty": 0
+                }
+            ],
+            "price": 1.23,
+            "price_tiers": [
+                {
+                    "tier": "tier2",
+                    "price": 456.78
+                },
+                {
+                    "tier": "tier1",
+                    "price": 789.00
+                },
+                {
+                    "tier": "tier3",
+                    "price": 0
+                }
+            ],
+            "barcode": "barcode",
+            "inventory_management": true,
+            "grams": 123,
+            "option1": "green",
+            "option2": "yellow",
+            "option3": "red",
+            "meta": [
+                {
+                    "key": "bbb",
+                    "value": ""
+                },
+                {
+                    "key": "",
+                    "value": "ccc"
+                },
+                {
+                    "key": "aaa",
+                    "value": "aaa"
+                }
+            ]
+        }
+    ]
+}

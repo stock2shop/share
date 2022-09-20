@@ -105,4 +105,33 @@ class SystemProductTest extends TestCase
         $this->assertIsArray($c->channels);
         $this->assertIsArray($c->variants);
     }
+
+    public function testComputeHash()
+    {
+        $mockData = $this->getTestResourceAsArray(
+            'TestSystemProduct_ComputeHash');
+        $compareProduct = 'e92d087545328d417f99424371dc370f';
+        $compareVariant = "75f83570725732c2459af21edeb6a98e";
+
+        $sp = new DTO\SystemProduct($mockData);
+        $this->assertEquals($compareProduct, $sp->computeHash());
+        $this->assertEquals($compareVariant, $sp->variants[0]->computeHash());
+
+        $mockData = $this->getTestResourceAsArray(
+            'TestSystemProduct_ComputeHash_2');
+        $compareProduct = '4a35e34194e949f97048b71255180e6d';
+        $compareVariant = "e3308f848ff13ea98d47b0024dced387";
+
+        $sp = new DTO\SystemProduct($mockData);
+        $this->assertEquals($compareProduct, $sp->computeHash());
+        $this->assertEquals($compareVariant, $sp->variants[0]->computeHash());
+    }
+
+    /**
+     * Returns a test resources' contents as an array.
+     */
+    private function getTestResourceAsArray(string $fileName): array {
+        return json_decode(file_get_contents(
+            __DIR__ . '/TestResources/' . $fileName . '.json'), true);
+    }
 }
