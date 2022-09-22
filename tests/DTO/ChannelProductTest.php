@@ -51,24 +51,24 @@ class ChannelProductTest extends TestCase
 
     private function assertChannelProduct(DTO\ChannelProduct $c)
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->channel);
         $this->assertIsArray($c->variants);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c->variants[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c->variants[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]->channel);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->variants[0]->channel);
         $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c->images[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]->channel);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->images[0]->channel);
     }
 
     private function assertChannelProductNull(DTO\ChannelProduct $c)
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->channel);
         $this->assertIsArray($c->variants);
