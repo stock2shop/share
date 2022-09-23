@@ -1,3 +1,4 @@
+/_excluded
 .idea/
 .phpunit.result.cache
 /vendor/
