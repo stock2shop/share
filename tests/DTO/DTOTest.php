@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
-use mysql_xdevapi\Exception;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO\DTO;
 
@@ -74,7 +73,7 @@ class DTOTest extends TestCase
         $exception = false;
         try {
             DTO::intFrom(["v"=>"0x539"], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
@@ -93,14 +92,14 @@ class DTOTest extends TestCase
         $exception = false;
         try {
             DTO::intFrom(["v"=>false], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
         $exception = false;
         try {
             DTO::intFrom(["v"=>true], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
@@ -117,7 +116,7 @@ class DTOTest extends TestCase
         $exception = false;
         try {
             DTO::floatFrom(["v"=>"0x539"], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
@@ -136,14 +135,14 @@ class DTOTest extends TestCase
         $exception = false;
         try {
             DTO::floatFrom(["v"=>false], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
         $exception = false;
         try {
             DTO::floatFrom(["v"=>true], "v");
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             $exception = true;
         }
         $this->assertTrue($exception);
