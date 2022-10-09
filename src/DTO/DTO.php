@@ -156,7 +156,7 @@ abstract class DTO
         return (float)$arg;
     }
 
-    static function toString(mixed $arg): ?string
+    static function toString(  $arg): ?string
     {
         if (is_null($arg)) {
             return null;

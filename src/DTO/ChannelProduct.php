@@ -6,7 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelProduct extends SystemProduct
 {
-    public readonly ChannelProductChannel $channel;
+    public ChannelProductChannel $channel;
     /** @var ChannelImage[] $images */
     public array $images;
     /** @var ChannelVariant[] $variants */

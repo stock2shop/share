@@ -7,16 +7,16 @@ namespace Stock2Shop\Share\DTO;
 class SystemProduct extends Product
 {
     /** @var Channel[] $channels */
-    public readonly array $channels;
-    public readonly ?int $client_id;
-    public readonly ?string $created;
-    public readonly ?string $hash;
-    public readonly ?int $id;
+    public array $channels;
+    public ?int $client_id;
+    public ?string $created;
+    public ?string $hash;
+    public ?int $id;
     /** @var SystemImage[] $images */
     public array $images;
-    public readonly ?string $modified;
-    public readonly ?int $source_id;
-    public readonly ?string $source_product_code;
+    public ?string $modified;
+    public ?int $source_id;
+    public ?string $source_product_code;
     /** @var SystemVariant[] $variants */
     public array $variants;
 

@@ -6,7 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelVariant extends SystemVariant
 {
-    public readonly ChannelVariantChannel $channel;
+    public ChannelVariantChannel $channel;
 
     public function __construct(array $data)
     {

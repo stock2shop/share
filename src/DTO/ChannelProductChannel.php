@@ -6,9 +6,9 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelProductChannel extends DTO
 {
-    public readonly ?int $channel_id;
+    public ?int $channel_id;
     public ?string $channel_product_code;
-    public readonly ?bool $delete;
+    public ?bool $delete;
     public ?bool $success;
     public ?string $synced;
 

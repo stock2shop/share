@@ -14,9 +14,9 @@ namespace Stock2shop\Share\DTO;
  */
 class Meta extends DTO
 {
-    public readonly ?string $key;
-    public readonly ?string $value;
-    public readonly ?string $template_name;
+    public ?string $key;
+    public ?string $value;
+    public ?string $template_name;
 
     /**
      * Meta constructor.
