@@ -11,13 +11,12 @@ class ChannelProduct extends Product
     public readonly ?string $hash;
     public readonly ?int $id;
     /** @var ChannelImage[] $images */
-    public array $images;
+    public readonly array $images;
     public readonly ?string $modified;
     public readonly ?int $source_id;
     public readonly ?string $source_product_code;
     /** @var ChannelVariant[] $variants */
-    public array $variants;
-
+    public readonly array $variants;
     public readonly ChannelProductChannel $channel;
 
     public function __construct(array $data)
@@ -46,12 +45,12 @@ class ChannelProduct extends Product
     {
         $productHash = parent::computeHash();
         $productHash .= sprintf("\nsource_product_code=%s", $this->source_product_code);
-        $productHash .= sprintf('\nchannel_product_code=%s', $this->channel->channel_product_code);
+        $productHash .= sprintf("\nchannel_product_code=%s", $this->channel->channel_product_code);
         foreach ($this->images as $i) {
             $productHash .= sprintf("\nimage_%d=%s", $i->id, $i->src);
         }
         foreach ($this->variants as $v) {
-            $productHash .= sprintf('\nvariant_%d=%s', $v->id, $v->computeHash());
+            $productHash .= sprintf("\nvariant_%d=%s", $v->id, $v->computeHash());
         }
         return md5($productHash);
     }

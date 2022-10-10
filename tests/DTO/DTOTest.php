@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
-use mysql_xdevapi\Exception;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO\DTO;
 

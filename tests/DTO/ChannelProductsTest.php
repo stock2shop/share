@@ -81,6 +81,7 @@ class ChannelProductsTest extends TestCase
             ]
         ];
         $c  = new DTO\ChannelProducts($mockData);
+        $c->channel_products[0]->channel->success = true;
         $this->assertChannelProducts($c);
         $c = new DTO\ChannelProducts([]);
         $this->assertChannelProductsNull($c);

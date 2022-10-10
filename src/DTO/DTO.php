@@ -105,7 +105,7 @@ abstract class DTO
         return [];
     }
 
-    static function toBool($arg): ?bool
+    private static function toBool($arg): ?bool
     {
         if (is_null($arg)) {
             return null;
@@ -135,7 +135,7 @@ abstract class DTO
         return (bool)$arg;
     }
 
-    static function toFloat($arg): ?float
+    private static function toFloat($arg): ?float
     {
         if (is_null($arg)) {
             return null;
@@ -156,7 +156,7 @@ abstract class DTO
         return (float)$arg;
     }
 
-    static function toString(mixed $arg): ?string
+    private static function toString(mixed $arg): ?string
     {
         if (is_null($arg)) {
             return null;
@@ -170,7 +170,7 @@ abstract class DTO
         return (string)$arg;
     }
 
-    static function toInt($arg): ?int
+    private static function toInt($arg): ?int
     {
         $num = self::toFloat($arg);
         if (is_null($num)) {
