@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
+use \InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO\DTO;
 
@@ -70,13 +71,9 @@ class DTOTest extends TestCase
     public function testIntFrom() {
         // string
         $this->assertSame(123, DTO::intFrom(["v"=>"123"], "v"));
-        $exception = false;
-        try {
-            DTO::intFrom(["v"=>"0x539"], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
+        // Non-empty, non-numeric.
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::intFrom(["v"=>"0x539"], "v");
 
         // integer
         $this->assertSame(123, DTO::intFrom(["v"=>123], "v"));
@@ -89,37 +86,25 @@ class DTOTest extends TestCase
             -123, DTO::intFrom(["v"=>-123.45], "v"));
 
         // bool
-        $exception = false;
-        try {
-            DTO::intFrom(["v"=>false], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
-        $exception = false;
-        try {
-            DTO::intFrom(["v"=>true], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::intFrom(["v"=>false], "v");
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::intFrom(["v"=>true], "v");
 
         // null remains null
         $this->assertNull(DTO::intFrom(["v"=>null], "v"));
         // Missing properties parse as null
         $this->assertNull(DTO::intFrom([], "v"));
+        // Trimmed escape characters in string return null.
+        $this->assertNull(DTO::floatFrom(["v"=>"\n"], "v"));
     }
 
     public function testFloatFrom() {
         // string
         $this->assertSame(123.45, DTO::floatFrom(["v"=>"123.45"], "v"));
-        $exception = false;
-        try {
-            DTO::floatFrom(["v"=>"0x539"], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
+        // Non-empty, non-numeric.
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::floatFrom(["v"=>"0x539"], "v");
 
         // integer
         $this->assertSame(123.0, DTO::floatFrom(["v"=>123], "v"));
@@ -132,25 +117,23 @@ class DTOTest extends TestCase
             -123.45, DTO::floatFrom(["v"=>-123.45], "v"));
 
         // bool
-        $exception = false;
-        try {
-            DTO::floatFrom(["v"=>false], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
-        $exception = false;
-        try {
-            DTO::floatFrom(["v"=>true], "v");
-        } catch (\Exception $e) {
-            $exception = true;
-        }
-        $this->assertTrue($exception);
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::floatFrom(["v"=>false], "v");
+
+        $this->assertExceptionWithMessage(InvalidArgumentException::class, 'value is not numeric');
+        DTO::floatFrom(["v"=>true], "v");
 
         // null remains null
         $this->assertNull(DTO::floatFrom(["v"=>null], "v"));
         // Missing properties parse as null
         $this->assertNull(DTO::floatFrom([], "v"));
+        // Trimmed escape characters in string return null.
+        $this->assertNull(DTO::floatFrom(["v"=>"\n"], "v"));
     }
 
+    private function assertExceptionWithMessage(string $class, string $string)
+    {
+        $this->expectException($class);
+        $this->expectExceptionMessage($string);
+    }
 }
