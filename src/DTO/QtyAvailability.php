@@ -6,8 +6,8 @@ namespace Stock2Shop\Share\DTO;
 
 class QtyAvailability extends DTO
 {
-    public readonly ?string $description;
-    public readonly ?float $qty;
+    public ?string $description;
+    public ?float $qty;
 
     function __construct(array $data)
     {

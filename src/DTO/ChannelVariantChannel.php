@@ -6,9 +6,9 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelVariantChannel extends DTO
 {
-    public readonly ?int $channel_id;
+    public ?int $channel_id;
     public ?string $channel_variant_code;
-    public readonly ?bool $delete;
+    public ?bool $delete;
     public ?bool $success;
 
     public function __construct(array $data)

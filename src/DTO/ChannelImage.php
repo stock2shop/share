@@ -6,7 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelImage extends SystemImage
 {
-    public readonly ChannelImageChannel $channel;
+    public ChannelImageChannel $channel;
 
     public function __construct(array $data)
     {

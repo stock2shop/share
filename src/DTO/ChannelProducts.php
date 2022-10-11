@@ -7,7 +7,7 @@ namespace Stock2Shop\Share\DTO;
 class ChannelProducts extends DTO
 {
     /** @var ChannelProduct[] $channel_products */
-    public readonly array $channel_products;
+    public array $channel_products;
 
     public function __construct(array $data)
     {

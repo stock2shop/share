@@ -6,8 +6,8 @@ namespace Stock2Shop\Share\DTO;
 
 class PriceTier extends DTO
 {
-    public readonly ?string $tier;
-    public readonly ?float $price;
+    public ?string $tier;
+    public ?float $price;
 
     /**
      * PriceTier constructor.

@@ -6,7 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 class Image extends DTO
 {
-    public readonly ?string $src;
+    public ?string $src;
 
     public function __construct(array $data)
     {
