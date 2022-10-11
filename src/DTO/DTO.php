@@ -9,11 +9,14 @@ use InvalidArgumentException;
 abstract class DTO
 {
     /**
-     * Converts DTO into assoc array
+     * Creates DTO from json string
+     * TODO: static return type only implemented in 8.0
+     * We can then remove (at)method from inheriting class
      */
-    function all(): array
+    static function createFromJSON(string $json): self
     {
-        return json_decode(json_encode($this), true);
+        $data = json_decode($json, true);
+        return new static($data);
     }
 
     /**
