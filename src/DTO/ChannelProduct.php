@@ -6,8 +6,11 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelProduct extends Product
 {
+    public ?int $channel_id;
+    public ?string $channel_product_code;
     public ?int $client_id;
     public ?string $created;
+    public ?bool $delete;
     public ?string $hash;
     public ?int $id;
     /** @var ChannelImage[] $images */
@@ -15,9 +18,10 @@ class ChannelProduct extends Product
     public ?string $modified;
     public ?int $source_id;
     public ?string $source_product_code;
+    public ?bool $success;
+    public ?string $synced;
     /** @var ChannelVariant[] $variants */
     public array $variants;
-    public ChannelProductChannel $channel;
 
     public function __construct(array $data)
     {
@@ -26,16 +30,20 @@ class ChannelProduct extends Product
         $images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));
         $variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
 
-        $this->channel             = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
-        $this->client_id           = self::intFrom($data, 'client_id');
-        $this->created             = self::stringFrom($data, 'created');
-        $this->hash                = self::stringFrom($data, 'hash');
-        $this->id                  = self::intFrom($data, 'id');
-        $this->images              = $this->sortArray($images, 'id');
-        $this->modified            = self::stringFrom($data, 'modified');
-        $this->source_id           = self::intFrom($data, 'source_id');
-        $this->source_product_code = self::stringFrom($data, 'source_product_code');
-        $this->variants            = $this->sortArray($variants, 'id');
+        $this->channel_id           = self::intFrom($data, 'channel_id');
+        $this->channel_product_code = self::stringFrom($data, 'channel_product_code');
+        $this->client_id            = self::intFrom($data, 'client_id');
+        $this->created              = self::stringFrom($data, 'created');
+        $this->delete               = self::boolFrom($data, 'delete');
+        $this->hash                 = self::stringFrom($data, 'hash');
+        $this->id                   = self::intFrom($data, 'id');
+        $this->images               = $this->sortArray($images, 'id');
+        $this->modified             = self::stringFrom($data, 'modified');
+        $this->source_id            = self::intFrom($data, 'source_id');
+        $this->source_product_code  = self::stringFrom($data, 'source_product_code');
+        $this->success              = self::boolFrom($data, 'success');
+        $this->synced               = self::stringFrom($data, 'synced');
+        $this->variants             = $this->sortArray($variants, 'id');
     }
 
     /**
@@ -45,7 +53,7 @@ class ChannelProduct extends Product
     {
         $productHash = parent::computeHash();
         $productHash .= sprintf("\nsource_product_code=%s", $this->source_product_code);
-        $productHash .= sprintf("\nchannel_product_code=%s", $this->channel->channel_product_code);
+        $productHash .= sprintf("\nchannel_product_code=%s", $this->channel_product_code);
         foreach ($this->images as $i) {
             $productHash .= sprintf("\nimage_%d=%s", $i->id, $i->src);
         }

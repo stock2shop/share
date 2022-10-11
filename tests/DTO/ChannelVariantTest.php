@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -11,14 +12,12 @@ class ChannelVariantTest extends TestCase
     public function testConstruct()
     {
         $mockData = [
-            'channel'  => [
-                'channel_id'            => 1,
-                'channel_variant_code'  => 'x',
-                'delete'                => 'false',
-                'success'               => 'true',
-            ],
+            'channel_id'           => 1,
+            'channel_variant_code' => 'x',
+            'delete'               => 'false',
+            'success'              => 'true',
         ];
-        $c = new DTO\ChannelVariant($mockData);
+        $c        = new DTO\ChannelVariant($mockData);
         $this->assertChannelVariant($c);
         $c = new DTO\ChannelVariant([]);
         $this->assertChannelVariantNull($c);
@@ -28,18 +27,16 @@ class ChannelVariantTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->channel);
-        $this->assertEquals(true, $c->channel->success);
-        $this->assertEquals(false, $c->channel->delete);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertEquals(true, $c->success);
+        $this->assertEquals(false, $c->delete);
     }
 
     private function assertChannelVariantNull(DTO\ChannelVariant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
     }
 
 }

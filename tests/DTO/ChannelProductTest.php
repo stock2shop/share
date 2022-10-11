@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -11,35 +12,28 @@ class ChannelProductTest extends TestCase
     public function testConstruct()
     {
         $mockData = [
-            'id'       => '1',
-            'channel'  => [
-                'channel_id'           => 1,
-                'channel_product_code' => 'x',
-                'delete'               => 'false',
-                'success'              => 'true',
-                'synced'               => '2022-02-01',
-
-            ],
-            'variants' => [
+            'id'                   => '1',
+            'channel_id'           => 1,
+            'channel_product_code' => 'x',
+            'delete'               => 'false',
+            'success'              => 'true',
+            'synced'               => '2022-02-01',
+            'variants'             => [
                 [
-                    'id'      => 1,
-                    'channel' => [
-                        'channel_id'           => 1,
-                        'channel_variant_code' => 'x',
-                        'delete'               => 'false',
-                        'success'              => 'true'
-                    ]
+                    'id'                   => 1,
+                    'channel_id'           => 1,
+                    'channel_variant_code' => 'x',
+                    'delete'               => 'false',
+                    'success'              => 'true'
                 ]
             ],
-            'images'   => [
+            'images'               => [
                 [
-                    'id'      => 1,
-                    'channel' => [
-                        'channel_id'         => 1,
-                        'channel_image_code' => 'x',
-                        'delete'             => 'false',
-                        'success'            => 'true'
-                    ]
+                    'id'                 => 1,
+                    'channel_id'         => 1,
+                    'channel_image_code' => 'x',
+                    'delete'             => 'false',
+                    'success'            => 'true'
                 ]
             ]
         ];
@@ -52,25 +46,21 @@ class ChannelProductTest extends TestCase
     private function assertChannelProduct(DTO\ChannelProduct $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertIsArray($c->variants);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c->variants[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->variants[0]->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
         $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->images[0]->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
     }
 
     private function assertChannelProductNull(DTO\ChannelProduct $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertIsArray($c->variants);
         $this->assertIsArray($c->images);
     }
