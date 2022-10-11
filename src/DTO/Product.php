@@ -6,17 +6,17 @@ namespace Stock2Shop\Share\DTO;
 
 class Product extends DTO
 {
-    public readonly ?bool $active;
-    public readonly ?string $title;
-    public readonly ?string $body_html;
-    public readonly ?string $collection;
-    public readonly ?string $product_type;
-    public readonly ?string $tags;
-    public readonly ?string $vendor;
+    public ?bool $active;
+    public ?string $title;
+    public ?string $body_html;
+    public ?string $collection;
+    public ?string $product_type;
+    public ?string $tags;
+    public ?string $vendor;
     /** @var ProductOption[] $options */
-    public readonly array $options;
+    public array $options;
     /** @var Meta[] $meta */
-    public readonly array $meta;
+    public array $meta;
 
     function __construct(array $data)
     {

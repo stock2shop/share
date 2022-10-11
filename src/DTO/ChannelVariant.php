@@ -6,12 +6,12 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelVariant extends Variant
 {
-    public readonly ChannelVariantChannel $channel;
-    public readonly ?int $client_id;
-    public readonly ?string $hash;
-    public readonly ?int $id;
-    public readonly ?int $image_id;
-    public readonly ?int $product_id;
+    public ChannelVariantChannel $channel;
+    public ?int $client_id;
+    public ?string $hash;
+    public ?int $id;
+    public ?int $image_id;
+    public ?int $product_id;
 
     public function __construct(array $data)
     {

@@ -6,9 +6,9 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelImage extends Image
 {
-    public readonly ChannelImageChannel $channel;
-    public readonly ?int $id;
-    public readonly ?bool $active;
+    public ChannelImageChannel $channel;
+    public ?int $id;
+    public ?bool $active;
 
     public function __construct(array $data)
     {

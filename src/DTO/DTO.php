@@ -75,6 +75,8 @@ abstract class DTO
      * float, double or real are the same datatype.
      * At the C level, everything is stored as a double"
      * https://stackoverflow.com/a/3280927/639133
+     *
+     * @throws InvalidArgumentException
      */
     static function floatFrom(array $data, string $key): ?float
     {
@@ -156,7 +158,7 @@ abstract class DTO
         return (float)$arg;
     }
 
-    private static function toString(mixed $arg): ?string
+    private static function toString($arg): ?string
     {
         if (is_null($arg)) {
             return null;

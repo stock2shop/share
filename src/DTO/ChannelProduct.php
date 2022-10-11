@@ -6,18 +6,18 @@ namespace Stock2Shop\Share\DTO;
 
 class ChannelProduct extends Product
 {
-    public readonly ?int $client_id;
-    public readonly ?string $created;
-    public readonly ?string $hash;
-    public readonly ?int $id;
+    public ?int $client_id;
+    public ?string $created;
+    public ?string $hash;
+    public ?int $id;
     /** @var ChannelImage[] $images */
-    public readonly array $images;
-    public readonly ?string $modified;
-    public readonly ?int $source_id;
-    public readonly ?string $source_product_code;
+    public array $images;
+    public ?string $modified;
+    public ?int $source_id;
+    public ?string $source_product_code;
     /** @var ChannelVariant[] $variants */
-    public readonly array $variants;
-    public readonly ChannelProductChannel $channel;
+    public array $variants;
+    public ChannelProductChannel $channel;
 
     public function __construct(array $data)
     {
