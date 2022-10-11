@@ -8,16 +8,6 @@ use InvalidArgumentException;
 
 abstract class DTO
 {
-    /**
-     * Creates DTO from json string
-     * TODO: static return type only implemented in 8.0
-     * We can then remove (at)method from inheriting class
-     */
-    static function createFromJSON(string $json): self
-    {
-        $data = json_decode($json, true);
-        return new static($data);
-    }
 
     /**
      * Creates an array of class instances, instantiated with data.

@@ -6,10 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/**
- * @method static Channel createFromJSON(string $json)
- */
-class Channel extends DTO implements JsonSerializable
+class Channel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
     public ?int $client_id;
@@ -43,5 +40,11 @@ class Channel extends DTO implements JsonSerializable
 
     public function jsonSerialize(): array {
         return (array) $this;
+    }
+
+    static function createFromJSON(string $json): Channel
+    {
+        $data = json_decode($json, true);
+        return new Channel($data);
     }
 }
