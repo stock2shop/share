@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Product extends DTO
+use JsonSerializable;
+
+class Product extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
     public ?string $title;
@@ -40,5 +42,16 @@ class Product extends DTO
         $p    = new Product((array)$this);
         $json = json_encode($p);
         return md5($json);
+    }
+
+    static function createFromJSON(string $json): Product
+    {
+        $data = json_decode($json, true);
+        return new Product($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array) $this;
     }
 }

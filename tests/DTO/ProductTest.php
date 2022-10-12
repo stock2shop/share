@@ -8,35 +8,48 @@ use Stock2Shop\Share\DTO;
 
 class ProductTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'id'            => '1',
-            'active'        => true,
-            'title'         => 'product',
-            'body_html'     => '<div> Content </div>',
-            'collection'    => 'collection 1',
-            'product_type'  => 'type 1',
-            'tags'          => 'tag 1',
-            'vendor'        => 'vendor 1',
-            'options'       => [
-                [
-                    'name' => 'name',
-                    'position' => 1
-                ]
+        $this->json = '
+        {
+            "active": true,
+            "title": "title",
+            "body_html": "body_html",
+            "collection": "collection",
+            "product_type": "product_type",
+            "tags": "tags",
+            "vendor": "vendor",
+            "options": [
+                {
+                    "name": "name",
+                    "position": 1
+                }
             ],
-            'meta'          => [
-                [
-                    'key' => 'key 1',
-                    'value' => 'value 1',
-                    'template_name' => 'template_name 1'
-                ]
-            ],
-        ];
-        $c = new DTO\Product($mockData);
-        $this->assertProduct($c);
-        $c = new DTO\Product([]);
-        $this->assertProductNull($c);
+            "meta": [
+                {
+                    "key": "key",
+                    "value": "value",
+                    "template_name": "template_name"
+                }
+            ]
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\Product::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\Product::createFromJSON($this->json);
+        $this->assertProduct($cic);
+        $cic = new DTO\Product([]);
+        $this->assertProductNull($cic);
     }
 
     private function assertProduct(DTO\Product $c)
