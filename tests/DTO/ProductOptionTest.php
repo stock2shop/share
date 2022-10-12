@@ -8,19 +8,33 @@ use Stock2Shop\Share\DTO;
 
 class ProductOptionTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'name'      => 'name',
-            'position'  => 1
-        ];
-        $c = new DTO\ProductOption($mockData);
-        $this->ProductOption($c);
-        $c = new DTO\ProductOption([]);
-        $this->assertProductOptionNull($c);
+        $this->json = '
+        {
+            "name": "name",
+            "position": 2
+        }';
     }
 
-    private function ProductOption(DTO\ProductOption $c)
+    public function testSerialize(): void
+    {
+        $cic = DTO\ProductOption::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\ProductOption::createFromJSON($this->json);
+        $this->assertProductOption($cic);
+        $cic = new DTO\ProductOption([]);
+        $this->assertProductOptionNull($cic);
+    }
+
+    private function assertProductOption(DTO\ProductOption $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);
