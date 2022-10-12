@@ -8,84 +8,167 @@ use Stock2Shop\Share\DTO;
 
 class ChannelProductsTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'channel_products' => [
-                [
-                    'id'       => '1',
-                    'channel'  => [
-                        'channel_id'           => 1,
-                        'channel_product_code' => 'x',
-                        'delete'               => 'false',
-                        'success'              => 'true',
-                        'synced'               => '2022-02-01',
-
+        $this->json = '
+        {
+            "channel_products": [
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [],
+                    "meta": [],
+                    "channels": [],
+                    "client_id": 21,
+                    "created": "2022-02-03",
+                    "hash": "hash",
+                    "id": 1,
+                    "images": [
+                        {
+                            "src": "source1",
+                            "id": 1,
+                            "active": true,
+                            "channel": {
+                                "channel_id": 123,
+                                "channel_image_code": "image_code_abc",
+                                "delete": false,
+                                "success": true
+                            }
+                        }
                     ],
-                    'variants' => [
-                        [
-                            'id'      => 1,
-                            'channel' => [
-                                'channel_id'           => 1,
-                                'channel_variant_code' => 'x',
-                                'delete'               => 'false',
-                                'success'              => 'true'
-                            ]
-                        ]
+                    "modified": "2022-02-03",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "variants": [
+                        {
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 45,
+                            "qty_availability": [],
+                            "price": 19.99,
+                            "price_tiers": [],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 2,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [],
+                            "client_id": 21,
+                            "hash": "hash",
+                            "id": 1,
+                            "image_id": 2,
+                            "product_id": 3,
+                            "channel": {
+                                "channel_id": 1,
+                                "channel_variant_code": "channel_variant_code",
+                                "delete": false,
+                                "success": true
+                            }
+                        }
                     ],
-                    'images'   => [
-                        [
-                            'id'      => 1,
-                            'channel' => [
-                                'channel_id'         => 1,
-                                'channel_image_code' => 'x',
-                                'delete'             => 'false',
-                                'success'            => 'true'
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    'id'       => '2',
-                    'channel'  => [
-                        'channel_id'           => 2,
-                        'channel_product_code' => 'x',
-                        'delete'               => 'false',
-                        'success'              => 'true',
-                        'synced'               => '2022-02-02',
-
+                    "channel": {
+                        "channel_id": 56,
+                        "channel_product_code": "channel_product_code",
+                        "delete": false,
+                        "success": true,
+                        "synced": "2022-02-03"
+                    }
+                },
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [],
+                    "meta": [],
+                    "channels": [],
+                    "client_id": 21,
+                    "created": "2022-02-04",
+                    "hash": "hash",
+                    "id": 2,
+                    "images": [
+                        {
+                            "src": "source1",
+                            "id": 2,
+                            "active": true,
+                            "channel": {
+                                "channel_id": 234,
+                                "channel_image_code": "image_code_abc",
+                                "delete": false,
+                                "success": true
+                            }
+                        }
                     ],
-                    'variants' => [
-                        [
-                            'id'      => 2,
-                            'channel' => [
-                                'channel_id'           => 2,
-                                'channel_variant_code' => 'x',
-                                'delete'               => 'false',
-                                'success'              => 'true'
-                            ]
-                        ]
+                    "modified": "2022-02-04",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "variants": [
+                        {
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 12,
+                            "qty_availability": [],
+                            "price": 80,
+                            "price_tiers": [],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 145,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [],
+                            "client_id": 21,
+                            "hash": "hash",
+                            "id": 2,
+                            "image_id": 3,
+                            "product_id": 4,
+                            "channel": {
+                                "channel_id": 2,
+                                "channel_variant_code": "channel_variant_code",
+                                "delete": false,
+                                "success": true
+                            }
+                        }
                     ],
-                    'images'   => [
-                        [
-                            'id'      => 2,
-                            'channel' => [
-                                'channel_id'         => 2,
-                                'channel_image_code' => 'x',
-                                'delete'             => 'false',
-                                'success'            => 'true'
-                            ]
-                        ]
-                    ]
-                ],
+                    "channel": {
+                        "channel_id": 56,
+                        "channel_product_code": "channel_product_code",
+                        "delete": false,
+                        "success": true,
+                        "synced": "2022-02-04"
+                    }
+                }
             ]
-        ];
-        $c  = new DTO\ChannelProducts($mockData);
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cp = DTO\ChannelProducts::createFromJSON($this->json);
+        $serialized = json_encode($cp);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $c = DTO\ChannelProducts::createFromJSON($this->json);
         $this->assertChannelProducts($c);
         $c = new DTO\ChannelProducts([]);
         $this->assertChannelProductsNull($c);
     }
-
     private function assertChannelProducts(DTO\ChannelProducts $c)
     {
         $channelProducts = $c->channel_products;
