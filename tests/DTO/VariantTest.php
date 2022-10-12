@@ -8,44 +8,58 @@ use Stock2Shop\Share\DTO;
 
 class VariantTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'source_variant_code'   => 'source_variant_code',
-            'sku'                   => 'sku',
-            'active'                => 'true',
-            'qty'                   => 2,
-            'price'                 => 99.99,
-            'barcode'               => 'barcode',
-            'inventory_management'  => 'false',
-            'grams'                 => 123,
-            'option1'               => 'option1',
-            'option2'               => 'option2',
-            'option3'               => 'option3',
-            'meta'                  => [
-                [
-                    'key' => 'key 1',
-                    'value' => 'value 1',
-                    'template_name' => 'template_name 1'
-                ]
+        $this->json = '
+        {
+            "source_variant_code": "source_variant_code",
+            "sku": "sku",
+            "active": true,
+            "qty": 5,
+            "qty_availability": [
+                {
+                    "description": "description",
+                    "qty": 2
+                }
             ],
-            'qty_availability'      => [
-                [
-                    'description' => 'key',
-                    'qty' => 99.5,
-                ]
+            "price": 19.99,
+            "price_tiers": [
+                {
+                    "tier": "wholesale",
+                    "price": 20.00
+                }
             ],
-            'price_tiers'           => [
-                [
-                    'tier' => 'wholesale',
-                    'price' => 19.99
-                ]
+            "barcode": "barcode",
+            "inventory_management": true,
+            "grams": 20,
+            "option1": "option1",
+            "option2": "option2",
+            "option3": "option3",
+            "meta": [
+                {
+                    "key": "key",
+                    "value": "value",
+                    "template_name": "template_name"
+                }
             ]
-        ];
-        $c = new DTO\Variant($mockData);
-        $this->assertVariant($c);
-        $c = new DTO\Variant([]);
-        $this->assertVariantNull($c);
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\Variant::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\Variant::createFromJSON($this->json);
+        $this->assertVariant($cic);
+        $cic = new DTO\Variant([]);
+        $this->assertVariantNull($cic);
     }
 
     private function assertVariant(DTO\Variant $c)

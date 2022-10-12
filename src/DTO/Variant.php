@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Variant extends DTO
+use JsonSerializable;
+
+class Variant extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $source_variant_code;
     public ?string $sku;
@@ -60,5 +62,16 @@ class Variant extends DTO
         $v    = new Variant((array)$this);
         $json = json_encode($v);
         return md5($json);
+    }
+
+    static function createFromJSON(string $json): Variant
+    {
+        $data = json_decode($json, true);
+        return new Variant($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array) $this;
     }
 }
