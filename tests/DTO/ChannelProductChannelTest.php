@@ -8,21 +8,35 @@ use Stock2Shop\Share\DTO;
 
 class ChannelProductChannelTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
 
+    protected function setUp(): void
     {
-        $mockData = [
-            'channel_id'            => 1,
-            'channel_product_code'  => 'x',
-            'delete'                => 'false',
-            'success'               => true,
-            'synced'                => 'true'
-        ];
-        $c = new DTO\ChannelProductChannel($mockData);
-        $this->assertChannelProductChannel($c);
-        $c = new DTO\ChannelProductChannel([]);
-        $this->assertChannelProductChannelNull($c);
+        $this->json = '
+        {
+            "channel_id": 56,
+            "channel_product_code": "channel_product_code",
+            "delete": false,
+            "success": true,
+            "synced": "2022-02-03"
+        }';
     }
+
+    public function testSerialize(): void
+    {
+        $cpc = DTO\ChannelProductChannel::createFromJSON($this->json);
+        $serialized = json_encode($cpc);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cpx = DTO\ChannelProductChannel::createFromJSON($this->json);
+        $this->assertChannelProductChannel($cpx);
+        $cpx = new DTO\ChannelProductChannel([]);
+        $this->assertChannelProductChannelNull($cpx);
+    }
+
     private function assertChannelProductChannel(DTO\ChannelProductChannel $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
