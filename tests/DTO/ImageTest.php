@@ -8,16 +8,31 @@ use Stock2Shop\Share\DTO;
 
 class ImageTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'src' => 'source1'
-        ];
-        $c = new DTO\Image($mockData);
-        $this->assertImage($c);
-        $c = new DTO\Image([]);
-        $this->assertImageNull($c);
+        $this->json = '
+        {
+            "src": "src"
+        }';
     }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\Image::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\Image::createFromJSON($this->json);
+        $this->assertImage($cic);
+        $cic = new DTO\Image([]);
+        $this->assertImageNull($cic);
+    }
+
 
     private function assertImage(DTO\Image $c)
     {
