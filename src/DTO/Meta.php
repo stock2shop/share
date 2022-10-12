@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Stock2shop\Share\DTO;
+namespace Stock2Shop\Share\DTO;
+
+use JsonSerializable;
 
 /**
  *
@@ -12,7 +14,7 @@ namespace Stock2shop\Share\DTO;
  * Class Meta
  * @package stock2shop\vo
  */
-class Meta extends DTO
+class Meta extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $key;
     public ?string $value;
@@ -26,5 +28,16 @@ class Meta extends DTO
         $this->key           = self::stringFrom($data, "key");
         $this->value         = self::stringFrom($data, "value");
         $this->template_name = self::stringFrom($data, "template_name");
+    }
+
+    static function createFromJSON(string $json): Meta
+    {
+        $data = json_decode($json, true);
+        return new Meta($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array) $this;
     }
 }

@@ -8,17 +8,31 @@ use Stock2Shop\Share\DTO;
 
 class MetaTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'key'           => 'key',
-            'value'         => 'value',
-            'template_name' => 'template_name'
-        ];
-        $c = new DTO\Meta($mockData);
-        $this->assertMeta($c);
-        $c = new DTO\Meta([]);
-        $this->assertMetaNull($c);
+        $this->json = '
+        {
+            "key": "src",
+            "value": "value",
+            "template_name": "template_name"
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\Meta::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\Meta::createFromJSON($this->json);
+        $this->assertMeta($cic);
+        $cic = new DTO\Meta([]);
+        $this->assertMetaNull($cic);
     }
 
     private function assertMeta(DTO\Meta $c)
