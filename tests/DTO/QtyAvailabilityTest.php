@@ -8,16 +8,30 @@ use Stock2Shop\Share\DTO;
 
 class QtyAvailabilityTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'description'   => 'key',
-            'qty'           => 99.5,
-        ];
-        $c = new DTO\QtyAvailability($mockData);
-        $this->assertQtyAvailability($c);
-        $c = new DTO\QtyAvailability([]);
-        $this->assertQtyAvailabilityNull($c);
+        $this->json = '
+        {
+            "description": "description",
+            "qty": 2
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\QtyAvailability::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\QtyAvailability::createFromJSON($this->json);
+        $this->assertQtyAvailability($cic);
+        $cic = new DTO\QtyAvailability([]);
+        $this->assertQtyAvailabilityNull($cic);
     }
 
     private function assertQtyAvailability(DTO\QtyAvailability $c)
