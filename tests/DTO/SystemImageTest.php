@@ -8,17 +8,31 @@ use Stock2Shop\Share\DTO;
 
 class SystemImageTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'id'        => '1',
-            'active'    => true,
-            'src'       => 'source1'
-        ];
-        $c = new DTO\SystemImage($mockData);
-        $this->assertSystemImage($c);
-        $c = new DTO\SystemImage([]);
-        $this->assertSystemImageNull($c);
+        $this->json = '
+        {
+            "id": 1,
+            "active": true,
+            "src": "src"
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\SystemImage::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\SystemImage::createFromJSON($this->json);
+        $this->assertSystemImage($cic);
+        $cic = new DTO\SystemImage([]);
+        $this->assertSystemImageNull($cic);
     }
 
     private function assertSystemImage(DTO\SystemImage $c)
