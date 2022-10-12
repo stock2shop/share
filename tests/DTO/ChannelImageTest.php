@@ -8,21 +8,39 @@ use Stock2Shop\Share\DTO;
 
 class ChannelImageTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'channel'  => [
-                'channel_id'            => 1,
-                'channel_image_code'    => 'x',
-                'delete'                => 'false',
-                'success'               => 'true',
-            ],
-        ];
-        $c = new DTO\ChannelImage($mockData);
-        $this->assertChannelImage($c);
-        $c = new DTO\ChannelImage([]);
-        $this->assertChannelImageNull($c);
+        $this->json = '
+        {
+            "src": "source1",
+            "id": 1,
+            "active": true,
+            "channel": {
+                "channel_id": 123,
+                "channel_image_code": "image_code_abc",
+                "delete": false,
+                "success": true
+            }
+        }';
     }
+
+    public function testSerialize(): void
+    {
+        $ci = DTO\ChannelImage::createFromJSON($this->json);
+        $serialized = json_encode($ci);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $ci = DTO\ChannelImage::createFromJSON($this->json);
+        $this->assertChannelImage($ci);
+        $ci = new DTO\ChannelImage([]);
+        $this->assertChannelImageNull($ci);
+    }
+
 
     private function assertChannelImage(DTO\ChannelImage $c)
     {
