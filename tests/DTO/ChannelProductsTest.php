@@ -164,10 +164,10 @@ class ChannelProductsTest extends TestCase
 
     public function testInheritance(): void
     {
-        $c = DTO\ChannelProducts::createFromJSON($this->json);
-        $this->assertChannelProducts($c);
-        $c = new DTO\ChannelProducts([]);
-        $this->assertChannelProductsNull($c);
+        $cp = DTO\ChannelProducts::createFromJSON($this->json);
+        $this->assertChannelProducts($cp);
+        $cp = new DTO\ChannelProducts([]);
+        $this->assertChannelProductsNull($cp);
     }
     private function assertChannelProducts(DTO\ChannelProducts $c)
     {

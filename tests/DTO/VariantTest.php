@@ -45,21 +45,21 @@ class VariantTest extends TestCase
                 }
             ]
         }';
-    }
+    }   
 
     public function testSerialize(): void
     {
-        $cic = DTO\Variant::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $v = DTO\Variant::createFromJSON($this->json);
+        $serialized = json_encode($v);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\Variant::createFromJSON($this->json);
-        $this->assertVariant($cic);
-        $cic = new DTO\Variant([]);
-        $this->assertVariantNull($cic);
+        $v = DTO\Variant::createFromJSON($this->json);
+        $this->assertVariant($v);
+        $v = new DTO\Variant([]);
+        $this->assertVariantNull($v);
     }
 
     private function assertVariant(DTO\Variant $c)

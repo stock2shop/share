@@ -213,17 +213,17 @@ class SystemProductsTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\SystemProducts::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $sp = DTO\SystemProducts::createFromJSON($this->json);
+        $serialized = json_encode($sp);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\SystemProducts::createFromJSON($this->json);
-        $this->assertSystemProducts($cic);
-        $cic = new DTO\SystemProducts([]);
-        $this->assertSystemProductsNull($cic);
+        $sp = DTO\SystemProducts::createFromJSON($this->json);
+        $this->assertSystemProducts($sp);
+        $sp = new DTO\SystemProducts([]);
+        $this->assertSystemProductsNull($sp);
     }
 
     private function assertSystemProducts(DTO\SystemProducts $c)

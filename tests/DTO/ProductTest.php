@@ -39,17 +39,17 @@ class ProductTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\Product::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $p = DTO\Product::createFromJSON($this->json);
+        $serialized = json_encode($p);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\Product::createFromJSON($this->json);
-        $this->assertProduct($cic);
-        $cic = new DTO\Product([]);
-        $this->assertProductNull($cic);
+        $p = DTO\Product::createFromJSON($this->json);
+        $this->assertProduct($p);
+        $p = new DTO\Product([]);
+        $this->assertProductNull($p);
     }
 
     private function assertProduct(DTO\Product $c)

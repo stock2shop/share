@@ -21,17 +21,17 @@ class QtyAvailabilityTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\QtyAvailability::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $qa = DTO\QtyAvailability::createFromJSON($this->json);
+        $serialized = json_encode($qa);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\QtyAvailability::createFromJSON($this->json);
-        $this->assertQtyAvailability($cic);
-        $cic = new DTO\QtyAvailability([]);
-        $this->assertQtyAvailabilityNull($cic);
+        $qa = DTO\QtyAvailability::createFromJSON($this->json);
+        $this->assertQtyAvailability($qa);
+        $qa = new DTO\QtyAvailability([]);
+        $this->assertQtyAvailabilityNull($qa);
     }
 
     private function assertQtyAvailability(DTO\QtyAvailability $c)

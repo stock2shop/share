@@ -20,17 +20,17 @@ class ImageTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\Image::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $i = DTO\Image::createFromJSON($this->json);
+        $serialized = json_encode($i);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\Image::createFromJSON($this->json);
-        $this->assertImage($cic);
-        $cic = new DTO\Image([]);
-        $this->assertImageNull($cic);
+        $i = DTO\Image::createFromJSON($this->json);
+        $this->assertImage($i);
+        $i = new DTO\Image([]);
+        $this->assertImageNull($i);
     }
 
 

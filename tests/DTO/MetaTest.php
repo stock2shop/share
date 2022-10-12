@@ -22,17 +22,17 @@ class MetaTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\Meta::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $m = DTO\Meta::createFromJSON($this->json);
+        $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\Meta::createFromJSON($this->json);
-        $this->assertMeta($cic);
-        $cic = new DTO\Meta([]);
-        $this->assertMetaNull($cic);
+        $m = DTO\Meta::createFromJSON($this->json);
+        $this->assertMeta($m);
+        $m = new DTO\Meta([]);
+        $this->assertMetaNull($m);
     }
 
     private function assertMeta(DTO\Meta $c)

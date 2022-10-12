@@ -21,17 +21,17 @@ class ProductOptionTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\ProductOption::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $po = DTO\ProductOption::createFromJSON($this->json);
+        $serialized = json_encode($po);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\ProductOption::createFromJSON($this->json);
-        $this->assertProductOption($cic);
-        $cic = new DTO\ProductOption([]);
-        $this->assertProductOptionNull($cic);
+        $po = DTO\ProductOption::createFromJSON($this->json);
+        $this->assertProductOption($po);
+        $po = new DTO\ProductOption([]);
+        $this->assertProductOptionNull($po);
     }
 
     private function assertProductOption(DTO\ProductOption $c)

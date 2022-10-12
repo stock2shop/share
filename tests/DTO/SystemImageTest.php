@@ -22,17 +22,17 @@ class SystemImageTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\SystemImage::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $si = DTO\SystemImage::createFromJSON($this->json);
+        $serialized = json_encode($si);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\SystemImage::createFromJSON($this->json);
-        $this->assertSystemImage($cic);
-        $cic = new DTO\SystemImage([]);
-        $this->assertSystemImageNull($cic);
+        $si = DTO\SystemImage::createFromJSON($this->json);
+        $this->assertSystemImage($si);
+        $si = new DTO\SystemImage([]);
+        $this->assertSystemImageNull($si);
     }
 
     private function assertSystemImage(DTO\SystemImage $c)

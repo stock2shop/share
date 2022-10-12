@@ -69,17 +69,17 @@ class SystemVariantTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\SystemVariant::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $sv = DTO\SystemVariant::createFromJSON($this->json);
+        $serialized = json_encode($sv);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\SystemVariant::createFromJSON($this->json);
-        $this->assertSystemVariant($cic);
-        $cic = new DTO\SystemVariant([]);
-        $this->assertSystemVariantNull($cic);
+        $sv = DTO\SystemVariant::createFromJSON($this->json);
+        $this->assertSystemVariant($sv);
+        $sv = new DTO\SystemVariant([]);
+        $this->assertSystemVariantNull($sv);
     }
 
     private function assertSystemVariant(DTO\SystemVariant $c)

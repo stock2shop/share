@@ -23,17 +23,17 @@ class ChannelVariantChannelTest extends TestCase
 
     public function testSerialize(): void
     {
-        $ci = DTO\ChannelVariantChannel::createFromJSON($this->json);
-        $serialized = json_encode($ci);
+        $cvc = DTO\ChannelVariantChannel::createFromJSON($this->json);
+        $serialized = json_encode($cvc);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $ci = DTO\ChannelVariantChannel::createFromJSON($this->json);
-        $this->assertChannelVariantChannel($ci);
-        $ci = new DTO\ChannelVariantChannel([]);
-        $this->assertChannelVariantChannelNull($ci);
+        $cvc = DTO\ChannelVariantChannel::createFromJSON($this->json);
+        $this->assertChannelVariantChannel($cvc);
+        $cvc = new DTO\ChannelVariantChannel([]);
+        $this->assertChannelVariantChannelNull($cvc);
     }
 
     private function assertChannelVariantChannel(DTO\ChannelVariantChannel $c)

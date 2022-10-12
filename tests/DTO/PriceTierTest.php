@@ -21,17 +21,17 @@ class PriceTierTest extends TestCase
 
     public function testSerialize(): void
     {
-        $cic = DTO\PriceTier::createFromJSON($this->json);
-        $serialized = json_encode($cic);
+        $pt = DTO\PriceTier::createFromJSON($this->json);
+        $serialized = json_encode($pt);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $cic = DTO\PriceTier::createFromJSON($this->json);
-        $this->assertPriceTier($cic);
-        $cic = new DTO\PriceTier([]);
-        $this->assertPriceTierNull($cic);
+        $pt = DTO\PriceTier::createFromJSON($this->json);
+        $this->assertPriceTier($pt);
+        $pt = new DTO\PriceTier([]);
+        $this->assertPriceTierNull($pt);
     }
 
     private function assertPriceTier(DTO\PriceTier $c)
