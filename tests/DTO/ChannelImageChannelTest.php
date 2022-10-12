@@ -8,18 +8,32 @@ use Stock2Shop\Share\DTO;
 
 class ChannelImageChannelTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'channel_id'            => 1,
-            'channel_image_code'    => 'x',
-            'delete'                => 'false',
-            'success'               => false,
-        ];
-        $c = new DTO\ChannelImageChannel($mockData);
-        $this->assertChannelImageChannel($c);
-        $c = new DTO\ChannelImageChannel([]);
-        $this->assertChannelImageChannelNull($c);
+        $this->json = '
+        {
+            "channel_id": 1,
+            "channel_image_code": "channel_image_code_abc",
+            "delete": false,
+            "success": true
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\ChannelImageChannel::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\ChannelImageChannel::createFromJSON($this->json);
+        $this->assertChannelImageChannel($cic);
+        $cic = new DTO\ChannelImageChannel([]);
+        $this->assertChannelImageChannelNull($cic);
     }
 
     private function assertChannelImageChannel(DTO\ChannelImageChannel $c)
@@ -27,7 +41,7 @@ class ChannelImageChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c);
         $this->assertEquals(false, $c->delete);
-        $this->assertEquals(false, $c->success);
+        $this->assertEquals(true, $c->success);
     }
 
     private function assertChannelImageChannelNull(DTO\ChannelImageChannel $c)

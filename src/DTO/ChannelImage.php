@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelImage extends SystemImage implements \JsonSerializable, DTOInterface
+use JsonSerializable;
+
+class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
 {
     public ChannelImageChannel $channel;
 
