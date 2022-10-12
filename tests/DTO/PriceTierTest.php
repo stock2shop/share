@@ -8,16 +8,30 @@ use Stock2Shop\Share\DTO;
 
 class PriceTierTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'tier'  => 'wholesale',
-            'price' => 19.99
-        ];
-        $c = new DTO\PriceTier($mockData);
-        $this->assertPriceTier($c);
-        $c = new DTO\PriceTier([]);
-        $this->assertPriceTierNull($c);
+        $this->json = '
+        {
+            "tier": "wholesale",
+            "price": 20.00
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\PriceTier::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\PriceTier::createFromJSON($this->json);
+        $this->assertPriceTier($cic);
+        $cic = new DTO\PriceTier([]);
+        $this->assertPriceTierNull($cic);
     }
 
     private function assertPriceTier(DTO\PriceTier $c)
