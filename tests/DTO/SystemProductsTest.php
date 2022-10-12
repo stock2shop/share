@@ -8,126 +8,222 @@ use Stock2Shop\Share\DTO;
 
 class SystemProductsTest extends TestCase
 {
-    public function testConstruct()
-    {
-        $mockData = [
-            'system_products' =>
-                [
-                    [
-                        'id'       => '1',
-                        'options' => [
-                            [
-                                'name' => 'name',
-                                'position' => 1
-                            ]
-                        ],
-                        'meta' => [
-                            [
-                                'key' => 'key 1',
-                                'value' => 'value 1',
-                                'template_name' => 'template_name 1'
-                            ]
-                        ],
-                        'channels'  => [
-                            [
-                                'channel_id'           => 1,
-                                'channel_product_code' => 'x',
-                                'delete'               => 'false',
-                                'success'              => 'true',
-                                'synced'               => '2022-02-01',
-                            ]
-                        ],
-                        'variants' => [
-                            [
-                                'id'      => 1,
-                                'channel' => [
-                                    'channel_id'           => 1,
-                                    'channel_variant_code' => 'x',
-                                    'delete'               => 'false',
-                                    'success'              => 'true'
-                                ]
-                            ]
-                        ],
-                        'images'   => [
-                            [
-                                'id'      => 1,
-                                'src'     => 'x',
-                                'channel' => [
-                                    'channel_id'         => 1,
-                                    'channel_image_code' => 'x',
-                                    'delete'             => 'false',
-                                    'success'            => 'true'
-                                ]
-                            ]
-                        ],
-                        'client_id' => 21,
-                        'hash' => 'hash 1',
-                        'source_id' => 57,
-                        'source_product_code' => 'x',
-                        'modified' => 'now',
-                        'created' => 'now'
-                    ],
-                    [
-                        'id'       => '2',
-                        'options' => [
-                            [
-                                'name' => 'name',
-                                'position' => 2
-                            ]
-                        ],
-                        'meta' => [
-                            [
-                                'key' => 'key 2',
-                                'value' => 'value 2',
-                                'template_name' => 'template_name 2'
-                            ]
-                        ],
-                        'channels'  => [
-                            [
-                                'channel_id'           => 2,
-                                'channel_product_code' => 'x',
-                                'delete'               => 'false',
-                                'success'              => 'true',
-                                'synced'               => '2022-02-01',
-                            ]
-                        ],
-                        'variants' => [
-                            [
-                                'id'      => 2,
-                                'channel' => [
-                                    'channel_id'           => 2,
-                                    'channel_variant_code' => 'x',
-                                    'delete'               => 'false',
-                                    'success'              => 'true'
-                                ]
-                            ]
-                        ],
-                        'images'   => [
-                            [
-                                'id'      => 2,
-                                'src'     => 'x',
-                                'channel' => [
-                                    'channel_id'         => 2,
-                                    'channel_image_code' => 'x',
-                                    'delete'             => 'false',
-                                    'success'            => 'true'
-                                ]
-                            ]
-                        ],
-                        'client_id' => 21,
-                        'hash' => 'hash 1',
-                        'source_id' => 57,
-                        'source_product_code' => 'x',
-                        'modified' => 'now',
-                        'created' => 'now'
-                    ]
-                ]
+    private string $json;
 
-        ];
-        $c = new DTO\SystemProducts($mockData);
-        $this->assertSystemProducts($c);
-        $c = new DTO\SystemProducts([]);
-        $this->assertSystemProductsNull($c);
+    protected function setUp(): void
+    {
+        $this->json = '
+        {
+            "system_products": [
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [
+                        {
+                            "name": "name",
+                            "position": 2
+                        }
+                    ],
+                    "meta": [
+                        {
+                            "key": "size",
+                            "value": "12",
+                            "template_name": "template_a"
+                        }
+                    ],
+                    "channels": [
+                        {
+                            "id": 1,
+                            "active": true,
+                            "client_id": 21,
+                            "created": "2022-09-13 09:13:39",
+                            "modified": "2022-09-13 09:13:39",
+                            "price_tier": "A",
+                            "description": "testChannel",
+                            "qty_availability": "wholesale",
+                            "sync_token": "1",
+                            "type": "trade",
+                            "meta": [
+                                {
+                                    "key": "size",
+                                    "value": "12",
+                                    "template_name": "template_a"
+                                }
+                            ]
+                        }
+                    ],
+                    "client_id": 21,
+                    "created": "created",
+                    "hash": "hash",
+                    "id": 1,
+                    "images": [
+                        {
+                            "id": 1,
+                            "active": true,
+                            "src": "src"
+                        }
+                    ],
+                    "modified": "modified",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "variants": [
+                        {
+                            "id": 1,
+                            "image_id": 1,
+                            "client_id": 1,
+                            "product_id": 1,
+                            "hash": "hash",
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 5,
+                            "qty_availability": [
+                                {
+                                    "description": "description",
+                                    "qty": 2
+                                }
+                            ],
+                            "price": 19.99,
+                            "price_tiers": [
+                                {
+                                    "tier": "wholesale",
+                                    "price": 20.00
+                                }
+                            ],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 20,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [
+                                {
+                                    "key": "key",
+                                    "value": "value",
+                                    "template_name": "template_name"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [
+                        {
+                            "name": "name",
+                            "position": 2
+                        }
+                    ],
+                    "meta": [
+                        {
+                            "key": "size",
+                            "value": "12",
+                            "template_name": "template_a"
+                        }
+                    ],
+                    "channels": [
+                        {
+                            "id": 2,
+                            "active": true,
+                            "client_id": 21,
+                            "created": "2022-09-13 09:13:39",
+                            "modified": "2022-09-13 09:13:39",
+                            "price_tier": "A",
+                            "description": "testChannel",
+                            "qty_availability": "wholesale",
+                            "sync_token": "1",
+                            "type": "trade",
+                            "meta": [
+                                {
+                                    "key": "size",
+                                    "value": "12",
+                                    "template_name": "template_a"
+                                }
+                            ]
+                        }
+                    ],
+                    "client_id": 21,
+                    "created": "created",
+                    "hash": "hash",
+                    "id": 2,
+                    "images": [
+                        {
+                            "id": 1,
+                            "active": true,
+                            "src": "src"
+                        }
+                    ],
+                    "modified": "modified",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "variants": [
+                        {
+                            "id": 2,
+                            "image_id": 2,
+                            "client_id": 2,
+                            "product_id": 2,
+                            "hash": "hash",
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 5,
+                            "qty_availability": [
+                                {
+                                    "description": "description",
+                                    "qty": 2
+                                }
+                            ],
+                            "price": 19.99,
+                            "price_tiers": [
+                                {
+                                    "tier": "wholesale",
+                                    "price": 20.00
+                                }
+                            ],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 20,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [
+                                {
+                                    "key": "key",
+                                    "value": "value",
+                                    "template_name": "template_name"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\SystemProducts::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\SystemProducts::createFromJSON($this->json);
+        $this->assertSystemProducts($cic);
+        $cic = new DTO\SystemProducts([]);
+        $this->assertSystemProductsNull($cic);
     }
 
     private function assertSystemProducts(DTO\SystemProducts $c)
