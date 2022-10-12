@@ -8,66 +8,122 @@ use Stock2Shop\Share\DTO;
 
 class SystemProductTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'id'       => '1',
-            'options' => [
-                [
-                    'name' => 'name',
-                    'position' => 1
-                ]
+        $this->json = '
+        {
+            "active": true,
+            "title": "title",
+            "body_html": "body_html",
+            "collection": "collection",
+            "product_type": "product_type",
+            "tags": "tags",
+            "vendor": "vendor",
+            "options": [
+                {
+                    "name": "name",
+                    "position": 2
+                }
             ],
-            'meta' => [
-                [
-                    'key' => 'key 1',
-                    'value' => 'value 1',
-                    'template_name' => 'template_name 1'
-                ]
+            "meta": [
+                {
+                  "key": "size",
+                  "value": "12",
+                  "template_name": "template_a"
+                }
             ],
-            'channels'  => [
-                [
-                    'channel_id'           => 1,
-                    'channel_product_code' => 'x',
-                    'delete'               => 'false',
-                    'success'              => 'true',
-                    'synced'               => '2022-02-01',
-                ]
+            "channels": [
+                {
+                  "id": 1,
+                  "active": true,
+                  "client_id": 21,
+                  "created": "2022-09-13 09:13:39",
+                  "modified": "2022-09-13 09:13:39",
+                  "price_tier": "A",
+                  "description": "testChannel",
+                  "qty_availability": "wholesale",
+                  "sync_token": "1",
+                  "type": "trade",
+                  "meta": [
+                    {
+                      "key": "size",
+                      "value": "12",
+                      "template_name": "template_a"
+                    }
+                  ]
+                }
             ],
-            'variants' => [
-                [
-                    'id'      => 1,
-                    'channel' => [
-                        'channel_id'           => 1,
-                        'channel_variant_code' => 'x',
-                        'delete'               => 'false',
-                        'success'              => 'true'
+            "client_id": 21,
+            "created": "created",
+            "hash": "hash",
+            "id": 1,
+            "images": [
+                 {
+                    "id": 1,
+                    "active": true,
+                    "src": "src"
+                 }
+            ],
+            "modified": "modified",
+            "source_id": 57,
+            "source_product_code": "source_product_code",
+            "variants": [
+                {
+                    "id": 1,
+                    "image_id": 1,
+                    "client_id": 1,
+                    "product_id": 1,
+                    "hash": "hash",
+                    "source_variant_code": "source_variant_code",
+                    "sku": "sku",
+                    "active": true,
+                    "qty": 5,
+                    "qty_availability": [
+                        {
+                            "description": "description",
+                            "qty": 2
+                        }
+                    ],
+                    "price": 19.99,
+                    "price_tiers": [
+                        {
+                            "tier": "wholesale",
+                            "price": 20.00
+                        }
+                    ],
+                    "barcode": "barcode",
+                    "inventory_management": true,
+                    "grams": 20,
+                    "option1": "option1",
+                    "option2": "option2",
+                    "option3": "option3",
+                    "meta": [
+                        {
+                            "key": "key",
+                            "value": "value",
+                            "template_name": "template_name"
+                        }
                     ]
-                ]
-            ],
-            'images'   => [
-                [
-                    'id'      => 1,
-                    'src'     => 'x',
-                    'channel' => [
-                        'channel_id'         => 1,
-                        'channel_image_code' => 'x',
-                        'delete'             => 'false',
-                        'success'            => 'true'
-                    ]
-                ]
-            ],
-            'client_id' => 21,
-            'hash' => 'hash 1',
-            'source_id' => 57,
-            'source_product_code' => 'x',
-            'modified' => 'now',
-            'created' => 'now'
-        ];
-        $c = new DTO\SystemProduct($mockData);
-        $this->assertSystemProduct($c);
-        $c = new DTO\SystemProduct([]);
-        $this->assertSystemProductNull($c);
+                }
+            ]
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cic = DTO\SystemProduct::createFromJSON($this->json);
+        $serialized = json_encode($cic);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cic = DTO\SystemProduct::createFromJSON($this->json);
+        $this->assertSystemProduct($cic);
+        $cic = new DTO\SystemProduct([]);
+        $this->assertSystemProductNull($cic);
     }
 
     private function assertSystemProduct(DTO\SystemProduct $c)
@@ -83,9 +139,6 @@ class SystemProductTest extends TestCase
         $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
-        $this->assertIsArray($c->options);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0]);
         $this->assertIsArray($c->channels);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channels[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c->channels[0]);
