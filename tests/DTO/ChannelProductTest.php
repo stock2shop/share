@@ -8,45 +8,94 @@ use Stock2Shop\Share\DTO;
 
 class ChannelProductTest extends TestCase
 {
-    public function testConstruct()
-    {
-        $mockData = [
-            'id'       => '1',
-            'channel'  => [
-                'channel_id'           => 1,
-                'channel_product_code' => 'x',
-                'delete'               => 'false',
-                'success'              => 'true',
-                'synced'               => '2022-02-01',
+    private string $json;
 
+    protected function setUp(): void
+    {
+        $this->json = '
+        {
+            "active": true,
+            "title": "title",
+            "body_html": "body_html",
+            "collection": "collection",
+            "product_type": "product_type",
+            "tags": "tags",
+            "vendor": "vendor",
+            "options": [],
+            "meta": [],
+            "channels": [],
+            "client_id": 21,
+            "created": "2022-02-03",
+            "hash": "hash",
+            "id": 1,
+            "images": [
+                {
+                    "src": "source1",
+                    "id": 1,
+                    "active": true,
+                    "channel": {
+                        "channel_id": 123,
+                        "channel_image_code": "image_code_abc",
+                        "delete": false,
+                        "success": true
+                    }
+                }
             ],
-            'variants' => [
-                [
-                    'id'      => 1,
-                    'channel' => [
-                        'channel_id'           => 1,
-                        'channel_variant_code' => 'x',
-                        'delete'               => 'false',
-                        'success'              => 'true'
-                    ]
-                ]
+            "modified": "2022-02-03",
+            "source_id": 57,
+            "source_product_code": "source_product_code",
+            "variants": [
+                {
+                    "source_variant_code": "source_variant_code",
+                    "sku": "sku",
+                    "active": true,
+                    "qty": 45,
+                    "qty_availability": [],
+                    "price": 19.99,
+                    "price_tiers": [],
+                    "barcode": "barcode",
+                    "inventory_management": true,
+                    "grams": 2,
+                    "option1": "option1",
+                    "option2": "option2",
+                    "option3": "option3",
+                    "meta": [],
+                    "client_id": 21,
+                    "hash": "hash",
+                    "id": 1,
+                    "image_id": 2,
+                    "product_id": 3,
+                    "channel": {
+                        "channel_id": 1,
+                        "channel_variant_code": "channel_variant_code",
+                        "delete": false,
+                        "success": true
+                    }
+                }
             ],
-            'images'   => [
-                [
-                    'id'      => 1,
-                    'channel' => [
-                        'channel_id'         => 1,
-                        'channel_image_code' => 'x',
-                        'delete'             => 'false',
-                        'success'            => 'true'
-                    ]
-                ]
-            ]
-        ];
-        $c        = new DTO\ChannelProduct($mockData);
-        $this->assertChannelProduct($c);
-        $c = new DTO\ChannelProduct([]);
-        $this->assertChannelProductNull($c);
+            "channel": {
+                "channel_id": 56,
+                "channel_product_code": "channel_product_code",
+                "delete": false,
+                "success": true,
+                "synced": "2022-02-03"
+            }
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cp = DTO\ChannelProduct::createFromJSON($this->json);
+        $serialized = json_encode($cp);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cp = DTO\ChannelProduct::createFromJSON($this->json);
+        $this->assertChannelProduct($cp);
+        $cp = new DTO\ChannelProduct([]);
+        $this->assertChannelProductNull($cp);
     }
 
     private function assertChannelProduct(DTO\ChannelProduct $c)
