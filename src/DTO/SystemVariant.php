@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class SystemVariant extends Variant
+use JsonSerializable;
+
+class SystemVariant extends Variant implements JsonSerializable, DTOInterface
 {
     public ?int $client_id;
     public ?string $hash;
@@ -21,6 +23,17 @@ class SystemVariant extends Variant
         $this->id         = static::intFrom($data, 'id');
         $this->image_id   = static::intFrom($data, 'image_id');
         $this->product_id = static::intFrom($data, 'product_id');
+    }
+
+    static function createFromJSON(string $json): SystemVariant
+    {
+        $data = json_decode($json, true);
+        return new SystemVariant($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array) $this;
     }
 
 }
