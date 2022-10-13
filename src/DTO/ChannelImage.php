@@ -28,7 +28,6 @@ class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
     }
 
     /**
-     * Creates an array of class instances, instantiated with data.
      * @return ChannelImage[]
      */
     static function createArray(array $data): array

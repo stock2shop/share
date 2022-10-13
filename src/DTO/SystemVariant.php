@@ -37,7 +37,6 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
     }
 
     /**
-     * Creates an array of class instances, instantiated with data.
      * @return SystemVariant[]
      */
     static function createArray(array $data): array

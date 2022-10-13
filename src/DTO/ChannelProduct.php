@@ -51,7 +51,6 @@ class ChannelProduct extends SystemProduct implements JsonSerializable, DTOInter
     }
 
     /**
-     * Creates an array of class instances, instantiated with data.
      * @return ChannelProduct[]
      */
     static function createArray(array $data): array

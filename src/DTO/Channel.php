@@ -49,7 +49,6 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     }
 
     /**
-     * Creates an array of class instances, instantiated with data.
      * @return Channel[]
      */
     static function createArray(array $data): array

@@ -56,7 +56,6 @@ class Product extends DTO implements JsonSerializable, DTOInterface
     }
 
     /**
-     * Creates an array of class instances, instantiated with data.
      * @return Product[]
      */
     static function createArray(array $data): array
