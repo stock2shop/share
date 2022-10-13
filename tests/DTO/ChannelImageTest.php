@@ -15,15 +15,13 @@ class ChannelImageTest extends TestCase
     {
         $this->json = '
         {
-            "src": "source1",
-            "id": 1,
+            "src": "src",
             "active": true,
-            "channel": {
-                "channel_id": 123,
-                "channel_image_code": "image_code_abc",
-                "delete": false,
-                "success": true
-            }
+            "channel_id": 57,
+            "channel_image_code": "channel_image_code",
+            "delete": false,
+            "id": 1,
+            "success": true
         }';
     }
 
@@ -47,15 +45,13 @@ class ChannelImageTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImage', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
     }
 
     private function assertChannelImageNull(DTO\ChannelImage $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImage', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c->channel);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
     }
 }

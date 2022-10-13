@@ -26,27 +26,29 @@ class ChannelProductsTest extends TestCase
                     "vendor": "vendor",
                     "options": [],
                     "meta": [],
-                    "channels": [],
+                    "channel_id": 123,
+                    "channel_product_code": "channel_product_code",
                     "client_id": 21,
-                    "created": "2022-02-03",
+                    "created": "created",
+                    "delete": false,
                     "hash": "hash",
                     "id": 1,
                     "images": [
                         {
-                            "src": "source1",
-                            "id": 1,
+                            "src": "src",
                             "active": true,
-                            "channel": {
-                                "channel_id": 123,
-                                "channel_image_code": "image_code_abc",
-                                "delete": false,
-                                "success": true
-                            }
+                            "channel_id": 57,
+                            "channel_image_code": "channel_image_code",
+                            "delete": false,
+                            "id": 1,
+                            "success": true
                         }
                     ],
-                    "modified": "2022-02-03",
+                    "modified": "modified",
                     "source_id": 57,
                     "source_product_code": "source_product_code",
+                    "success": true,
+                    "synced": "synced",
                     "variants": [
                         {
                             "source_variant_code": "source_variant_code",
@@ -63,26 +65,17 @@ class ChannelProductsTest extends TestCase
                             "option2": "option2",
                             "option3": "option3",
                             "meta": [],
+                            "channel_id": null,
+                            "channel_variant_code": null,
                             "client_id": 21,
+                            "delete": null,
                             "hash": "hash",
                             "id": 1,
                             "image_id": 2,
                             "product_id": 3,
-                            "channel": {
-                                "channel_id": 1,
-                                "channel_variant_code": "channel_variant_code",
-                                "delete": false,
-                                "success": true
-                            }
+                            "success": null
                         }
-                    ],
-                    "channel": {
-                        "channel_id": 56,
-                        "channel_product_code": "channel_product_code",
-                        "delete": false,
-                        "success": true,
-                        "synced": "2022-02-03"
-                    }
+                    ]
                 },
                 {
                     "active": true,
@@ -94,63 +87,56 @@ class ChannelProductsTest extends TestCase
                     "vendor": "vendor",
                     "options": [],
                     "meta": [],
-                    "channels": [],
+                    "channel_id": 123,
+                    "channel_product_code": "channel_product_code",
                     "client_id": 21,
-                    "created": "2022-02-04",
+                    "created": "created",
+                    "delete": false,
                     "hash": "hash",
-                    "id": 2,
+                    "id": 1,
                     "images": [
                         {
-                            "src": "source1",
-                            "id": 2,
+                            "src": "src",
                             "active": true,
-                            "channel": {
-                                "channel_id": 234,
-                                "channel_image_code": "image_code_abc",
-                                "delete": false,
-                                "success": true
-                            }
+                            "channel_id": 57,
+                            "channel_image_code": "channel_image_code",
+                            "delete": false,
+                            "id": 1,
+                            "success": true
                         }
                     ],
-                    "modified": "2022-02-04",
+                    "modified": "modified",
                     "source_id": 57,
                     "source_product_code": "source_product_code",
+                    "success": true,
+                    "synced": "synced",
                     "variants": [
                         {
                             "source_variant_code": "source_variant_code",
                             "sku": "sku",
                             "active": true,
-                            "qty": 12,
+                            "qty": 45,
                             "qty_availability": [],
-                            "price": 80,
+                            "price": 19.99,
                             "price_tiers": [],
                             "barcode": "barcode",
                             "inventory_management": true,
-                            "grams": 145,
+                            "grams": 2,
                             "option1": "option1",
                             "option2": "option2",
                             "option3": "option3",
                             "meta": [],
+                            "channel_id": null,
+                            "channel_variant_code": null,
                             "client_id": 21,
+                            "delete": null,
                             "hash": "hash",
-                            "id": 2,
-                            "image_id": 3,
-                            "product_id": 4,
-                            "channel": {
-                                "channel_id": 2,
-                                "channel_variant_code": "channel_variant_code",
-                                "delete": false,
-                                "success": true
-                            }
+                            "id": 1,
+                            "image_id": 2,
+                            "product_id": 3,
+                            "success": null
                         }
-                    ],
-                    "channel": {
-                        "channel_id": 56,
-                        "channel_product_code": "channel_product_code",
-                        "delete": false,
-                        "success": true,
-                        "synced": "2022-02-04"
-                    }
+                    ]
                 }
             ]
         }';
@@ -175,19 +161,16 @@ class ChannelProductsTest extends TestCase
     {
         $channelProducts = $c->channel_products;
         foreach ($channelProducts as $cp) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $cp);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->channel);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $cp->channel);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $cp);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp);
             $this->assertIsArray($cp->variants);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->variants[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $cp->variants[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->variants[0]->channel);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $cp->variants[0]->channel);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $cp->variants[0]);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->variants[0]);
             $this->assertIsArray($cp->images);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->images[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $cp->images[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->images[0]->channel);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $cp->images[0]->channel);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $cp->images[0]);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->images[0]);
         }
     }
 
@@ -196,8 +179,7 @@ class ChannelProductsTest extends TestCase
         $channelProducts = $c->channel_products;
         foreach ($channelProducts as $cp) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $cp);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->channel);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $cp->channel);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp);
             $this->assertIsArray($cp->variants);
             $this->assertIsArray($cp->images);
         }
