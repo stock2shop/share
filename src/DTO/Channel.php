@@ -25,17 +25,17 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     {
         $meta = Meta::createArray(self::arrayFrom($data, "meta"));
 
-        $this->active = self::boolFrom($data, 'active');
-        $this->client_id = self::intFrom($data, 'client_id');
-        $this->created = self::stringFrom($data, 'created');
-        $this->description = self::stringFrom($data, 'description');
-        $this->id = self::intFrom($data, 'id');
-        $this->meta = $this->sortArray($meta, "key");
-        $this->modified = self::stringFrom($data, 'modified');
-        $this->price_tier = self::stringFrom($data, 'price_tier');
+        $this->active           = self::boolFrom($data, 'active');
+        $this->client_id        = self::intFrom($data, 'client_id');
+        $this->created          = self::stringFrom($data, 'created');
+        $this->description      = self::stringFrom($data, 'description');
+        $this->id               = self::intFrom($data, 'id');
+        $this->meta             = $this->sortArray($meta, "key");
+        $this->modified         = self::stringFrom($data, 'modified');
+        $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
-        $this->sync_token = self::stringFrom($data, 'sync_token');
-        $this->type = self::stringFrom($data, 'type');
+        $this->sync_token       = self::stringFrom($data, 'sync_token');
+        $this->type             = self::stringFrom($data, 'type');
     }
 
     public function jsonSerialize(): array
@@ -43,7 +43,7 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
         return (array)$this;
     }
 
-    static function createFromJSON(string $json): Channel
+    public static function createFromJSON(string $json): Channel
     {
         $data = json_decode($json, true);
         return new Channel($data);
@@ -52,7 +52,7 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return Channel[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

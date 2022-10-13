@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\Channel;
@@ -11,7 +12,6 @@ use Stock2Shop\Share\DTO;
  */
 interface ChannelProductsInterface
 {
-
     /**
      * Syncs a batch of ChannelProducts (DTO) to a channel.
      *
@@ -103,6 +103,4 @@ interface ChannelProductsInterface
      *
      */
     public function get(string $channel_product_code, int $limit, DTO\Channel $channel): DTO\ChannelProducts;
-
 }
-

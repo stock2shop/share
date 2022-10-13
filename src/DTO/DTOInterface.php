@@ -6,9 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 interface DTOInterface
 {
+    public static function createFromJSON(string $json): DTO;
 
-    static function createFromJSON(string $json): DTO;
-
-    static function createArray(array $data): array;
-
+    public static function createArray(array $data): array;
 }

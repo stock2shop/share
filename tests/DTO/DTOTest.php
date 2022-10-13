@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO\DTO;
 
@@ -56,13 +57,19 @@ class DTOTest extends TestCase
 
         // double
         $this->assertSame(
-            "123.45", DTO::stringFrom(["v" => 123.45], "v"));
+            "123.45",
+            DTO::stringFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            "-123.45", DTO::stringFrom(["v" => -123.45], "v"));
+            "-123.45",
+            DTO::stringFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->assertSame(
-            "false", DTO::stringFrom(["v" => false], "v"));
+            "false",
+            DTO::stringFrom(["v" => false], "v")
+        );
         $this->assertSame("true", DTO::stringFrom(["v" => true], "v"));
 
         // null remains null
@@ -74,7 +81,6 @@ class DTOTest extends TestCase
 
     public function testIntFrom()
     {
-
         // string
         $this->assertSame(123, DTO::intFrom(["v" => "123"], "v"));
 
@@ -89,9 +95,13 @@ class DTOTest extends TestCase
 
         // double
         $this->assertSame(
-            123, DTO::intFrom(["v" => 123.45], "v"));
+            123,
+            DTO::intFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            -123, DTO::intFrom(["v" => -123.45], "v"));
+            -123,
+            DTO::intFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->expectException(InvalidArgumentException::class);
@@ -113,7 +123,6 @@ class DTOTest extends TestCase
 
     public function testFloatFrom()
     {
-
         // string
         $this->assertSame(123.45, DTO::floatFrom(["v" => "123.45"], "v"));
 
@@ -128,9 +137,13 @@ class DTOTest extends TestCase
 
         // double
         $this->assertSame(
-            123.45, DTO::floatFrom(["v" => 123.45], "v"));
+            123.45,
+            DTO::floatFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            -123.45, DTO::floatFrom(["v" => -123.45], "v"));
+            -123.45,
+            DTO::floatFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->expectException(InvalidArgumentException::class);

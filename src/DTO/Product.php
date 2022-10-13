@@ -20,31 +20,31 @@ class Product extends DTO implements JsonSerializable, DTOInterface
     /** @var Meta[] $meta */
     public array $meta;
 
-    function __construct(array $data)
+    public function __construct(array $data)
     {
         $options = ProductOption::createArray(self::arrayFrom($data, "options"));
-        $meta = Meta::createArray(self::arrayFrom($data, "meta"));
-        $tags = self::stringFrom($data, "tags");
+        $meta    = Meta::createArray(self::arrayFrom($data, "meta"));
+        $tags    = self::stringFrom($data, "tags");
 
-        $this->active = self::boolFrom($data, "active");
-        $this->title = self::stringFrom($data, "title");
-        $this->body_html = self::stringFrom($data, "body_html");
-        $this->collection = self::stringFrom($data, "collection");
+        $this->active       = self::boolFrom($data, "active");
+        $this->title        = self::stringFrom($data, "title");
+        $this->body_html    = self::stringFrom($data, "body_html");
+        $this->collection   = self::stringFrom($data, "collection");
         $this->product_type = self::stringFrom($data, "product_type");
-        $this->tags = $this->sortCSV($tags);
-        $this->vendor = self::stringFrom($data, "vendor");
-        $this->options = $this->sortArray($options, "name");
-        $this->meta = $this->sortArray($meta, "key");
+        $this->tags         = $this->sortCSV($tags);
+        $this->vendor       = self::stringFrom($data, "vendor");
+        $this->options      = $this->sortArray($options, "name");
+        $this->meta         = $this->sortArray($meta, "key");
     }
 
     public function computeHash(): string
     {
-        $p = new Product((array)$this);
+        $p    = new Product((array)$this);
         $json = json_encode($p);
         return md5($json);
     }
 
-    static function createFromJSON(string $json): Product
+    public static function createFromJSON(string $json): Product
     {
         $data = json_decode($json, true);
         return new Product($data);
@@ -58,7 +58,7 @@ class Product extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return Product[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

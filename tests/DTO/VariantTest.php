@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -89,14 +90,16 @@ class VariantTest extends TestCase
     public function testComputeHash()
     {
         $mockData = $this->getTestResourceAsArray(
-            'TestVariant_ComputeHash');
+            'TestVariant_ComputeHash'
+        );
         $compareVariant = '032d252ec01f95ba50593893211ef703';
 
         $v = new DTO\Variant($mockData);
         $this->assertEquals($compareVariant, $v->computeHash());
 
         $mockData = $this->getTestResourceAsArray(
-            'TestVariant_ComputeHash_2');
+            'TestVariant_ComputeHash_2'
+        );
         $compareVariant = '3a0f52a54fb34c91af5c642486fd897c';
 
         $v = new DTO\Variant($mockData);
@@ -109,7 +112,7 @@ class VariantTest extends TestCase
     private function getTestResourceAsArray(string $fileName): array
     {
         return json_decode(file_get_contents(
-            __DIR__ . '/TestResources/' . $fileName . '.json'), true);
+            __DIR__ . '/TestResources/' . $fileName . '.json'
+        ), true);
     }
-
 }

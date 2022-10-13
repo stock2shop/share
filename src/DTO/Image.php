@@ -15,7 +15,7 @@ class Image extends DTO implements JsonSerializable, DTOInterface
         $this->src = self::stringFrom($data, 'src');
     }
 
-    static function createFromJSON(string $json): Image
+    public static function createFromJSON(string $json): Image
     {
         $data = json_decode($json, true);
         return new Image($data);
@@ -29,7 +29,7 @@ class Image extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return Image[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

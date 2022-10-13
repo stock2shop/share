@@ -21,7 +21,7 @@ class ChannelProducts extends DTO implements JsonSerializable, DTOInterface
         return (array)$this;
     }
 
-    static function createFromJSON(string $json): ChannelProducts
+    public static function createFromJSON(string $json): ChannelProducts
     {
         $data = json_decode($json, true);
         return new ChannelProducts($data);
@@ -30,7 +30,7 @@ class ChannelProducts extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return ChannelProducts[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

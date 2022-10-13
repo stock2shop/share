@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -65,5 +66,4 @@ class ChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
         $this->assertIsArray($c->meta);
     }
-
 }

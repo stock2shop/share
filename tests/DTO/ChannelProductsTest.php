@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -200,6 +201,5 @@ class ChannelProductsTest extends TestCase
             $this->assertIsArray($cp->variants);
             $this->assertIsArray($cp->images);
         }
-
     }
 }

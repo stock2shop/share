@@ -15,10 +15,10 @@ class ChannelImageChannel extends DTO implements JsonSerializable, DTOInterface
 
     public function __construct(array $data)
     {
-        $this->channel_id = self::intFrom($data, 'channel_id');
+        $this->channel_id         = self::intFrom($data, 'channel_id');
         $this->channel_image_code = self::stringFrom($data, 'channel_image_code');
-        $this->delete = self::boolFrom($data, 'delete');
-        $this->success = self::boolFrom($data, 'success');
+        $this->delete             = self::boolFrom($data, 'delete');
+        $this->success            = self::boolFrom($data, 'success');
     }
 
     /**
@@ -34,7 +34,7 @@ class ChannelImageChannel extends DTO implements JsonSerializable, DTOInterface
         );
     }
 
-    static function createFromJSON(string $json): ChannelImageChannel
+    public static function createFromJSON(string $json): ChannelImageChannel
     {
         $data = json_decode($json, true);
         return new ChannelImageChannel($data);
@@ -48,7 +48,7 @@ class ChannelImageChannel extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return ChannelImageChannel[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

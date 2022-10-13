@@ -16,7 +16,7 @@ class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
         $this->channel = new ChannelImageChannel(self::arrayFrom($data, 'channel'));
     }
 
-    static function createFromJSON(string $json): ChannelImage
+    public static function createFromJSON(string $json): ChannelImage
     {
         $data = json_decode($json, true);
         return new ChannelImage($data);
@@ -30,7 +30,7 @@ class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
     /**
      * @return ChannelImage[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

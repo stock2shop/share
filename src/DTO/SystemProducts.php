@@ -16,7 +16,7 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
         $this->system_products = SystemProduct::createArray(self::arrayFrom($data, 'system_products'));
     }
 
-    static function createFromJSON(string $json): SystemProducts
+    public static function createFromJSON(string $json): SystemProducts
     {
         $data = json_decode($json, true);
         return new SystemProducts($data);
@@ -30,7 +30,7 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
     /**
      * @return SystemProducts[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

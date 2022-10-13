@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -49,5 +50,4 @@ class ChannelImageChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImageChannel', $c);
     }
-
 }

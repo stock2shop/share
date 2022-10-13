@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -8,7 +9,6 @@ use Stock2Shop\Share\DTO;
 
 class ChannelVariantTest extends TestCase
 {
-
     private string $json;
 
     protected function setUp(): void
@@ -75,5 +75,4 @@ class ChannelVariantTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channel);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c->channel);
     }
-
 }

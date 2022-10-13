@@ -16,11 +16,11 @@ class ChannelProductChannel extends DTO implements JsonSerializable, DTOInterfac
 
     public function __construct(array $data)
     {
-        $this->channel_id = self::intFrom($data, 'channel_id');
+        $this->channel_id           = self::intFrom($data, 'channel_id');
         $this->channel_product_code = self::stringFrom($data, 'channel_product_code');
-        $this->delete = self::boolFrom($data, 'delete');
-        $this->success = self::boolFrom($data, 'success');
-        $this->synced = self::stringFrom($data, 'synced');
+        $this->delete               = self::boolFrom($data, 'delete');
+        $this->success              = self::boolFrom($data, 'success');
+        $this->synced               = self::stringFrom($data, 'synced');
     }
 
     /**
@@ -35,7 +35,7 @@ class ChannelProductChannel extends DTO implements JsonSerializable, DTOInterfac
         );
     }
 
-    static function createFromJSON(string $json): ChannelProductChannel
+    public static function createFromJSON(string $json): ChannelProductChannel
     {
         $data = json_decode($json, true);
         return new ChannelProductChannel($data);
@@ -49,7 +49,7 @@ class ChannelProductChannel extends DTO implements JsonSerializable, DTOInterfac
     /**
      * @return ChannelProductChannel[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

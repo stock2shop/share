@@ -17,7 +17,7 @@ class ChannelVariant extends SystemVariant implements JsonSerializable, DTOInter
         $this->channel = new ChannelVariantChannel(self::arrayFrom($data, 'channel'));
     }
 
-    static function createFromJSON(string $json): ChannelVariant
+    public static function createFromJSON(string $json): ChannelVariant
     {
         $data = json_decode($json, true);
         return new ChannelVariant($data);
@@ -31,7 +31,7 @@ class ChannelVariant extends SystemVariant implements JsonSerializable, DTOInter
     /**
      * @return ChannelVariant[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {

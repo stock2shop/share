@@ -18,15 +18,15 @@ class ChannelProduct extends SystemProduct implements JsonSerializable, DTOInter
     {
         parent::__construct($data);
 
-        $images = ChannelImage::createArray(self::arrayFrom($data, 'images'));
+        $images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));
         $variants = ChannelVariant::createArray(self::arrayFrom($data, 'variants'));
 
-        $this->channel = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
-        $this->images = $this->sortArray($images, "id");
+        $this->channel  = new ChannelProductChannel(self::arrayFrom($data, 'channel'));
+        $this->images   = $this->sortArray($images, "id");
         $this->variants = $this->sortArray($variants, "id");
     }
 
-    static function createFromJSON(string $json): ChannelProduct
+    public static function createFromJSON(string $json): ChannelProduct
     {
         $data = json_decode($json, true);
         return new ChannelProduct($data);
@@ -53,7 +53,7 @@ class ChannelProduct extends SystemProduct implements JsonSerializable, DTOInter
     /**
      * @return ChannelProduct[]
      */
-    static function createArray(array $data): array
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
@@ -61,5 +61,4 @@ class ChannelProduct extends SystemProduct implements JsonSerializable, DTOInter
         }
         return $a;
     }
-
 }

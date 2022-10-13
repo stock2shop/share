@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -66,7 +67,6 @@ class ProductTest extends TestCase
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $option);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $option);
         }
-
     }
 
     private function assertProductNull(DTO\Product $c)
@@ -80,14 +80,16 @@ class ProductTest extends TestCase
     public function testComputeHash()
     {
         $mockData = $this->getTestResourceAsArray(
-            'TestProduct_ComputeHash');
+            'TestProduct_ComputeHash'
+        );
         $compareProduct = 'fce560b33580b53e33245a762dcefd45';
 
         $p = new DTO\Product($mockData);
         $this->assertEquals($compareProduct, $p->computeHash());
 
         $mockData = $this->getTestResourceAsArray(
-            'TestProduct_ComputeHash_2');
+            'TestProduct_ComputeHash_2'
+        );
         $compareProduct = '1f1654769bbb21a34f1647c6680ed813';
 
         $p = new DTO\Product($mockData);
@@ -100,6 +102,7 @@ class ProductTest extends TestCase
     private function getTestResourceAsArray(string $fileName): array
     {
         return json_decode(file_get_contents(
-            __DIR__ . '/TestResources/' . $fileName . '.json'), true);
+            __DIR__ . '/TestResources/' . $fileName . '.json'
+        ), true);
     }
 }
