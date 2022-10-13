@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -8,44 +9,58 @@ use Stock2Shop\Share\DTO;
 
 class VariantTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'source_variant_code'   => 'source_variant_code',
-            'sku'                   => 'sku',
-            'active'                => 'true',
-            'qty'                   => 2,
-            'price'                 => 99.99,
-            'barcode'               => 'barcode',
-            'inventory_management'  => 'false',
-            'grams'                 => 123,
-            'option1'               => 'option1',
-            'option2'               => 'option2',
-            'option3'               => 'option3',
-            'meta'                  => [
-                [
-                    'key' => 'key 1',
-                    'value' => 'value 1',
-                    'template_name' => 'template_name 1'
-                ]
+        $this->json = '
+        {
+            "source_variant_code": "source_variant_code",
+            "sku": "sku",
+            "active": true,
+            "qty": 5,
+            "qty_availability": [
+                {
+                    "description": "description",
+                    "qty": 2
+                }
             ],
-            'qty_availability'      => [
-                [
-                    'description' => 'key',
-                    'qty' => 99.5,
-                ]
+            "price": 19.99,
+            "price_tiers": [
+                {
+                    "tier": "wholesale",
+                    "price": 20.00
+                }
             ],
-            'price_tiers'           => [
-                [
-                    'tier' => 'wholesale',
-                    'price' => 19.99
-                ]
+            "barcode": "barcode",
+            "inventory_management": true,
+            "grams": 20,
+            "option1": "option1",
+            "option2": "option2",
+            "option3": "option3",
+            "meta": [
+                {
+                    "key": "key",
+                    "value": "value",
+                    "template_name": "template_name"
+                }
             ]
-        ];
-        $c = new DTO\Variant($mockData);
-        $this->assertVariant($c);
-        $c = new DTO\Variant([]);
-        $this->assertVariantNull($c);
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $v = DTO\Variant::createFromJSON($this->json);
+        $serialized = json_encode($v);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $v = DTO\Variant::createFromJSON($this->json);
+        $this->assertVariant($v);
+        $v = new DTO\Variant([]);
+        $this->assertVariantNull($v);
     }
 
     private function assertVariant(DTO\Variant $c)
@@ -75,14 +90,16 @@ class VariantTest extends TestCase
     public function testComputeHash()
     {
         $mockData = $this->getTestResourceAsArray(
-            'TestVariant_ComputeHash');
+            'TestVariant_ComputeHash'
+        );
         $compareVariant = '032d252ec01f95ba50593893211ef703';
 
         $v = new DTO\Variant($mockData);
         $this->assertEquals($compareVariant, $v->computeHash());
 
         $mockData = $this->getTestResourceAsArray(
-            'TestVariant_ComputeHash_2');
+            'TestVariant_ComputeHash_2'
+        );
         $compareVariant = '3a0f52a54fb34c91af5c642486fd897c';
 
         $v = new DTO\Variant($mockData);
@@ -92,9 +109,10 @@ class VariantTest extends TestCase
     /**
      * Returns a test resources' contents as an array.
      */
-    private function getTestResourceAsArray(string $fileName): array {
+    private function getTestResourceAsArray(string $fileName): array
+    {
         return json_decode(file_get_contents(
-            __DIR__ . '/TestResources/' . $fileName . '.json'), true);
+            __DIR__ . '/TestResources/' . $fileName . '.json'
+        ), true);
     }
-
 }

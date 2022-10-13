@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class SystemProduct extends Product
+use JsonSerializable;
+
+class SystemProduct extends Product implements JsonSerializable, DTOInterface
 {
     /** @var Channel[] $channels */
     public array $channels;
@@ -40,6 +42,17 @@ class SystemProduct extends Product
         $this->variants            = $this->sortArray($variants, 'id');
     }
 
+    public static function createFromJSON(string $json): SystemProduct
+    {
+        $data = json_decode($json, true);
+        return new SystemProduct($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
+
     public function computeHash(): string
     {
         $productHash = parent::computeHash();
@@ -48,5 +61,17 @@ class SystemProduct extends Product
             $productHash .= sprintf("\nimage_%d=%s", $i->id, $i->src);
         }
         return md5($productHash);
+    }
+
+    /**
+     * @return SystemProduct[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new SystemProduct((array)$item);
+        }
+        return $a;
     }
 }

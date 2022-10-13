@@ -9,26 +9,6 @@ use InvalidArgumentException;
 abstract class DTO
 {
     /**
-     * Converts DTO into assoc array
-     */
-    function all(): array
-    {
-        return json_decode(json_encode($this), true);
-    }
-
-    /**
-     * Creates an array of class instances, instantiated with data.
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new static((array) $item);
-        }
-        return $a;
-    }
-
-    /**
      * Sorts a multidimensional array by key name.
      *
      * WARNING The $sortable array must be passed by reference
@@ -54,7 +34,7 @@ abstract class DTO
         return implode(",", $sortable);
     }
 
-    static function boolFrom(array $data, string $key): ?bool
+    public static function boolFrom(array $data, string $key): ?bool
     {
         if (array_key_exists($key, $data)) {
             return self::toBool($data[$key]);
@@ -62,7 +42,7 @@ abstract class DTO
         return null;
     }
 
-    static function stringFrom(array $data, string $key): ?string
+    public static function stringFrom(array $data, string $key): ?string
     {
         if (array_key_exists($key, $data)) {
             return self::toString($data[$key]);
@@ -78,7 +58,7 @@ abstract class DTO
      *
      * @throws InvalidArgumentException
      */
-    static function floatFrom(array $data, string $key): ?float
+    public static function floatFrom(array $data, string $key): ?float
     {
         if (array_key_exists($key, $data)) {
             return self::toFloat($data[$key]);
@@ -86,7 +66,7 @@ abstract class DTO
         return null;
     }
 
-    static function intFrom(array $data, string $key): ?int
+    public static function intFrom(array $data, string $key): ?int
     {
         if (array_key_exists($key, $data)) {
             return self::toInt($data[$key]);
@@ -94,7 +74,7 @@ abstract class DTO
         return null;
     }
 
-    static function arrayFrom(array $data, string $key): array
+    public static function arrayFrom(array $data, string $key): array
     {
         if (array_key_exists($key, $data)) {
             switch (gettype($data[$key])) {
@@ -107,7 +87,7 @@ abstract class DTO
         return [];
     }
 
-    static function toBool($arg): ?bool
+    public static function toBool($arg): ?bool
     {
         if (is_null($arg)) {
             return null;
@@ -137,7 +117,7 @@ abstract class DTO
         return (bool)$arg;
     }
 
-    static function toFloat($arg): ?float
+    public static function toFloat($arg): ?float
     {
         if (is_null($arg)) {
             return null;
@@ -158,7 +138,7 @@ abstract class DTO
         return (float)$arg;
     }
 
-    static function toString($arg): ?string
+    public static function toString($arg): ?string
     {
         if (is_null($arg)) {
             return null;
@@ -172,7 +152,7 @@ abstract class DTO
         return (string)$arg;
     }
 
-    static function toInt($arg): ?int
+    public static function toInt($arg): ?int
     {
         $num = self::toFloat($arg);
         if (is_null($num)) {
@@ -180,5 +160,4 @@ abstract class DTO
         }
         return (int)$num;
     }
-
 }

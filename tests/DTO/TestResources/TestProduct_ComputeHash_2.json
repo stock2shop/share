@@ -9,10 +9,10 @@
     "tags": "tags",
     "vendor": "vendor",
     "images": [
-      {
-        "id": 123,
-        "src": "https://example.com/1.jpg"
-      }
+        {
+            "id": 123,
+            "src": "https://example.com/1.jpg"
+        }
     ],
     "options": [
         {

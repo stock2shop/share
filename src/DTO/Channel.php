@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Channel extends DTO
+use JsonSerializable;
+
+class Channel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
     public ?int $client_id;
@@ -34,5 +36,28 @@ class Channel extends DTO
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
         $this->sync_token       = self::stringFrom($data, 'sync_token');
         $this->type             = self::stringFrom($data, 'type');
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
+
+    public static function createFromJSON(string $json): Channel
+    {
+        $data = json_decode($json, true);
+        return new Channel($data);
+    }
+
+    /**
+     * @return Channel[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new Channel((array)$item);
+        }
+        return $a;
     }
 }

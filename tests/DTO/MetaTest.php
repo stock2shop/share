@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -8,17 +9,31 @@ use Stock2Shop\Share\DTO;
 
 class MetaTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'key'           => 'key',
-            'value'         => 'value',
-            'template_name' => 'template_name'
-        ];
-        $c = new DTO\Meta($mockData);
-        $this->assertMeta($c);
-        $c = new DTO\Meta([]);
-        $this->assertMetaNull($c);
+        $this->json = '
+        {
+            "key": "src",
+            "value": "value",
+            "template_name": "template_name"
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $m = DTO\Meta::createFromJSON($this->json);
+        $serialized = json_encode($m);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $m = DTO\Meta::createFromJSON($this->json);
+        $this->assertMeta($m);
+        $m = new DTO\Meta([]);
+        $this->assertMetaNull($m);
     }
 
     private function assertMeta(DTO\Meta $c)
@@ -32,5 +47,4 @@ class MetaTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);
     }
-
 }

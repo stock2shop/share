@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelProductChannel extends DTO
+use JsonSerializable;
+
+class ChannelProductChannel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
     public ?string $channel_product_code;
@@ -31,5 +33,28 @@ class ChannelProductChannel extends DTO
             is_string($this->channel_product_code) &&
             $this->channel_product_code !== ''
         );
+    }
+
+    public static function createFromJSON(string $json): ChannelProductChannel
+    {
+        $data = json_decode($json, true);
+        return new ChannelProductChannel($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
+
+    /**
+     * @return ChannelProductChannel[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelProductChannel((array)$item);
+        }
+        return $a;
     }
 }
