@@ -1,4 +1,5 @@
 /_excluded
 .idea/
+.php-cs-fixer.cache
 .phpunit.result.cache
 /vendor/
