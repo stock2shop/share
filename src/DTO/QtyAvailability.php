@@ -29,4 +29,17 @@ class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return QtyAvailability[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new QtyAvailability((array) $item);
+        }
+        return $a;
+    }
 }

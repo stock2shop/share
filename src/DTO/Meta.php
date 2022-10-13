@@ -40,4 +40,17 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return Meta[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new Meta((array) $item);
+        }
+        return $a;
+    }
 }

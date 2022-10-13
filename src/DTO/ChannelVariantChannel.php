@@ -43,4 +43,17 @@ class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterfac
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return ChannelVariantChannel[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelVariantChannel((array) $item);
+        }
+        return $a;
+    }
 }

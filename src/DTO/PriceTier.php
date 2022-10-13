@@ -30,4 +30,17 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return PriceTier[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new PriceTier((array) $item);
+        }
+        return $a;
+    }
 }

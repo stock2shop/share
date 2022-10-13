@@ -8,19 +8,6 @@ use InvalidArgumentException;
 
 abstract class DTO
 {
-
-    /**
-     * Creates an array of class instances, instantiated with data.
-     */
-    static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new static((array) $item);
-        }
-        return $a;
-    }
-
     /**
      * Sorts a multidimensional array by key name.
      *

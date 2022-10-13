@@ -26,4 +26,17 @@ class ChannelProducts extends DTO implements JsonSerializable, DTOInterface
         $data = json_decode($json, true);
         return new ChannelProducts($data);
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return ChannelProducts[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelProducts((array) $item);
+        }
+        return $a;
+    }
 }

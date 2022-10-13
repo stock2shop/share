@@ -26,4 +26,17 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return SystemProducts[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new SystemProducts((array) $item);
+        }
+        return $a;
+    }
 }

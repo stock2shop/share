@@ -62,4 +62,17 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
         }
         return md5($productHash);
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return SystemProduct[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new SystemProduct((array) $item);
+        }
+        return $a;
+    }
 }

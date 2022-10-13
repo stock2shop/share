@@ -74,4 +74,17 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return Variant[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new Variant((array) $item);
+        }
+        return $a;
+    }
 }

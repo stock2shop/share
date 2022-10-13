@@ -27,4 +27,17 @@ class ChannelVariant extends SystemVariant implements JsonSerializable, DTOInter
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return ChannelVariant[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelVariant((array) $item);
+        }
+        return $a;
+    }
 }

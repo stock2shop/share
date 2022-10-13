@@ -29,4 +29,17 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
     {
         return (array) $this;
     }
+
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return SystemImage[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new SystemImage((array) $item);
+        }
+        return $a;
+    }
 }

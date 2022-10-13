@@ -50,4 +50,17 @@ class ChannelProduct extends SystemProduct implements JsonSerializable, DTOInter
         return md5($productHash);
     }
 
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return ChannelProduct[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelProduct((array) $item);
+        }
+        return $a;
+    }
+
 }

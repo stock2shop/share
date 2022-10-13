@@ -36,4 +36,17 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
         return (array) $this;
     }
 
+    /**
+     * Creates an array of class instances, instantiated with data.
+     * @return SystemVariant[]
+     */
+    static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new SystemVariant((array) $item);
+        }
+        return $a;
+    }
+
 }
