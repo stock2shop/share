@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class ChannelProduct extends Product
+use JsonSerializable;
+
+class ChannelProduct extends Product implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
     public ?string $channel_product_code;
@@ -46,6 +48,17 @@ class ChannelProduct extends Product
         $this->variants             = $this->sortArray($variants, 'id');
     }
 
+    public static function createFromJSON(string $json): ChannelProduct
+    {
+        $data = json_decode($json, true);
+        return new ChannelProduct($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
+
     /**
      * Computes a hash of the ChannelProduct
      */
@@ -63,4 +76,15 @@ class ChannelProduct extends Product
         return md5($productHash);
     }
 
+    /**
+     * @return ChannelProduct[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new ChannelProduct((array)$item);
+        }
+        return $a;
+    }
 }

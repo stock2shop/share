@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO\DTO;
 
@@ -13,137 +14,152 @@ class DTOTest extends TestCase
     {
         // string
         // These are the falsy values
-        $this->assertFalse(DTO::boolFrom(["v"=>"false"], "v"));
-        $this->assertFalse(DTO::boolFrom(["v"=>"0"], "v"));
-        $this->assertFalse(DTO::boolFrom(["v"=>""], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => "false"], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => "0"], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => ""], "v"));
 
         // All other strings are true
-        $this->assertTrue(DTO::boolFrom(["v"=>"true"], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>"TRUE"], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>"1"], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>"2"], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>"asdf"], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => "true"], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => "TRUE"], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => "1"], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => "2"], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => "asdf"], "v"));
 
         // integer
-        $this->assertFalse(DTO::boolFrom(["v"=>0], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>1], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>-1], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => 0], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => 1], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => -1], "v"));
 
         // double
-        $this->assertFalse(DTO::boolFrom(["v"=>0.0], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>1.2], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>-1.2], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => 0.0], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => 1.2], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => -1.2], "v"));
 
         // bool
-        $this->assertFalse(DTO::boolFrom(["v"=>false], "v"));
-        $this->assertTrue(DTO::boolFrom(["v"=>true], "v"));
+        $this->assertFalse(DTO::boolFrom(["v" => false], "v"));
+        $this->assertTrue(DTO::boolFrom(["v" => true], "v"));
 
         // null remains null
-        $this->assertNull(DTO::boolFrom(["v"=>null], "v"));
+        $this->assertNull(DTO::boolFrom(["v" => null], "v"));
 
         // Missing properties parse as null
         $this->assertNull(DTO::boolFrom([], "v"));
     }
 
-    public function testStringFrom() {
+    public function testStringFrom()
+    {
         // string
-        $this->assertSame("123", DTO::stringFrom(["v"=>"123"], "v"));
+        $this->assertSame("123", DTO::stringFrom(["v" => "123"], "v"));
 
         // integer
-        $this->assertSame("123", DTO::stringFrom(["v"=>123], "v"));
-        $this->assertSame("-123", DTO::stringFrom(["v"=>-123], "v"));
+        $this->assertSame("123", DTO::stringFrom(["v" => 123], "v"));
+        $this->assertSame("-123", DTO::stringFrom(["v" => -123], "v"));
 
         // double
         $this->assertSame(
-            "123.45", DTO::stringFrom(["v"=>123.45], "v"));
+            "123.45",
+            DTO::stringFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            "-123.45", DTO::stringFrom(["v"=>-123.45], "v"));
+            "-123.45",
+            DTO::stringFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->assertSame(
-            "false", DTO::stringFrom(["v"=>false], "v"));
-        $this->assertSame("true", DTO::stringFrom(["v"=>true], "v"));
+            "false",
+            DTO::stringFrom(["v" => false], "v")
+        );
+        $this->assertSame("true", DTO::stringFrom(["v" => true], "v"));
 
         // null remains null
-        $this->assertNull(DTO::stringFrom(["v"=>null], "v"));
+        $this->assertNull(DTO::stringFrom(["v" => null], "v"));
 
         // Missing properties parse as null
         $this->assertNull(DTO::stringFrom([], "v"));
     }
 
-    public function testIntFrom() {
-
+    public function testIntFrom()
+    {
         // string
-        $this->assertSame(123, DTO::intFrom(["v"=>"123"], "v"));
+        $this->assertSame(123, DTO::intFrom(["v" => "123"], "v"));
 
         // Non-empty, non-numeric.
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::intFrom(["v"=>"0x539"], "v");
+        DTO::intFrom(["v" => "0x539"], "v");
 
         // integer
-        $this->assertSame(123, DTO::intFrom(["v"=>123], "v"));
-        $this->assertSame(-123, DTO::intFrom(["v"=>-123], "v"));
+        $this->assertSame(123, DTO::intFrom(["v" => 123], "v"));
+        $this->assertSame(-123, DTO::intFrom(["v" => -123], "v"));
 
         // double
         $this->assertSame(
-            123, DTO::intFrom(["v"=>123.45], "v"));
+            123,
+            DTO::intFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            -123, DTO::intFrom(["v"=>-123.45], "v"));
+            -123,
+            DTO::intFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::intFrom(["v"=>false], "v");
+        DTO::intFrom(["v" => false], "v");
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::intFrom(["v"=>true], "v");
+        DTO::intFrom(["v" => true], "v");
 
         // null remains null
-        $this->assertNull(DTO::intFrom(["v"=>null], "v"));
+        $this->assertNull(DTO::intFrom(["v" => null], "v"));
 
         // Missing properties parse as null
         $this->assertNull(DTO::intFrom([], "v"));
 
         // Newline as null.
-        $this->assertNull(DTO::floatFrom(["v"=>"\n"], "v"));
+        $this->assertNull(DTO::floatFrom(["v" => "\n"], "v"));
     }
 
-    public function testFloatFrom() {
-
+    public function testFloatFrom()
+    {
         // string
-        $this->assertSame(123.45, DTO::floatFrom(["v"=>"123.45"], "v"));
+        $this->assertSame(123.45, DTO::floatFrom(["v" => "123.45"], "v"));
 
         // Non-empty, non-numeric.
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::floatFrom(["v"=>"0x539"], "v");
+        DTO::floatFrom(["v" => "0x539"], "v");
 
         // integer
-        $this->assertSame(123.0, DTO::floatFrom(["v"=>123], "v"));
-        $this->assertSame(-123.0, DTO::floatFrom(["v"=>-123], "v"));
+        $this->assertSame(123.0, DTO::floatFrom(["v" => 123], "v"));
+        $this->assertSame(-123.0, DTO::floatFrom(["v" => -123], "v"));
 
         // double
         $this->assertSame(
-            123.45, DTO::floatFrom(["v"=>123.45], "v"));
+            123.45,
+            DTO::floatFrom(["v" => 123.45], "v")
+        );
         $this->assertSame(
-            -123.45, DTO::floatFrom(["v"=>-123.45], "v"));
+            -123.45,
+            DTO::floatFrom(["v" => -123.45], "v")
+        );
 
         // bool
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::floatFrom(["v"=>false], "v");
+        DTO::floatFrom(["v" => false], "v");
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('value is not numeric');
-        DTO::floatFrom(["v"=>true], "v");
+        DTO::floatFrom(["v" => true], "v");
 
         // null remains null
-        $this->assertNull(DTO::floatFrom(["v"=>null], "v"));
+        $this->assertNull(DTO::floatFrom(["v" => null], "v"));
 
         // Missing properties parse as null
         $this->assertNull(DTO::floatFrom([], "v"));
 
         // Newline as null.
-        $this->assertNull(DTO::floatFrom(["v"=>"\n"], "v"));
+        $this->assertNull(DTO::floatFrom(["v" => "\n"], "v"));
     }
 }

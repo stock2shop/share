@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-class Product extends DTO
+use JsonSerializable;
+
+class Product extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
     public ?string $title;
@@ -18,11 +20,11 @@ class Product extends DTO
     /** @var Meta[] $meta */
     public array $meta;
 
-    function __construct(array $data)
+    public function __construct(array $data)
     {
-        $options            = ProductOption::createArray(self::arrayFrom($data, "options"));
-        $meta               = Meta::createArray(self::arrayFrom($data, "meta"));
-        $tags               = self::stringFrom($data, "tags");
+        $options = ProductOption::createArray(self::arrayFrom($data, "options"));
+        $meta    = Meta::createArray(self::arrayFrom($data, "meta"));
+        $tags    = self::stringFrom($data, "tags");
 
         $this->active       = self::boolFrom($data, "active");
         $this->title        = self::stringFrom($data, "title");
@@ -40,5 +42,28 @@ class Product extends DTO
         $p    = new Product((array)$this);
         $json = json_encode($p);
         return md5($json);
+    }
+
+    public static function createFromJSON(string $json): Product
+    {
+        $data = json_decode($json, true);
+        return new Product($data);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
+
+    /**
+     * @return Product[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            $a[] = new Product((array)$item);
+        }
+        return $a;
     }
 }

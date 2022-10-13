@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -8,28 +9,41 @@ use Stock2Shop\Share\DTO;
 
 class ChannelTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'id'                => '1',
-            'active'            => true,
-            'client_id'         => 21,
-            'created'           => '2022-09-13 09:13:39',
-            'modified'          => '2022-09-13 09:13:39',
-            'price_tier'        => 'A',
-            'description'       => 'testChannel',
-            'qty_availability'  => 'wholesale',
-            'sync_token'        => '1',
-            'type'              => 'trade',
-            "meta"              => [
-                [
-                    'key'           => 'size',
-                    'value'         => '12',
-                    'template_name' => 'template_a',
-                ]
-            ]
-        ];
-        $c = new DTO\Channel($mockData);
+        $this->json = '{
+          "id": 1,
+          "active": true,
+          "client_id": 21,
+          "created": "2022-09-13 09:13:39",
+          "modified": "2022-09-13 09:13:39",
+          "price_tier": "A",
+          "description": "testChannel",
+          "qty_availability": "wholesale",
+          "sync_token": "1",
+          "type": "trade",
+          "meta": [
+            {
+              "key": "size",
+              "value": "12",
+              "template_name": "template_a"
+            }
+          ]
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $chan = DTO\Channel::createFromJSON($this->json);
+        $serialized = json_encode($chan);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $c = DTO\Channel::createFromJSON($this->json);
         $this->assertChannel($c);
         $c = new DTO\Channel([]);
         $this->assertChannelNull($c);
@@ -52,5 +66,4 @@ class ChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
         $this->assertIsArray($c->meta);
     }
-
 }

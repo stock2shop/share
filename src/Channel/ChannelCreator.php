@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Share\Channel;
-
 
 /**
  * Each channel must extend this class in order to load its code
@@ -11,8 +11,5 @@ namespace Stock2Shop\Share\Channel;
  */
 abstract class ChannelCreator
 {
-
     abstract public function createChannelProducts(): ChannelProductsInterface;
-
 }
-

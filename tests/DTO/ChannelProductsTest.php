@@ -9,69 +9,152 @@ use Stock2Shop\Share\DTO;
 
 class ChannelProductsTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData                                 = [
-            'channel_products' => [
-                [
-                    'id'                   => '1',
-                    'channel_id'           => 1,
-                    'channel_product_code' => 'x',
-                    'delete'               => 'false',
-                    'success'              => 'true',
-                    'synced'               => '2022-02-01',
-                    'variants' => [
-                        [
-                            'id'                   => 1,
-                            'channel_id'           => 1,
-                            'channel_variant_code' => 'x',
-                            'delete'               => 'false',
-                            'success'              => 'true'
-                        ]
+        $this->json = '
+        {
+            "channel_products": [
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [],
+                    "meta": [],
+                    "channel_id": 123,
+                    "channel_product_code": "channel_product_code",
+                    "client_id": 21,
+                    "created": "created",
+                    "delete": false,
+                    "hash": "hash",
+                    "id": 1,
+                    "images": [
+                        {
+                            "src": "src",
+                            "active": true,
+                            "channel_id": 57,
+                            "channel_image_code": "channel_image_code",
+                            "delete": false,
+                            "id": 1,
+                            "success": true
+                        }
                     ],
-                    'images'   => [
-                        [
-                            'id'                 => 1,
-                            'channel_id'         => 1,
-                            'channel_image_code' => 'x',
-                            'delete'             => 'false',
-                            'success'            => 'true'
-                        ]
+                    "modified": "modified",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "success": true,
+                    "synced": "synced",
+                    "variants": [
+                        {
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 45,
+                            "qty_availability": [],
+                            "price": 19.99,
+                            "price_tiers": [],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 2,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [],
+                            "channel_id": null,
+                            "channel_variant_code": null,
+                            "client_id": 21,
+                            "delete": null,
+                            "hash": "hash",
+                            "id": 1,
+                            "image_id": 2,
+                            "product_id": 3,
+                            "success": null
+                        }
                     ]
-                ],
-                [
-                    'id'                   => '2',
-                    'channel_id'           => 2,
-                    'channel_product_code' => 'x',
-                    'delete'               => 'false',
-                    'success'              => 'true',
-                    'synced'               => '2022-02-02',
-                    'variants' => [
-                        [
-                            'id'                   => 2,
-                            'channel_id'           => 2,
-                            'channel_variant_code' => 'x',
-                            'delete'               => 'false',
-                            'success'              => 'true'
-                        ]
+                },
+                {
+                    "active": true,
+                    "title": "title",
+                    "body_html": "body_html",
+                    "collection": "collection",
+                    "product_type": "product_type",
+                    "tags": "tags",
+                    "vendor": "vendor",
+                    "options": [],
+                    "meta": [],
+                    "channel_id": 123,
+                    "channel_product_code": "channel_product_code",
+                    "client_id": 21,
+                    "created": "created",
+                    "delete": false,
+                    "hash": "hash",
+                    "id": 1,
+                    "images": [
+                        {
+                            "src": "src",
+                            "active": true,
+                            "channel_id": 57,
+                            "channel_image_code": "channel_image_code",
+                            "delete": false,
+                            "id": 1,
+                            "success": true
+                        }
                     ],
-                    'images'   => [
-                        [
-                            'id'                 => 2,
-                            'channel_id'         => 2,
-                            'channel_image_code' => 'x',
-                            'delete'             => 'false',
-                            'success'            => 'true'
-                        ]
+                    "modified": "modified",
+                    "source_id": 57,
+                    "source_product_code": "source_product_code",
+                    "success": true,
+                    "synced": "synced",
+                    "variants": [
+                        {
+                            "source_variant_code": "source_variant_code",
+                            "sku": "sku",
+                            "active": true,
+                            "qty": 45,
+                            "qty_availability": [],
+                            "price": 19.99,
+                            "price_tiers": [],
+                            "barcode": "barcode",
+                            "inventory_management": true,
+                            "grams": 2,
+                            "option1": "option1",
+                            "option2": "option2",
+                            "option3": "option3",
+                            "meta": [],
+                            "channel_id": null,
+                            "channel_variant_code": null,
+                            "client_id": 21,
+                            "delete": null,
+                            "hash": "hash",
+                            "id": 1,
+                            "image_id": 2,
+                            "product_id": 3,
+                            "success": null
+                        }
                     ]
-                ],
+                }
             ]
-        ];
-        $c                                        = new DTO\ChannelProducts($mockData);
-        $c->channel_products[0]->success = true;
-        $this->assertChannelProducts($c);
-        $c = new DTO\ChannelProducts([]);
-        $this->assertChannelProductsNull($c);
+        }';
+    }
+
+    public function testSerialize(): void
+    {
+        $cp = DTO\ChannelProducts::createFromJSON($this->json);
+        $serialized = json_encode($cp);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $cp = DTO\ChannelProducts::createFromJSON($this->json);
+        $this->assertChannelProducts($cp);
+        $cp = new DTO\ChannelProducts([]);
+        $this->assertChannelProductsNull($cp);
     }
 
     private function assertChannelProducts(DTO\ChannelProducts $c)

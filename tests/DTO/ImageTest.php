@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Stock2Shop\Tests\Share\DTO;
@@ -8,16 +9,31 @@ use Stock2Shop\Share\DTO;
 
 class ImageTest extends TestCase
 {
-    public function testConstruct()
+    private string $json;
+
+    protected function setUp(): void
     {
-        $mockData = [
-            'src' => 'source1'
-        ];
-        $c = new DTO\Image($mockData);
-        $this->assertImage($c);
-        $c = new DTO\Image([]);
-        $this->assertImageNull($c);
+        $this->json = '
+        {
+            "src": "src"
+        }';
     }
+
+    public function testSerialize(): void
+    {
+        $i = DTO\Image::createFromJSON($this->json);
+        $serialized = json_encode($i);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testInheritance(): void
+    {
+        $i = DTO\Image::createFromJSON($this->json);
+        $this->assertImage($i);
+        $i = new DTO\Image([]);
+        $this->assertImageNull($i);
+    }
+
 
     private function assertImage(DTO\Image $c)
     {
@@ -30,5 +46,4 @@ class ImageTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);
     }
-
 }
