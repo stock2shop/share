@@ -25,7 +25,7 @@ class ChannelVariant extends SystemVariant implements JsonSerializable, DTOInter
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -35,7 +35,7 @@ class ChannelVariant extends SystemVariant implements JsonSerializable, DTOInter
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ChannelVariant((array) $item);
+            $a[] = new ChannelVariant((array)$item);
         }
         return $a;
     }

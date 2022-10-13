@@ -235,7 +235,7 @@ class SystemProductsTest extends TestCase
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->meta[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $sp->meta[0]);
             $this->assertIsArray($sp->options);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->options[0] );
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->options[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $sp->options[0]);
             $this->assertIsArray($sp->images);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->images[0]);

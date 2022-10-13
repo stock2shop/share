@@ -16,7 +16,7 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
         parent::__construct($data);
 
         $this->active = self::boolFrom($data, "active");
-        $this->id     = self::intFrom($data, 'id');
+        $this->id = self::intFrom($data, 'id');
     }
 
     static function createFromJSON(string $json): SystemImage
@@ -27,7 +27,7 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -37,7 +37,7 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemImage((array) $item);
+            $a[] = new SystemImage((array)$item);
         }
         return $a;
     }

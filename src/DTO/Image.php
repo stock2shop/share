@@ -23,7 +23,7 @@ class Image extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -33,7 +33,7 @@ class Image extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new Image((array) $item);
+            $a[] = new Image((array)$item);
         }
         return $a;
     }

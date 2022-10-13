@@ -24,7 +24,7 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -34,7 +34,7 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemProducts((array) $item);
+            $a[] = new SystemProducts((array)$item);
         }
         return $a;
     }

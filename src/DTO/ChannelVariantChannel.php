@@ -15,10 +15,10 @@ class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterfac
 
     public function __construct(array $data)
     {
-        $this->channel_id           = self::intFrom($data, 'channel_id');
+        $this->channel_id = self::intFrom($data, 'channel_id');
         $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
-        $this->delete               = self::boolFrom($data, 'delete');
-        $this->success              = self::boolFrom($data, 'success');
+        $this->delete = self::boolFrom($data, 'delete');
+        $this->success = self::boolFrom($data, 'success');
     }
 
     /**
@@ -41,7 +41,7 @@ class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterfac
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -51,7 +51,7 @@ class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterfac
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ChannelVariantChannel((array) $item);
+            $a[] = new ChannelVariantChannel((array)$item);
         }
         return $a;
     }

@@ -18,10 +18,10 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $this->client_id  = static::intFrom($data, 'client_id');
-        $this->hash       = static::stringFrom($data, 'hash');
-        $this->id         = static::intFrom($data, 'id');
-        $this->image_id   = static::intFrom($data, 'image_id');
+        $this->client_id = static::intFrom($data, 'client_id');
+        $this->hash = static::stringFrom($data, 'hash');
+        $this->id = static::intFrom($data, 'id');
+        $this->image_id = static::intFrom($data, 'image_id');
         $this->product_id = static::intFrom($data, 'product_id');
     }
 
@@ -33,7 +33,7 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -43,7 +43,7 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemVariant((array) $item);
+            $a[] = new SystemVariant((array)$item);
         }
         return $a;
     }

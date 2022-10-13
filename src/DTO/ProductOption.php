@@ -14,7 +14,7 @@ class ProductOption extends DTO implements JsonSerializable, DTOInterface
 
     function __construct(array $data)
     {
-        $this->name     = self::stringFrom($data, "name");
+        $this->name = self::stringFrom($data, "name");
         $this->position = self::intFrom($data, "position");
     }
 
@@ -26,7 +26,7 @@ class ProductOption extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductOption extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ProductOption((array) $item);
+            $a[] = new ProductOption((array)$item);
         }
         return $a;
     }

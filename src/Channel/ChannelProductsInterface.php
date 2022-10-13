@@ -9,7 +9,8 @@ use Stock2Shop\Share\DTO;
  * Methods for interacting (syncing / fetching)
  * product data for a channel.
  */
-interface ChannelProductsInterface {
+interface ChannelProductsInterface
+{
 
     /**
      * Syncs a batch of ChannelProducts (DTO) to a channel.

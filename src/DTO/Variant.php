@@ -33,25 +33,25 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
 
     function __construct(array $data)
     {
-        $qty              = self::intFrom($data, "qty");
+        $qty = self::intFrom($data, "qty");
         $qty_availability = QtyAvailability::createArray(self::arrayFrom($data, "qty_availability"));
-        $price_tiers      = PriceTier::createArray(self::arrayFrom($data, "price_tiers"));
-        $meta             = Meta::createArray(self::arrayFrom($data, "meta"));
+        $price_tiers = PriceTier::createArray(self::arrayFrom($data, "price_tiers"));
+        $meta = Meta::createArray(self::arrayFrom($data, "meta"));
 
-        $this->source_variant_code  = self::stringFrom($data, "source_variant_code");
-        $this->sku                  = self::stringFrom($data, "sku");
-        $this->active               = self::boolFrom($data, "active");
-        $this->qty                  = ($qty < 0) ? 0 : $qty;
-        $this->qty_availability     = $this->sortArray($qty_availability, "description");
-        $this->price                = self::floatFrom($data, "price");
-        $this->price_tiers          = $this->sortArray($price_tiers, "tier");
-        $this->barcode              = self::stringFrom($data, "barcode");
+        $this->source_variant_code = self::stringFrom($data, "source_variant_code");
+        $this->sku = self::stringFrom($data, "sku");
+        $this->active = self::boolFrom($data, "active");
+        $this->qty = ($qty < 0) ? 0 : $qty;
+        $this->qty_availability = $this->sortArray($qty_availability, "description");
+        $this->price = self::floatFrom($data, "price");
+        $this->price_tiers = $this->sortArray($price_tiers, "tier");
+        $this->barcode = self::stringFrom($data, "barcode");
         $this->inventory_management = self::boolFrom($data, "inventory_management");
-        $this->grams                = self::intFrom($data, "grams");
-        $this->option1              = self::stringFrom($data, "option1");
-        $this->option2              = self::stringFrom($data, "option2");
-        $this->option3              = self::stringFrom($data, "option3");
-        $this->meta                 = $this->sortArray($meta, "key");
+        $this->grams = self::intFrom($data, "grams");
+        $this->option1 = self::stringFrom($data, "option1");
+        $this->option2 = self::stringFrom($data, "option2");
+        $this->option3 = self::stringFrom($data, "option3");
+        $this->meta = $this->sortArray($meta, "key");
     }
 
     /**
@@ -59,7 +59,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
      */
     public function computeHash(): string
     {
-        $v    = new Variant((array)$this);
+        $v = new Variant((array)$this);
         $json = json_encode($v);
         return md5($json);
     }
@@ -72,7 +72,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -82,7 +82,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new Variant((array) $item);
+            $a[] = new Variant((array)$item);
         }
         return $a;
     }

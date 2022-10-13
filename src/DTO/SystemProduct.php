@@ -26,20 +26,20 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $images   = SystemImage::createArray(self::arrayFrom($data, 'images'));
+        $images = SystemImage::createArray(self::arrayFrom($data, 'images'));
         $variants = SystemVariant::createArray(self::arrayFrom($data, 'variants'));
         $channels = Channel::createArray(self::arrayFrom($data, 'channels'));
 
-        $this->channels            = $this->sortArray($channels, 'id');
-        $this->client_id           = self::intFrom($data, 'client_id');
-        $this->created             = self::stringFrom($data, 'created');
-        $this->hash                = self::stringFrom($data, 'hash');
-        $this->id                  = self::intFrom($data, 'id');
-        $this->images              = $this->sortArray($images, 'id');
-        $this->modified            = self::stringFrom($data, 'modified');
-        $this->source_id           = self::intFrom($data, 'source_id');
+        $this->channels = $this->sortArray($channels, 'id');
+        $this->client_id = self::intFrom($data, 'client_id');
+        $this->created = self::stringFrom($data, 'created');
+        $this->hash = self::stringFrom($data, 'hash');
+        $this->id = self::intFrom($data, 'id');
+        $this->images = $this->sortArray($images, 'id');
+        $this->modified = self::stringFrom($data, 'modified');
+        $this->source_id = self::intFrom($data, 'source_id');
         $this->source_product_code = self::stringFrom($data, 'source_product_code');
-        $this->variants            = $this->sortArray($variants, 'id');
+        $this->variants = $this->sortArray($variants, 'id');
     }
 
     static function createFromJSON(string $json): SystemProduct
@@ -50,7 +50,7 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     public function computeHash(): string
@@ -70,7 +70,7 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemProduct((array) $item);
+            $a[] = new SystemProduct((array)$item);
         }
         return $a;
     }

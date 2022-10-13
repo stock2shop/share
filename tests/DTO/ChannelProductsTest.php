@@ -169,6 +169,7 @@ class ChannelProductsTest extends TestCase
         $cp = new DTO\ChannelProducts([]);
         $this->assertChannelProductsNull($cp);
     }
+
     private function assertChannelProducts(DTO\ChannelProducts $c)
     {
         $channelProducts = $c->channel_products;

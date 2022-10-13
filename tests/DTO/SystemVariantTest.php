@@ -11,11 +11,11 @@ class SystemVariantTest extends TestCase
     public function testConstruct()
     {
         $mockData = [
-            'id'            => 1,
-            'client_id'     => 21,
-            'image_id'      => 1,
-            'product_id'    => 1,
-            'hash'          => 'hash',
+            'id' => 1,
+            'client_id' => 21,
+            'image_id' => 1,
+            'product_id' => 1,
+            'hash' => 'hash',
         ];
         $c = new DTO\SystemVariant($mockData);
         $this->assertSystemVariant($c);

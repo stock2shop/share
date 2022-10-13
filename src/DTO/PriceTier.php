@@ -16,7 +16,7 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
      */
     function __construct(array $data)
     {
-        $this->tier  = self::stringFrom($data, "tier");
+        $this->tier = self::stringFrom($data, "tier");
         $this->price = self::floatFrom($data, "price");
     }
 
@@ -28,7 +28,7 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -38,7 +38,7 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new PriceTier((array) $item);
+            $a[] = new PriceTier((array)$item);
         }
         return $a;
     }

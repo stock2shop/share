@@ -25,8 +25,8 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
      */
     function __construct(array $data)
     {
-        $this->key           = self::stringFrom($data, "key");
-        $this->value         = self::stringFrom($data, "value");
+        $this->key = self::stringFrom($data, "key");
+        $this->value = self::stringFrom($data, "value");
         $this->template_name = self::stringFrom($data, "template_name");
     }
 
@@ -38,7 +38,7 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -48,7 +48,7 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new Meta((array) $item);
+            $a[] = new Meta((array)$item);
         }
         return $a;
     }

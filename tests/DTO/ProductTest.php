@@ -97,7 +97,8 @@ class ProductTest extends TestCase
     /**
      * Returns a test resources' contents as an array.
      */
-    private function getTestResourceAsArray(string $fileName): array {
+    private function getTestResourceAsArray(string $fileName): array
+    {
         return json_decode(file_get_contents(
             __DIR__ . '/TestResources/' . $fileName . '.json'), true);
     }

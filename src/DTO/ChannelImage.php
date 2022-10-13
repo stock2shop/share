@@ -24,7 +24,7 @@ class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -34,7 +34,7 @@ class ChannelImage extends SystemImage implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ChannelImage((array) $item);
+            $a[] = new ChannelImage((array)$item);
         }
         return $a;
     }

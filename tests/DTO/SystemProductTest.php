@@ -134,8 +134,8 @@ class SystemProductTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
         $this->assertIsArray($c->options);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0] );
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0] );
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0]);
         $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
@@ -183,7 +183,8 @@ class SystemProductTest extends TestCase
     /**
      * Returns a test resources' contents as an array.
      */
-    private function getTestResourceAsArray(string $fileName): array {
+    private function getTestResourceAsArray(string $fileName): array
+    {
         return json_decode(file_get_contents(
             __DIR__ . '/TestResources/' . $fileName . '.json'), true);
     }

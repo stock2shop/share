@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 
-
 use JsonSerializable;
 
 class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
@@ -16,7 +15,7 @@ class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
     function __construct(array $data)
     {
         $this->description = self::stringFrom($data, "description");
-        $this->qty         = self::intFrom($data, "qty");
+        $this->qty = self::intFrom($data, "qty");
     }
 
     static function createFromJSON(string $json): QtyAvailability
@@ -27,7 +26,7 @@ class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 
     /**
@@ -37,7 +36,7 @@ class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new QtyAvailability((array) $item);
+            $a[] = new QtyAvailability((array)$item);
         }
         return $a;
     }
