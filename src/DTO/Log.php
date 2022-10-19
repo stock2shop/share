@@ -24,6 +24,7 @@ class Log extends DTO implements JsonSerializable, DTOInterface
 
     public ?int $channel_id;
     public int $client_id;
+    /** @var array|null associative array */
     public ?array $context;
     public ?string $created;
     public ?string $ip;
@@ -44,11 +45,9 @@ class Log extends DTO implements JsonSerializable, DTOInterface
 
     public function __construct(array $data)
     {
-        $context = LogContext::createArray(self::arrayFrom($data, "context"));
-
         $this->channel_id   = self::intFrom($data, 'channel_id');
         $this->client_id    = self::intFrom($data, 'client_id');
-        $this->context      = $this->sortArray($context, "key");
+        $this->context      = self::arrayFrom($data, "context");
         $this->created      = self::dateStringFrom($data, 'created', Date::FORMAT_MS);
         $this->ip           = self::stringFrom($data, 'ip');
         $this->log_to_es    = self::boolFrom($data, 'log_to_es');

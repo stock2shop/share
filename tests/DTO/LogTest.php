@@ -30,12 +30,10 @@ class LogTest extends TestCase
             "tags": ["x", "y"],
             "trace": ["a", "b"],
             "user_id": null,
-            "context": [
-                {
-                    "key": "foo",
-                    "value": "bar"
-                }
-            ]
+            "context": {
+                "foo": "bar",
+                "baz": "bat"
+            }
         }';
     }
 
