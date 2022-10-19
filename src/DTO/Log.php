@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
+use Stock2Shop\Share\Utils\Date;
 
 class Log extends DTO implements JsonSerializable, DTOInterface
 {
@@ -24,6 +25,7 @@ class Log extends DTO implements JsonSerializable, DTOInterface
     public ?int $channel_id;
     public int $client_id;
     public ?array $context;
+    public ?string $created;
     public ?string $ip;
     public bool $log_to_es;
     public string $level;
@@ -47,6 +49,7 @@ class Log extends DTO implements JsonSerializable, DTOInterface
         $this->channel_id   = self::intFrom($data, 'channel_id');
         $this->client_id    = self::intFrom($data, 'client_id');
         $this->context      = $this->sortArray($context, "key");
+        $this->created      = self::dateStringFrom($data, 'created', Date::FORMAT_MS);
         $this->ip           = self::stringFrom($data, 'ip');
         $this->log_to_es    = self::boolFrom($data, 'log_to_es');
         $this->level        = self::stringFrom($data, 'level');

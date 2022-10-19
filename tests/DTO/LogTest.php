@@ -16,6 +16,7 @@ class LogTest extends TestCase
         $this->json = '{
             "channel_id": 1,
             "client_id": 21,
+            "created": "2022-01-01 12:12:01.000001",
             "ip": "21.21.21.21",
             "log_to_es": false,
             "level": "error",
@@ -40,8 +41,8 @@ class LogTest extends TestCase
 
     public function testSerialize(): void
     {
-        $chan = DTO\Log::createFromJSON($this->json);
-        $serialized = json_encode($chan);
+        $log = DTO\Log::createFromJSON($this->json);
+        $serialized = json_encode($log);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
