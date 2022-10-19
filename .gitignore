@@ -1,5 +1,4 @@
 /_excluded
-.env
 .idea/
 .php-cs-fixer.cache
 .phpunit.result.cache
