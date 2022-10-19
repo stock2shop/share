@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
+use Stock2Shop\Share\Utils\Date;
 
 abstract class DTO
 {
@@ -46,6 +47,28 @@ abstract class DTO
     {
         if (array_key_exists($key, $data)) {
             return self::toString($data[$key]);
+        }
+        return null;
+    }
+
+    /**
+     * Accepts string or DateTime value
+     * Returns date string as ISO8601 string (without the T).
+     * Format options include with milliseconds or not.
+     * 2022-10-10 10:30:40
+     * 2022-10-10 10:30:40.123456
+     *
+     * Sets timezone UTC
+     * Accepts DateTime object or any valid Date String
+     * https://www.php.net/manual/en/datetime.formats.php
+     */
+    public static function dateStringFrom(array $data, string $key, string $format): ?string
+    {
+        if (array_key_exists($key, $data)) {
+            if (empty($data[$key])) {
+                return self::toString($data[$key]);
+            }
+            return Date::getDateString($data[$key]);
         }
         return null;
     }
