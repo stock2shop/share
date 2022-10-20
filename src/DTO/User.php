@@ -46,7 +46,7 @@ class User extends DTO implements JsonSerializable, DTOInterface
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new Segment((array)$item);
+            $a[] = new User((array)$item);
         }
         return $a;
     }

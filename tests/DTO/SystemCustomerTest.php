@@ -89,11 +89,12 @@ class SystemCustomerTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemCustomer', $c);
         $this->assertIsArray($c->addresses);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->addresses[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c->addresses[0]);
         $this->assertIsArray($c->meta);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\User', $c->user);
     }
 
     private function assertSystemProductNull(DTO\SystemCustomer $c)

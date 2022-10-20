@@ -33,13 +33,13 @@ class Customer extends DTO implements JsonSerializable, DTOInterface
     }
 
     /**
-     * @return SystemCustomer[]
+     * @return Customer[]
      */
     public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemCustomer((array)$item);
+            $a[] = new Customer((array)$item);
         }
         return $a;
     }
