@@ -13,14 +13,14 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     public ?string $city;
     public ?string $company;
     public ?string $country;
+    public ?string $country_code;
     public ?string $first_name;
     public ?string $last_name;
     public ?string $phone;
     public ?string $province;
-    public ?string $zip;
-    public ?string $country_code;
     public ?string $province_code;
     public ?string $type;
+    public ?string $zip;
 
     public function __construct(array $data)
     {
@@ -29,13 +29,13 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->city          = self::stringFrom($data, 'city');
         $this->company       = self::stringFrom($data, 'company');
         $this->country       = self::stringFrom($data, 'country');
+        $this->country_code  = self::stringFrom($data, 'country_code');
         $this->first_name    = self::stringFrom($data, 'first_name');
         $this->last_name     = self::stringFrom($data, 'last_name');
         $this->phone         = self::stringFrom($data, 'phone');
         $this->province      = self::stringFrom($data, 'province');
-        $this->zip           = self::stringFrom($data, 'zip');
-        $this->country_code  = self::stringFrom($data, 'country_code');
         $this->province_code = self::stringFrom($data, 'province_code');
+        $this->zip           = self::stringFrom($data, 'zip');
         $this->type = self::stringFrom($data, 'type');
 
     }
