@@ -6,15 +6,13 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-class OrderShippingLine extends Order implements JsonSerializable, DTOInterface
+class OrderShippingLine extends DTO implements JsonSerializable, DTOInterface
 {
     public ?float $price;
     public ?string $title;
 
     public function __construct(array $data)
     {
-        parent::__construct($data);
-
         $this->price = self::floatFrom($data, 'price');
         $this->title = self::stringFrom($data, 'title');
     }
