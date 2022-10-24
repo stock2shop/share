@@ -35,8 +35,8 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->phone         = self::stringFrom($data, 'phone');
         $this->province      = self::stringFrom($data, 'province');
         $this->province_code = self::stringFrom($data, 'province_code');
+        $this->type          = self::stringFrom($data, 'type');
         $this->zip           = self::stringFrom($data, 'zip');
-        $this->type = self::stringFrom($data, 'type');
 
     }
 

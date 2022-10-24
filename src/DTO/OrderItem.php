@@ -9,21 +9,21 @@ use JsonSerializable;
 class OrderItem extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $barcode;
+    public ?int $grams;
+    public ?float $price;
+    public ?int $qty;
     public ?string $sku;
     public ?string $title;
-    public ?int $grams;
-    public ?int $qty;
-    public ?float $price;
     public ?float $total_discount;
 
     public function __construct(array $data)
     {
         $this->barcode        = self::stringFrom($data, "barcode");
+        $this->grams          = self::intFrom($data, "grams");
+        $this->price          = self::floatFrom($data, "price");
+        $this->qty            = self::intFrom($data, "qty");
         $this->sku            = self::stringFrom($data, "sku");
         $this->title          = self::stringFrom($data, "title");
-        $this->grams          = self::intFrom($data, "grams");
-        $this->qty            = self::intFrom($data, "qty");
-        $this->price          = self::floatFrom($data, "price");
         $this->total_discount = self::floatFrom($data, "total_discount");
 
     }

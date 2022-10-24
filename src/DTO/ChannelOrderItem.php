@@ -8,13 +8,11 @@ use JsonSerializable;
 
 class ChannelOrderItem extends OrderItem implements JsonSerializable, DTOInterface
 {
-    public ?string $channel_product_code;
     public ?string $channel_variant_code;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->channel_product_code = self::stringFrom($data, 'channel_product_code');
         $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
     }
 

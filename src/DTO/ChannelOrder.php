@@ -8,11 +8,14 @@ use JsonSerializable;
 
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
+    public ChannelOrderAddress $billing_address;
     public ChannelOrderCustomer $customer;
     public ?string $instruction;
     /** @var ChannelOrderItem[] */
     public array $line_items;
-
+    /** @var OrderMeta[] */
+    public array $meta;
+    public ChannelOrderAddress $shipping_address;
     /** @var OrderShippingLine[] */
     public array $shipping_lines;
 
@@ -20,10 +23,13 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $this->customer    = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
-        $this->instruction = self::stringFrom($data, 'instruction');
-        $this->line_items  = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
-        $this->line_items  = OrderShippingLine::createArray(self::arrayFrom($data, 'shipping_line'));
+        $this->billing_address  = new ChannelOrderAddress(self::arrayFrom($data, 'billing_address'));
+        $this->customer         = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
+        $this->instruction      = self::stringFrom($data, 'instruction');
+        $this->line_items       = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
+        $this->meta             = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
+        $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
+        $this->shipping_lines   = OrderShippingLine::createArray(self::arrayFrom($data, 'shipping_line'));
     }
 
     public function jsonSerialize(): array
