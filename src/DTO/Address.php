@@ -20,6 +20,7 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     public ?string $zip;
     public ?string $country_code;
     public ?string $province_code;
+    public ?string $type;
 
     public function __construct(array $data)
     {
@@ -35,6 +36,7 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->zip           = self::stringFrom($data, 'zip');
         $this->country_code  = self::stringFrom($data, 'country_code');
         $this->province_code = self::stringFrom($data, 'province_code');
+        $this->type = self::stringFrom($data, 'type');
 
     }
 
