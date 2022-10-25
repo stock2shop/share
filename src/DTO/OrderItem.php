@@ -30,7 +30,6 @@ class OrderItem extends DTO implements JsonSerializable, DTOInterface
         $this->tax_lines      = $this->sortArray($tax_lines, 'title');
         $this->title          = self::stringFrom($data, "title");
         $this->total_discount = self::floatFrom($data, "total_discount");
-
     }
 
     public function jsonSerialize(): array

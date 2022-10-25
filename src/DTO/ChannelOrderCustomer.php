@@ -8,7 +8,6 @@ use JsonSerializable;
 
 class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
-
     public function __construct(array $data)
     {
         parent::__construct($data);

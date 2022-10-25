@@ -17,7 +17,6 @@ class Order extends DTO implements JsonSerializable, DTOInterface
         $this->channel_order_code = self::stringFrom($data, 'channel_order_code');
         $this->notes              = self::stringFrom($data, 'notes');
         $this->total_discount     = self::floatFrom($data, 'total_discount');
-
     }
 
     public function jsonSerialize(): array

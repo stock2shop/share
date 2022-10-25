@@ -48,5 +48,4 @@ class Date
         $d->setTimeZone(new DateTimeZone(self::TIMEZONE));
         return $d->format($format);
     }
-
 }

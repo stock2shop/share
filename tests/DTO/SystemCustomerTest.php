@@ -103,5 +103,4 @@ class SystemCustomerTest extends TestCase
         $this->assertIsArray($c->meta);
         $this->assertIsObject($c->user);
     }
-
 }

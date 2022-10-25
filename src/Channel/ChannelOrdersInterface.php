@@ -13,5 +13,4 @@ interface ChannelOrdersInterface
      * @return DTO\ChannelOrder[]
      */
     public function sync(array $channelOrderWebhooks, DTO\Channel $channel): array;
-
 }

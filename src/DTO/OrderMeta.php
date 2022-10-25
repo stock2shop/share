@@ -6,7 +6,6 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-
 class OrderMeta extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $key;
