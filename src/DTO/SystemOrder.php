@@ -8,9 +8,11 @@ use JsonSerializable;
 
 class SystemOrder extends Order implements JsonSerializable, DTOInterface
 {
-    public SystemOrderCustomer $customer;
-    public ?int $customer_id;
-    /** @var SystemOrderFulfillment[] $fulfillments */
+    public ?int $channel_id;
+    public ?int $client_id;
+    public ?string $created;
+    public SystemCustomer $customer;
+    /** @var SystemFulfillment[] $fulfillments */
     public array $fulfillments;
     /** @var SystemOrderHistory[] $history */
     public array $history;
@@ -21,6 +23,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public array $line_items;
     /** @var Meta[] $meta */
     public array $meta;
+    public ?string $modified;
     /** @var SystemOrderShippingLine[] $shipping_lines */
     public array $shipping_lines;
     public ?float $shipping_sub_total;
@@ -42,23 +45,27 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $fulfillments   = SystemOrderFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
+        $fulfillments   = SystemFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
         $history        = SystemOrderHistory::createArray(self::arrayFrom($data, "history"));
         $line_items     = SystemOrderItem::createArray(self::arrayFrom($data, 'line_items'));
         $meta           = Meta::createArray(self::arrayFrom($data, "meta"));
         $shipping_lines = SystemOrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
         $sources        = OrderSource::createArray(self::arrayFrom($data, 'sources'));
 
-        $this->customer               = new SystemOrderCustomer(self::arrayFrom($data, "customer"));
-        $this->customer_id            = self::intFrom($data, "customer_id");
+
+        $this->channel_id             = self::intFrom($data, 'channel_id');
+        $this->client_id              = self::intFrom($data, 'client_id');
+        $this->created                = self::stringFrom($data, "created");
+        $this->customer               = new SystemCustomer(self::arrayFrom($data, "customer"));
         $this->id                     = self::intFrom($data, "id");
         $this->fulfillments           = $this->sortArray($fulfillments, 'fulfillmentservice_order_code');
         $this->history                = $this->sortArray($history, 'storage_code');
         $this->line_item_sub_total    = self::floatFrom($data, 'line_item_sub_total');
         $this->line_item_tax          = self::floatFrom($data, 'line_item_tax');
-        $this->line_items             = $this->sortArray($line_items, 'source_variant_code');
+        $this->line_items             = $this->sortArray($line_items, 'sku');
         $this->meta                   = $this->sortArray($meta, 'key');
-        $this->shipping_lines         = $this->sortArray($shipping_lines, 'price_display');
+        $this->modified               = self::stringFrom($data, "modified");
+        $this->shipping_lines         = $this->sortArray($shipping_lines, 'title');
         $this->shipping_sub_total     = self::floatFrom($data, "shipping_sub_total");
         $this->shipping_tax           = self::floatFrom($data, "shipping_tax");
         $this->shipping_tax_display   = self::stringFrom($data, "shipping_tax_display");

@@ -8,7 +8,11 @@ use JsonSerializable;
 
 class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterface
 {
+    public ?int $channel_id;
+    public ?int $client_id;
     public ?string $code;
+    public ?string $created;
+    public ?string $modified;
     public ?int $product_id;
     public ?int $variant_id;
     public ?int $source_id;
@@ -40,7 +44,11 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
 
         $fulfillments = SystemOrderItemFulfillment::createArray(self::arrayFrom($data, 'fulfillments'));
 
+        $this->channel_id             = self::intFrom($data, 'channel_id');
+        $this->client_id              = self::intFrom($data, 'client_id');
         $this->code                   = self::stringFrom($data, 'code');
+        $this->created                = self::stringFrom($data, "created");
+        $this->modified               = self::stringFrom($data, "modified");
         $this->product_id             = self::intFrom($data, 'product_id');
         $this->variant_id             = self::intFrom($data, 'variant_id');
         $this->source_id              = self::intFrom($data, 'source_id');

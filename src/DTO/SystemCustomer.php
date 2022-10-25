@@ -15,7 +15,8 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
-    /** @var Meta[] $meta */
+    public ?int $customer_id;
+    /** @var OrderMeta[] $meta */
     public array $meta;
     public ?string $modified;
     public User $user;
@@ -25,7 +26,7 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         parent::__construct($data);
 
         $addresses = Address::createArray(self::arrayFrom($data, 'addresses'));
-        $meta      = Meta::createArray(self::arrayFrom($data, 'meta'));
+        $meta      = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
 
         $this->active                = self::boolFrom($data, 'active');
         $this->addresses             = $this->sortArray($addresses, 'address_code');
@@ -33,6 +34,7 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         $this->channel_id            = self::intFrom($data, 'channel_id');
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
+        $this->customer_id           = self::intFrom($data, "customer_id");
         $this->meta                  = $this->sortArray($meta, 'key');
         $this->modified              = self::stringFrom($data, 'modified');
         $this->user                  = new User(self::arrayFrom($data, 'user'));

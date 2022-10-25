@@ -6,6 +6,10 @@ use JsonSerializable;
 
 class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
 {
+    public ?int $channel_id;
+    public ?int $client_id;
+    public ?string $created;
+    public ?string $modified;
     public ?string $price_display;
     public ?float $sub_total;
     public ?string $sub_total_display;
@@ -22,6 +26,10 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
     {
         parent::__construct($data);
 
+        $this->channel_id             = self::intFrom($data, "channel_id");
+        $this->client_id              = self::intFrom($data, "client_id");
+        $this->created                = self::stringFrom($data, "created");
+        $this->modified               = self::stringFrom($data, "modified");
         $this->price_display          = self::stringFrom($data, "price_display");
         $this->sub_total              = self::floatFrom($data, "sub_total");
         $this->sub_total_display      = self::stringFrom($data, "sub_total_display");
