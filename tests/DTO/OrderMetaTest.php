@@ -31,17 +31,9 @@ class OrderMetaTest extends TestCase
     {
         $m = DTO\OrderMeta::createFromJSON($this->json);
         $this->assertOrderMeta($m);
-        $m = new DTO\OrderMeta([]);
-        $this->assertOrderMetaNull($m);
     }
 
     private function assertOrderMeta(DTO\OrderMeta $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c);
-    }
-
-    private function assertOrderMetaNull(DTO\OrderMeta $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c);

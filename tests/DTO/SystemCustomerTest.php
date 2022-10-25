@@ -78,8 +78,6 @@ class SystemCustomerTest extends TestCase
     {
         $sp = DTO\SystemCustomer::createFromJSON($this->json);
         $this->assertSystemCustomer($sp);
-        $sp = new DTO\SystemCustomer([]);
-        $this->assertSystemProductNull($sp);
     }
 
     private function assertSystemCustomer(DTO\SystemCustomer $c)
@@ -93,14 +91,5 @@ class SystemCustomerTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\User', $c->user);
-    }
-
-    private function assertSystemProductNull(DTO\SystemCustomer $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemCustomer', $c);
-        $this->assertIsArray($c->addresses);
-        $this->assertIsArray($c->meta);
-        $this->assertIsObject($c->user);
     }
 }

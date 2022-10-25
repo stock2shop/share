@@ -88,8 +88,6 @@ class ChannelProductTest extends TestCase
     {
         $cp = DTO\ChannelProduct::createFromJSON($this->json);
         $this->assertChannelProduct($cp);
-        $cp = new DTO\ChannelProduct([]);
-        $this->assertChannelProductNull($cp);
     }
 
     private function assertChannelProduct(DTO\ChannelProduct $c)
@@ -104,13 +102,5 @@ class ChannelProductTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
-    }
-
-    private function assertChannelProductNull(DTO\ChannelProduct $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertIsArray($c->variants);
-        $this->assertIsArray($c->images);
     }
 }

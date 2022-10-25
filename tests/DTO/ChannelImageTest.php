@@ -36,19 +36,10 @@ class ChannelImageTest extends TestCase
     {
         $ci = DTO\ChannelImage::createFromJSON($this->json);
         $this->assertChannelImage($ci);
-        $ci = new DTO\ChannelImage([]);
-        $this->assertChannelImageNull($ci);
     }
 
 
     private function assertChannelImage(DTO\ChannelImage $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImage', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-    }
-
-    private function assertChannelImageNull(DTO\ChannelImage $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelImage', $c);

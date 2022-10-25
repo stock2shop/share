@@ -42,17 +42,9 @@ class ChannelOrderAddressTest extends TestCase
     {
         $m = DTO\ChannelOrderAddress::createFromJSON($this->json);
         $this->assertChannelOrderAddress($m);
-        $m = new DTO\ChannelOrderAddress([]);
-        $this->assertChannelOrderAddressNull($m);
     }
 
     private function assertChannelOrderAddress(DTO\ChannelOrderAddress $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c);
-    }
-
-    private function assertChannelOrderAddressNull(DTO\ChannelOrderAddress $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c);

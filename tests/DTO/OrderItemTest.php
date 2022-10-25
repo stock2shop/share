@@ -20,6 +20,13 @@ class OrderItemTest extends TestCase
             "price": 19.99,
             "qty": 100,
             "sku": "sku",
+            "tax_lines": [
+                {
+                    "price": 19.99,
+                    "title": "title",
+                    "rate": 1.2
+                }
+            ],
             "title": "title",
             "total_discount": 20.05
         }';
@@ -36,17 +43,9 @@ class OrderItemTest extends TestCase
     {
         $m = DTO\OrderItem::createFromJSON($this->json);
         $this->assertOrderItem($m);
-        $m = new DTO\OrderItem([]);
-        $this->assertOrderItemNull($m);
     }
 
     private function assertOrderItem(DTO\OrderItem $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
-    }
-
-    private function assertOrderItemNull(DTO\OrderItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);

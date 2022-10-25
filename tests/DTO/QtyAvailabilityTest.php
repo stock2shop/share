@@ -31,17 +31,9 @@ class QtyAvailabilityTest extends TestCase
     {
         $qa = DTO\QtyAvailability::createFromJSON($this->json);
         $this->assertQtyAvailability($qa);
-        $qa = new DTO\QtyAvailability([]);
-        $this->assertQtyAvailabilityNull($qa);
     }
 
     private function assertQtyAvailability(DTO\QtyAvailability $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c);
-    }
-
-    private function assertQtyAvailabilityNull(DTO\QtyAvailability $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c);

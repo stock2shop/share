@@ -33,17 +33,9 @@ class ChannelOrderCustomerTest extends TestCase
     {
         $m = DTO\ChannelOrderCustomer::createFromJSON($this->json);
         $this->assertChannelOrderCustomer($m);
-        $m = new DTO\ChannelOrderCustomer([]);
-        $this->assertChannelOrderCustomerNull($m);
     }
 
     private function assertChannelOrderCustomer(DTO\ChannelOrderCustomer $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderCustomer', $c);
-    }
-
-    private function assertChannelOrderCustomerNull(DTO\ChannelOrderCustomer $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderCustomer', $c);

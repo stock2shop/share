@@ -52,8 +52,6 @@ class ChannelVariantTest extends TestCase
     {
         $cv = DTO\ChannelVariant::createFromJSON($this->json);
         $this->assertChannelVariant($cv);
-        $cv = new DTO\ChannelVariant([]);
-        $this->assertChannelVariantNull($cv);
     }
 
     private function assertChannelVariant(DTO\ChannelVariant $c)
@@ -63,12 +61,5 @@ class ChannelVariantTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertEquals(true, $c->success);
         $this->assertEquals(false, $c->delete);
-    }
-
-    private function assertChannelVariantNull(DTO\ChannelVariant $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
     }
 }

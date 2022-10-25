@@ -223,8 +223,6 @@ class SystemProductsTest extends TestCase
     {
         $sp = DTO\SystemProducts::createFromJSON($this->json);
         $this->assertSystemProducts($sp);
-        $sp = new DTO\SystemProducts([]);
-        $this->assertSystemProductsNull($sp);
     }
 
     private function assertSystemProducts(DTO\SystemProducts $c)
@@ -250,20 +248,6 @@ class SystemProductsTest extends TestCase
             $this->assertIsArray($sp->variants);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->variants[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $sp->variants[0]);
-        }
-    }
-
-    private function assertSystemProductsNull(DTO\SystemProducts $c)
-    {
-        foreach ($c->system_products as $sp) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $sp);
-            $this->assertIsArray($sp->meta);
-            $this->assertIsArray($sp->options);
-            $this->assertIsArray($sp->images);
-            $this->assertIsArray($sp->options);
-            $this->assertIsArray($sp->channels);
-            $this->assertIsArray($sp->variants);
         }
     }
 }

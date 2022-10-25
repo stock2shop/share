@@ -31,17 +31,9 @@ class OrderShippingLineTest extends TestCase
     {
         $m = DTO\OrderShippingLine::createFromJSON($this->json);
         $this->assertOrderShippingLine($m);
-        $m = new DTO\OrderShippingLine([]);
-        $this->assertOrderShippingLineNull($m);
     }
 
     private function assertOrderShippingLine(DTO\OrderShippingLine $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c);
-    }
-
-    private function assertOrderShippingLineNull(DTO\OrderShippingLine $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c);

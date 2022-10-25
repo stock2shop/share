@@ -49,8 +49,6 @@ class ProductTest extends TestCase
     {
         $p = DTO\Product::createFromJSON($this->json);
         $this->assertProduct($p);
-        $p = new DTO\Product([]);
-        $this->assertProductNull($p);
     }
 
     private function assertProduct(DTO\Product $c)
@@ -67,14 +65,6 @@ class ProductTest extends TestCase
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $option);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $option);
         }
-    }
-
-    private function assertProductNull(DTO\Product $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertIsArray($c->meta);
-        $this->assertIsArray($c->options);
     }
 
     public function testComputeHash()

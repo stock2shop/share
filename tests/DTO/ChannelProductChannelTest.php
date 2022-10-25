@@ -34,8 +34,6 @@ class ChannelProductChannelTest extends TestCase
     {
         $cpc = DTO\ChannelProductChannel::createFromJSON($this->json);
         $this->assertChannelProductChannel($cpc);
-        $cpc = new DTO\ChannelProductChannel([]);
-        $this->assertChannelProductChannelNull($cpc);
     }
 
     private function assertChannelProductChannel(DTO\ChannelProductChannel $c)
@@ -43,11 +41,5 @@ class ChannelProductChannelTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c);
         $this->assertEquals(true, $c->hasSyncedToChannel());
-    }
-
-    private function assertChannelProductChannelNull(DTO\ChannelProductChannel $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelProductChannel', $c);
     }
 }

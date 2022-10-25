@@ -9,21 +9,6 @@ use Stock2Shop\Share\DTO;
 
 class SystemVariantTest extends TestCase
 {
-    public function testConstruct()
-    {
-        $mockData = [
-            'id' => 1,
-            'client_id' => 21,
-            'image_id' => 1,
-            'product_id' => 1,
-            'hash' => 'hash',
-        ];
-        $c = new DTO\SystemVariant($mockData);
-        $this->assertSystemVariant($c);
-        $c = new DTO\SystemVariant([]);
-        $this->assertSystemVariantNull($c);
-    }
-
     private string $json;
 
     protected function setUp(): void
@@ -79,17 +64,9 @@ class SystemVariantTest extends TestCase
     {
         $sv = DTO\SystemVariant::createFromJSON($this->json);
         $this->assertSystemVariant($sv);
-        $sv = new DTO\SystemVariant([]);
-        $this->assertSystemVariantNull($sv);
     }
 
     private function assertSystemVariant(DTO\SystemVariant $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c);
-    }
-
-    private function assertSystemVariantNull(DTO\SystemVariant $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c);

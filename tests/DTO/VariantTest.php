@@ -59,8 +59,6 @@ class VariantTest extends TestCase
     {
         $v = DTO\Variant::createFromJSON($this->json);
         $this->assertVariant($v);
-        $v = new DTO\Variant([]);
-        $this->assertVariantNull($v);
     }
 
     private function assertVariant(DTO\Variant $c)
@@ -76,15 +74,6 @@ class VariantTest extends TestCase
         $this->assertIsArray($c->price_tiers);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->price_tiers[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c->price_tiers[0]);
-    }
-
-    private function assertVariantNull(DTO\Variant $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c);
-        $this->assertIsArray($c->meta);
-        $this->assertIsArray($c->qty_availability);
-        $this->assertIsArray($c->price_tiers);
     }
 
     public function testComputeHash()

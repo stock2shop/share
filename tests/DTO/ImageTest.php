@@ -30,18 +30,10 @@ class ImageTest extends TestCase
     {
         $i = DTO\Image::createFromJSON($this->json);
         $this->assertImage($i);
-        $i = new DTO\Image([]);
-        $this->assertImageNull($i);
     }
 
 
     private function assertImage(DTO\Image $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);
-    }
-
-    private function assertImageNull(DTO\Image $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);

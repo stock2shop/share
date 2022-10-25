@@ -32,17 +32,9 @@ class MetaTest extends TestCase
     {
         $m = DTO\Meta::createFromJSON($this->json);
         $this->assertMeta($m);
-        $m = new DTO\Meta([]);
-        $this->assertMetaNull($m);
     }
 
     private function assertMeta(DTO\Meta $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);
-    }
-
-    private function assertMetaNull(DTO\Meta $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);

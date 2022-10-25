@@ -47,6 +47,13 @@ class ChannelOrderTest extends TestCase
                     "price": 19.99,
                     "qty": 100,
                     "sku": "sku",
+                    "tax_lines": [
+                        {
+                            "price": 19.99,
+                            "title": "title",
+                            "rate": 1.2
+                        }
+                    ],
                     "title": "title",
                     "total_discount": 20.05,
                     "channel_variant_code": "channel_variant_code"
@@ -93,17 +100,9 @@ class ChannelOrderTest extends TestCase
     {
         $m = DTO\ChannelOrder::createFromJSON($this->json);
         $this->assertChannelOrder($m);
-        $m = new DTO\ChannelOrder([]);
-        $this->assertChannelOrderNull($m);
     }
 
     private function assertChannelOrder(DTO\ChannelOrder $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrder', $c);
-    }
-
-    private function assertChannelOrderNull(DTO\ChannelOrder $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrder', $c);
