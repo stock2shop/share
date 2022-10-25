@@ -5,21 +5,13 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
-use stock2shop\vo\Address;
 
-class ChannelOrderCustomer extends DTO implements JsonSerializable, DTOInterface
+class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
-    public ?bool $accepts_marketing;
-    public ?string $email;
-    public ?string $first_name;
-    public ?string $last_name;
 
     public function __construct(array $data)
     {
-        $this->accepts_marketing = self::boolFrom($data, 'accepts_marketing');
-        $this->email             = self::stringFrom($data, 'email');
-        $this->first_name        = self::stringFrom($data, 'first_name');
-        $this->last_name         = self::stringFrom($data, 'last_name');
+        parent::__construct($data);
     }
 
     public function jsonSerialize(): array

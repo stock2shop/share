@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
-use stock2shop\vo\Address;
 
 class Order extends DTO implements JsonSerializable, DTOInterface
 {

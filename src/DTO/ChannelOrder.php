@@ -16,22 +16,24 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     /** @var OrderMeta[] */
     public array $meta;
     public ChannelOrderAddress $shipping_address;
-    /** @var OrderShippingLine[] */
+    /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
 
-        $meta = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
+        $line_items     = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
+        $meta           = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
+        $shipping_lines = OrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
 
         $this->billing_address  = new ChannelOrderAddress(self::arrayFrom($data, 'billing_address'));
         $this->customer         = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
         $this->instruction      = self::stringFrom($data, 'instruction');
-        $this->line_items       = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
+        $this->line_items       = $this->sortArray($line_items, 'channel_variant_code');
         $this->meta             = $this->sortArray($meta, 'key');
         $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
-        $this->shipping_lines   = OrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
+        $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
     }
 
     public function jsonSerialize(): array

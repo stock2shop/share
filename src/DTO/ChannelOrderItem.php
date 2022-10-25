@@ -9,15 +9,16 @@ use JsonSerializable;
 class ChannelOrderItem extends OrderItem implements JsonSerializable, DTOInterface
 {
     public ?string $channel_variant_code;
+    /** @var OrderItemTax[] $tax_lines */
     public array $tax_lines;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $tax_lines   = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
+        $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
 
         $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
-        $this->tax_lines = $this->sortArray($tax_lines, 'title');
+        $this->tax_lines            = $this->sortArray($tax_lines, 'title');
     }
 
     public function jsonSerialize(): array
