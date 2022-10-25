@@ -6,15 +6,15 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-class ChannelOrderItem extends OrderItem implements JsonSerializable, DTOInterface
+class SystemOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
-    public ?string $channel_variant_code;
+    public ?string $channel_customer_code;
 
     public function __construct(array $data)
     {
         parent::__construct($data);
 
-        $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
+        $this->channel_customer_code = self::stringFrom($data, "channel_customer_code");
     }
 
     public function jsonSerialize(): array
@@ -22,20 +22,20 @@ class ChannelOrderItem extends OrderItem implements JsonSerializable, DTOInterfa
         return (array)$this;
     }
 
-    public static function createFromJSON(string $json): ChannelOrderItem
+    public static function createFromJSON(string $json): SystemOrderCustomer
     {
         $data = json_decode($json, true);
-        return new ChannelOrderItem($data);
+        return new SystemOrderCustomer($data);
     }
 
     /**
-     * @return ChannelOrderItem[]
+     * @return SystemOrderCustomer[]
      */
     public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ChannelOrderItem((array)$item);
+            $a[] = new SystemOrderCustomer((array)$item);
         }
         return $a;
     }

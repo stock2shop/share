@@ -6,14 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/**
- *
- * This is used by many classes.
- * e.g. Customers, Products, Sources, Channels ...
- *
- * Class OrderMeta
- * @package stock2shop\vo
- */
+
 class OrderMeta extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $key;
