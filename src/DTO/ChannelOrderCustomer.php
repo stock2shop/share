@@ -10,9 +10,9 @@ use stock2shop\vo\Address;
 class ChannelOrderCustomer extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $accepts_marketing;
-    public ?int $email;
-    public ?int $first_name;
-    public ?int $last_name;
+    public ?string $email;
+    public ?string $first_name;
+    public ?string $last_name;
 
     public function __construct(array $data)
     {

@@ -24,12 +24,10 @@ class SystemCustomerTest extends TestCase
                 {
                     "address1": "abc",
                     "address2": null,
-                    "address_code": "abc123",
                     "city": "jhb",
                     "country_code": "ZA",
                     "company": "s2s",
                     "country": "sa",
-                    "default": true,
                     "first_name": "bob",
                     "last_name": "jones",
                     "phone": "123456",
