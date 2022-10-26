@@ -35,20 +35,20 @@ class ChannelOrderItemTest extends TestCase
 
     public function testSerialize(): void
     {
-        $m = DTO\ChannelOrderItem::createFromJSON($this->json);
+        $m = DTO\ChannelOrderLineItem::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $m = DTO\ChannelOrderItem::createFromJSON($this->json);
+        $m = DTO\ChannelOrderLineItem::createFromJSON($this->json);
         $this->assertChannelOrderItem($m);
     }
 
-    private function assertChannelOrderItem(DTO\ChannelOrderItem $c)
+    private function assertChannelOrderItem(DTO\ChannelOrderLineItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderItem', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c);
     }
 }

@@ -8,8 +8,9 @@ use JsonSerializable;
 
 class Fulfillment extends DTO implements JsonSerializable, DTOInterface
 {
-    public ?int $fulfillmentservice_id;
-    public ?int $fulfillmentservice_order_code;
+    public ?string $fulfillmentservice_order_code;
+    /** @var FulfillmentLineItem[] $line_items */
+    public array $line_items;
     public ?string $notes;
     public ?string $state;
     public ?string $status;
@@ -19,8 +20,10 @@ class Fulfillment extends DTO implements JsonSerializable, DTOInterface
 
     public function __construct(array $data)
     {
-        $this->fulfillmentservice_id         = self::intFrom($data, "fulfillmentservice_id");
+        $line_items = FulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));
+
         $this->fulfillmentservice_order_code = self::intFrom($data, 'fulfillmentservice_order_code');
+        $this->line_items                    = self::sortArray($line_items, 'sku');
         $this->notes                         = self::stringFrom($data, 'notes');
         $this->state                         = self::stringFrom($data, "state");
         $this->status                        = self::stringFrom($data, 'status');

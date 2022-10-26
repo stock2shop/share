@@ -11,8 +11,8 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
-    public SystemCustomer $customer;
-    /** @var SystemOrderItem[] $line_items */
+    public ?int $fulfillmentservice_id;
+    /** @var SystemFulfillmentLineItem[] $line_items */
     public array $line_items;
     public ?string $modified;
     public ?int $order_id;
@@ -22,16 +22,16 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     {
         parent::__construct($data);
 
-        $line_items = SystemOrderItem::createArray(self::arrayFrom($data, 'line_items'));
+        $line_items = SystemFulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));
 
-        $this->channel_id       = self::intFrom($data, 'channel_id');
-        $this->client_id        = self::intFrom($data, 'client_id');
-        $this->created          = self::stringFrom($data, 'created');
-        $this->customer         = new SystemCustomer(self::arrayFrom($data, 'customer'));
-        $this->line_items       = self::sortArray($line_items, 'sku');
-        $this->modified         = self::stringFrom($data, 'modified');
-        $this->order_id         = self::intFrom($data, 'order_id');
-        $this->shipping_address = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
+        $this->channel_id            = self::intFrom($data, 'channel_id');
+        $this->client_id             = self::intFrom($data, 'client_id');
+        $this->created               = self::stringFrom($data, 'created');
+        $this->fulfillmentservice_id = self::intFrom($data, 'fulfillmentservice_id');
+        $this->line_items            = self::sortArray($line_items, 'sku');
+        $this->modified              = self::stringFrom($data, 'modified');
+        $this->order_id              = self::intFrom($data, 'order_id');
+        $this->shipping_address      = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
     }
 
     public static function createFromJSON(string $json): SystemFulfillment

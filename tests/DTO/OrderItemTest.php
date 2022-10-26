@@ -20,13 +20,6 @@ class OrderItemTest extends TestCase
             "price": 19.99,
             "qty": 100,
             "sku": "sku",
-            "tax_lines": [
-                {
-                    "price": 19.99,
-                    "title": "title",
-                    "rate": 1.2
-                }
-            ],
             "title": "title",
             "total_discount": 20.05
         }';

@@ -9,12 +9,12 @@ use JsonSerializable;
 class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface
 {
     public string $storage_code;
-    public array $payload;
+    public ?string $payload;
 
     public function __construct(array $data)
     {
         $this->storage_code = self::stringFrom($data, 'storage_code');
-        $this->payload      = self::arrayFrom($data, 'payload');
+        $this->payload      = self::stringFrom($data, 'payload');
     }
 
     public static function createFromJSON(string $json): ChannelOrderWebhook

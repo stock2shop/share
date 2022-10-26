@@ -11,7 +11,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     public ChannelOrderAddress $billing_address;
     public ChannelOrderCustomer $customer;
     public ?string $instruction;
-    /** @var ChannelOrderItem[] */
+    /** @var ChannelOrderLineItem[] */
     public array $line_items;
     /** @var OrderMeta[] */
     public array $meta;
@@ -23,7 +23,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $line_items     = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
+        $line_items     = ChannelOrderLineItem::createArray(self::arrayFrom($data, 'line_items'));
         $meta           = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
         $shipping_lines = OrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
 

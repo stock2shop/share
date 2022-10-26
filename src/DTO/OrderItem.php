@@ -13,21 +13,17 @@ class OrderItem extends DTO implements JsonSerializable, DTOInterface
     public ?float $price;
     public ?int $qty;
     public ?string $sku;
-    /** @var OrderItemTax[] $tax_lines */
-    public array $tax_lines;
     public ?string $title;
     public ?float $total_discount;
 
     public function __construct(array $data)
     {
-        $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
 
         $this->barcode        = self::stringFrom($data, "barcode");
         $this->grams          = self::intFrom($data, "grams");
         $this->price          = self::floatFrom($data, "price");
         $this->qty            = self::intFrom($data, "qty");
         $this->sku            = self::stringFrom($data, "sku");
-        $this->tax_lines      = $this->sortArray($tax_lines, 'title');
         $this->title          = self::stringFrom($data, "title");
         $this->total_discount = self::floatFrom($data, "total_discount");
     }

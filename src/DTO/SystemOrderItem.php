@@ -10,8 +10,9 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
 {
     public ?int $channel_id;
     public ?int $client_id;
-    public ?string $code;
     public ?string $created;
+    /** @var SystemFulfillmentLineItem[] $fulfillments */
+    public array $fulfillments;
     public ?string $modified;
     public ?int $product_id;
     public ?int $variant_id;
@@ -27,16 +28,6 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?string $sub_total_display;
     public ?float $total;
     public ?string $total_display;
-    /** @var SystemOrderItemFulfillment[] $fulfillment */
-    public array $fulfillments;
-
-    public const CODE_DEFAULT = self::CODE_ORDER_ITEM;
-    public const CODE_SHIPPING_LINE = 'ship';
-    public const CODE_ORDER_ITEM = 'item';
-    public const CODES_ALLOWED = [
-        self::CODE_ORDER_ITEM,
-        self::CODE_SHIPPING_LINE
-    ];
 
     public function __construct(array $data)
     {
@@ -46,8 +37,8 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
 
         $this->channel_id             = self::intFrom($data, 'channel_id');
         $this->client_id              = self::intFrom($data, 'client_id');
-        $this->code                   = self::stringFrom($data, 'code');
         $this->created                = self::stringFrom($data, "created");
+        $this->fulfillments           = self::sortArray($fulfillments, 'sku');
         $this->modified               = self::stringFrom($data, "modified");
         $this->product_id             = self::intFrom($data, 'product_id');
         $this->variant_id             = self::intFrom($data, 'variant_id');
@@ -88,19 +79,5 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
             $a[] = new SystemOrderItem((array)$item);
         }
         return $a;
-    }
-
-    /**
-     * Is Valid Code
-     *
-     * Checks whether the value exists in
-     * the class constant.
-     *
-     * @param string $code
-     * @return bool
-     */
-    public static function isValidCode(string $code): bool
-    {
-        return in_array($code, self::CODES_ALLOWED);
     }
 }
