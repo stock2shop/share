@@ -7,7 +7,7 @@ namespace Stock2Shop\Tests\Share\DTO;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
 
-class FulfillmentTest extends TestCase
+class ServiceFulfillmentTest extends TestCase
 {
     private string $json;
 
@@ -35,20 +35,20 @@ class FulfillmentTest extends TestCase
 
     public function testSerialize(): void
     {
-        $m = DTO\Fulfillment::createFromJSON($this->json);
+        $m = DTO\ServiceFulfillment::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $m = DTO\Fulfillment::createFromJSON($this->json);
-        $this->assertFulfillment($m);
+        $m = DTO\ServiceFulfillment::createFromJSON($this->json);
+        $this->assertServiceFulfillment($m);
     }
 
-    private function assertFulfillment(DTO\Fulfillment $c)
+    private function assertServiceFulfillment(DTO\ServiceFulfillment $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Fulfillment', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ServiceFulfillment', $c);
     }
 }
