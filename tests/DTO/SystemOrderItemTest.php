@@ -21,7 +21,6 @@ class SystemOrderItemTest extends TestCase
             "qty": 5,
             "sku": "sku",
             "title": "title",
-            "total_discount": 0.5,
             "channel_id": 57,
             "client_id": 21,
             "created": "created",
