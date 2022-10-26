@@ -78,6 +78,10 @@ class SystemFulfillmentTest extends TestCase
     private function assertSystemFulfillment(DTO\SystemFulfillment $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Fulfillment', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillment', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\FulfillmentLineItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderAddress', $c->shipping_address);
     }
 }

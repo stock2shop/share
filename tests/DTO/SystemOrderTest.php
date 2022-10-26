@@ -243,6 +243,18 @@ class SystemOrderTest extends TestCase
     private function assertSystemOrder(DTO\SystemOrder $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Order', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrder', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillment', $c->fulfillments[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->fulfillments[0]->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderAddress', $c->fulfillments[0]->shipping_address);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderHistory', $c->history[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->line_items[0]->fulfillments[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c->shipping_lines[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderSource', $c->sources[0]);
     }
 }

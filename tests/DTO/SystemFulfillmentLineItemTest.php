@@ -42,6 +42,7 @@ class SystemFulfillmentLineItemTest extends TestCase
     private function assertSystemFulfillmentLineItem(DTO\SystemFulfillmentLineItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\FulfillmentLineItem', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c);
     }
 }

@@ -51,6 +51,7 @@ class SystemOrderAddressTest extends TestCase
     private function assertSystemOrderAddress(DTO\SystemOrderAddress $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderAddress', $c);
     }
 }

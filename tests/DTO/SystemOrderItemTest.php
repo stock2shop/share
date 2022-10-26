@@ -57,7 +57,6 @@ class SystemOrderItemTest extends TestCase
 
     public function testSerialize(): void
     {
-//        print_r(json_encode(new DTO\SystemOrderItem([])));
         $m = DTO\SystemOrderItem::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
@@ -72,6 +71,8 @@ class SystemOrderItemTest extends TestCase
     private function assertSystemOrderItem(DTO\SystemOrderItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->fulfillments[0]);
     }
 }

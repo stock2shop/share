@@ -49,6 +49,8 @@ class ChannelOrderItemTest extends TestCase
     private function assertChannelOrderItem(DTO\ChannelOrderLineItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->tax_lines[0]);
     }
 }

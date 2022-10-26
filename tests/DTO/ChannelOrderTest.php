@@ -83,6 +83,13 @@ class ChannelOrderTest extends TestCase
             "shipping_lines": [
                 {
                     "price": 19.99,
+                    "tax_lines": [
+                        {
+                            "price": 19.99,
+                            "rate": 19.99,
+                            "title": "title"
+                        }
+                    ],
                     "title": "title"
                 }
             ]
@@ -105,6 +112,15 @@ class ChannelOrderTest extends TestCase
     private function assertChannelOrder(DTO\ChannelOrder $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Order', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrder', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderCustomer', $c->customer);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->shipping_address);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->billing_address);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->shipping_lines[0]->tax_lines[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->line_items[0]->tax_lines[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
     }
 }

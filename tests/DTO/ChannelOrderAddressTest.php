@@ -47,6 +47,7 @@ class ChannelOrderAddressTest extends TestCase
     private function assertChannelOrderAddress(DTO\ChannelOrderAddress $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c);
     }
 }

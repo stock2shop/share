@@ -51,6 +51,7 @@ class SystemOrderShippingLineTest extends TestCase
     private function assertSystemOrderShippingLine(DTO\SystemOrderShippingLine $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c);
     }
 }
