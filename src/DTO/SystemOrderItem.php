@@ -19,6 +19,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?int $source_id;
     public ?string $source_variant_code;
     public ?string $price_display;
+    public ?float $total_discount;
     public ?string $total_discount_display;
     public ?string $tax_per_unit_display;
     public ?float $tax;
@@ -33,7 +34,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     {
         parent::__construct($data);
 
-        $fulfillments = SystemOrderItemFulfillment::createArray(self::arrayFrom($data, 'fulfillments'));
+        $fulfillments = SystemFulfillmentLineItem::createArray(self::arrayFrom($data, 'fulfillments'));
 
         $this->channel_id             = self::intFrom($data, 'channel_id');
         $this->client_id              = self::intFrom($data, 'client_id');
@@ -55,7 +56,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
         $this->sub_total_display      = self::stringFrom($data, 'sub_total_display');
         $this->total                  = self::floatFrom($data, 'total');
         $this->total_display          = self::stringFrom($data, 'total_display');
-        $this->fulfillments           = $this->sortArray($fulfillments, 'fulfillment_id');
+        $this->fulfillments           = self::sortArray($fulfillments, 'fulfillment_id');
     }
 
     public function jsonSerialize(): array
