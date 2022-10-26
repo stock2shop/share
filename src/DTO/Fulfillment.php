@@ -22,7 +22,7 @@ class Fulfillment extends DTO implements JsonSerializable, DTOInterface
     {
         $line_items = FulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));
 
-        $this->fulfillmentservice_order_code = self::intFrom($data, 'fulfillmentservice_order_code');
+        $this->fulfillmentservice_order_code = self::stringFrom($data, 'fulfillmentservice_order_code');
         $this->line_items                    = self::sortArray($line_items, 'sku');
         $this->notes                         = self::stringFrom($data, 'notes');
         $this->state                         = self::stringFrom($data, "state");
