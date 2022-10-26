@@ -18,7 +18,6 @@ class OrderItem extends DTO implements JsonSerializable, DTOInterface
 
     public function __construct(array $data)
     {
-
         $this->barcode        = self::stringFrom($data, "barcode");
         $this->grams          = self::intFrom($data, "grams");
         $this->price          = self::floatFrom($data, "price");

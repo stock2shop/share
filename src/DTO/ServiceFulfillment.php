@@ -8,7 +8,6 @@ use JsonSerializable;
 
 class ServiceFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
 {
-
     public function __construct(array $data)
     {
         parent::__construct($data);
