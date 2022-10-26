@@ -10,8 +10,8 @@ class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $instruction;
     public ?string $storage_code;
-    public ?string $channel_id;
-    public ?string $client_id;
+    public ?int $channel_id;
+    public ?int $client_id;
     public ?string $created;
     public ?string $modified;
 
