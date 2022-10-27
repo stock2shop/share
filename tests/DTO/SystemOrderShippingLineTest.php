@@ -17,8 +17,6 @@ class SystemOrderShippingLineTest extends TestCase
         {
             "price": 99.99,
             "title": "title",
-            "channel_id": 1,
-            "client_id": 2,
             "created": "created",
             "modified": "modified",
             "price_display": "price_display",

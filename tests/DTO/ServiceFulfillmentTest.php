@@ -25,7 +25,6 @@ class ServiceFulfillmentTest extends TestCase
                 }
             ],
             "notes": "notes",
-            "state": "state",
             "status": "status",
             "tracking_company": "tracking_company",
             "tracking_number": 123,

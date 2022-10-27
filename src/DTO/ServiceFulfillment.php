@@ -8,9 +8,16 @@ use JsonSerializable;
 
 class ServiceFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
 {
+    /** @var FulfillmentLineItem[] $line_items */
+    public array $line_items;
+
     public function __construct(array $data)
     {
         parent::__construct($data);
+
+        $line_items = FulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));
+
+        $this->line_items = self::sortArray($line_items, 'sku');
     }
 
     public static function createFromJSON(string $json): ServiceFulfillment

@@ -75,11 +75,10 @@ class SystemOrderTest extends TestCase
             },
             "fulfillments": [
                 {
+                    "channel_synced": "2022-10-27 06:21:41.281236",
                     "fulfillmentservice_order_code": "fulfillmentservice_order_code",
                     "line_items": [
                         {
-                            "channel_id": 57,
-                            "client_id": 21,
                             "created": "created",
                             "modified": "modified",
                             "grams": 10,
@@ -103,7 +102,9 @@ class SystemOrderTest extends TestCase
                     "shipping_address": {
                         "address1": "address1",
                         "address2": "address2",
+                        "channel_id": 1,
                         "city": "city",
+                        "client_id": 2,
                         "company": "company",
                         "country": "country",
                         "country_code": "country_code",
@@ -114,8 +115,6 @@ class SystemOrderTest extends TestCase
                         "province_code": "province_code",
                         "type": "type",
                         "zip": "zip",
-                        "channel_id": 57,
-                        "client_id": 21,
                         "created": "created",
                         "modified": "modified"
                     }
@@ -125,8 +124,6 @@ class SystemOrderTest extends TestCase
                 {
                     "instruction": "instruction",
                     "storage_code": "storage_code",
-                    "channel_id": 56,
-                    "client_id": 21,
                     "created": "created",
                     "modified": "modified"
                 }
@@ -142,13 +139,9 @@ class SystemOrderTest extends TestCase
                     "qty": 5,
                     "sku": "sku",
                     "title": "title",
-                    "channel_id": 57,
-                    "client_id": 21,
                     "created": "created",
                     "fulfillments": [
                         {
-                            "channel_id": 57,
-                            "client_id": 21,
                             "created": "created",
                             "modified": "modified",
                             "grams": 10,
@@ -178,8 +171,7 @@ class SystemOrderTest extends TestCase
             "meta": [
                 {
                     "key": "src",
-                    "value": "value",
-                    "template_name": "template_name"
+                    "value": "value"
                 }
             ],
             "modified": "modified",
@@ -187,8 +179,6 @@ class SystemOrderTest extends TestCase
                 {
                     "price": 99.99,
                     "title": "title",
-                    "channel_id": 1,
-                    "client_id": 2,
                     "created": "created",
                     "modified": "modified",
                     "price_display": "price_display",
@@ -252,7 +242,7 @@ class SystemOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->line_items[0]->fulfillments[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderSource', $c->sources[0]);

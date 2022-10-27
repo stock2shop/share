@@ -10,8 +10,6 @@ class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $instruction;
     public ?string $storage_code;
-    public ?int $channel_id;
-    public ?int $client_id;
     public ?string $created;
     public ?string $modified;
 
@@ -20,8 +18,6 @@ class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface
     {
         $this->instruction  = self::stringFrom($data, "instruction");
         $this->storage_code = self::stringFrom($data, "storage_code");
-        $this->channel_id   = self::intFrom($data, "channel_id");
-        $this->client_id    = self::intFrom($data, "client_id");
         $this->created      = self::stringFrom($data, "created");
         $this->modified     = self::stringFrom($data, "modified");
     }

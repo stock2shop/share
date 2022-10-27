@@ -15,8 +15,6 @@ class SystemFulfillmentLineItemTest extends TestCase
     {
         $this->json = '
         {
-            "channel_id": 57,
-            "client_id": 21,
             "created": "created",
             "modified": "modified",
             "grams": 10,

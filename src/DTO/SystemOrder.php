@@ -21,7 +21,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?float $line_item_tax;
     /** @var SystemOrderItem[] $line_items */
     public array $line_items;
-    /** @var Meta[] $meta */
+    /** @var OrderMeta[] $meta */
     public array $meta;
     public ?string $modified;
     /** @var SystemOrderShippingLine[] $shipping_lines */
@@ -48,7 +48,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $fulfillments   = SystemFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
         $history        = SystemOrderHistory::createArray(self::arrayFrom($data, "history"));
         $line_items     = SystemOrderItem::createArray(self::arrayFrom($data, 'line_items'));
-        $meta           = Meta::createArray(self::arrayFrom($data, "meta"));
+        $meta           = OrderMeta::createArray(self::arrayFrom($data, "meta"));
         $shipping_lines = SystemOrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
         $sources        = OrderSource::createArray(self::arrayFrom($data, 'sources'));
 

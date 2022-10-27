@@ -16,16 +16,7 @@ class FulfillmentTest extends TestCase
         $this->json = '
         {
             "fulfillmentservice_order_code": "fulfillmentservice_order_code",
-            "line_items": [
-                {
-                    "grams": 10,
-                    "qty": 1,
-                    "sku": "sku",
-                    "fulfilled_qty": 0
-                }
-            ],
             "notes": "notes",
-            "state": "state",
             "status": "status",
             "tracking_company": "tracking_company",
             "tracking_number": 123,

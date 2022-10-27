@@ -15,11 +15,10 @@ class SystemFulfillmentTest extends TestCase
     {
         $this->json = '
         {
+            "channel_synced": "2022-10-27 06:21:41.281236",
             "fulfillmentservice_order_code": "fulfillmentservice_order_code",
             "line_items": [
                 {
-                    "channel_id": 57,
-                    "client_id": 21,
                     "created": "created",
                     "modified": "modified",
                     "grams": 10,

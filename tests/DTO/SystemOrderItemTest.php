@@ -21,13 +21,9 @@ class SystemOrderItemTest extends TestCase
             "qty": 5,
             "sku": "sku",
             "title": "title",
-            "channel_id": 57,
-            "client_id": 21,
             "created": "created",
             "fulfillments": [
                 {
-                    "channel_id": 57,
-                    "client_id": 21,
                     "created": "created",
                     "modified": "modified",
                     "grams": 10,

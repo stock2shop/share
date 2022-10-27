@@ -17,8 +17,6 @@ class SystemOrderHistoryTest extends TestCase
         {
             "instruction": "instruction",
             "storage_code": "storage_code",
-            "channel_id": 56,
-            "client_id": 21,
             "created": "created",
             "modified": "modified"
         }';

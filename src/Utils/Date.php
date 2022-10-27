@@ -11,7 +11,8 @@ use InvalidArgumentException;
 
 class Date
 {
-    public const FORMAT = "Y-m-d H:i:s";
+    // might not need FORMAT without microseconds
+//    public const FORMAT = "Y-m-d H:i:s";
     public const FORMAT_MS = "Y-m-d H:i:s.u";
     public const TIMEZONE = "UTC";
 
@@ -28,7 +29,7 @@ class Date
      */
     public static function getDateString($date = '', $format = self::FORMAT_MS): string
     {
-        if (!in_array($format, [self::FORMAT_MS, self::FORMAT])) {
+        if ($format != self::FORMAT_MS) {
             throw new InvalidArgumentException('Invalid Date Format');
         }
         date_default_timezone_set(self::TIMEZONE);
