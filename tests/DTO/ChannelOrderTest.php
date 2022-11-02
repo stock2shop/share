@@ -39,7 +39,7 @@ class ChannelOrderTest extends TestCase
                 "first_name": "first_name",
                 "last_name": "last_name"
             },
-            "instruction": "instruction",
+            "instruction": "add_order",
             "line_items": [
                 {
                     "barcode": "barcode",

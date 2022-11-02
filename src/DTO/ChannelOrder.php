@@ -8,9 +8,13 @@ use JsonSerializable;
 
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
-    public const ORDER_STATE_PROCESSING = 'processing';
     public const INSTRUCTION_ADD_ORDER = 'add_order';
     public const INSTRUCTION_EMPTY = '';
+    public const ALLOWED_INSTRUCTIONS = [
+        self::INSTRUCTION_ADD_ORDER,
+        self::INSTRUCTION_EMPTY,
+    ];
+
 
     public ChannelOrderAddress $billing_address;
     public ChannelOrderCustomer $customer;
@@ -38,6 +42,11 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
         $this->meta             = $this->sortArray($meta, 'key');
         $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
+
+        // set instruction to empty not valid
+        if(!in_array($this->instruction, self::ALLOWED_INSTRUCTIONS)) {
+            $this->instruction = self::INSTRUCTION_EMPTY;
+        }
     }
 
     public function jsonSerialize(): array
