@@ -8,6 +8,10 @@ use JsonSerializable;
 
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
+    public const ORDER_STATE_PROCESSING = 'processing';
+    public const INSTRUCTION_ADD_ORDER = 'add_order';
+    public const INSTRUCTION_EMPTY = '';
+
     public ChannelOrderAddress $billing_address;
     public ChannelOrderCustomer $customer;
     public ?string $instruction;
