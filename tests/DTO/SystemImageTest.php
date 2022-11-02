@@ -32,17 +32,9 @@ class SystemImageTest extends TestCase
     {
         $si = DTO\SystemImage::createFromJSON($this->json);
         $this->assertSystemImage($si);
-        $si = new DTO\SystemImage([]);
-        $this->assertSystemImageNull($si);
     }
 
     private function assertSystemImage(DTO\SystemImage $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c);
-    }
-
-    private function assertSystemImageNull(DTO\SystemImage $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemImage', $c);

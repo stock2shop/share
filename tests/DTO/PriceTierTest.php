@@ -31,17 +31,9 @@ class PriceTierTest extends TestCase
     {
         $pt = DTO\PriceTier::createFromJSON($this->json);
         $this->assertPriceTier($pt);
-        $pt = new DTO\PriceTier([]);
-        $this->assertPriceTierNull($pt);
     }
 
     private function assertPriceTier(DTO\PriceTier $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c);
-    }
-
-    private function assertPriceTierNull(DTO\PriceTier $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c);

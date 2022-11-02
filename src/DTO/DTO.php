@@ -68,7 +68,7 @@ abstract class DTO
             if (empty($data[$key])) {
                 return self::toString($data[$key]);
             }
-            return Date::getDateString($data[$key]);
+            return Date::getDateString($data[$key], $format);
         }
         return null;
     }

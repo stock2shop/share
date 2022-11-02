@@ -31,17 +31,9 @@ class ProductOptionTest extends TestCase
     {
         $po = DTO\ProductOption::createFromJSON($this->json);
         $this->assertProductOption($po);
-        $po = new DTO\ProductOption([]);
-        $this->assertProductOptionNull($po);
     }
 
     private function assertProductOption(DTO\ProductOption $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);
-    }
-
-    private function assertProductOptionNull(DTO\ProductOption $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c);

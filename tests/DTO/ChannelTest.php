@@ -45,8 +45,6 @@ class ChannelTest extends TestCase
     {
         $c = DTO\Channel::createFromJSON($this->json);
         $this->assertChannel($c);
-        $c = new DTO\Channel([]);
-        $this->assertChannelNull($c);
     }
 
     private function assertChannel(DTO\Channel $c)
@@ -58,12 +56,5 @@ class ChannelTest extends TestCase
         foreach ($c->meta as $meta) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);
         }
-    }
-
-    private function assertChannelNull(DTO\Channel $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
-        $this->assertIsArray($c->meta);
     }
 }

@@ -10,31 +10,26 @@ class Address extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $address1;
     public ?string $address2;
-    public ?string $address_code;
     public ?string $city;
-    public ?string $country_code;
     public ?string $company;
     public ?string $country;
-    public ?bool $default;
+    public ?string $country_code;
     public ?string $first_name;
     public ?string $last_name;
     public ?string $phone;
     public ?string $province;
     public ?string $province_code;
-    public ?string $zip;
     public ?string $type;
-
+    public ?string $zip;
 
     public function __construct(array $data)
     {
         $this->address1      = self::stringFrom($data, 'address1');
         $this->address2      = self::stringFrom($data, 'address2');
-        $this->address_code  = self::stringFrom($data, 'address_code');
         $this->city          = self::stringFrom($data, 'city');
-        $this->country_code  = self::stringFrom($data, 'country_code');
         $this->company       = self::stringFrom($data, 'company');
         $this->country       = self::stringFrom($data, 'country');
-        $this->default       = self::boolFrom($data, 'default');
+        $this->country_code  = self::stringFrom($data, 'country_code');
         $this->first_name    = self::stringFrom($data, 'first_name');
         $this->last_name     = self::stringFrom($data, 'last_name');
         $this->phone         = self::stringFrom($data, 'phone');
