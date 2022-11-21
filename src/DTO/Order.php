@@ -24,6 +24,13 @@ class Order extends DTO implements JsonSerializable, DTOInterface
         return (array)$this;
     }
 
+    public function computeHash(): string
+    {
+        $p    = new Order((array)$this);
+        $json = json_encode($p);
+        return md5($json);
+    }
+
     public static function createFromJSON(string $json): Order
     {
         $data = json_decode($json, true);

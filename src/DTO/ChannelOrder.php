@@ -43,10 +43,29 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
         $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
 
-        // set instruction to empty not valid
-        if(!in_array($this->instruction, self::ALLOWED_INSTRUCTIONS)) {
+        // set instruction to empty if not valid
+        if (!in_array($this->instruction, self::ALLOWED_INSTRUCTIONS)) {
             $this->instruction = self::INSTRUCTION_EMPTY;
         }
+    }
+
+    /**
+     * Computes a hash of the ChannelOrder
+     */
+    public function computeHash(): string
+    {
+        $orderHash = parent::computeHash();
+
+        // append fields to base order hash
+        $orderHash .= json_encode($this->billing_address);
+        $orderHash .= json_encode($this->customer);
+        $orderHash .= json_encode($this->instruction);
+        $orderHash .= json_encode($this->line_items);
+        $orderHash .= json_encode($this->meta);
+        $orderHash .= json_encode($this->shipping_address);
+        $orderHash .= json_encode($this->shipping_lines);
+        $json     = json_encode($orderHash);
+        return md5($json);
     }
 
     public function jsonSerialize(): array
