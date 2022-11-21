@@ -15,7 +15,7 @@ abstract class DTO
      * WARNING The $sortable array must be passed by reference
      * https://stackoverflow.com/a/10483117
      */
-    protected function sortArray(array $sortable, string $keyName): array
+    protected function sortArray(array &$sortable, string $keyName): array
     {
         usort($sortable, function ($a, $b) use ($keyName) {
             return $a->$keyName <=> $b->$keyName;

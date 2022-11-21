@@ -124,6 +124,15 @@ class ChannelOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
     }
 
+    /** @dataProvider computeHashArrayOrderingDataProvider */
+    public function testComputeHashArrayOrdering(array $channelOrders, string $expectedHash): void
+    {
+        foreach ($channelOrders as $channelOrder) {
+            $co = new DTO\ChannelOrder($channelOrder);
+            $this->assertEquals($expectedHash, $co->computeHash());
+        }
+    }
+
     /** @dataProvider computeHashDataProvider */
     public function testComputeHash(DTO\ChannelOrder $channelOrder, string $expectedHash): void
     {
@@ -135,7 +144,7 @@ class ChannelOrderTest extends TestCase
         return [
             [
                 'channel_order' => new DTO\ChannelOrder([]),
-                'hash'          => '06beb6203f4e543f629ed20f89fb1960'
+                'hash'          => '48bc318d6b42bead52f04beec3a32ce3',
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -143,7 +152,15 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ]),
-                'hash'          => '3a6dd0fefb39ed81d0d3f2d752b6a2d9'
+                'hash'          => '37271927b3ff4185593d9abbe4cb736f'
+            ],
+            [
+                'channel_order' => new DTO\ChannelOrder([
+                    "notes"              => "notes",
+                    "total_discount"     => 5.00,
+                    "channel_order_code" => "channel_order_code",
+                ]),
+                'hash'          => '37271927b3ff4185593d9abbe4cb736f'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -166,7 +183,7 @@ class ChannelOrderTest extends TestCase
                         "zip"           => "zip"
                     ],
                 ]),
-                'hash'          => '759becbd54b703e5971255f41e24357c'
+                'hash'          => 'a3235c50e3dc5177d8cd7a588adc742a'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -195,7 +212,7 @@ class ChannelOrderTest extends TestCase
                         "last_name"         => "last_name"
                     ],
                 ]),
-                'hash'          => 'a42434baa5ecb80500658a786f1d8ea0'
+                'hash'          => '9a98b128c0db91b8272dd625588570a2'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -225,7 +242,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "instruction"        => "add_order",
                 ]),
-                'hash'          => '9058aaf5f8b1bbd181159260fc2da9e1'
+                'hash'          => '674fb9007fba363068b88785c60ca79f'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -291,7 +308,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ],
                 ]),
-                'hash'          => '18ae6fd2cb80b7bd2769c897672381a0'
+                'hash'          => '6b615956a2efdc21c2c6d98e4015a0f1'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -367,7 +384,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ],
                 ]),
-                'hash'          => 'aabcfa94cdb95c0a35d6c7b23fcd274c'
+                'hash'          => '8140f41a489986b224d781b6ed854d19'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -458,7 +475,7 @@ class ChannelOrderTest extends TestCase
                         "zip"           => "zip"
                     ],
                 ]),
-                'hash'          => '6de62f606dd2c91562b19597b80066b2'
+                'hash'          => '9ae98f093a1885e295be6c5e83802ebb'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -573,8 +590,87 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ]),
-                'hash'          => 'b0efe5bf640c40977fc58a446279a20f'
+                'hash'          => 'f59e3d676c0fbb41783250ae0a28198a'
             ],
+        ];
+    }
+
+    private function computeHashArrayOrderingDataProvider(): array
+    {
+        return [
+            [
+                [
+                    [
+                        'line_items' => [
+                            [
+                                "price"                => 19.99,
+                                "qty"                  => 100,
+                                "sku"                  => "sku-2"
+                            ],
+                            [
+                                "price"                => 19.99,
+                                "qty"                  => 100,
+                                "sku"                  => "sku-1"
+                            ]
+                        ],
+                        'meta' => [
+                            [
+                                'key' => 'a',
+                                'value' => '1'
+                            ],
+                            [
+                                'key' => 'b',
+                                'value' => '2'
+                            ]
+                        ],
+                        'shipping_lines' => [
+                            [
+                                'price' => 100,
+                                'title' => '1'
+                            ],
+                            [
+                                'price' => 200,
+                                'title' => '2'
+                            ]
+                        ]
+                    ],
+                    [
+                        'line_items' => [
+                            [
+                                "price"                => 19.99,
+                                "qty"                  => 100,
+                                "sku"                  => "sku-1"
+                            ],
+                            [
+                                "price"                => 19.99,
+                                "qty"                  => 100,
+                                "sku"                  => "sku-2"
+                            ],
+                        ],
+                        'meta' => [
+                            [
+                                'key' => 'b',
+                                'value' => '2'
+                            ],
+                            [
+                                'key' => 'a',
+                                'value' => '1'
+                            ]
+                        ],
+                        'shipping_lines' => [
+                            [
+                                'price' => 200,
+                                'title' => '2'
+                            ],
+                            [
+                                'price' => 100,
+                                'title' => '1'
+                            ]
+                        ]
+                    ]
+                ],
+                'hash'          => 'fd947a6fa72ddb227bc26857baff0f23',
+            ]
         ];
     }
 }
