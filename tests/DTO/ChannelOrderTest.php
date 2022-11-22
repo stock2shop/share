@@ -35,6 +35,7 @@ class ChannelOrderTest extends TestCase
             },
             "customer": {
                 "accepts_marketing": true,
+                "channel_customer_code": "channel_customer_code",
                 "email": "email",
                 "first_name": "first_name",
                 "last_name": "last_name"
@@ -144,7 +145,7 @@ class ChannelOrderTest extends TestCase
         return [
             [
                 'channel_order' => new DTO\ChannelOrder([]),
-                'hash'          => '48bc318d6b42bead52f04beec3a32ce3',
+                'hash'          => '5cda865b128897663c2197a1d13a23c2',
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -152,7 +153,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ]),
-                'hash'          => '37271927b3ff4185593d9abbe4cb736f'
+                'hash'          => '3a29fb88e526b81db00dc2e50c44dc2c'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -160,7 +161,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "channel_order_code" => "channel_order_code",
                 ]),
-                'hash'          => '37271927b3ff4185593d9abbe4cb736f'
+                'hash'          => '3a29fb88e526b81db00dc2e50c44dc2c'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -183,7 +184,7 @@ class ChannelOrderTest extends TestCase
                         "zip"           => "zip"
                     ],
                 ]),
-                'hash'          => 'a3235c50e3dc5177d8cd7a588adc742a'
+                'hash'          => '34ab5dc69b30def9a6675987d706fd38'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -207,12 +208,13 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
                     ],
                 ]),
-                'hash'          => '9a98b128c0db91b8272dd625588570a2'
+                'hash'          => '3d8e8924f944eefbe07427381ffa82b8'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -236,13 +238,14 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
                     ],
                     "instruction"        => "add_order",
                 ]),
-                'hash'          => '674fb9007fba363068b88785c60ca79f'
+                'hash'          => 'ef713be0ecc8f838ff780897ae38ee15'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -266,6 +269,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
@@ -308,7 +312,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ],
                 ]),
-                'hash'          => '6b615956a2efdc21c2c6d98e4015a0f1'
+                'hash'          => 'd7c97d1c31717034fbb67f58c532484f'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -332,6 +336,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
@@ -384,7 +389,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ],
                 ]),
-                'hash'          => '8140f41a489986b224d781b6ed854d19'
+                'hash'          => 'a07f4c2b75d794bcd7e8486287fcaefc'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -408,6 +413,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
@@ -475,7 +481,7 @@ class ChannelOrderTest extends TestCase
                         "zip"           => "zip"
                     ],
                 ]),
-                'hash'          => '9ae98f093a1885e295be6c5e83802ebb'
+                'hash'          => '81c05d2799fdbdd7687ff32ea9b5793c'
             ],
             [
                 'channel_order' => new DTO\ChannelOrder([
@@ -499,6 +505,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
@@ -590,7 +597,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ]),
-                'hash'          => 'f59e3d676c0fbb41783250ae0a28198a'
+                'hash'          => '9ff0186597a2d3225bfcaf62d46ab309'
             ],
         ];
     }
@@ -669,7 +676,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash'          => 'fd947a6fa72ddb227bc26857baff0f23',
+                'hash'          => 'acc4fd75b89e1d2f29b3111128c6f2c7',
             ]
         ];
     }
