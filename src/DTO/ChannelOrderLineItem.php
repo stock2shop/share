@@ -8,7 +8,6 @@ use JsonSerializable;
 
 class ChannelOrderLineItem extends OrderItem implements JsonSerializable, DTOInterface
 {
-    public ?string $channel_variant_code;
     /** @var OrderItemTax[] $tax_lines */
     public array $tax_lines;
 
@@ -18,7 +17,6 @@ class ChannelOrderLineItem extends OrderItem implements JsonSerializable, DTOInt
 
         $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
 
-        $this->channel_variant_code = self::stringFrom($data, 'channel_variant_code');
         $this->tax_lines            = self::sortArray($tax_lines, 'title');
     }
 
