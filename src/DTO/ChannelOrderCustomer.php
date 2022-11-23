@@ -8,9 +8,13 @@ use JsonSerializable;
 
 class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
+    public ?string $channel_customer_code;
+
     public function __construct(array $data)
     {
         parent::__construct($data);
+
+        $this->channel_customer_code = self::stringFrom($data, 'channel_customer_code');
     }
 
     public function jsonSerialize(): array

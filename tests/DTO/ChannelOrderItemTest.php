@@ -28,8 +28,7 @@ class ChannelOrderItemTest extends TestCase
                 }
             ],
             "title": "title",
-            "total_discount": 20.05,
-            "channel_variant_code": "channel_variant_code"
+            "total_discount": 20.05
         }';
     }
 
