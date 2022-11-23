@@ -35,6 +35,7 @@ class ChannelOrderTest extends TestCase
             },
             "customer": {
                 "accepts_marketing": true,
+                "channel_customer_code": "channel_customer_code",
                 "email": "email",
                 "first_name": "first_name",
                 "last_name": "last_name"
@@ -157,7 +158,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ],
-                '37271927b3ff4185593d9abbe4cb736f'
+                '3a29fb88e526b81db00dc2e50c44dc2c'
             ],
             [
                 [
@@ -165,7 +166,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "channel_order_code" => "channel_order_code",
                 ],
-                '37271927b3ff4185593d9abbe4cb736f'
+                '3a29fb88e526b81db00dc2e50c44dc2c'
             ],
             [
                 [
@@ -189,6 +190,7 @@ class ChannelOrderTest extends TestCase
                     ],
                     "customer"           => [
                         "accepts_marketing" => true,
+                        "channel_customer_code" => "channel_customer_code",
                         "email"             => "email",
                         "first_name"        => "first_name",
                         "last_name"         => "last_name"
@@ -280,7 +282,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '4306fb475faff18dc6aad66c87768036'
+                '5a3f6019e009afe0366f40c1edda2caa'
             ],
         ];
     }
@@ -337,7 +339,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '48bc318d6b42bead52f04beec3a32ce3',
+                '5cda865b128897663c2197a1d13a23c2',
 
             ]
         ];
@@ -441,7 +443,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => 'cfd23e20ee362d08556d7f81256cd522',
+                'hash' => '3cddb7edf0db9c8b0f7800ea1c5d3d78',
             ]
         ];
     }

@@ -16,6 +16,7 @@ class ChannelOrderCustomerTest extends TestCase
         $this->json = '
         {
             "accepts_marketing": true,
+            "channel_customer_code": "channel_customer_code", 
             "email": "email",
             "first_name": "first_name",
             "last_name": "last_name"
