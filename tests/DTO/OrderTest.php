@@ -15,6 +15,7 @@ class OrderTest extends TestCase
     {
         $this->json = '
         {
+            "channel_id": 20,
             "channel_order_code": "channel_order_code",
             "notes": "notes",
             "total_discount": 20.05
