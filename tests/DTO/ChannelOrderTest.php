@@ -15,6 +15,7 @@ class ChannelOrderTest extends TestCase
     {
         $this->json = '
         {
+            "channel_id": 20,
             "channel_order_code": "channel_order_code",
             "notes": "notes",
             "total_discount": 5.00,
@@ -154,22 +155,25 @@ class ChannelOrderTest extends TestCase
         return [
             [
                 [
+                    'channel_id'         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ],
-                '3a29fb88e526b81db00dc2e50c44dc2c'
+                'ddaf57173ead254bcf12f0f7fb2bd77b'
             ],
             [
                 [
                     "notes"              => "notes",
                     "total_discount"     => 5.00,
                     "channel_order_code" => "channel_order_code",
+                    'channel_id'         => 20,
                 ],
-                '3a29fb88e526b81db00dc2e50c44dc2c'
+                'ddaf57173ead254bcf12f0f7fb2bd77b'
             ],
             [
                 [
+                    "channel_id"         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
                     "total_discount"     => 5.00,
@@ -189,11 +193,11 @@ class ChannelOrderTest extends TestCase
                         "zip"           => "zip"
                     ],
                     "customer"           => [
-                        "accepts_marketing" => true,
+                        "accepts_marketing"     => true,
                         "channel_customer_code" => "channel_customer_code",
-                        "email"             => "email",
-                        "first_name"        => "first_name",
-                        "last_name"         => "last_name"
+                        "email"                 => "email",
+                        "first_name"            => "first_name",
+                        "last_name"             => "last_name"
                     ],
                     "instruction"        => "add_order",
                     "line_items"         => [
@@ -282,7 +286,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '5a3f6019e009afe0366f40c1edda2caa'
+                '522708639ddf219bdc2505f1f249e557'
             ],
         ];
     }
@@ -294,6 +298,7 @@ class ChannelOrderTest extends TestCase
                 [
                     [],
                     [
+                        "channel_id"         => null,
                         "channel_order_code" => null,
                         "notes"              => null,
                         "total_discount"     => null,
@@ -339,8 +344,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '5cda865b128897663c2197a1d13a23c2',
-
+                'a3c3c82ff057728a1d2ec1ef7b01b503',
             ]
         ];
     }
@@ -358,9 +362,9 @@ class ChannelOrderTest extends TestCase
                                 "sku"   => "sku-2"
                             ],
                             [
-                                "price" => 19.99,
-                                "qty"   => 100,
-                                "sku"   => "sku-1",
+                                "price"     => 19.99,
+                                "qty"       => 100,
+                                "sku"       => "sku-1",
                                 "tax_lines" => [
                                     [
                                         "price" => 10.01,
@@ -399,9 +403,9 @@ class ChannelOrderTest extends TestCase
                     [
                         'line_items'     => [
                             [
-                                "price" => 19.99,
-                                "qty"   => 100,
-                                "sku"   => "sku-1",
+                                "price"     => 19.99,
+                                "qty"       => 100,
+                                "sku"       => "sku-1",
                                 "tax_lines" => [
                                     [
                                         "price" => 29.99,
@@ -443,7 +447,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '3cddb7edf0db9c8b0f7800ea1c5d3d78',
+                'hash' => '503f211ca4dacfa09dd820442d195e3c',
             ]
         ];
     }
