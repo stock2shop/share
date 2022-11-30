@@ -8,13 +8,15 @@ use JsonSerializable;
 
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
+    // order instructions
     public const INSTRUCTION_ADD_ORDER = 'add_order';
     public const INSTRUCTION_EMPTY = '';
+    public const INSTRUCTION_UNPAID_ORDER = 'unpaid_order';
     public const ALLOWED_INSTRUCTIONS = [
         self::INSTRUCTION_ADD_ORDER,
         self::INSTRUCTION_EMPTY,
+        self::INSTRUCTION_UNPAID_ORDER
     ];
-
 
     public ChannelOrderAddress $billing_address;
     public ChannelOrderCustomer $customer;
