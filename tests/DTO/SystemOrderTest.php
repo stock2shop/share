@@ -18,6 +18,7 @@ class SystemOrderTest extends TestCase
             "channel_order_code": "channel_order_code",
             "notes": "notes",
             "total_discount": 1.01,
+            "state": "new",
             "channel_id": 2,
             "client_id": 3,
             "created": "created",

@@ -12,6 +12,7 @@ class Order extends DTO implements JsonSerializable, DTOInterface
     public ?string $channel_order_code;
     public ?string $notes;
     public ?float $total_discount;
+    public ?string $state;
 
     public function __construct(array $data)
     {
@@ -19,6 +20,7 @@ class Order extends DTO implements JsonSerializable, DTOInterface
         $this->channel_order_code = self::stringFrom($data, 'channel_order_code');
         $this->notes              = self::stringFrom($data, 'notes');
         $this->total_discount     = self::floatFrom($data, 'total_discount');
+        $this->state              = self::stringFrom($data, 'state');
     }
 
     public function jsonSerialize(): array
@@ -42,5 +44,15 @@ class Order extends DTO implements JsonSerializable, DTOInterface
             $a[] = new Order((array)$item);
         }
         return $a;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
     }
 }

@@ -19,6 +19,7 @@ class ChannelOrderTest extends TestCase
             "channel_order_code": "channel_order_code",
             "notes": "notes",
             "total_discount": 5.00,
+            "state": "new",
             "billing_address": {
                 "address1": "address1",
                 "address2": "address2",
@@ -158,9 +159,28 @@ class ChannelOrderTest extends TestCase
                     'channel_id'         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
+                    "total_discount"     => 5.00,
+                    "state"              => null,
+                ],
+                'db602ce0e3692b5959cf7ef9740038bd'
+            ],
+            [
+                [
+                    'channel_id'         => 20,
+                    "channel_order_code" => "channel_order_code",
+                    "notes"              => "notes",
+                    "total_discount"     => 5.00,
+                ],
+                'db602ce0e3692b5959cf7ef9740038bd'
+            ],
+            [
+                [
+                    'channel_id'         => 20,
+                    "channel_order_code" => "channel_order_code",
+                    "notes"              => "notes",
                     "total_discount"     => 5.00
                 ],
-                'ddaf57173ead254bcf12f0f7fb2bd77b'
+                'db602ce0e3692b5959cf7ef9740038bd'
             ],
             [
                 [
@@ -169,7 +189,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                'ddaf57173ead254bcf12f0f7fb2bd77b'
+                'db602ce0e3692b5959cf7ef9740038bd'
             ],
             [
                 [
@@ -286,7 +306,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '522708639ddf219bdc2505f1f249e557'
+                '39789e27c8743c2650579bb101d484c5'
             ],
         ];
     }
@@ -344,7 +364,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                'a3c3c82ff057728a1d2ec1ef7b01b503',
+                '4ebccdabd1d6ce3aeeee19590a45db8e',
             ]
         ];
     }
@@ -447,7 +467,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '503f211ca4dacfa09dd820442d195e3c',
+                'hash' => 'e0a762d53ef4426fc3e767874bc5a783',
             ]
         ];
     }
