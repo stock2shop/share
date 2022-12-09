@@ -57,6 +57,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     public function computeHash(): string
     {
         $p    = new ChannelOrder((array)$this);
+        unset($p->instruction);
         $json = json_encode($p);
         return md5($json);
     }
