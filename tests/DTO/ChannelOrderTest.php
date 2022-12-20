@@ -67,6 +67,12 @@ class ChannelOrderTest extends TestCase
                     "value": "value"
                 }
             ],
+            "params": [
+                {
+                    "key": "key",
+                    "value": "value"
+                }
+            ],
             "shipping_address": {
                 "address1": "address1",
                 "address2": "address2",
@@ -162,7 +168,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                'da492ff527acc6fd57e81ad5571cad6a'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -171,7 +177,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00,
                 ],
-                'da492ff527acc6fd57e81ad5571cad6a'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -180,7 +186,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ],
-                'da492ff527acc6fd57e81ad5571cad6a'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -189,7 +195,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                'da492ff527acc6fd57e81ad5571cad6a'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -266,6 +272,16 @@ class ChannelOrderTest extends TestCase
                             "value" => "value-1"
                         ]
                     ],
+                    "params"             => [
+                        [
+                            "key"   => "key",
+                            "value" => "value"
+                        ],
+                        [
+                            "key"   => "key-1",
+                            "value" => "value-1"
+                        ]
+                    ],
                     "shipping_address"   => [
                         "address1"      => "address1",
                         "address2"      => "address2",
@@ -306,7 +322,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '38a6d9223d2bb48ae63dc3c9878e7e6f'
+                'c04e5db88d4455e998573cc4f547cc6c'
             ],
         ];
     }
@@ -346,6 +362,7 @@ class ChannelOrderTest extends TestCase
                         "instruction"        => null,
                         "line_items"         => [],
                         "meta"               => [],
+                        "params"             => [],
                         "shipping_address"   => [
                             "address1"      => null,
                             "address2"      => null,
@@ -364,7 +381,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '132fbdf5354f556faf2e53a01b1d0139',
+                'bae19b9cb25ee6a7186bbed0072f1015',
             ]
         ];
     }
@@ -409,6 +426,16 @@ class ChannelOrderTest extends TestCase
                                 'value' => '2'
                             ]
                         ],
+                        'params'         => [
+                            [
+                                'key'   => 'a',
+                                'value' => '1'
+                            ],
+                            [
+                                'key'   => 'b',
+                                'value' => '2'
+                            ]
+                        ],
                         'shipping_lines' => [
                             [
                                 'price' => 100,
@@ -455,6 +482,16 @@ class ChannelOrderTest extends TestCase
                                 'value' => '1'
                             ]
                         ],
+                        'params'         => [
+                            [
+                                'key'   => 'b',
+                                'value' => '2'
+                            ],
+                            [
+                                'key'   => 'a',
+                                'value' => '1'
+                            ]
+                        ],
                         'shipping_lines' => [
                             [
                                 'price' => 200,
@@ -467,7 +504,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '8140fa0957c829873410c6efb877cab0',
+                'hash' => '80484570f8eee05714295131a30400dc',
             ]
         ];
     }
