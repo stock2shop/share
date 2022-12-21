@@ -25,6 +25,8 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     public array $line_items;
     /** @var OrderMeta[] */
     public array $meta;
+    /** @var array<string, string> */
+    public array $params;
     public ChannelOrderAddress $shipping_address;
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
@@ -35,13 +37,18 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 
         $line_items     = ChannelOrderLineItem::createArray(self::arrayFrom($data, 'line_items'));
         $meta           = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
+        $params         = self::arrayFrom($data, 'params');
         $shipping_lines = ChannelOrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
+
+        // sort params
+        ksort($params, SORT_STRING);
 
         $this->billing_address  = new ChannelOrderAddress(self::arrayFrom($data, 'billing_address'));
         $this->customer         = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
         $this->instruction      = self::stringFrom($data, 'instruction');
         $this->line_items       = $this->sortArray($line_items, 'sku');
         $this->meta             = $this->sortArray($meta, 'key');
+        $this->params           = $params;
         $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
 
@@ -56,7 +63,8 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
      */
     public function computeHash(): string
     {
-        $p    = new ChannelOrder((array)$this);
+        $p = new ChannelOrder((array)$this);
+        unset($p->instruction);
         $json = json_encode($p);
         return md5($json);
     }

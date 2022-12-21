@@ -43,4 +43,11 @@ class Customer extends DTO implements JsonSerializable, DTOInterface
         }
         return $a;
     }
+
+    public function computeHash(): string
+    {
+        $p    = new Customer((array)$this);
+        $json = json_encode($p);
+        return md5($json);
+    }
 }
