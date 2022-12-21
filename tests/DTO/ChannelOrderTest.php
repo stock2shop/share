@@ -166,7 +166,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                'b098c131b70ae66fa30d98d4135f491d'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -175,7 +175,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00,
                 ],
-                'b098c131b70ae66fa30d98d4135f491d'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -184,7 +184,7 @@ class ChannelOrderTest extends TestCase
                     "notes"              => "notes",
                     "total_discount"     => 5.00
                 ],
-                'b098c131b70ae66fa30d98d4135f491d'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -193,7 +193,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                'b098c131b70ae66fa30d98d4135f491d'
+                '133cb962d81ce0a796303a0245212be9'
             ],
             [
                 [
@@ -314,7 +314,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '133b4b542eb7e5497a8d0ce4da1101a6'
+                'bbdfbd0a6e8aa8181232bbc773819cc1'
             ],
         ];
     }
@@ -373,7 +373,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '335f073f5b856d83d9294fa1101641d2',
+                'bae19b9cb25ee6a7186bbed0072f1015',
             ]
         ];
     }
@@ -484,7 +484,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '34a63620c6bc7f776bf72df980b9c5b4',
+                'hash' => '22f98cef9c89fb048e296d7e9f776064',
             ]
         ];
     }
