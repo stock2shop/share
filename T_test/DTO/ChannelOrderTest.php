@@ -287,14 +287,14 @@ class ChannelOrdertest extends TestCase
         $this->assertJsonStringEqualsJsonString($json, json_encode($array));
     }
 
-    /** @dataProvider computeOrderHash_valid */
+    /** @dataProvider computeHash */
     public function testComputeHash(array $channelOrder, string $expectedValue): void
     {
         $ch_order = new ChannelOrder($channelOrder);
         $this->assertEquals($expectedValue, $ch_order->computeHash());
     }
 
-    /** @dataProvider computeOrderHash_null */
+    /** @dataProvider computeHash_null */
     public function testComputeHash_null(array $channelOrders, string $expectedValue): void
     {
         foreach($channelOrders as $channelOrder)
@@ -306,7 +306,7 @@ class ChannelOrdertest extends TestCase
 
     
 
-    private function computeOrderHash_valid(): array
+    private function computeHash(): array
     {
         return [
             /** First case */
@@ -463,7 +463,7 @@ class ChannelOrdertest extends TestCase
         ];
     }
 
-    private function computeOrderHash_null(): array
+    private function computeHash_null(): array
     {
         return [
             [

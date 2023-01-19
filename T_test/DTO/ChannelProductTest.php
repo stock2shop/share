@@ -277,7 +277,7 @@ class ChannelProductTest extends TestCase
         $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    /** @dataProvider computeProductHash_valid */
+    /** @dataProvider computeProductHash */
     public function testComputeHash(array $channelOrder, string $expectedValue): void
     {
         $ch_order = new ChannelProduct($channelOrder);
@@ -294,7 +294,7 @@ class ChannelProductTest extends TestCase
         }
     }
 
-    private function computeProductHash_valid(): array
+    private function computeProductHash(): array
     {
         return [
             /** First Case */
@@ -398,7 +398,7 @@ class ChannelProductTest extends TestCase
         ];
     }
 
-    private function computeProductHash_null(): array
+    private function computeHash_null(): array
     {
         return [
             [
