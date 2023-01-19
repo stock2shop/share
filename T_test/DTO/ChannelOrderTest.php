@@ -286,6 +286,244 @@ class ChannelOrdertest extends TestCase
         
         $this->assertJsonStringEqualsJsonString($json, json_encode($array));
     }
+
+    /** @dataProvider computeOrderHash_valid */
+    public function testComputeHash(array $channelOrder, string $expectedValue): void
+    {
+        $ch_order = new ChannelOrder($channelOrder);
+        $this->assertEquals($expectedValue, $ch_order->computeHash());
+    }
+
+    /** @dataProvider computeOrderHash_null */
+    public function testComputeHash_null(array $channelOrders, string $expectedValue): void
+    {
+        foreach($channelOrders as $channelOrder)
+        {
+            $ch_order = new ChannelOrder($channelOrder);
+            $this->assertEquals($expectedValue, $ch_order->computeHash());
+        }
+    }
+
+    
+
+    private function computeOrderHash_valid(): array
+    {
+        return [
+            /** First case */
+            [
+                [
+                    "channel_id" => 65, 
+                    "channel_order_code" => "187",
+                    "notes" => null,
+                    "total_discount" => 0,
+                    "state" => "",
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""]
+                ],
+                "982ac1088089f16a25b76df5da8ca870",
+            ],
+            /** Second Case */
+            /** Left a property out */
+            [
+                [
+                    "channel_id" => 65, 
+                    "channel_order_code" => "187",
+                    "total_discount" => 0,
+                    "state" => "",
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""],
+                ],
+                "982ac1088089f16a25b76df5da8ca870"
+            ],
+            /** Third Case */
+            /** Swaps around properties */
+            [
+                [
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""],
+                    "channel_order_code" => "187",
+                    "channel_id" => 65,
+                    "state" => "",
+                    "total_discount" => 0,
+                ],
+                "982ac1088089f16a25b76df5da8ca870"
+            ],
+            /** Fourth Test */
+            /** All Object properties */
+            [
+                [
+                    "channel_id" => 21, 
+                    "channel_order_code" => "1972",
+                    "notes" => "noted",
+                    "total_discount" => 0,
+                    "state" => "state",
+                    "billing_address" => 
+                    [
+                        "address1" => "",
+                        "address2" => "",
+                        "city" => "",
+                        "company" => "",
+                        "country" => "",
+                        "country_code" => "",
+                        "first_name" => "",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "",
+                        "province_code" => "",
+                        "type" => "",
+                        "zip" => "",
+                    ],
+                    "customer" => 
+                    [
+                        "accepts_marketing" => "",
+                        "email" => "",
+                        "first_name" => "",
+                        "last_name" => "",
+                        "channel_customer_code" => ""
+                    ],
+                    "instruction" => "instruction",
+                    "line_items" => 
+                    [
+                        [
+                            "barcode" => "0",
+                            "grams" => 0,
+                            "price" => 0,
+                            "qty" => 0,
+                            "sku" => "",
+                            "title" => "",
+                            "total_discount" => 0,
+                            "tax_lines" => []
+                        ],
+                        [
+                            "barcode" => "0",
+                            "grams" => 0,
+                            "price" => 0,
+                            "qty" => 0,
+                            "sku" => "",
+                            "title" => "",
+                            "total_discount" => 0,
+                            "tax_lines" => []
+                        ]
+                    ],
+                    "meta" => 
+                    [
+                        [
+                            "key" => "key_1",
+                            "value" => "value_1"
+                        ],
+                        [
+                            "key" => "key_2",
+                            "value" => "value_2"
+                        ]
+                    ],
+                    "params" => 
+                    [
+                        "param_1" => "param_value_1",
+                        "param_2" => "param_value_2",
+                        "param_3" => "param_value_3"
+                    ],
+                    "shipping_address" => 
+                    [
+                        "address1" => "",
+                        "address2" => "Montrose Park"
+                    ],
+                    "shipping_lines" => 
+                    [
+                        [
+                            "address1" => "address_1",
+                            "address2" => "address_2",
+                            "city" => "city",
+                            "company" => "company",
+                            "country" => "country",
+                            "country_code" => "country_code",
+                            "first_name" => "first_name",
+                            "last_name" => "last_name",
+                            "phone" => "phone",
+                            "province" => "province",
+                            "province_code" => "province_code",
+                            "type" => "type",
+                            "zip" => "zip"
+                        ],
+                        [
+                            "address1" => "address_1",
+                            "address2" => "address_2",
+                            "city" => "city",
+                            "company" => "company",
+                            "country" => "country",
+                            "country_code" => "country_code",
+                            "first_name" => "first_name",
+                            "last_name" => "last_name",
+                            "phone" => "phone",
+                            "province" => "province",
+                            "province_code" => "province_code",
+                            "type" => "type",
+                            "zip" => "zip"
+                        ]
+                    ]
+                ],
+                "c768368f25e4f6487cee80decca34b88"
+            ]
+        ];
+    }
+
+    private function computeOrderHash_null(): array
+    {
+        return [
+            [
+                [
+                    [],
+                    [
+                        "channel_id"         => null,
+                        "channel_order_code" => null,
+                        "notes"              => null,
+                        "total_discount"     => null,
+                        "billing_address"    => 
+                        [
+                            "address1"      => null,
+                            "address2"      => null,
+                            "city"          => null,
+                            "company"       => null,
+                            "country"       => null,
+                            "country_code"  => null,
+                            "first_name"    => null,
+                            "last_name"     => null,
+                            "phone"         => null,
+                            "province"      => null,
+                            "province_code" => null,
+                            "type"          => null,
+                            "zip"           => null,
+                        ],
+                        "customer"           => 
+                        [
+                            "accepts_marketing" => null,
+                            "email"             => null,
+                            "first_name"        => null,
+                            "last_name"         => null,
+                        ],
+                        "instruction"        => null,
+                        "line_items"         => [],
+                        "meta"               => [],
+                        "params"             => [],
+                        "shipping_address"   => 
+                        [
+                            "address1"      => null,
+                            "address2"      => null,
+                            "city"          => null,
+                            "company"       => null,
+                            "country"       => null,
+                            "country_code"  => null,
+                            "first_name"    => null,
+                            "last_name"     => null,
+                            "phone"         => null,
+                            "province"      => null,
+                            "province_code" => null,
+                            "type"          => null,
+                            "zip"           => null,
+                        ],
+                        "shipping_lines"     => []
+                    ]
+                ],
+                "bae19b9cb25ee6a7186bbed0072f1015"
+            ]
+        ];
+    }
 }
 
 ?>

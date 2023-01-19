@@ -81,9 +81,88 @@ class ChannelOrderAddressTest extends TestCase
             $this->assertObjectHasAttribute($object_attributes[$i], $object);
         }
     }
-    public function testSerialize(): void { }
-    public function testJsonConversion(): void { }
-    public function testArrayConversion(): void { }
+
+    public function testSerialize(): void 
+    { 
+        $array = ChannelOrderAddress::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
+    }
+
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(ChannelOrderAddress::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
+    }
+
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "address1" => "14 Tracy Close",
+                "address2" => "Montrose Park",
+                "city" => "Cape Town",
+                "country" => "South Africa",
+                "company" => "",
+                "country_code" => "ZA",
+                "first_name" => "Keenan",
+                "last_name" => "Faure",
+                "phone" => "N/A",
+                "province" => "Western Province",
+                "province_code" => "WP",
+                "type" => ""
+            ],
+            [
+                "address1" => "16 Samantha Street",
+                "address2" => "Montrose Park",
+                "city" => "Cape Town",
+                "country" => "South Africa",
+                "company" => "",
+                "country_code" => "ZA",
+                "first_name" => "Ryan",
+                "last_name" => "Adams",
+                "phone" => "N/A",
+                "province" => "Western Province",
+                "province_code" => "WP",
+                "type" => ""
+            ]
+        ];
+
+        $json = '
+        [{
+            "address1": "14 Tracy Close",
+            "address2": "Montrose Park",
+            "city": "Cape Town",
+            "country": "South Africa",
+            "company": "",
+            "country_code": "ZA",
+            "first_name": "Keenan",
+            "last_name": "Faure",
+            "phone": "N\/A",
+            "province": "Western Province",
+            "province_code": "WP",
+            "type": ""
+        }, 
+        {
+            "address1": "16 Samantha Street",
+            "address2": "Montrose Park",
+            "city": "Cape Town",
+            "country": "South Africa",
+            "company": "",
+            "country_code": "ZA",
+            "first_name": "Ryan",
+            "last_name": "Adams",
+            "phone": "N\/A",
+            "province": "Western Province",
+            "province_code": "WP",
+            "type": ""
+        }]';
+
+        $this->assertJsonStringEqualsJsonString($json, json_encode($array));
+    }
 }
 
 ?>
