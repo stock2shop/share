@@ -113,7 +113,8 @@ class ChannelOrderAddressTest extends TestCase
                 "phone" => "N/A",
                 "province" => "Western Province",
                 "province_code" => "WP",
-                "type" => ""
+                "type" => "",
+                "zip" => ""
             ],
             [
                 "address1" => "16 Samantha Street",
@@ -127,7 +128,8 @@ class ChannelOrderAddressTest extends TestCase
                 "phone" => "N/A",
                 "province" => "Western Province",
                 "province_code" => "WP",
-                "type" => ""
+                "type" => "",
+                "zip" => ""
             ]
         ];
 
@@ -144,7 +146,8 @@ class ChannelOrderAddressTest extends TestCase
             "phone": "N\/A",
             "province": "Western Province",
             "province_code": "WP",
-            "type": ""
+            "type": "",
+            "zip": null
         }, 
         {
             "address1": "16 Samantha Street",
@@ -158,10 +161,13 @@ class ChannelOrderAddressTest extends TestCase
             "phone": "N\/A",
             "province": "Western Province",
             "province_code": "WP",
-            "type": ""
+            "type": "",
+            "zip": null
         }]';
 
-        $this->assertJsonStringEqualsJsonString($json, json_encode($array));
+        $json = json_encode(ChannelOrderAddress::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 }
 

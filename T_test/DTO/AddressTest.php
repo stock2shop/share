@@ -65,10 +65,7 @@ class AddressTest extends TestCase
         $this->assertSame('WP', $object->province_code);
         $this->assertSame('', $object->type);
         $this->assertSame('7785', $object->zip);
-    }
 
-    public function testObject(): void
-    {
         $data = new Address($this->setUpArray());
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $data);
 

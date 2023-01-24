@@ -135,11 +135,6 @@ class ChannelProductTest extends TestCase
         }
     }
 
-    public function testHash(): void 
-    { 
-
-    }
-
     // public function testSerialize(): void { }
 
     public function testJsonConversion(): void 
@@ -277,24 +272,24 @@ class ChannelProductTest extends TestCase
         $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    /** @dataProvider computeProductHash */
-    public function testComputeHash(array $channelOrder, string $expectedValue): void
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $channelProduct, string $expectedValue): void
     {
-        $ch_order = new ChannelProduct($channelOrder);
-        $this->assertEquals($expectedValue, $ch_order->computeHash());
+        $ch_prod = new ChannelProduct($channelProduct);
+        $this->assertEquals($expectedValue, $ch_prod->computeHash());
     }
 
-    /** @dataProvider computeProductHash_null */
-    public function testComputeHash_null(array $channelOrders, string $expectedValue): void
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $channelProducts, string $expectedValue): void
     {
-        foreach($channelOrders as $channelOrder)
+        foreach($channelProducts as $channelProduct)
         {
-            $ch_order = new ChannelProduct($channelOrder);
-            $this->assertEquals($expectedValue, $ch_order->computeHash());
+            $ch_prod = new ChannelProduct($channelProduct);
+            $this->assertEquals($expectedValue, $ch_prod->computeHash());
         }
     }
 
-    private function computeProductHash(): array
+    private function computeHash(): array
     {
         return [
             /** First Case */
@@ -412,56 +407,22 @@ class ChannelProductTest extends TestCase
                         "product_type" => null,
                         "tags" => null,
                         "vendor" => null,
-                        "options" => [["name" => null, "position" => null]],
-                        "meta" => [["key" => null, "value" => null, "template_name" => null]],
+                        "options" => null,
+                        "meta" => null,
                         "channel_id" => null,
                         "channel_product_code" => null,
                         "client_id" => null,
                         "created" => null,
-                        "delete" => false,
-                        "hash" => "",
+                        "delete" => null,
+                        "hash" => null,
                         "id" => null,
                         "modified" => null,
                         "source_id" => null,
                         "source_product_code" => null,
-                        "success" => false,
-                        "synced" => "false",
-                        "images" => 
-                        [[
-                            "active" => false,
-                            "channel_id" => null,
-                            "channel_image_code" => null,
-                            "delete" => false,
-                            "id" => null,
-                            "src" => null,
-                            "success" => false
-                        ]],
-                        "variants" => 
-                        [[
-                            "source_variant_code" => null,
-                            "sku" => null,
-                            "active" => null,
-                            "qty" => 0,
-                            "qty_availability" => [],
-                            "price" => null,
-                            "price_tiers"=> [],
-                            "barcode" => null,
-                            "inventory_management" => null,
-                            "grams" => null,
-                            "option1" => null,
-                            "option2" => null,
-                            "option3" => null,
-                            "meta" => [],
-                            "channel_id" => null,
-                            "channel_variant_code" => null,
-                            "client_id" => null,
-                            "delete" => null,
-                            "hash" => null,
-                            "id" => null,
-                            "image_id" => null,
-                            "product_id" => null,
-                            "success" => null
-                        ]]
+                        "success" => null,
+                        "synced" => null,
+                        "images" => null,
+                        "variants" => null
                     ]
                 ],
                 "e184d328067fa586c7c12189b3623e7e"

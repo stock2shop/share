@@ -65,7 +65,7 @@ class ChannelTest extends TestCase
     }
 
     /** @test */
-    public function assertJsonConversion(): void
+    public function testJsonConversion(): void
     {
         $json = $this->setUpJson();
 
@@ -101,7 +101,7 @@ class ChannelTest extends TestCase
         $this->assertJsonStringEqualsJsonString($json, $data);
     }
     
-    public function testObject(): void
+    private function testObject(): void
     {
         $data = new Channel($this->setUpArray());
 

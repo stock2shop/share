@@ -73,7 +73,6 @@ class ChannelProduct extends Product implements JsonSerializable, DTOInterface
         foreach ($this->variants as $v) {
             $productHash .= sprintf("\nvariant_%d=%s", $v->id, $v->computeHash());
         }
-        print_r(md5($productHash));
         return md5($productHash);
     }
 

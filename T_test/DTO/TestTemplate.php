@@ -8,16 +8,35 @@ use Stock2Shop\Share\DTO\{{ClassName}};
 
 class {{ClassName}}Test extends TestCase
 {
-    //basic functions
-    private function setUpArray(): void{ }
-    private function setUpJson(): void{ }
+    private function setUpArray(): array
+    {
+        $array = [
+
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            
+        }';
+        return $json;
+    }
     
-    //will change with each class
     public function testClassConstructor(): void{ }
-    public function testHash(): void { }
     public function testSerialize(): void { }
     public function testJsonConversion(): void { }
     public function testArrayConversion(): void { }
+
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $object, string $expectedValue): void { }
+
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $object, string $expectedValue): void { }
+    private function computeHash(): array { }
+    private function computeHash_null(): array { }
+    
 }
 
 ?>
