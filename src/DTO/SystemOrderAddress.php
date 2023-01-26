@@ -18,6 +18,7 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     {
         parent::__construct($data);
 
+        $this->id         = self::intFrom($data, "id");
         $this->channel_id = self::intFrom($data, 'channel_id');
         $this->client_id  = self::intFrom($data, 'client_id');
         $this->created    = self::stringFrom($data, 'created');
