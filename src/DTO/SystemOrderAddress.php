@@ -8,6 +8,7 @@ use JsonSerializable;
 
 class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
+    public ?int $id;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;

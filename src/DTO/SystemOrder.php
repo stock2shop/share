@@ -8,6 +8,7 @@ use JsonSerializable;
 
 class SystemOrder extends Order implements JsonSerializable, DTOInterface
 {
+    public ?SystemOrderAddress $billing_address;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
@@ -24,6 +25,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     /** @var OrderMeta[] $meta */
     public array $meta;
     public ?string $modified;
+    public ?SystemOrderAddress $shipping_address;
     /** @var SystemOrderShippingLine[] $shipping_lines */
     public array $shipping_lines;
     public ?float $shipping_sub_total;
@@ -53,6 +55,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $sources        = OrderSource::createArray(self::arrayFrom($data, 'sources'));
 
 
+        $this->billing_address        = new SystemOrderAddress(self::arrayFrom($data, 'billing_address'));
         $this->channel_id             = self::intFrom($data, 'channel_id');
         $this->client_id              = self::intFrom($data, 'client_id');
         $this->created                = self::stringFrom($data, "created");
@@ -65,6 +68,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->line_items             = $this->sortArray($line_items, 'sku');
         $this->meta                   = $this->sortArray($meta, 'key');
         $this->modified               = self::stringFrom($data, "modified");
+        $this->shipping_address       = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines         = $this->sortArray($shipping_lines, 'title');
         $this->shipping_sub_total     = self::floatFrom($data, "shipping_sub_total");
         $this->shipping_tax           = self::floatFrom($data, "shipping_tax");
