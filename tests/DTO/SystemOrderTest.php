@@ -23,6 +23,7 @@ class SystemOrderTest extends TestCase
             "client_id": 3,
             "created": "created",
             "customer": {
+                "id": 1,
                 "accepts_marketing": false,
                 "email": "x@y.com",
                 "first_name": "bob",
