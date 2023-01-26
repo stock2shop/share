@@ -15,6 +15,7 @@ class SystemCustomerTest extends TestCase
     {
         $this->json = '
         {
+            "id": 1,
             "accepts_marketing": false,
             "email": "x@y.com",
             "first_name": "bob",
