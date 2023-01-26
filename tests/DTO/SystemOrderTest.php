@@ -15,6 +15,26 @@ class SystemOrderTest extends TestCase
     {
         $this->json = '
         {
+            "billing_address": {
+                "address1": "abc",
+                "address2": null,
+                "channel_id": 56,
+                "city": "jhb",
+                "client_id": 21,
+                "country_code": "ZA",
+                "company": "s2s",
+                "country": "sa",
+                "created": "created",
+                "first_name": "bob",
+                "id": 1,
+                "last_name": "jones",
+                "modified": "modified",
+                "phone": "123456",
+                "province": "somewhere",
+                "province_code": null,
+                "type": "billing",
+                "zip": "1234"
+            },
             "channel_order_code": "channel_order_code",
             "notes": "notes",
             "total_discount": 1.01,
@@ -111,6 +131,7 @@ class SystemOrderTest extends TestCase
                         "country": "country",
                         "country_code": "country_code",
                         "first_name": "first_name",
+                        "id": 3,
                         "last_name": "last_name",
                         "phone": "phone",
                         "province": "province",
@@ -177,6 +198,26 @@ class SystemOrderTest extends TestCase
                 }
             ],
             "modified": "modified",
+            "shipping_address": {
+                "address1": "def",
+                "address2": null,
+                "channel_id": 56,
+                "city": "cpt",
+                "client_id": 21,
+                "country_code": "ZA",
+                "company": "s2s",
+                "country": "sa",
+                "created": "created",
+                "first_name": "john",
+                "id": 2,
+                "last_name": "doe",
+                "modified": "modified",
+                "phone": "123456",
+                "province": "somewhere",
+                "province_code": null,
+                "type": "billing",
+                "zip": "1234"
+            },
             "shipping_lines": [
                 {
                     "price": 99.99,

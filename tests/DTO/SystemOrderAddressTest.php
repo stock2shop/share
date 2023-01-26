@@ -15,6 +15,7 @@ class SystemOrderAddressTest extends TestCase
     {
         $this->json = '
         {
+            "id": 1,
             "address1": "abc",
             "address2": null,
             "channel_id": 56,
