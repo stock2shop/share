@@ -8,12 +8,14 @@ use JsonSerializable;
 
 class OrderItemTax extends DTO implements JsonSerializable, DTOInterface
 {
+    public ?string $code;
     public ?float $price;
     public ?string $title;
     public ?float $rate;
 
     public function __construct(array $data)
     {
+        $this->code  = self::stringFrom($data, "code");
         $this->price = self::floatFrom($data, "price");
         $this->title = self::stringFrom($data, "title");
         $this->rate  = self::floatFrom($data, "rate");

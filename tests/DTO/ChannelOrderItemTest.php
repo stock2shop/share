@@ -15,7 +15,7 @@ class ChannelOrderItemTest extends TestCase
     {
         $this->json = '
         {
-            "barcode": "barcode",
+            "barcode": "barcode", 
             "grams": 150,
             "price": 19.99,
             "qty": 100,
@@ -24,32 +24,33 @@ class ChannelOrderItemTest extends TestCase
                 {
                     "price": 19.99,
                     "title": "title",
-                    "rate": 1.2
+                    "rate": 1.2,
+                    "code": "ABC"
                 }
             ],
             "title": "title",
-            "total_discount": 20.05
+            "total_discount": 20.05 
         }';
     }
 
     public function testSerialize(): void
     {
-        $m = DTO\ChannelOrderLineItem::createFromJSON($this->json);
+        $m = DTO\ChannelOrderItem::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
 
     public function testInheritance(): void
     {
-        $m = DTO\ChannelOrderLineItem::createFromJSON($this->json);
+        $m = DTO\ChannelOrderItem::createFromJSON($this->json);
         $this->assertChannelOrderItem($m);
     }
 
-    private function assertChannelOrderItem(DTO\ChannelOrderLineItem $c)
+    private function assertChannelOrderItem(DTO\ChannelOrderItem $c)
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderItem', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->tax_lines[0]);
     }
 }

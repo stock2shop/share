@@ -6,7 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-class ChannelOrderLineItem extends OrderItem implements JsonSerializable, DTOInterface
+class ChannelOrderItem extends OrderItem implements JsonSerializable, DTOInterface
 {
     /** @var OrderItemTax[] $tax_lines */
     public array $tax_lines;
@@ -25,20 +25,20 @@ class ChannelOrderLineItem extends OrderItem implements JsonSerializable, DTOInt
         return (array)$this;
     }
 
-    public static function createFromJSON(string $json): ChannelOrderLineItem
+    public static function createFromJSON(string $json): ChannelOrderItem
     {
         $data = json_decode($json, true);
-        return new ChannelOrderLineItem($data);
+        return new ChannelOrderItem($data);
     }
 
     /**
-     * @return ChannelOrderLineItem[]
+     * @return ChannelOrderItem[]
      */
     public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new ChannelOrderLineItem((array)$item);
+            $a[] = new ChannelOrderItem((array)$item);
         }
         return $a;
     }

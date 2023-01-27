@@ -54,7 +54,8 @@ class ChannelOrderTest extends TestCase
                         {
                             "price": 19.99,
                             "title": "title",
-                            "rate": 1.2
+                            "rate": 1.2,
+                            "code": "abc"
                         }
                     ],
                     "title": "title",
@@ -91,6 +92,7 @@ class ChannelOrderTest extends TestCase
                     "price": 19.99,
                     "tax_lines": [
                         {
+                            "code": "ABC",
                             "price": 19.99,
                             "rate": 19.99,
                             "title": "title"
@@ -125,7 +127,7 @@ class ChannelOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->billing_address);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->shipping_lines[0]->tax_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c->line_items[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->line_items[0]->tax_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
     }
@@ -314,7 +316,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'bbdfbd0a6e8aa8181232bbc773819cc1'
+                'fa00890a35c9255aa9a6342dbb16b282'
             ],
         ];
     }
@@ -425,11 +427,27 @@ class ChannelOrderTest extends TestCase
                         'shipping_lines' => [
                             [
                                 'price' => 100,
-                                'title' => '1'
+                                'title' => '1',
+                                'tax_lines' => [
+                                    [
+                                        'title' => 'VAT',
+                                        'price' => 20,
+                                        'rate' => 15,
+                                        'code' => 'abc',
+                                    ]
+                                ]
                             ],
                             [
                                 'price' => 200,
-                                'title' => '2'
+                                'title' => '2',
+                                'tax_lines' => [
+                                    [
+                                        'title' => 'VAT',
+                                        'price' => 201,
+                                        'rate' => 10,
+                                        'code' => 'xyz',
+                                    ]
+                                ]
                             ]
                         ]
                     ],
@@ -475,16 +493,32 @@ class ChannelOrderTest extends TestCase
                         'shipping_lines' => [
                             [
                                 'price' => 200,
-                                'title' => '2'
+                                'title' => '2',
+                                'tax_lines' => [
+                                    [
+                                        'title' => 'VAT',
+                                        'price' => 201,
+                                        'rate' => 10,
+                                        'code' => 'xyz',
+                                    ]
+                                ]
                             ],
                             [
                                 'price' => 100,
-                                'title' => '1'
+                                'title' => '1',
+                                'tax_lines' => [
+                                    [
+                                        'title' => 'VAT',
+                                        'price' => 20,
+                                        'rate' => 15,
+                                        'code' => 'abc',
+                                    ]
+                                ]
                             ]
                         ]
                     ]
                 ],
-                'hash' => '22f98cef9c89fb048e296d7e9f776064',
+                'hash' => '5fd768cc1f77a460a0a5cd8055a051f4',
             ]
         ];
     }
