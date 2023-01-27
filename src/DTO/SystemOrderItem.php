@@ -14,6 +14,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?string $modified;
     public ?int $product_id;
     public ?int $variant_id;
+    public ?int $id;
     public ?int $source_id;
     public ?string $source_variant_code;
     public ?string $price_display;
@@ -22,6 +23,8 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?string $tax_per_unit_display;
     public ?float $tax;
     public ?string $tax_display;
+    /** @var OrderItemTax[] $tax_lines */
+    public array $tax_lines;
     public ?float $sub_total;
     public ?float $tax_per_unit;
     public ?string $sub_total_display;
@@ -33,12 +36,14 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
         parent::__construct($data);
 
         $fulfillments = SystemFulfillmentLineItem::createArray(self::arrayFrom($data, 'fulfillments'));
+        $tax_lines    = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
 
         $this->created                = self::stringFrom($data, "created");
         $this->fulfillments           = self::sortArray($fulfillments, 'sku');
         $this->modified               = self::stringFrom($data, "modified");
         $this->product_id             = self::intFrom($data, 'product_id');
         $this->variant_id             = self::intFrom($data, 'variant_id');
+        $this->id                     = self::intFrom($data, 'id');
         $this->source_id              = self::intFrom($data, 'source_id');
         $this->source_variant_code    = self::stringFrom($data, 'source_variant_code');
         $this->price_display          = self::stringFrom($data, 'price_display');
@@ -48,6 +53,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
         $this->tax                    = self::floatFrom($data, 'tax');
         $this->tax_per_unit           = self::floatFrom($data, 'tax_per_unit');
         $this->tax_display            = self::stringFrom($data, 'tax_display');
+        $this->tax_lines              = self::sortArray($tax_lines, 'title');
         $this->sub_total              = self::floatFrom($data, 'sub_total');
         $this->sub_total_display      = self::stringFrom($data, 'sub_total_display');
         $this->total                  = self::floatFrom($data, 'total');

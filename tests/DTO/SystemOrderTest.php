@@ -156,6 +156,7 @@ class SystemOrderTest extends TestCase
             "line_item_tax": 6.06,
             "line_items": [
                 {
+                    "id": 1,
                     "barcode": "barcode",
                     "grams": 100,
                     "price": 19.99,
@@ -185,6 +186,14 @@ class SystemOrderTest extends TestCase
                     "tax": 5.02,
                     "tax_display": "tax_display",
                     "sub_total": 6.03,
+                    "tax_lines": [
+                        {
+                            "rate": 15,
+                            "price": 15,
+                            "code": "15",
+                            "title": "VAT"
+                        }
+                    ],
                     "tax_per_unit": 7.04,
                     "sub_total_display": "sub_total_display",
                     "total": 8.05,

@@ -15,6 +15,7 @@ class SystemOrderItemTest extends TestCase
     {
         $this->json = '
        {
+            "id": 1,
             "barcode": "barcode",
             "grams": 100,
             "price": 19.99,
@@ -30,6 +31,14 @@ class SystemOrderItemTest extends TestCase
                     "qty": 1,
                     "sku": "sku",
                     "fulfilled_qty": 0
+                }
+            ],
+            "tax_lines": [
+                {
+                    "code": "A",
+                    "price": 10,
+                    "rate": 15,
+                    "title": "VAT"
                 }
             ],
             "modified": "modified",
