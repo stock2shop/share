@@ -2,73 +2,217 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\SystemOrderItem;
 
 class SystemOrderItemTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-       {
-            "barcode": "barcode",
-            "grams": 100,
-            "price": 19.99,
-            "qty": 5,
+        $array = [
+            "barcode" => null,
+            "grams" => null,
+            "price" => null,
+            "qty" => null,
+            "sku" => "sku",
+            "title" => null,
+            "total_discount" => null,
+            "created" => "",
+            "fulfillments" => [[
+                "grams" => null,
+                "qty" => null,
+                "sku" => null,
+                "fulfilled_qty" => null,
+                "created" => "",
+                "modified" => null
+            ]],
+            "modified" => null,
+            "product_id" => null,
+            "variant_id" => null,
+            "source_id" => null,
+            "source_variant_code" => null,
+            "price_display" => null,
+            "total_discount_display" => null,
+            "tax_per_unit_display" => null,
+            "tax" => null,
+            "tax_display" => null,
+            "sub_total" => null,
+            "tax_per_unit" => null,
+            "sub_total_display" => null,
+            "total" => null,
+            "total_display" => null
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "barcode": null,
+            "grams": null,
+            "price": null,
+            "qty": null,
             "sku": "sku",
-            "title": "title",
-            "created": "created",
-            "fulfillments": [
-                {
-                    "created": "created",
-                    "modified": "modified",
-                    "grams": 10,
-                    "qty": 1,
-                    "sku": "sku",
-                    "fulfilled_qty": 0
-                }
-            ],
-            "modified": "modified",
-            "product_id": 1,
-            "variant_id": 2,
-            "source_id": 3,
-            "source_variant_code": "source_variant_code",
-            "price_display": "price_display",
-            "total_discount": 4.01,
-            "total_discount_display": "total_discount_display",
-            "tax_per_unit_display": "tax_per_unit_display",
-            "tax": 5.02,
-            "tax_display": "tax_display",
-            "sub_total": 6.03,
-            "tax_per_unit": 7.04,
-            "sub_total_display": "sub_total_display",
-            "total": 8.05,
-            "total_display": "total_display"
+            "title": null,
+            "total_discount": null,
+            "created": "",
+            "fulfillments": [{
+                "grams": null,
+                "qty": null,
+                "sku": null,
+                "fulfilled_qty": null,
+                "created": "",
+                "modified": null
+            }],
+            "modified": null,
+            "product_id": null,
+            "variant_id": null,
+            "source_id": null,
+            "source_variant_code": null,
+            "price_display": null,
+            "total_discount_display": null,
+            "tax_per_unit_display": null,
+            "tax": null,
+            "tax_display": null,
+            "sub_total": null,
+            "tax_per_unit": null,
+            "sub_total_display": null,
+            "total": null,
+            "total_display": null
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new SystemOrderItem($this->setUpArray());
+
+        $this->assertSame(null, $object->barcode);
+        $this->assertSame("", $object->created);
+        $this->assertSame(null, $object->modified);
+        $this->assertSame(null, $object->product_id);
+        $this->assertSame(null, $object->tax);
+        $this->assertSame(null, $object->price_display);
+        $this->assertSame("sku", $object->sku);
+        $this->assertSame(null, $object->qty);
+        $this->assertSame(null, $object->price);
+        $this->assertSame(null, $object->title);
+
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrderItem", $object);
+
+        $object_attributes = [
+            "barcode",
+            "created",
+            "variant_id",
+            "source_id",
+            "source_variant_code",
+            "tax",
+            "sub_total_display",
+            "total",
+            "sku",
+            "qty",
+            "title",
+            "price"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
     public function testSerialize(): void
-    {
-        $m = DTO\SystemOrderItem::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    { 
+        $array = SystemOrderItem::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\SystemOrderItem::createFromJSON($this->json);
-        $this->assertSystemOrderItem($m);
+    public function testJsonConversion(): void
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(SystemOrderItem::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertSystemOrderItem(DTO\SystemOrderItem $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->fulfillments[0]);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "barcode" => null,
+                "grams" => null,
+                "price" => null,
+                "qty" => null,
+                "sku" => "sku",
+                "title" => null,
+                "total_discount" => null,
+                "created" => "",
+                "fulfillments" => [[
+                    "grams" => null,
+                    "qty" => null,
+                    "sku" => null,
+                    "fulfilled_qty" => null,
+                    "created" => "",
+                    "modified" => null
+                ]],
+                "modified" => null,
+                "product_id" => null,
+                "variant_id" => null,
+                "source_id" => null,
+                "source_variant_code" => null,
+                "price_display" => null,
+                "total_discount_display" => null,
+                "tax_per_unit_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "sub_total" => null,
+                "tax_per_unit" => null,
+                "sub_total_display" => null,
+                "total" => null,
+                "total_display" => null
+            ],
+            [
+                "barcode" => null,
+                "grams" => null,
+                "price" => null,
+                "qty" => null,
+                "sku" => "sku_1",
+                "title" => "",
+                "total_discount" => null,
+                "created" => "",
+                "fulfillments" => [[
+                    "grams" => null,
+                    "qty" => null,
+                    "sku" => null,
+                    "fulfilled_qty" => null,
+                    "created" => "",
+                    "modified" => null
+                ]],
+                "modified" => "",
+                "product_id" => null,
+                "variant_id" => null,
+                "source_id" => null,
+                "source_variant_code" => null,
+                "price_display" => null,
+                "total_discount_display" => null,
+                "tax_per_unit_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "sub_total" => null,
+                "tax_per_unit" => null,
+                "sub_total_display" => null,
+                "total" => null,
+                "total_display" => null
+            ]
+        ];
+        $json = json_encode(SystemOrderItem::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

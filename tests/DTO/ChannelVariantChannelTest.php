@@ -2,44 +2,97 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\ChannelVariantChannel;
 
 class ChannelVariantChannelTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "channel_id": 123,
-            "channel_variant_code": "variant_code_abc",
-            "delete": false,
-            "success": true
+        $array = [
+            "channel_id" => "",
+            "channel_variant_code" => "",
+            "delete" => "true",
+            "success" => "false"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "channel_id": null,
+            "channel_variant_code": "",
+            "delete": true,
+            "success": false
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new ChannelVariantChannel($this->setUpArray());
+
+        $this->assertSame(null, $object->channel_id);
+        $this->assertSame("", $object->channel_variant_code);
+        $this->assertSame(true, $object->delete);
+        $this->assertSame(false, $object->success);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelVariantChannel", $object);
+
+        $object_attributes = [
+            "channel_id",
+            "channel_variant_code",
+            "delete",
+            "success"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
-    {
-        $cvc = DTO\ChannelVariantChannel::createFromJSON($this->json);
-        $serialized = json_encode($cvc);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    // public function testSerialize(): void { }
+    public function testJsonConversion(): void
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(ChannelVariantChannel::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testInheritance(): void
-    {
-        $cvc = DTO\ChannelVariantChannel::createFromJSON($this->json);
-        $this->assertChannelVariantChannel($cvc);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "channel_id" => 0,
+                "channel_variant_code" => "",
+                "delete" => true,
+                "success" => false
+            ],
+            [
+                "channel_id" => 0,
+                "channel_variant_code" => "",
+                "delete" => false,
+                "success" => true
+            ]
+        ];
+        $json = json_encode(ChannelVariantChannel::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    private function assertChannelVariantChannel(DTO\ChannelVariantChannel $c)
+    public function testHasSynced(): void
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariantChannel', $c);
-        $this->assertEquals(true, $c->success);
-        $this->assertEquals(false, $c->delete);
+        $object = new ChannelVariantChannel($this->setUpArray());
+
+        $this->assertSame(false, $object->hasSyncedToChannel());
     }
+    
+    
+    
 }
+
+?>

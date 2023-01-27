@@ -2,59 +2,130 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\Channel;
 
 class ChannelTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '{
-          "id": 1,
-          "active": true,
-          "client_id": 21,
-          "created": "2022-09-13 09:13:39",
-          "modified": "2022-09-13 09:13:39",
-          "price_tier": "A",
-          "description": "testChannel",
-          "qty_availability": "wholesale",
-          "sync_token": "1",
-          "type": "trade",
-          "meta": [
-            {
-              "key": "size",
-              "value": "12",
-              "template_name": "template_a"
-            }
-          ]
+        $array = [
+            "active" => "false",
+            "client_id" => "719",
+            "created" => "",
+            "description" => "",
+            "id" => "71",
+            "meta" => "[]",
+            // "modified" => "",
+            "price_tier" => "New_price",
+            "qty_availability" => "",
+            "sync_token" => "0",
+            "type" => "Woocommerce"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '
+        {
+            "active":false,
+            "client_id":719,
+            "created":"",
+            "description":"",
+            "id":71,
+            "meta":[],
+            "modified":null,
+            "price_tier":"New_price",
+            "qty_availability":"",
+            "sync_token":"0",
+            "type":"Shopify"
         }';
+        return $json;
     }
 
-    public function testSerialize(): void
+    public function testClassConstructor(): void
     {
-        $chan = DTO\Channel::createFromJSON($this->json);
-        $serialized = json_encode($chan);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+        $array = $this->setUpArray();
+        $object = new Channel($array);
+
+        $this->assertSame(false, $object->active);
+        $this->assertSame(719, $object->client_id);
+        $this->assertSame("", $object->created);
+        $this->assertSame("", $object->description);
+        $this->assertSame(71, $object->id);
+        $this->assertSame([], $object->meta);
+        $this->assertSame("New_price", $object->price_tier);
+        $this->assertSame("", $object->qty_availability);
+        $this->assertSame("0", $object->sync_token);
+        $this->assertSame("Woocommerce", $object->type);
+
+        $this->testObject($object);
     }
 
-    public function testInheritance(): void
+    /** @test */
+    public function testJsonConversion(): void
     {
-        $c = DTO\Channel::createFromJSON($this->json);
-        $this->assertChannel($c);
-    }
+        $json = $this->setUpJson();
 
-    private function assertChannel(DTO\Channel $c)
+        $object = Channel::createFromJSON($json);
+        $data = json_encode($object);
+        $this->assertJsonStringEqualsJsonString($json, $data);
+    }
+    
+    public function testArrayConversion(): void
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
-        $this->assertIsArray($c->meta);
-        $this->assertEquals(true, $c->active);
-        foreach ($c->meta as $meta) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);
+        $array = [
+            ["active" => "false","client_id" => "719","created" => "","description" => ""]
+        ];
+        $data = json_encode(Channel::createArray($array));
+
+        $json = '
+        [
+            {
+                "active":false,
+                "client_id":719,
+                "created":"",
+                "description":"",
+                "id": null,
+                "meta":[],
+                "modified":null,
+                "price_tier":null,
+                "qty_availability": null,
+                "sync_token": null,
+                "type": null
+            }
+        ]';
+
+        $this->assertJsonStringEqualsJsonString($json, $data);
+    }
+    
+    private function testObject(): void
+    {
+        $data = new Channel($this->setUpArray());
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Channel", $data);
+        $object_attributes = 
+        [
+            "active",
+            "client_id",
+            "created",
+            "description",
+            "id",
+            "meta",
+            "modified",
+            "price_tier",
+            "qty_availability",
+            "sync_token",
+            "type"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $data);
         }
     }
 }
+
+?>

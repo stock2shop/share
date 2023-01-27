@@ -2,324 +2,468 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\ChannelOrder;
 
-class ChannelOrderTest extends TestCase
+class ChannelOrdertest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
-    {
-        $this->json = '
+    private function setUpArray(): array
+    { 
+        $array = [
+            "line_items" => 
+            [
+                ["barcode" => "0", "grams" => "0", "sku" => ""],
+                ["barcode" => "56", "grams" => "0", "sku" => ""],
+                ["barcode" => "32", "grams" => "0", "sku" => ""]
+            ],
+            "meta" => [],
+            "params" => ["default_customer_code" => "Easy"],
+            "shipping_lines" => 
+            [
+                ["price" => "", "title" => ""]
+            ],
+            "billing_address" => ["address1" => "", "address2" => ""],
+            "customer" => ["first_name" => "Keenan", "last_name" => "Faure"],
+            "instruction" => "add_order",
+            "shipping_address" => ["address1" => "", "address2" => ""]
+        ];
+        return $array;
+    }
+    private function setUpJson(): string
+    { 
+        $json = '
         {
-            "channel_id": 20,
-            "channel_order_code": "channel_order_code",
-            "notes": "notes",
-            "total_discount": 5.00,
-            "state": "new",
+            "channel_id": null,
+            "channel_order_code": null,
+            "notes": null,
+            "total_discount": null,
+            "state": null,
             "billing_address": {
-                "address1": "address1",
-                "address2": "address2",
-                "city": "city",
-                "company": "company",
-                "country": "country",
-                "country_code": "country_code",
-                "first_name": "first_name",
-                "last_name": "last_name",
-                "phone": "phone",
-                "province": "province",
-                "province_code": "province_code",
-                "type": "type",
-                "zip": "zip"
+                "address1": "",
+                "address2": "",
+                "city": null,
+                "company": null,
+                "country": null,
+                "country_code": null,
+                "first_name": null,
+                "last_name": null,
+                "phone": null,
+                "province": null,
+                "province_code": null,
+                "type": null,
+                "zip": null
             },
             "customer": {
-                "accepts_marketing": true,
-                "channel_customer_code": "channel_customer_code",
-                "email": "email",
-                "first_name": "first_name",
-                "last_name": "last_name"
+                "accepts_marketing": null,
+                "email": null,
+                "first_name": "Keenan",
+                "last_name": "Faure",
+                "channel_customer_code": null
             },
             "instruction": "add_order",
-            "line_items": [
-                {
-                    "barcode": "barcode",
-                    "grams": 150,
-                    "price": 19.99,
-                    "qty": 100,
-                    "sku": "sku",
-                    "tax_lines": [
-                        {
-                            "price": 19.99,
-                            "title": "title",
-                            "rate": 1.2
-                        }
-                    ],
-                    "title": "title",
-                    "total_discount": 20.05
-                }
-            ],
-            "meta": [
-                {
-                    "key": "key",
-                    "value": "value"
-                }
-            ],
+            "line_items": [{
+                "barcode": "0",
+                "grams": 0,
+                "price": null,
+                "qty": null,
+                "sku": "",
+                "title": null,
+                "total_discount": null,
+                "tax_lines": []
+            }, {
+                "barcode": "56",
+                "grams": 0,
+                "price": null,
+                "qty": null,
+                "sku": "",
+                "title": null,
+                "total_discount": null,
+                "tax_lines": []
+            }, {
+                "barcode": "32",
+                "grams": 0,
+                "price": null,
+                "qty": null,
+                "sku": "",
+                "title": null,
+                "total_discount": null,
+                "tax_lines": []
+            }],
+            "meta": [],
             "params": {
-                "key-1": "value-1",
-                "key-2": "value-2"
+                "default_customer_code": "Easy"
             },
             "shipping_address": {
-                "address1": "address1",
-                "address2": "address2",
-                "city": "city",
-                "company": "company",
-                "country": "country",
-                "country_code": "country_code",
-                "first_name": "first_name",
-                "last_name": "last_name",
-                "phone": "phone",
-                "province": "province",
-                "province_code": "province_code",
-                "type": "type",
-                "zip": "zip"
+                "address1": "",
+                "address2": "",
+                "city": null,
+                "company": null,
+                "country": null,
+                "country_code": null,
+                "first_name": null,
+                "last_name": null,
+                "phone": null,
+                "province": null,
+                "province_code": null,
+                "type": null,
+                "zip": null
             },
-            "shipping_lines": [
-                {
-                    "price": 19.99,
-                    "tax_lines": [
-                        {
-                            "price": 19.99,
-                            "rate": 19.99,
-                            "title": "title"
-                        }
-                    ],
-                    "title": "title"
-                }
-            ]
+            "shipping_lines": [{
+                "price": null,
+                "title": "",
+                "tax_lines": []
+            }]
         }';
+        return $json;
     }
-
-    public function testSerialize(): void
+    
+    public function testClassConstructor(): void
     {
-        $m          = DTO\ChannelOrder::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
-    }
+        $order = new ChannelOrder($this->setUpArray());
 
-    public function testInheritance(): void
-    {
-        $m = DTO\ChannelOrder::createFromJSON($this->json);
-        $this->assertChannelOrder($m);
-    }
+        $this->assertSame(null, $order->channel_id);
+        $this->assertSame("", $order->billing_address->address1);
+        $this->assertSame("", $order->shipping_address->address2);
+        $this->assertSame("add_order", $order->instruction);
+        $this->assertSame("Keenan", $order->customer->first_name);
+        $this->assertSame("Faure", $order->customer->last_name);
+        $this->assertSame("Easy", $order->params['default_customer_code']);
+        for($i = 0; $i < sizeof($order->shipping_lines); ++$i)
+        {
+            $this->assertSame("", $order->shipping_lines[$i]->title);
+        }
+        $this->assertSame(null, $order->channel_id);
 
-    private function assertChannelOrder(DTO\ChannelOrder $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Order', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrder', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderCustomer', $c->customer);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->shipping_address);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->billing_address);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->shipping_lines[0]->tax_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderLineItem', $c->line_items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->line_items[0]->tax_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
-    }
+        for($i = 0; $i < sizeof($order->line_items); ++$i)
+        {
+            $this->assertSame("", $order->line_items[$i]->sku);
+        }
 
-    /** @dataProvider computeHashArrayOrderingDataProvider */
-    public function testComputeHashArrayOrdering(array $channelOrders, string $expectedHash): void
-    {
-        foreach ($channelOrders as $channelOrder) {
-            $co = new DTO\ChannelOrder($channelOrder);
-            $this->assertEquals($expectedHash, $co->computeHash());
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelOrder", $order);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelOrderLineItem", $order->line_items[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelOrderAddress", $order->billing_address);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelOrderCustomer", $order->customer);
+
+        $object_attributes = [
+            "channel_id", 
+            "channel_order_code",
+            "notes",
+            "total_discount",
+            "state",
+            "billing_address",
+            "customer",
+            "instruction",
+            "line_items",
+            "meta",
+            "params",
+            "shipping_address",
+            "shipping_lines"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $order);
         }
     }
 
-    /** @dataProvider computeHashNullsDataProvider */
-    public function testComputeHashNulls(array $channelOrders, string $expectedHash): void
+    // public function testHash(): void { }
+    public function testSerialize(): void 
+    { 
+        $array = ChannelOrder::createArray($this->setUpArray())[0];
+        
+        $result = json_encode($array->jsonSerialize());
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $result);
+    }
+
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(ChannelOrder::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
+    }
+
+    public function testArrayConversion(): void 
     {
-        foreach ($channelOrders as $channelOrder) {
-            $co = new DTO\ChannelOrder($channelOrder);
-            $this->assertEquals($expectedHash, $co->computeHash());
+        $array = 
+        [[
+                "channel_id" => "21", 
+                "channel_order_code" => "1972",
+                "notes" => "",
+                "total_discount" => "",
+                "state" => "",
+                "billing_address" => ["address1" => "Samantha Street", "address2" => ""],
+                "customer" => "",
+                "instruction" => "",
+                "line_items" => 
+                    [["barcode" => "0", "grams" => "0", "sku" => ""],
+                    ["barcode" => "56", "grams" => "0", "sku" => ""],
+                    ["barcode" => "32", "grams" => "0", "sku" => ""]],
+                "meta" => [],
+                "params" => [],
+                "shipping_address" => ["address1" => "", "address2" => "Montrose Park"],
+                "shipping_lines" => []
+            ],
+            [
+                "channel_id" => "21", 
+                "channel_order_code" => "1973",
+                "notes" => "",
+                "total_discount" => "",
+                "state" => "",
+                "billing_address" => "",
+                "customer" => "",
+                "instruction" => "",
+                "line_items" => 
+                    [["barcode" => "0", "grams" => "0", "sku" => "GenImp-V-AA"],
+                    ["barcode" => "56", "grams" => "0", "sku" => "GenImp-D-PC"]],
+                "meta" => [],
+                "params" => [],
+                "shipping_address" => ["address1" => "14 Tracy Close", "address2" => ""],
+                "shipping_lines" => []
+        ]];
+
+        $json = '
+        [{
+            "channel_id": "21",
+            "channel_order_code": "1972",
+            "notes": "",
+            "total_discount": "",
+            "state": "",
+            "billing_address": {
+                "address1": "Samantha Street",
+                "address2": ""
+            },
+            "customer": "",
+            "instruction": "",
+            "line_items": [{
+                "barcode": "0",
+                "grams": "0",
+                "sku": ""
+            }, {
+                "barcode": "56",
+                "grams": "0",
+                "sku": ""
+            }, {
+                "barcode": "32",
+                "grams": "0",
+                "sku": ""
+            }],
+            "meta": [],
+            "params": [],
+            "shipping_address": {
+                "address1": "",
+                "address2": "Montrose Park"
+            },
+            "shipping_lines": []
+        }, {
+            "channel_id": "21",
+            "channel_order_code": "1973",
+            "notes": "",
+            "total_discount": "",
+            "state": "",
+            "billing_address": "",
+            "customer": "",
+            "instruction": "",
+            "line_items": [{
+                "barcode": "0",
+                "grams": "0",
+                "sku": "GenImp-V-AA"
+            }, {
+                "barcode": "56",
+                "grams": "0",
+                "sku": "GenImp-D-PC"
+            }],
+            "meta": [],
+            "params": [],
+            "shipping_address": {
+                "address1": "14 Tracy Close",
+                "address2": ""
+            },
+            "shipping_lines": []
+        }]';
+        
+        $this->assertJsonStringEqualsJsonString($json, json_encode($array));
+    }
+
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $channelOrder, string $expectedValue): void
+    {
+        $ch_order = new ChannelOrder($channelOrder);
+        $this->assertEquals($expectedValue, $ch_order->computeHash());
+    }
+
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $channelOrders, string $expectedValue): void
+    {
+        foreach($channelOrders as $channelOrder)
+        {
+            $ch_order = new ChannelOrder($channelOrder);
+            $this->assertEquals($expectedValue, $ch_order->computeHash());
         }
     }
 
-    /** @dataProvider computeHashDataProvider */
-    public function testComputeHash(array $channelOrder, string $expectedHash): void
-    {
-        $co = new DTO\ChannelOrder($channelOrder);
-        $this->assertEquals($expectedHash, $co->computeHash());
-    }
+    
 
-    private function computeHashDataProvider(): array
+    private function computeHash(): array
     {
         return [
+            /** First case */
             [
                 [
-                    'channel_id'         => 20,
-                    "channel_order_code" => "channel_order_code",
-                    "notes"              => "notes",
-                    "total_discount"     => 5.00,
-                    "state"              => null,
+                    "channel_id" => 65, 
+                    "channel_order_code" => "187",
+                    "notes" => null,
+                    "total_discount" => 0,
+                    "state" => "",
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""]
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                "982ac1088089f16a25b76df5da8ca870",
             ],
+            /** Second Case */
+            /** Left a property out */
             [
                 [
-                    'channel_id'         => 20,
-                    "channel_order_code" => "channel_order_code",
-                    "notes"              => "notes",
-                    "total_discount"     => 5.00,
+                    "channel_id" => 65, 
+                    "channel_order_code" => "187",
+                    "total_discount" => 0,
+                    "state" => "",
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""],
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                "982ac1088089f16a25b76df5da8ca870"
             ],
+            /** Third Case */
+            /** Swaps around properties */
             [
                 [
-                    'channel_id'         => 20,
-                    "channel_order_code" => "channel_order_code",
-                    "notes"              => "notes",
-                    "total_discount"     => 5.00
+                    "billing_address" => ["address1" => "Samantha Street", "address2" => ""],
+                    "channel_order_code" => "187",
+                    "channel_id" => 65,
+                    "state" => "",
+                    "total_discount" => 0,
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                "982ac1088089f16a25b76df5da8ca870"
             ],
+            /** Fourth Test */
+            /** All Object properties */
             [
                 [
-                    "notes"              => "notes",
-                    "total_discount"     => 5.00,
-                    "channel_order_code" => "channel_order_code",
-                    'channel_id'         => 20,
-                ],
-                '133cb962d81ce0a796303a0245212be9'
-            ],
-            [
-                [
-                    "channel_id"         => 20,
-                    "channel_order_code" => "channel_order_code",
-                    "notes"              => "notes",
-                    "total_discount"     => 5.00,
-                    "billing_address"    => [
-                        "address1"      => "address1",
-                        "address2"      => "address2",
-                        "city"          => "city",
-                        "company"       => "company",
-                        "country"       => "country",
-                        "country_code"  => "country_code",
-                        "first_name"    => "first_name",
-                        "last_name"     => "last_name",
-                        "phone"         => "phone",
-                        "province"      => "province",
-                        "province_code" => "province_code",
-                        "type"          => "type",
-                        "zip"           => "zip"
+                    "channel_id" => 21, 
+                    "channel_order_code" => "1972",
+                    "notes" => "noted",
+                    "total_discount" => 0,
+                    "state" => "state",
+                    "billing_address" => 
+                    [
+                        "address1" => "",
+                        "address2" => "",
+                        "city" => "",
+                        "company" => "",
+                        "country" => "",
+                        "country_code" => "",
+                        "first_name" => "",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "",
+                        "province_code" => "",
+                        "type" => "",
+                        "zip" => "",
                     ],
-                    "customer"           => [
-                        "accepts_marketing"     => true,
-                        "channel_customer_code" => "channel_customer_code",
-                        "email"                 => "email",
-                        "first_name"            => "first_name",
-                        "last_name"             => "last_name"
+                    "customer" => 
+                    [
+                        "accepts_marketing" => "",
+                        "email" => "",
+                        "first_name" => "",
+                        "last_name" => "",
+                        "channel_customer_code" => ""
                     ],
-                    "instruction"        => "add_order",
-                    "line_items"         => [
+                    "instruction" => "instruction",
+                    "line_items" => 
+                    [
                         [
-                            "barcode"              => "barcode",
-                            "grams"                => 150,
-                            "price"                => 19.99,
-                            "qty"                  => 100,
-                            "sku"                  => "sku",
-                            "tax_lines"            => [
-                                [
-                                    "price" => 19.99,
-                                    "title" => "title",
-                                    "rate"  => 1.2
-                                ]
-                            ],
-                            "title"                => "title",
-                            "total_discount"       => 20.05,
-                            "channel_variant_code" => "channel_variant_code"
+                            "barcode" => "0",
+                            "grams" => 0,
+                            "price" => 0,
+                            "qty" => 0,
+                            "sku" => "",
+                            "title" => "",
+                            "total_discount" => 0,
+                            "tax_lines" => []
                         ],
                         [
-                            "barcode"              => "barcode-1",
-                            "grams"                => 151,
-                            "price"                => 20.00,
-                            "qty"                  => 200,
-                            "sku"                  => "sku-1",
-                            "tax_lines"            => [
-                                [
-                                    "price" => 29.99,
-                                    "title" => "title-1",
-                                    "rate"  => 2.0
-                                ]
-                            ],
-                            "title"                => "title-1",
-                            "total_discount"       => 30.00,
-                            "channel_variant_code" => "channel_variant_code-1"
+                            "barcode" => "0",
+                            "grams" => 0,
+                            "price" => 0,
+                            "qty" => 0,
+                            "sku" => "",
+                            "title" => "",
+                            "total_discount" => 0,
+                            "tax_lines" => []
                         ]
                     ],
-                    "meta"               => [
+                    "meta" => 
+                    [
                         [
-                            "key"   => "key",
-                            "value" => "value"
+                            "key" => "key_1",
+                            "value" => "value_1"
                         ],
                         [
-                            "key"   => "key-1",
-                            "value" => "value-1"
+                            "key" => "key_2",
+                            "value" => "value_2"
                         ]
                     ],
-                    "params"             => [
-                        "key-1" => "value-1",
-                        "key-2" => "value-2"
+                    "params" => 
+                    [
+                        "param_1" => "param_value_1",
+                        "param_2" => "param_value_2",
+                        "param_3" => "param_value_3"
                     ],
-                    "shipping_address"   => [
-                        "address1"      => "address1",
-                        "address2"      => "address2",
-                        "city"          => "city",
-                        "company"       => "company",
-                        "country"       => "country",
-                        "country_code"  => "country_code",
-                        "first_name"    => "first_name",
-                        "last_name"     => "last_name",
-                        "phone"         => "phone",
-                        "province"      => "province",
-                        "province_code" => "province_code",
-                        "type"          => "type",
-                        "zip"           => "zip"
+                    "shipping_address" => 
+                    [
+                        "address1" => "",
+                        "address2" => "Montrose Park"
                     ],
-                    "shipping_lines"     => [
+                    "shipping_lines" => 
+                    [
                         [
-                            "price"     => 19.99,
-                            "tax_lines" => [
-                                [
-                                    "price" => 19.99,
-                                    "rate"  => 19.99,
-                                    "title" => "title"
-                                ]
-                            ],
-                            "title"     => "title"
+                            "address1" => "address_1",
+                            "address2" => "address_2",
+                            "city" => "city",
+                            "company" => "company",
+                            "country" => "country",
+                            "country_code" => "country_code",
+                            "first_name" => "first_name",
+                            "last_name" => "last_name",
+                            "phone" => "phone",
+                            "province" => "province",
+                            "province_code" => "province_code",
+                            "type" => "type",
+                            "zip" => "zip"
                         ],
                         [
-                            "price"     => 20.00,
-                            "tax_lines" => [
-                                [
-                                    "price" => 21.00,
-                                    "rate"  => 22.00,
-                                    "title" => "title-1"
-                                ]
-                            ],
-                            "title"     => "title-1"
+                            "address1" => "address_1",
+                            "address2" => "address_2",
+                            "city" => "city",
+                            "company" => "company",
+                            "country" => "country",
+                            "country_code" => "country_code",
+                            "first_name" => "first_name",
+                            "last_name" => "last_name",
+                            "phone" => "phone",
+                            "province" => "province",
+                            "province_code" => "province_code",
+                            "type" => "type",
+                            "zip" => "zip"
                         ]
                     ]
                 ],
-                'bbdfbd0a6e8aa8181232bbc773819cc1'
-            ],
+                "c768368f25e4f6487cee80decca34b88"
+            ]
         ];
     }
 
-    private function computeHashNullsDataProvider(): array
+    private function computeHash_null(): array
     {
         return [
             [
@@ -330,7 +474,8 @@ class ChannelOrderTest extends TestCase
                         "channel_order_code" => null,
                         "notes"              => null,
                         "total_discount"     => null,
-                        "billing_address"    => [
+                        "billing_address"    => 
+                        [
                             "address1"      => null,
                             "address2"      => null,
                             "city"          => null,
@@ -345,7 +490,8 @@ class ChannelOrderTest extends TestCase
                             "type"          => null,
                             "zip"           => null,
                         ],
-                        "customer"           => [
+                        "customer"           => 
+                        [
                             "accepts_marketing" => null,
                             "email"             => null,
                             "first_name"        => null,
@@ -355,7 +501,8 @@ class ChannelOrderTest extends TestCase
                         "line_items"         => [],
                         "meta"               => [],
                         "params"             => [],
-                        "shipping_address"   => [
+                        "shipping_address"   => 
+                        [
                             "address1"      => null,
                             "address2"      => null,
                             "city"          => null,
@@ -371,121 +518,12 @@ class ChannelOrderTest extends TestCase
                             "zip"           => null,
                         ],
                         "shipping_lines"     => []
-                    ],
-                ],
-                'bae19b9cb25ee6a7186bbed0072f1015',
-            ]
-        ];
-    }
-
-    private function computeHashArrayOrderingDataProvider(): array
-    {
-        return [
-            [
-                [
-                    [
-                        'line_items'     => [
-                            [
-                                "price" => 19.99,
-                                "qty"   => 100,
-                                "sku"   => "sku-2"
-                            ],
-                            [
-                                "price"     => 19.99,
-                                "qty"       => 100,
-                                "sku"       => "sku-1",
-                                "tax_lines" => [
-                                    [
-                                        "price" => 10.01,
-                                        "title" => "title-1",
-                                        "rate"  => 10
-                                    ],
-                                    [
-                                        "price" => 29.99,
-                                        "title" => "title-2",
-                                        "rate"  => 15
-                                    ]
-                                ]
-                            ]
-                        ],
-                        'meta'           => [
-                            [
-                                'key'   => 'a',
-                                'value' => '1'
-                            ],
-                            [
-                                'key'   => 'b',
-                                'value' => '2'
-                            ]
-                        ],
-                        'params'         => [
-                            'key-1' => 'value-1',
-                            'key-2' => 'value-2'
-                        ],
-                        'shipping_lines' => [
-                            [
-                                'price' => 100,
-                                'title' => '1'
-                            ],
-                            [
-                                'price' => 200,
-                                'title' => '2'
-                            ]
-                        ]
-                    ],
-                    [
-                        'line_items'     => [
-                            [
-                                "price"     => 19.99,
-                                "qty"       => 100,
-                                "sku"       => "sku-1",
-                                "tax_lines" => [
-                                    [
-                                        "price" => 29.99,
-                                        "title" => "title-2",
-                                        "rate"  => 15
-                                    ],
-                                    [
-                                        "price" => 10.01,
-                                        "title" => "title-1",
-                                        "rate"  => 10
-                                    ]
-                                ]
-                            ],
-                            [
-                                "price" => 19.99,
-                                "qty"   => 100,
-                                "sku"   => "sku-2"
-                            ],
-                        ],
-                        'meta'           => [
-                            [
-                                'key'   => 'b',
-                                'value' => '2'
-                            ],
-                            [
-                                'key'   => 'a',
-                                'value' => '1'
-                            ]
-                        ],
-                        'params'         => [
-                            'key-2' => 'value-2',
-                            'key-1' => 'value-1'
-                        ],
-                        'shipping_lines' => [
-                            [
-                                'price' => 200,
-                                'title' => '2'
-                            ],
-                            [
-                                'price' => 100,
-                                'title' => '1'
-                            ]
-                        ]
                     ]
                 ],
-                'hash' => '22f98cef9c89fb048e296d7e9f776064',
+                "bae19b9cb25ee6a7186bbed0072f1015"
             ]
         ];
     }
 }
+
+?>

@@ -2,42 +2,92 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
-use Stock2Shop\Share\Utils\Date;
+use Stock2Shop\Share\DTO\Meta;
 
 class MetaTest extends TestCase
 {
-    private string $json;
+    private function setUpArray(): array
+    { 
+        $array = [
+            "key" => "key",
+            "value" => "value",
+            "template_name" => "template_name"
+        ];
+        return $array;
+    }
 
-    protected function setUp(): void
-    {
-        $this->json = '
-        {
-            "key": "src",
+    private function setUpJson(): string
+    { 
+        $json = '{
+            "key": "key",
             "value": "value",
-            "template_name": "template_name"
+            "template_name":"template_name"
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new Meta($this->setUpArray());
+
+        $this->assertSame("key", $object->key);
+        $this->assertSame("value", $object->value);
+        $this->assertSame("template_name", $object->template_name);
+
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Meta", $object);
+
+        $object_attributes = [
+            "key",
+            "value",
+            "template_name"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
-    {
-        $m = DTO\Meta::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
-    }
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(Meta::createFromJSON($json));
 
-    public function testInheritance(): void
-    {
-        $m = DTO\Meta::createFromJSON($this->json);
-        $this->assertMeta($m);
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "key" => "key_1",
+                "value" => "value_1",
+                "template_name" => "template_name_1"
+            ],
+            [
+                "key" => "key",
+                "value" => "value",
+                "template_name" => "template_name"
+            ]
+        ];
 
-    private function assertMeta(DTO\Meta $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c);
+        $json = '[{
+            "key": "key_1",
+            "value": "value_1",
+            "template_name":"template_name_1"
+        }, 
+        {
+            "key": "key",
+            "value": "value",
+            "template_name":"template_name"
+        }]';
+
+        $json = json_encode(Meta::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 }
+
+?>

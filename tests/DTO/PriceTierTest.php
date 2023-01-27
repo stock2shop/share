@@ -2,40 +2,82 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\PriceTier;
 
 class PriceTierTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "tier": "wholesale",
-            "price": 20.00
+        $array = [
+            "tier" => "tier",
+            "price" => "5.90"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "tier": "tier",
+            "price": 5.90
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new PriceTier($this->setUpArray());
+
+        $this->assertSame("tier", $object->tier);
+        $this->assertSame(5.90, $object->price);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\PriceTier", $object);
+
+        $object_attributes = [
+            "tier",
+            "price"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
-    {
-        $pt = DTO\PriceTier::createFromJSON($this->json);
-        $serialized = json_encode($pt);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    public function testSerialize(): void 
+    { 
+        $array = PriceTier::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
+    public function testJsonConversion(): void 
     {
-        $pt = DTO\PriceTier::createFromJSON($this->json);
-        $this->assertPriceTier($pt);
+        $json = $this->setUpJson();
+        $array = json_encode(PriceTier::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertPriceTier(DTO\PriceTier $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "tier" => "tier_1",
+                "price" => 0
+            ],
+            [
+                "tier" => "tier_2",
+                "price" => 10.50
+            ]
+        ];
+        $json = json_encode(PriceTier::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

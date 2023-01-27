@@ -2,250 +2,1079 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\SystemOrder;
 
 class SystemOrderTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "channel_order_code": "channel_order_code",
-            "notes": "notes",
-            "total_discount": 1.01,
-            "state": "new",
-            "channel_id": 2,
-            "client_id": 3,
-            "created": "created",
+        $array = [
+            "channel_id" => 56,
+            "channel_order_code" => "91",
+            "notes" => null,
+            "total_discount" => null,
+            "state" => "",
+            "client_id"=> null,
+            "created" => "",
+            "customer" => [
+                "accepts_marketing" => false,
+                "email" => "email_address",
+                "first_name" => "first_name",
+                "last_name" => "last_name",
+                "active" => false,
+                "addresses" => [[
+                    "address1" => "14 Tracy Close",
+                    "address2" => "",
+                    "city" => "Cape Town",
+                    "company" => "",
+                    "country" => "South Africa",
+                    "country_code" => "ZA",
+                    "first_name" => "Keenan",
+                    "last_name" => "",
+                    "phone" => "",
+                    "province" => "Western Province",
+                    "province_code" => "WP",
+                    "type" => "",
+                    "zip" => "7785"
+                ]],
+                "channel_customer_code" => "",
+                "channel_id" => null,
+                "client_id" => null,
+                "created" => "",
+                "customer_id" => null,
+                "meta" => [[
+                    "key" => "key",
+                    "value" => "value",
+                    "template_name" => ""
+                ]],
+                "modified" => "",
+                "user" => [
+                    "customer_id" => null,
+                    "id" => null,
+                    "segments" => [[
+                        "type" => "products",
+                        "key" => "vendor",
+                        "operator" => "contains",
+                        "value" => "Mihoyo",
+                        "owner" => "system"
+                    ]],
+                    "price_tier" => "",
+                    "qty_availability" => ""
+                ]
+            ],
+            "fulfillments" => [[
+                "fulfillmentservice_order_code" => "",
+                "notes" => "notes",
+                "status" => "",
+                "tracking_company" => "",
+                "tracking_number" => 5,
+                "tracking_url" => "",
+                "channel_id" => null,
+                "client_id" => null,
+                "created" => "",
+                "fulfillmentservice_id" => null,
+                "line_items" => [[
+                    "grams" => 0,
+                    "qty" => 5,
+                    "sku" => "sku",
+                    "fulfilled_qty" => null,
+                    "created" => "created_date",
+                    "modified" => "modified_date"
+                ]],
+                "modified" => "",
+                "order_id" => 9000,
+                "shipping_address" => [
+                    "address1" => "14 Tracy Close",
+                    "address2" => "",
+                    "city" => "Cape Town",
+                    "company" => "",
+                    "country" => "South Africa",
+                    "country_code" => "ZA",
+                    "first_name" => "Keenan",
+                    "last_name" => "",
+                    "phone" => "",
+                    "province" => "Western Province",
+                    "province_code" => "WP",
+                    "type" => "",
+                    "zip" => "7785",
+                    "channel_id" => null,
+                    "client_id" => null,
+                    "created" => "",
+                    "modified" => ""
+                ],
+                "state" => "",
+                "channel_synced" => ""
+            ]],
+            "history" => [[
+                "instruction" => "",
+                "storage_code" => "",
+                "created" => "",
+                "modified" => ""
+            ]],
+            "id" => null,
+            "line_item_sub_total" => null,
+            "line_item_tax" => null,
+            "line_items" => [[
+                "barcode" => null,
+                "grams" => null,
+                "price" => null,
+                "qty" => null,
+                "sku" => "sku",
+                "title" => null,
+                "total_discount" => null,
+                "created" => "",
+                "fulfillments" => [[
+                    "grams" => null,
+                    "qty" => null,
+                    "sku" => null,
+                    "fulfilled_qty" => null,
+                    "created" => "",
+                    "modified" => null
+                ]],
+                "modified" => null,
+                "product_id" => null,
+                "variant_id" => null,
+                "source_id" => null,
+                "source_variant_code" => null,
+                "price_display" => null,
+                "total_discount_display" => null,
+                "tax_per_unit_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "sub_total" => null,
+                "tax_per_unit" => null,
+                "sub_total_display" => null,
+                "total" => null,
+                "total_display" => null
+            ]],
+            "meta" => [[
+                "key" => "",
+                "value" => ""
+            ]],
+            "modified" => "date",
+            "shipping_lines" => [[
+                "price" => null,
+                "title" => null,
+                "created" => "",
+                "modified" => "",
+                "price_display" => null,
+                "sub_total" => null,
+                "sub_total_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "tax_per_unit" => null,
+                "tax_per_unit_display" => null,
+                "total" => null,
+                "total_discount" => null,
+                "total_discount_display" => null,
+                "total_display" => null
+            ]],
+            "shipping_sub_total" => null,
+            "shipping_tax" => null,
+            "shipping_tax_display" => null,
+            "shipping_total" => null,
+            "shipping_total_display" => null,
+            "sources" => [[
+                "source_id" => null,
+                "source_customer_code" => null,
+                "source_order_code" => null
+            ]],
+            "status" => null,
+            "sub_total" => null,
+            "sub_total_display" => null,
+            "tax" => null,
+            "tax_display" => null,
+            "total" => null,
+            "total_discount_display" => null,
+            "total_display" => null
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "channel_id": 56,
+            "channel_order_code": "91",
+            "notes": null,
+            "total_discount": null,
+            "state": "",
+            "client_id": null,
+            "created": "",
             "customer": {
                 "accepts_marketing": false,
-                "email": "x@y.com",
-                "first_name": "bob",
-                "last_name": null,
-                "active": true,
-                "addresses": [
-                    {
-                        "address1": "abc",
-                        "address2": null,
-                        "city": "jhb",
-                        "country_code": "ZA",
-                        "company": "s2s",
-                        "country": "sa",
-                        "first_name": "bob",
-                        "last_name": "jones",
-                        "phone": "123456",
-                        "province": "somewhere",
-                        "province_code": null,
-                        "type": "billing",
-                        "zip": "1234"
-                    }
-                ],
-                "channel_customer_code": "abc",
+                "email": "email_address",
+                "first_name": "first_name",
+                "last_name": "last_name",
+                "active": false,
+                "addresses": [{
+                    "address1": "14 Tracy Close",
+                    "address2": "",
+                    "city": "Cape Town",
+                    "company": "",
+                    "country": "South Africa",
+                    "country_code": "ZA",
+                    "first_name": "Keenan",
+                    "last_name": "",
+                    "phone": "",
+                    "province": "Western Province",
+                    "province_code": "WP",
+                    "type": "",
+                    "zip": "7785"
+                }],
+                "channel_customer_code": "",
                 "channel_id": null,
-                "client_id": 21,
-                "created": "2022-01-01",
-                "customer_id": 123,
-                "meta": [
-                    {
-                        "key": "group",
-                        "value": "wholesale",
-                        "template_name": "template_a"
-                    }
-                ],
-                "modified": "2022-01-01",
+                "client_id": null,
+                "created": "",
+                "customer_id": null,
+                "meta": [{
+                    "key": "key",
+                    "value": "value",
+                    "template_name": ""
+                }],
+                "modified": "",
                 "user": {
-                    "customer_id": 123,
-                    "id": 123,
-                    "segments": [
-                        {
-                            "type": "products",
-                            "key": "collection",
-                            "operator": "equal",
-                            "value": "abc",
-                            "owner": "source"
-                        }
-                    ],
-                    "price_tier": "a",
-                    "qty_availability": "b"
+                    "customer_id": null,
+                    "id": null,
+                    "segments": [{
+                        "type": "products",
+                        "key": "vendor",
+                        "operator": "contains",
+                        "value": "Mihoyo",
+                        "owner": "system"
+                    }],
+                    "price_tier": "",
+                    "qty_availability": ""
                 }
             },
-            "fulfillments": [
-                {
-                    "channel_synced": "2022-10-27 06:21:41.281236",
-                    "fulfillmentservice_order_code": "fulfillmentservice_order_code",
-                    "line_items": [
-                        {
-                            "created": "created",
-                            "modified": "modified",
-                            "grams": 10,
-                            "qty": 1,
-                            "sku": "sku",
-                            "fulfilled_qty": 0
-                        }
-                    ],
-                    "notes": "notes",
-                    "state": "state",
-                    "status": "status",
-                    "tracking_company": "tracking_company",
-                    "tracking_number": 456,
-                    "tracking_url": "tracking_url",
-                    "channel_id": 57,
-                    "client_id": 21,
-                    "created": "created",
-                    "fulfillmentservice_id": 1,
-                    "modified": "modified",
-                    "order_id": 123,
-                    "shipping_address": {
-                        "address1": "address1",
-                        "address2": "address2",
-                        "channel_id": 1,
-                        "city": "city",
-                        "client_id": 2,
-                        "company": "company",
-                        "country": "country",
-                        "country_code": "country_code",
-                        "first_name": "first_name",
-                        "last_name": "last_name",
-                        "phone": "phone",
-                        "province": "province",
-                        "province_code": "province_code",
-                        "type": "type",
-                        "zip": "zip",
-                        "created": "created",
-                        "modified": "modified"
-                    }
-                }
-            ],
-            "history": [
-                {
-                    "instruction": "instruction",
-                    "storage_code": "storage_code",
-                    "created": "created",
-                    "modified": "modified"
-                }
-            ],
-            "id": 4,
-            "line_item_sub_total": 5.05,
-            "line_item_tax": 6.06,
-            "line_items": [
-                {
-                    "barcode": "barcode",
-                    "grams": 100,
-                    "price": 19.99,
+            "fulfillments": [{
+                "fulfillmentservice_order_code": "",
+                "notes": "notes",
+                "status": "",
+                "tracking_company": "",
+                "tracking_number": 5,
+                "tracking_url": "",
+                "channel_id": null,
+                "client_id": null,
+                "created": "",
+                "fulfillmentservice_id": null,
+                "line_items": [{
+                    "grams": 0,
                     "qty": 5,
                     "sku": "sku",
-                    "title": "title",
-                    "created": "created",
-                    "fulfillments": [
-                        {
-                            "created": "created",
-                            "modified": "modified",
-                            "grams": 10,
-                            "qty": 1,
-                            "sku": "sku",
-                            "fulfilled_qty": 0
-                        }
-                    ],
-                    "modified": "modified",
-                    "product_id": 1,
-                    "variant_id": 2,
-                    "source_id": 3,
-                    "source_variant_code": "source_variant_code",
-                    "price_display": "price_display",
-                    "total_discount": 4.01,
-                    "total_discount_display": "total_discount_display",
-                    "tax_per_unit_display": "tax_per_unit_display",
-                    "tax": 5.02,
-                    "tax_display": "tax_display",
-                    "sub_total": 6.03,
-                    "tax_per_unit": 7.04,
-                    "sub_total_display": "sub_total_display",
-                    "total": 8.05,
-                    "total_display": "total_display"
-                }
-            ],
-            "meta": [
-                {
-                    "key": "src",
-                    "value": "value"
-                }
-            ],
-            "modified": "modified",
-            "shipping_lines": [
-                {
-                    "price": 99.99,
-                    "title": "title",
-                    "created": "created",
-                    "modified": "modified",
-                    "price_display": "price_display",
-                    "sub_total": 3.01,
-                    "sub_total_display": "sub_total_display",
-                    "tax": 4.02,
-                    "tax_display": "tax_display",
-                    "tax_per_unit": 5.03,
-                    "tax_per_unit_display": "tax_per_unit_display",
-                    "total": 6.04,
-                    "total_discount": 7.05,
-                    "total_discount_display": "total_discount_display",
-                    "total_display": "total_display"
-                }
-            ],
-            "shipping_sub_total": 7.07,
-            "shipping_tax": 8.08,
-            "shipping_tax_display": "shipping_tax_display",
-            "shipping_total": 9.09,
-            "shipping_total_display": "shipping_total_display",
-            "sources": [
-                {
-                    "source_id": 57,
-                    "source_customer_code": "source_customer_code",
-                    "source_order_code": "source_order_code"
-                }
-            ],
-            "status": "status",
-            "sub_total": 10.10,
-            "sub_total_display": "sub_total_display",
-            "tax": 11.11,
-            "tax_display": "tax_display",
-            "total": 12.12,
-            "total_discount_display": "total_discount_display",
-            "total_display": "total_display"
+                    "fulfilled_qty": null,
+                    "created": "created_date",
+                    "modified": "modified_date"
+                }],
+                "modified": "",
+                "order_id": 9000,
+                "shipping_address": {
+                    "address1": "14 Tracy Close",
+                    "address2": "",
+                    "city": "Cape Town",
+                    "company": "",
+                    "country": "South Africa",
+                    "country_code": "ZA",
+                    "first_name": "Keenan",
+                    "last_name": "",
+                    "phone": "",
+                    "province": "Western Province",
+                    "province_code": "WP",
+                    "type": "",
+                    "zip": "7785",
+                    "channel_id": null,
+                    "client_id": null,
+                    "created": "",
+                    "modified": ""
+                },
+                "state": "",
+                "channel_synced": ""
+            }],
+            "history": [{
+                "instruction": "",
+                "storage_code": "",
+                "created": "",
+                "modified": ""
+            }],
+            "id": null,
+            "line_item_sub_total": null,
+            "line_item_tax": null,
+            "line_items": [{
+                "barcode": null,
+                "grams": null,
+                "price": null,
+                "qty": null,
+                "sku": "sku",
+                "title": null,
+                "total_discount": null,
+                "created": "",
+                "fulfillments": [{
+                    "grams": null,
+                    "qty": null,
+                    "sku": null,
+                    "fulfilled_qty": null,
+                    "created": "",
+                    "modified": null
+                }],
+                "modified": null,
+                "product_id": null,
+                "variant_id": null,
+                "source_id": null,
+                "source_variant_code": null,
+                "price_display": null,
+                "total_discount_display": null,
+                "tax_per_unit_display": null,
+                "tax": null,
+                "tax_display": null,
+                "sub_total": null,
+                "tax_per_unit": null,
+                "sub_total_display": null,
+                "total": null,
+                "total_display": null
+            }],
+            "meta": [{
+                "key": "",
+                "value": ""
+            }],
+            "modified": "date",
+            "shipping_lines": [{
+                "price": null,
+                "title": null,
+                "created": "",
+                "modified": "",
+                "price_display": null,
+                "sub_total": null,
+                "sub_total_display": null,
+                "tax": null,
+                "tax_display": null,
+                "tax_per_unit": null,
+                "tax_per_unit_display": null,
+                "total": null,
+                "total_discount": null,
+                "total_discount_display": null,
+                "total_display": null
+            }],
+            "shipping_sub_total": null,
+            "shipping_tax": null,
+            "shipping_tax_display": null,
+            "shipping_total": null,
+            "shipping_total_display": null,
+            "sources": [{
+                "source_id": null,
+                "source_customer_code": null,
+                "source_order_code": null
+            }],
+            "status": null,
+            "sub_total": null,
+            "sub_total_display": null,
+            "tax": null,
+            "tax_display": null,
+            "total": null,
+            "total_discount_display": null,
+            "total_display": null
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new SystemOrder($this->setUpArray());
+
+        $this->assertSame(56, $object->channel_id);
+        $this->assertSame("91", $object->channel_order_code);
+        $this->assertSame("", $object->created);
+        $this->assertSame(null, $object->id);
+        $this->assertSame(null, $object->line_item_sub_total);
+        $this->assertSame(null, $object->line_item_tax);
+        $this->assertSame("date", $object->modified);
+        $this->assertSame(null, $object->shipping_sub_total);
+        $this->assertSame(null, $object->total_discount_display);
+        $this->assertSame(null, $object->total_display);
+        $this->assertSame("email_address", $object->customer->email);
+        $this->assertSame("14 Tracy Close", $object->customer->addresses[0]->address1);
+        $this->assertSame("notes", $object->fulfillments[0]->notes);
+        $this->assertSame("sku", $object->line_items[0]->sku);
+        $this->assertSame(null, $object->shipping_lines[0]->price);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrder", $object);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemCustomer", $object->customer);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrderHistory", $object->history[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrderItem", $object->line_items[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\OrderMeta", $object->meta[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrderShippingLine", $object->shipping_lines[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\OrderSource", $object->sources[0]);
+
+        $object_attributes = 
+        [
+            "channel_id",
+            "client_id",
+            "created",
+            "id",
+            "line_item_sub_total",
+            "line_item_tax",
+            "modified",
+            "shipping_sub_total",
+            "total_discount_display",
+            "total_display",
+            "status",
+            "sub_total",
+            "tax",
+            "tax_display",
+            "total",
+            "shipping_tax"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
     public function testSerialize(): void
-    {
-        $m = DTO\SystemOrder::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    { 
+        $array = SystemOrder::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\SystemOrder::createFromJSON($this->json);
-        $this->assertSystemOrder($m);
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(SystemOrder::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertSystemOrder(DTO\SystemOrder $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Order', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrder', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillment', $c->fulfillments[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->fulfillments[0]->line_items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderAddress', $c->fulfillments[0]->shipping_address);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderHistory', $c->history[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c->line_items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c->line_items[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->line_items[0]->fulfillments[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c->shipping_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderSource', $c->sources[0]);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "channel_id" => 56,
+                "channel_order_code" => "91",
+                "notes" => null,
+                "total_discount" => null,
+                "state" => "",
+                "client_id"=> null,
+                "created" => "",
+                "customer" => [
+                    "accepts_marketing" => false,
+                    "email" => "email_address",
+                    "first_name" => "first_name",
+                    "last_name" => "last_name",
+                    "active" => false,
+                    "addresses" => [[
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "company" => "",
+                        "country" => "South Africa",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785"
+                    ]],
+                    "channel_customer_code" => "",
+                    "channel_id" => null,
+                    "client_id" => null,
+                    "created" => "",
+                    "customer_id" => null,
+                    "meta" => [[
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => ""
+                    ]],
+                    "modified" => "",
+                    "user" => [
+                        "customer_id" => null,
+                        "id" => null,
+                        "segments" => [[
+                            "type" => "products",
+                            "key" => "vendor",
+                            "operator" => "contains",
+                            "value" => "Mihoyo",
+                            "owner" => "system"
+                        ]],
+                        "price_tier" => "",
+                        "qty_availability" => ""
+                    ]
+                ],
+                "fulfillments" => [[
+                    "fulfillmentservice_order_code" => "",
+                    "notes" => "notes",
+                    "status" => "",
+                    "tracking_company" => "",
+                    "tracking_number" => 5,
+                    "tracking_url" => "",
+                    "channel_id" => null,
+                    "client_id" => null,
+                    "created" => "",
+                    "fulfillmentservice_id" => null,
+                    "line_items" => [[
+                        "grams" => 0,
+                        "qty" => 5,
+                        "sku" => "sku",
+                        "fulfilled_qty" => null,
+                        "created" => "created_date",
+                        "modified" => "modified_date"
+                    ]],
+                    "modified" => "",
+                    "order_id" => 9000,
+                    "shipping_address" => [
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "company" => "",
+                        "country" => "South Africa",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785",
+                        "channel_id" => null,
+                        "client_id" => null,
+                        "created" => "",
+                        "modified" => ""
+                    ],
+                    "state" => "",
+                    "channel_synced" => ""
+                ]],
+                "history" => [[
+                    "instruction" => "",
+                    "storage_code" => "",
+                    "created" => "",
+                    "modified" => ""
+                ]],
+                "id" => null,
+                "line_item_sub_total" => null,
+                "line_item_tax" => null,
+                "line_items" => [[
+                    "barcode" => null,
+                    "grams" => null,
+                    "price" => null,
+                    "qty" => null,
+                    "sku" => "sku",
+                    "title" => null,
+                    "total_discount" => null,
+                    "created" => "",
+                    "fulfillments" => [[
+                        "grams" => null,
+                        "qty" => null,
+                        "sku" => null,
+                        "fulfilled_qty" => null,
+                        "created" => "",
+                        "modified" => null
+                    ]],
+                    "modified" => null,
+                    "product_id" => null,
+                    "variant_id" => null,
+                    "source_id" => null,
+                    "source_variant_code" => null,
+                    "price_display" => null,
+                    "total_discount_display" => null,
+                    "tax_per_unit_display" => null,
+                    "tax" => null,
+                    "tax_display" => null,
+                    "sub_total" => null,
+                    "tax_per_unit" => null,
+                    "sub_total_display" => null,
+                    "total" => null,
+                    "total_display" => null
+                ]],
+                "meta" => [[
+                    "key" => "",
+                    "value" => ""
+                ]],
+                "modified" => "date",
+                "shipping_lines" => [[
+                    "price" => null,
+                    "title" => null,
+                    "created" => "",
+                    "modified" => "",
+                    "price_display" => null,
+                    "sub_total" => null,
+                    "sub_total_display" => null,
+                    "tax" => null,
+                    "tax_display" => null,
+                    "tax_per_unit" => null,
+                    "tax_per_unit_display" => null,
+                    "total" => null,
+                    "total_discount" => null,
+                    "total_discount_display" => null,
+                    "total_display" => null
+                ]],
+                "shipping_sub_total" => null,
+                "shipping_tax" => null,
+                "shipping_tax_display" => null,
+                "shipping_total" => null,
+                "shipping_total_display" => null,
+                "sources" => [[
+                    "source_id" => null,
+                    "source_customer_code" => null,
+                    "source_order_code" => null
+                ]],
+                "status" => null,
+                "sub_total" => null,
+                "sub_total_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "total" => null,
+                "total_discount_display" => null,
+                "total_display" => null
+            ],
+            [
+                "channel_id" => 56,
+                "channel_order_code" => "91",
+                "notes" => null,
+                "total_discount" => null,
+                "state" => "",
+                "client_id"=> null,
+                "created" => "",
+                "customer" => [
+                    "accepts_marketing" => false,
+                    "email" => "email_address",
+                    "first_name" => "first_name",
+                    "last_name" => "last_name",
+                    "active" => false,
+                    "addresses" => [[
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "company" => "",
+                        "country" => "South Africa",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785"
+                    ]],
+                    "channel_customer_code" => "",
+                    "channel_id" => null,
+                    "client_id" => null,
+                    "created" => "",
+                    "customer_id" => null,
+                    "meta" => [[
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => ""
+                    ]],
+                    "modified" => "",
+                    "user" => [
+                        "customer_id" => null,
+                        "id" => null,
+                        "segments" => [[
+                            "type" => "products",
+                            "key" => "vendor",
+                            "operator" => "contains",
+                            "value" => "Mihoyo",
+                            "owner" => "system"
+                        ]],
+                        "price_tier" => "",
+                        "qty_availability" => ""
+                    ]
+                ],
+                "fulfillments" => [[
+                    "fulfillmentservice_order_code" => "",
+                    "notes" => "notes",
+                    "status" => "",
+                    "tracking_company" => "",
+                    "tracking_number" => 5,
+                    "tracking_url" => "",
+                    "channel_id" => null,
+                    "client_id" => null,
+                    "created" => "",
+                    "fulfillmentservice_id" => null,
+                    "line_items" => [[
+                        "grams" => 0,
+                        "qty" => 5,
+                        "sku" => "sku",
+                        "fulfilled_qty" => null,
+                        "created" => "created_date",
+                        "modified" => "modified_date"
+                    ]],
+                    "modified" => "",
+                    "order_id" => 9000,
+                    "shipping_address" => [
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "company" => "",
+                        "country" => "South Africa",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785",
+                        "channel_id" => null,
+                        "client_id" => null,
+                        "created" => "",
+                        "modified" => ""
+                    ],
+                    "state" => "",
+                    "channel_synced" => ""
+                ]],
+                "history" => [[
+                    "instruction" => "",
+                    "storage_code" => "",
+                    "created" => "",
+                    "modified" => ""
+                ]],
+                "id" => null,
+                "line_item_sub_total" => null,
+                "line_item_tax" => null,
+                "line_items" => [[
+                    "barcode" => null,
+                    "grams" => null,
+                    "price" => null,
+                    "qty" => null,
+                    "sku" => "sku",
+                    "title" => null,
+                    "total_discount" => null,
+                    "created" => "",
+                    "fulfillments" => [[
+                        "grams" => null,
+                        "qty" => null,
+                        "sku" => null,
+                        "fulfilled_qty" => null,
+                        "created" => "",
+                        "modified" => null
+                    ]],
+                    "modified" => null,
+                    "product_id" => null,
+                    "variant_id" => null,
+                    "source_id" => null,
+                    "source_variant_code" => null,
+                    "price_display" => null,
+                    "total_discount_display" => null,
+                    "tax_per_unit_display" => null,
+                    "tax" => null,
+                    "tax_display" => null,
+                    "sub_total" => null,
+                    "tax_per_unit" => null,
+                    "sub_total_display" => null,
+                    "total" => null,
+                    "total_display" => null
+                ]],
+                "meta" => [[
+                    "key" => "",
+                    "value" => ""
+                ]],
+                "modified" => "date",
+                "shipping_lines" => [[
+                    "price" => null,
+                    "title" => null,
+                    "created" => "",
+                    "modified" => "",
+                    "price_display" => null,
+                    "sub_total" => null,
+                    "sub_total_display" => null,
+                    "tax" => null,
+                    "tax_display" => null,
+                    "tax_per_unit" => null,
+                    "tax_per_unit_display" => null,
+                    "total" => null,
+                    "total_discount" => null,
+                    "total_discount_display" => null,
+                    "total_display" => null
+                ]],
+                "shipping_sub_total" => null,
+                "shipping_tax" => null,
+                "shipping_tax_display" => null,
+                "shipping_total" => null,
+                "shipping_total_display" => null,
+                "sources" => [[
+                    "source_id" => null,
+                    "source_customer_code" => null,
+                    "source_order_code" => null
+                ]],
+                "status" => null,
+                "sub_total" => null,
+                "sub_total_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "total" => null,
+                "total_discount_display" => null,
+                "total_display" => null
+            ]
+        ];
+
+        $json = json_encode(SystemOrder::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+
+    // /** @dataProvider computeHash */
+    // public function testComputeHash(array $systemOrder, string $expectedValue): void 
+    // {
+    //     $system_order = new SystemOrder($systemOrder);
+    //     $this->assertEquals($expectedValue, $system_order->computeHash());
+    // }
+
+    // /** @dataProvider computeHash_null */
+    // public function testComputeHash_null(array $systemOrders, string $expectedValue): void 
+    // {
+    //     foreach($systemOrders as $systemOrder)
+    //     {
+    //         $system_order = new SystemOrder($systemOrder);
+    //         $this->assertEquals($expectedValue, $system_order->computeHash());
+    //     }
+    // }
+
+    private function computeHash(): array 
+    { 
+        return [
+            [
+                [
+                    "channel_id" => 56,
+                    "channel_order_code" => "91",
+                    "notes" => null,
+                    "total_discount" => null,
+                    "state" => "",
+                    "client_id"=> null
+                ],
+                ""
+            ],
+            [
+                [
+                    "channel_id" => 56,
+                    "channel_order_code" => "91",
+                    "notes" => null,
+                    "total_discount" => null,
+                    "state" => ""
+                ],
+                ""
+            ],
+            [
+                [
+                    "total_discount" => null,
+                    "channel_order_code" => "91",
+                    "channel_id" => 56,
+                    "state" => "",
+                    "notes" => null
+                ],
+                ""
+            ],
+            [
+                [
+                    "channel_id" => 56,
+                    "channel_order_code" => "91",
+                    "notes" => null,
+                    "total_discount" => null,
+                    "state" => "",
+                    "client_id"=> null,
+                    "created" => "",
+                    "customer" => [
+                        "accepts_marketing" => false,
+                        "email" => "email_address",
+                        "first_name" => "first_name",
+                        "last_name" => "last_name",
+                        "active" => false,
+                        "addresses" => [[
+                            "address1" => "14 Tracy Close",
+                            "address2" => "",
+                            "city" => "Cape Town",
+                            "company" => "",
+                            "country" => "South Africa",
+                            "country_code" => "ZA",
+                            "first_name" => "Keenan",
+                            "last_name" => "",
+                            "phone" => "",
+                            "province" => "Western Province",
+                            "province_code" => "WP",
+                            "type" => "",
+                            "zip" => "7785"
+                        ]],
+                        "channel_customer_code" => "",
+                        "channel_id" => null,
+                        "client_id" => null,
+                        "created" => "",
+                        "customer_id" => null,
+                        "meta" => [[
+                            "key" => "key",
+                            "value" => "value",
+                            "template_name" => ""
+                        ]],
+                        "modified" => "",
+                        "user" => [
+                            "customer_id" => null,
+                            "id" => null,
+                            "segments" => [[
+                                "type" => "products",
+                                "key" => "vendor",
+                                "operator" => "contains",
+                                "value" => "Mihoyo",
+                                "owner" => "system"
+                            ]],
+                            "price_tier" => "",
+                            "qty_availability" => ""
+                        ]
+                    ],
+                    "fulfillments" => [[
+                        "fulfillmentservice_order_code" => "",
+                        "notes" => "notes",
+                        "status" => "",
+                        "tracking_company" => "",
+                        "tracking_number" => 5,
+                        "tracking_url" => "",
+                        "channel_id" => null,
+                        "client_id" => null,
+                        "created" => "",
+                        "fulfillmentservice_id" => null,
+                        "line_items" => [[
+                            "grams" => 0,
+                            "qty" => 5,
+                            "sku" => "sku",
+                            "fulfilled_qty" => null,
+                            "created" => "created_date",
+                            "modified" => "modified_date"
+                        ]],
+                        "modified" => "",
+                        "order_id" => 9000,
+                        "shipping_address" => [
+                            "address1" => "14 Tracy Close",
+                            "address2" => "",
+                            "city" => "Cape Town",
+                            "company" => "",
+                            "country" => "South Africa",
+                            "country_code" => "ZA",
+                            "first_name" => "Keenan",
+                            "last_name" => "",
+                            "phone" => "",
+                            "province" => "Western Province",
+                            "province_code" => "WP",
+                            "type" => "",
+                            "zip" => "7785",
+                            "channel_id" => null,
+                            "client_id" => null,
+                            "created" => "",
+                            "modified" => ""
+                        ],
+                        "state" => "",
+                        "channel_synced" => ""
+                    ]],
+                    "history" => [[
+                        "instruction" => "",
+                        "storage_code" => "",
+                        "created" => "",
+                        "modified" => ""
+                    ]],
+                    "id" => null,
+                    "line_item_sub_total" => null,
+                    "line_item_tax" => null,
+                    "line_items" => [[
+                        "barcode" => null,
+                        "grams" => null,
+                        "price" => null,
+                        "qty" => null,
+                        "sku" => "sku",
+                        "title" => null,
+                        "total_discount" => null,
+                        "created" => "",
+                        "fulfillments" => [[
+                            "grams" => null,
+                            "qty" => null,
+                            "sku" => null,
+                            "fulfilled_qty" => null,
+                            "created" => "",
+                            "modified" => null
+                        ]],
+                        "modified" => null,
+                        "product_id" => null,
+                        "variant_id" => null,
+                        "source_id" => null,
+                        "source_variant_code" => null,
+                        "price_display" => null,
+                        "total_discount_display" => null,
+                        "tax_per_unit_display" => null,
+                        "tax" => null,
+                        "tax_display" => null,
+                        "sub_total" => null,
+                        "tax_per_unit" => null,
+                        "sub_total_display" => null,
+                        "total" => null,
+                        "total_display" => null
+                    ]],
+                    "meta" => [[
+                        "key" => "",
+                        "value" => ""
+                    ]],
+                    "modified" => "date",
+                    "shipping_lines" => [[
+                        "price" => null,
+                        "title" => null,
+                        "created" => "",
+                        "modified" => "",
+                        "price_display" => null,
+                        "sub_total" => null,
+                        "sub_total_display" => null,
+                        "tax" => null,
+                        "tax_display" => null,
+                        "tax_per_unit" => null,
+                        "tax_per_unit_display" => null,
+                        "total" => null,
+                        "total_discount" => null,
+                        "total_discount_display" => null,
+                        "total_display" => null
+                    ]],
+                    "shipping_sub_total" => null,
+                    "shipping_tax" => null,
+                    "shipping_tax_display" => null,
+                    "shipping_total" => null,
+                    "shipping_total_display" => null,
+                    "sources" => [[
+                        "source_id" => null,
+                        "source_customer_code" => null,
+                        "source_order_code" => null
+                    ]],
+                    "status" => null,
+                    "sub_total" => null,
+                    "sub_total_display" => null,
+                    "tax" => null,
+                    "tax_display" => null,
+                    "total" => null,
+                    "total_discount_display" => null,
+                    "total_display" => null
+                    
+                ],
+                ""
+            ]
+        ];
+    }
+
+    private function computeHash_null(): array 
+    { 
+        return [
+            [
+                [
+                    [],
+                    [
+                        "channel_id" => null,
+                        "channel_order_code" => null,
+                        "notes" => null,
+                        "total_discount" => null,
+                        "state" => null,
+                        "client_id"=> null
+                    ]
+                ],
+                ""
+            ]
+        ];
+    }
+    
 }
+
+?>

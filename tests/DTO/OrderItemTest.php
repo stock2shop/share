@@ -2,45 +2,106 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\OrderItem;
 
 class OrderItemTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "barcode": "barcode",
-            "grams": 150,
-            "price": 19.99,
-            "qty": 100,
+        $array = [
+            "barcode" => "",
+            "grams" => "0",
+            "price" => "5",
+            "qty" => "",
+            "sku" => "sku",
+            "title" => "",
+            "total_discount" => ""
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "barcode": "",
+            "grams": 0,
+            "price": 5.0,
+            "qty": null,
             "sku": "sku",
-            "title": "title",
-            "total_discount": 20.05
+            "title": "",
+            "total_discount": null
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new OrderItem($this->setUpArray());
+
+        $this->assertSame("", $object->barcode);
+        $this->assertSame(0, $object->grams);
+        $this->assertSame(5.0, $object->price);
+        $this->assertSame(null, $object->qty);
+        $this->assertSame("sku", $object->sku);
+        $this->assertSame("", $object->title);
+        $this->assertSame(null, $object->total_discount);
+
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\OrderItem", $object);
+
+        $object_attributes = [
+            "barcode",
+            "grams",
+            "price",
+            "qty",
+            "sku",
+            "title",
+            "total_discount"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
-    {
-        $m = DTO\OrderItem::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(OrderItem::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\OrderItem::createFromJSON($this->json);
-        $this->assertOrderItem($m);
-    }
+    public function testArrayConversion(): void
+    { 
+        $array = [
+            [
+                "barcode" => "",
+                "grams" => 0,
+                "price" => 5.0,
+                "qty" => null,
+                "sku" => "sku",
+                "title" => "",
+                "total_discount" => null
+            ],
+            [
+                "barcode" => "",
+                "grams" => 10,
+                "price" => 15.0,
+                "qty" => null,
+                "sku" => "sku",
+                "title" => "",
+                "total_discount" => null
+            ]
+        ];
+        $json = json_encode(OrderItem::createArray($array));
 
-    private function assertOrderItem(DTO\OrderItem $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c);
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

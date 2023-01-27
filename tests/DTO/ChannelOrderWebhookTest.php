@@ -4,40 +4,39 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO\OrderMeta;
+use Stock2Shop\Share\DTO\ChannelOrderWebhook;
 
-class OrderMetaTest extends TestCase
+class ChannelOrderWebhookTest extends TestCase
 {
     private function setUpArray(): array
-    {
+    { 
         $array = [
-            "key" => "key",
-            "value" => "value"
+            "storage_code" => "asasld_2323_asdasd",
+            "payload" => ""
         ];
         return $array;
     }
 
     private function setUpJson(): string
-    {
+    { 
         $json = '{
-            "key": "key",
-            "value": "value"
+            "storage_code": "asasld_2323_asdasd",
+            "payload": ""
         }';
         return $json;
     }
     
     public function testClassConstructor(): void
     { 
-        $object = new OrderMeta($this->setUpArray());
+        $object = new ChannelOrderWebhook($this->setUpArray());
+        $this->assertSame("asasld_2323_asdasd", $object->storage_code);
+        $this->assertSame("", $object->payload);
 
-        $this->assertSame("key", $object->key);
-        $this->assertSame("value", $object->value);
-
-        $this->assertInstanceOf("Stock2Shop\Share\DTO\OrderMeta", $object);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelOrderWebhook", $object);
 
         $object_attributes = [
-            "key",
-            "value"
+            "storage_code",
+            "payload"
         ];
 
         for($i = 0; $i < sizeof($object_attributes); ++$i)
@@ -46,10 +45,12 @@ class OrderMetaTest extends TestCase
         }
     }
 
+    // public function testSerialize(): void { }
+
     public function testJsonConversion(): void 
     { 
         $json = $this->setUpJson();
-        $array = json_encode(OrderMeta::createFromJSON($json));
+        $array = json_encode(ChannelOrderWebhook::createFromJSON($json));
 
         $this->assertJsonStringEqualsJsonString($json, $array);
     }
@@ -58,19 +59,18 @@ class OrderMetaTest extends TestCase
     { 
         $array = [
             [
-                "key" => "key",
-                "value" => "value"
+                "storage_code" => "asasld_2323_asdasd",
+                "payload" => ""
             ],
             [
-                "key" => "key_1",
-                "value" => "value_1"
+                "storage_code" => "",
+                "payload" => ""
             ]
         ];
-        $json = json_encode(OrderMeta::createArray($array));
+        $json = json_encode(ChannelOrderWebhook::createArray($array));
 
         $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
-    
 }
 
 ?>

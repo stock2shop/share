@@ -2,29 +2,65 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\Product;
 
 class ProductTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
+        $array = [
+            "active" => "true",
+            "title" => "prod_title",
+            "body_html" => "",
+            "collection" => "",
+            "product_type" => "character",
+            "tags" => "",
+            "vendor" => "",
+            "options" => [
+                [
+                    "name" => "Color",
+                    "position" => "2"
+                ],
+                [
+                    "name" => "Size",
+                    "position" => "1"
+                ]
+            ],
+            "meta" => [
+                [
+                    "key" => "key",
+                    "value" => "value",
+                    "template_name" => ""
+                ],
+                [
+                    "key" => "key_1",
+                    "value" => "value_1",
+                    "template_name" => ""
+                ]
+            ]
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
             "active": true,
-            "title": "title",
-            "body_html": "body_html",
-            "collection": "collection",
-            "product_type": "product_type",
-            "tags": "tags",
-            "vendor": "vendor",
+            "title": "prod_title",
+            "body_html": "",
+            "collection": "",
+            "product_type": "character",
+            "tags": "",
+            "vendor": "",
             "options": [
                 {
-                    "name": "name",
+                    "name": "Color",
+                    "position": 2
+                },
+                {
+                    "name": "Size",
                     "position": 1
                 }
             ],
@@ -32,67 +68,241 @@ class ProductTest extends TestCase
                 {
                     "key": "key",
                     "value": "value",
-                    "template_name": "template_name"
+                    "template_name": ""
+                },
+                {
+                    "key": "key_1",
+                    "value": "value_1",
+                    "template_name": ""
                 }
             ]
         }';
+        return $json;
     }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new Product($this->setUpArray());
 
-    public function testSerialize(): void
-    {
-        $p = DTO\Product::createFromJSON($this->json);
-        $serialized = json_encode($p);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
-    }
+        $this->assertSame(true, $object->active);
+        $this->assertSame("prod_title", $object->title);
+        $this->assertSame("", $object->body_html);
+        $this->assertSame("", $object->collection);
+        $this->assertSame("character", $object->product_type);
+        $this->assertSame("", $object->tags);
+        $this->assertSame("", $object->vendor);
+        $this->assertSame("Color", $object->options[0]->name);
+        $this->assertSame(2, $object->options[0]->position);
+        $this->assertSame("key", $object->meta[0]->key);
+        $this->assertSame("value", $object->meta[0]->value);
 
-    public function testInheritance(): void
-    {
-        $p = DTO\Product::createFromJSON($this->json);
-        $this->assertProduct($p);
-    }
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Product", $object);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\ProductOption", $object->options[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Meta", $object->meta[0]);
 
-    private function assertProduct(DTO\Product $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertIsArray($c->meta);
-        foreach ($c->meta as $meta) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $meta);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);
+
+        $object_attributes = [
+            "active",
+            "title",
+            "collection",
+            "body_html",
+            "product_type",
+            "tags",
+            "vendor"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
         }
-        $this->assertIsArray($c->options);
-        foreach ($c->options as $option) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $option);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $option);
+    }
+
+    public function testSerialize(): void 
+    { 
+        $array = Product::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
+    }
+
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(Product::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
+    }
+
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "active" => true,
+                "title" => "prod_title",
+                "body_html" => "",
+                "collection" => "",
+                "product_type" => "character",
+                "tags" => "",
+                "vendor" => "",
+                "options" => [
+                    [
+                        "name" => "Color",
+                        "position" => 2
+                    ],
+                    [
+                        "name" => "Size",
+                        "position" => 1
+                    ]
+                ],
+                "meta" => [
+                    [
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => "",
+                    ],
+                    [
+                        "key" => "key_1",
+                        "value" => "value_1",
+                        "template_name" => "",
+                    ]
+                ]
+            ],
+            [
+                "active" => false,
+                "title" => "prod_title",
+                "body_html" => "",
+                "collection" => "",
+                "product_type" => "character",
+                "tags" => "",
+                "vendor" => "",
+                "options" => [
+                    [
+                        "name" => "Color",
+                        "position" => 2
+                    ],
+                    [
+                        "name" => "Size",
+                        "position" => 1
+                    ]
+                ],
+                "meta" => [
+                    [
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => "",
+                    ],
+                    [
+                        "key" => "key_1",
+                        "value" => "value_1",
+                        "template_name" => "",
+                    ]
+                ]
+            ]
+        ];
+        $json = json_encode(Product::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
+    }
+
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $product, string $expectedValue): void 
+    {
+        $prod = new Product($product);
+        $this->assertEquals($expectedValue, $prod->computeHash());
+    }
+
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $products, string $expectedValue): void 
+    {
+        foreach($products as $product)
+        {
+            $product = new Product($product);
+            $this->assertEquals($expectedValue, $product->computeHash());
         }
     }
 
-    public function testComputeHash()
+    private function computeHash(): array 
     {
-        $mockData = $this->getTestResourceAsArray(
-            'TestProduct_ComputeHash'
-        );
-        $compareProduct = 'fce560b33580b53e33245a762dcefd45';
-
-        $p = new DTO\Product($mockData);
-        $this->assertEquals($compareProduct, $p->computeHash());
-
-        $mockData = $this->getTestResourceAsArray(
-            'TestProduct_ComputeHash_2'
-        );
-        $compareProduct = '1f1654769bbb21a34f1647c6680ed813';
-
-        $p = new DTO\Product($mockData);
-        $this->assertEquals($compareProduct, $p->computeHash());
+        return [
+            [
+                [
+                    "active" => true,
+                    "title" => "prod_title",
+                    "body_html" => null,
+                    "product_type" => "character"
+                ],
+                "5fefe97c913da38436b6b73428637808"
+            ],
+            [
+                [
+                    "active" => true,
+                    "title" => "prod_title",
+                    "product_type" => "character"
+                ],
+                "5fefe97c913da38436b6b73428637808"
+            ],
+            [
+                [
+                    "product_type" => "character",
+                    "title" => "prod_title",
+                    "active" => true
+                ],
+                "5fefe97c913da38436b6b73428637808"
+            ],
+            [
+                [
+                    "active" => true,
+                    "title" => "prod_title",
+                    "body_html" => "",
+                    "collection" => "",
+                    "product_type" => "character",
+                    "tags" => "",
+                    "vendor" => "",
+                    "options" => [
+                        [
+                            "name" => "Color",
+                            "position" => 2
+                        ],
+                        [
+                            "name" => "Size",
+                            "position" => 1
+                        ]
+                    ],
+                    "meta" => [
+                        [
+                            "key" => "key",
+                            "value" => "value",
+                            "template_name" => "",
+                        ],
+                        [
+                            "key" => "key_1",
+                            "value" => "value_1",
+                            "template_name" => "",
+                        ]
+                    ]
+                ],
+                "4e3da45a64b5c741d9072d163718904b"
+            ]
+        ];
     }
 
-    /**
-     * Returns a test resources' contents as an array.
-     */
-    private function getTestResourceAsArray(string $fileName): array
+    private function computeHash_null(): array 
     {
-        return json_decode(file_get_contents(
-            __DIR__ . '/TestResources/' . $fileName . '.json'
-        ), true);
+        return [
+            [
+                [
+                    [],
+                    [
+                        "active" => null,
+                        "title" => null,
+                        "product_type" => null
+                    ]
+                ],
+                "561d63f75d7f28398828b5d5aa9119e9"
+            ]
+        ];
     }
+    
 }
+
+?>

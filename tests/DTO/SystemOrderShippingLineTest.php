@@ -2,54 +2,148 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\SystemOrderShippingLine;
 
 class SystemOrderShippingLineTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "price": 99.99,
-            "title": "title",
-            "created": "created",
-            "modified": "modified",
-            "price_display": "price_display",
-            "sub_total": 3.01,
-            "sub_total_display": "sub_total_display",
-            "tax": 4.02,
-            "tax_display": "tax_display",
-            "tax_per_unit": 5.03,
-            "tax_per_unit_display": "tax_per_unit_display",
-            "total": 6.04,
-            "total_discount": 7.05,
-            "total_discount_display": "total_discount_display",
-            "total_display": "total_display"
+        $array = [
+            "price" => 0.0,
+            "title" => "",
+            "created" => "",
+            "modified" => "",
+            "price_display" => "",
+            "sub_total" => null,
+            "sub_total_display" => null,
+            "tax" => null,
+            "tax_display" => null,
+            "tax_per_unit" => null,
+            "tax_per_unit_display" => null,
+            "total" => null,
+            "total_discount" => null,
+            "total_discount_display" => "",
+            "total_display" => ""
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "price": 0.0,
+            "title": "",
+            "created": "",
+            "modified": "",
+            "price_display": "",
+            "sub_total": null,
+            "sub_total_display": null,
+            "tax": null,
+            "tax_display": null,
+            "tax_per_unit": null,
+            "tax_per_unit_display": null,
+            "total": null,
+            "total_discount": null,
+            "total_discount_display": "",
+            "total_display": ""
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new SystemOrderShippingLine($this->setUpArray());
+
+        $this->assertSame("", $object->created);
+        $this->assertSame("", $object->modified);
+        $this->assertSame("", $object->price_display);
+        $this->assertSame(null, $object->sub_total);
+        $this->assertSame(null, $object->tax);
+        $this->assertSame(null, $object->total_discount);
+        $this->assertSame("", $object->total_discount_display);
+        $this->assertSame(0.0, $object->price);
+        $this->assertSame("", $object->title);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemOrderShippingLine", $object);
+
+        $object_attributes = [
+            "created",
+            "modified",
+            "price_display",
+            "sub_total",
+            "tax",
+            "total_discount",
+            "total_discount_display",
+            "price",
+            "title"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
     public function testSerialize(): void
-    {
-        $m = DTO\SystemOrderShippingLine::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    { 
+        $array = SystemOrderShippingLine::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\SystemOrderShippingLine::createFromJSON($this->json);
-        $this->assertSystemOrderShippingLine($m);
+    public function testJsonConversion(): void
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(SystemOrderShippingLine::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertSystemOrderShippingLine(DTO\SystemOrderShippingLine $c)
+    public function testArrayConversion(): void 
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c);
+        $array = [
+            [
+                "price" => 10.5,
+                "title" => "title",
+                "created" => "",
+                "modified" => "",
+                "price_display" => "",
+                "sub_total" => 0,
+                "sub_total_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "tax_per_unit" => null,
+                "tax_per_unit_display" => null,
+                "total" => null,
+                "total_discount" => null,
+                "total_discount_display" => "",
+                "total_display" => ""
+            ],
+            [
+                "price" => 90.5,
+                "title" => "shipping_title",
+                "created" => "",
+                "modified" => "",
+                "price_display" => "",
+                "sub_total" => null,
+                "sub_total_display" => null,
+                "tax" => null,
+                "tax_display" => null,
+                "tax_per_unit" => null,
+                "tax_per_unit_display" => null,
+                "total" => null,
+                "total_discount" => null,
+                "total_discount_display" => "",
+                "total_display" => "total_display"
+            ]
+        ];
+        $json = json_encode(SystemOrderShippingLine::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

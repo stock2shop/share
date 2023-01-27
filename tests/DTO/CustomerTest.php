@@ -2,93 +2,165 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\Customer;
 
 class CustomerTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "accepts_marketing": true, 
-            "email": "email",
+        $array = [
+            "accepts_marketing" => "false",
+            "email" => "",
+            "first_name" => "first_name",
+            "last_name" => "last_name"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "accepts_marketing": false,
+            "email": "",
             "first_name": "first_name",
-            "last_name": "last_name"
+            "last_name":"last_name"
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new Customer($this->setUpArray());
+
+        $this->assertSame(false, $object->accepts_marketing);
+        $this->assertSame("", $object->email);
+        $this->assertSame("first_name", $object->first_name);
+        $this->assertSame("last_name", $object->last_name);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Customer", $object);
+
+        $object_attributes = [
+            "accepts_marketing",
+            "email",
+            "first_name",
+            "last_name"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
+    public function testJsonConversion(): void 
     {
-        $m          = DTO\Customer::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+        $json = $this->setUpJson();
+        $array = json_encode(Customer::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\Customer::createFromJSON($this->json);
-        $this->assertCustomer($m);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "accepts_marketing" => false,
+                "email" => "",
+                "first_name" => "first_name",
+                "last_name" => "last_name"
+            ],
+            [
+                "accepts_marketing" => true,
+                "email" => "",
+                "first_name" => "first_name",
+                "last_name" => "last_name"
+            ]
+        ];
+        $json = json_encode(Customer::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    private function assertCustomer(DTO\Customer $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Customer', $c);
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $customer, string $expectedValue): void 
+    { 
+        $cust = new Customer($customer);
+        $this->assertEquals($expectedValue, $cust->computeHash());
     }
 
-    /** @dataProvider computeHashDataProvider */
-    public function testComputeHash(array $customer, string $expectedHash)
-    {
-        $c = new DTO\Customer($customer);
-        $this->assertEquals($expectedHash, $c->computeHash());
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $customers, string $expectedValue): void 
+    { 
+        foreach($customers as $customer)
+        {
+            $customer = new Customer($customer);
+            $this->assertEquals($expectedValue, $customer->computeHash());
+        }
     }
 
-    private function computeHashDataProvider(): array
-    {
+    private function computeHash(): array 
+    { 
+        return [
+            /** First case */
+            [
+                [
+                    "accepts_marketing" => false,
+                    "first_name" => null,
+                    "last_name" => "last_name"
+                ],
+                "674be308041afb0d81c0a89f2d74f831",
+            ],
+            /** Second Case */
+            /** Left a property out */
+            [
+                [
+                    "accepts_marketing" => false,
+                    "last_name" => "last_name"
+                ],
+                "674be308041afb0d81c0a89f2d74f831"
+            ],
+            /** Third Case */
+            /** Swaps around properties */
+            [
+                [
+                    "last_name" => "last_name",
+                    "accepts_marketing" => false,
+                ],
+                "674be308041afb0d81c0a89f2d74f831"
+            ],
+            /** Fourth Test */
+            /** All Object properties */
+            [
+                [
+                    "accepts_marketing" => false,
+                    "email" => "",
+                    "first_name" => "first_name",
+                    "last_name" => "last_name"
+                ],
+                "037d653a08652ab916f62b8ca24d3a79"
+            ]
+        ];
+    }
+    private function computeHash_null(): array 
+    { 
         return [
             [
                 [
-                    'accepts_marketing'     => true,
-                    'channel_customer_code' => 'channel_customer_code',
-                    'email'                 => 'email',
-                    'first_name'            => 'first_name',
-                    'last_name'             => 'last_name'
+                    [],
+                    [
+                        "accepts_marketing" => null,
+                        "email" => null,
+                        "first_name" => null,
+                        "last_name" => null
+                    ]
                 ],
-                '9998295c6bf411ef24408e5445b36a39'
-            ],
-            [
-                [
-                    'first_name'            => 'first_name-1',
-                    'channel_customer_code' => 'channel_customer_code-1',
-                    'accepts_marketing'     => true,
-                    'last_name'             => 'last_name-1',
-                    'email'                 => 'email-1'
-                ],
-                '1f538ca0cf4c3a5c0a19db7ba47124b9'
-            ],
-            [
-                [
-                    'first_name'            => 'first_name-1',
-                    'channel_customer_code' => 'channel_customer_code-1',
-                    'accepts_marketing'     => true,
-                    'last_name'             => 'last_name-1',
-                ],
-                'f858d28bc7fb37d60e6a350b5d0fb41d'
-            ],
-            [
-                [
-                    'first_name'            => 'first_name-1',
-                    'last_name'             => 'last_name-1',
-                    'channel_customer_code' => 'channel_customer_code-1',
-                    'accepts_marketing'     => true
-                ],
-                'f858d28bc7fb37d60e6a350b5d0fb41d'
-            ],
+                "e08c2826f1230febd06c92a348ad0dfc"
+            ]
         ];
     }
+    
 }
+
+?>

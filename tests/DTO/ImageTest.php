@@ -2,40 +2,58 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\Image;
 
 class ImageTest extends TestCase
 {
-    private string $json;
+    private function setUpArray(): array
+    { 
+        $array = [
+            "src" => "source"
+        ];
+        return $string;
+    }
 
-    protected function setUp(): void
-    {
-        $this->json = '
-        {
-            "src": "src"
+    private function setUpJson(): string
+    { 
+        $json = '{
+            "src": "source"
         }';
+        return $json;
+    }
+    
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(Image::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testSerialize(): void
-    {
-        $i = DTO\Image::createFromJSON($this->json);
-        $serialized = json_encode($i);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
-    }
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "src" => "source"
+            ],
+            [
+                "src" => null
+            ]
+        ];
 
-    public function testInheritance(): void
-    {
-        $i = DTO\Image::createFromJSON($this->json);
-        $this->assertImage($i);
-    }
+        $json = '[{
+            "src": "source"
+        }, 
+        {
+            "src": null
+        }]';
 
+        $json = json_encode(Image::createArray($array));
 
-    private function assertImage(DTO\Image $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c);
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 }
+
+?>

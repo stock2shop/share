@@ -2,40 +2,75 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\OrderShippingLine;
 
 class OrderShippingLineTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "price": 19.99,
+        $array = [
+            "price" => "0",
+            "title" => "title"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "price": 0.0,
             "title": "title"
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new OrderShippingLine($this->setUpArray());
+
+        $this->assertSame(0.0, $object->price);
+        $this->assertSame("title", $object->title);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\OrderShippingLine", $object);
+
+        $object_attributes = [
+            "price",
+            "title"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
+    public function testJsonConversion(): void 
     {
-        $m = DTO\OrderShippingLine::createFromJSON($this->json);
-        $serialized = json_encode($m);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+        $json = $this->setUpJson();
+        $array = json_encode(OrderShippingLine::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testInheritance(): void
-    {
-        $m = DTO\OrderShippingLine::createFromJSON($this->json);
-        $this->assertOrderShippingLine($m);
-    }
+    public function testArrayConversion(): void
+    { 
+        $array = [
+            [
+                "price" => 15.5,
+                "title" => "title"
+            ],
+            [
+                "price" => 10,
+                "title" => "title"
+            ]
+        ];
+        $json = json_encode(OrderShippingLine::createArray($array));
 
-    private function assertOrderShippingLine(DTO\OrderShippingLine $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c);
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

@@ -2,95 +2,298 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\SystemCustomer;
 
 class SystemCustomerTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
+        $array = [
+            "active" => "false",
+            "accepts_marketing" => false,
+            "email" => "",
+            "first_name" => "first_name",
+            "last_name" => "last_name",
+            "addresses" => [
+                [
+                    "address1" => "14 Tracy Close",
+                    "address2" => "",
+                    "city" => "Cape Town",
+                    "country" => "South Africa",
+                    "company" => "",
+                    "country_code" => "ZA",
+                    "first_name" => "Keenan",
+                    "last_name" => "",
+                    "phone" => "",
+                    "province" => "Western Province",
+                    "province_code" => "WP",
+                    "type" => "",
+                    "zip" => "7785"
+                ]
+            ],
+            "channel_customer_code" => "",
+            "channel_id" => "",
+            "client_id" => "",
+            "created" => "",
+            "customer_id" => "",
+            "meta" => [
+                [
+                    "key" => "key",
+                    "value" => "value",
+                    "template_name" => ""
+                ]
+            ],
+            "modified" => "",
+            "user" => 
+            [
+                "id" => "",
+                "customer_id" => "",
+                "segments" => [
+                    [
+                        "type" => "products",
+                        "key" => "vendor",
+                        "operator" => "contains",
+                        "value" => "Mihoyo",
+                        "owner" => "system"
+                    ]
+                ],
+                "price_tier" => "",
+                "qty_availability" => ""
+            ]
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "active": false,
             "accepts_marketing": false,
-            "email": "x@y.com",
-            "first_name": "bob",
-            "last_name": null,
-            "active": true,
+            "email": "",
+            "first_name": "first_name",
+            "last_name":"last_name",
             "addresses": [
                 {
-                    "address1": "abc",
-                    "address2": null,
-                    "city": "jhb",
+                    "address1": "14 Tracy Close",
+                    "address2": "",
+                    "city": "Cape Town",
+                    "country": "South Africa",
+                    "company": "",
                     "country_code": "ZA",
-                    "company": "s2s",
-                    "country": "sa",
-                    "first_name": "bob",
-                    "last_name": "jones",
-                    "phone": "123456",
-                    "province": "somewhere",
-                    "province_code": null,
-                    "type": "billing",
-                    "zip": "1234"
+                    "first_name": "Keenan",
+                    "last_name": "",
+                    "phone": "",
+                    "province": "Western Province",
+                    "province_code": "WP",
+                    "type": "",
+                    "zip": "7785"
                 }
             ],
-            "channel_customer_code": "abc",
+            "channel_customer_code": "",
             "channel_id": null,
-            "client_id": 21,
-            "created": "2022-01-01",
-            "customer_id": 123,
+            "client_id": null,
+            "created": "",
+            "customer_id": null,
             "meta": [
                 {
-                  "key": "group",
-                  "value": "wholesale",
-                  "template_name": "template_a"
+                    "key": "key",
+                    "value": "value",
+                    "template_name": ""
                 }
             ],
-            "modified": "2022-01-01",
-            "user": {
-                "customer_id": 123,
-                "id": 123,
+            "modified": "",
+            "user": 
+            {
+                "customer_id": null,
+                "id": null,
                 "segments": [
                     {
                         "type": "products",
-                        "key": "collection",
-                        "operator": "equal",
-                        "value": "abc",
-                        "owner": "source"
+                        "key": "vendor",
+                        "operator": "contains",
+                        "value": "Mihoyo",
+                        "owner": "system"
                     }
                 ],
-                "price_tier": "a",
-                "qty_availability": "b"        
+                "price_tier": null,
+                "qty_availability": null
             }
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new SystemCustomer($this->setUpArray());
+
+        $this->assertSame(false, $object->active);
+        $this->assertSame(null, $object->channel_id);
+        $this->assertSame(null, $object->client_id);
+        $this->assertSame("", $object->created);
+        $this->assertSame("", $object->channel_customer_code);
+        $this->assertSame("14 Tracy Close", $object->addresses[0]->address1);
+        $this->assertSame("7785", $object->addresses[0]->zip);
+        $this->assertSame("", $object->modified);
+        $this->assertSame("key", $object->meta[0]->key);
+        $this->assertSame("value", $object->meta[0]->value);
+        $this->assertSame("products", $object->user->segments[0]->type);
+        $this->assertSame("vendor", $object->user->segments[0]->key);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemCustomer", $object);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Address", $object->addresses[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\Meta", $object->meta[0]);
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\User", $object->user);
+
+
+        $object_attributes = 
+        [
+            "active",
+            "client_id",
+            "created",
+            "modified",
+            "channel_id",
+            "channel_customer_code"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
-    public function testSerialize(): void
-    {
-        $sp = DTO\SystemCustomer::createFromJSON($this->json);
-        $serialized = json_encode($sp);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    public function testSerialize(): void 
+    { 
+        $array = SystemCustomer::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
-    {
-        $sp = DTO\SystemCustomer::createFromJSON($this->json);
-        $this->assertSystemCustomer($sp);
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(SystemCustomer::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertSystemCustomer(DTO\SystemCustomer $c)
+    public function testArrayConversion(): void 
     {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemCustomer', $c);
-        $this->assertIsArray($c->addresses);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->addresses[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c->addresses[0]);
-        $this->assertIsArray($c->meta);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\User', $c->user);
+        $array = [
+            [
+                "active" => false,
+                "accepts_marketing" => false,
+                "email" => "",
+                "first_name" => "first_name",
+                "last_name" => "last_name",
+                "addresses" => [
+                    [
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "country" => "South Africa",
+                        "company" => "",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785"
+                    ]
+                ],
+                "channel_customer_code" => "",
+                "channel_id" => null,
+                "client_id" => null,
+                "created" => "",
+                "customer_id" => null,
+                "meta" => [
+                    [
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => ""
+                    ]
+                ],
+                "modified" => "",
+                "user" => 
+                [
+                    "customer_id" => null,
+                    "id" => null,
+                    "segments" => [
+                        [
+                            "type" => "products",
+                            "key" => "vendor",
+                            "operator" => "contains",
+                            "value" => "Mihoyo",
+                            "owner" => "system"
+                        ]
+                    ],
+                    "price_tier" => "",
+                    "qty_availability" => ""
+                ]
+            ],
+            [
+                "active" => false,
+                "accepts_marketing" => false,
+                "email" => "",
+                "first_name" => "first_name",
+                "last_name" => "last_name",
+                "addresses" => [
+                    [
+                        "address1" => "14 Tracy Close",
+                        "address2" => "",
+                        "city" => "Cape Town",
+                        "country" => "South Africa",
+                        "company" => "",
+                        "country_code" => "ZA",
+                        "first_name" => "Keenan",
+                        "last_name" => "",
+                        "phone" => "",
+                        "province" => "Western Province",
+                        "province_code" => "WP",
+                        "type" => "",
+                        "zip" => "7785"
+                    ]
+                ],
+                "channel_customer_code" => "",
+                "channel_id" => null,
+                "client_id" => null,
+                "created" => "",
+                "customer_id" => null,
+                "meta" => [
+                    [
+                        "key" => "key",
+                        "value" => "value",
+                        "template_name" => ""
+                    ]
+                ],
+                "modified" => "",
+                "user" => 
+                [
+                    "customer_id" => null,
+                    "id" => null,
+                    "segments" => [
+                        [
+                            "type" => "products",
+                            "key" => "vendor",
+                            "operator" => "contains",
+                            "value" => "Mihoyo",
+                            "owner" => "system"
+                        ]
+                    ],
+                    "price_tier" => "",
+                    "qty_availability" => ""
+                ]
+            ]
+        ];
+
+        $json = json_encode(SystemCustomer::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+
 }
+
+?>

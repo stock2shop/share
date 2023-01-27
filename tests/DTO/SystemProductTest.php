@@ -2,180 +2,448 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
+namespace Stock2Shop\Test\Share\DTO;
 
+use PHPUnit\Framework\Constraint\IsFalse;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\SystemProduct;
 
 class SystemProductTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
-        {
-            "active": true,
-            "title": "title",
-            "body_html": "body_html",
-            "collection": "collection",
-            "product_type": "product_type",
-            "tags": "tags",
-            "vendor": "vendor",
-            "options": [
-                {
-                    "name": "name",
-                    "position": 2
-                }
-            ],
-            "meta": [
-                {
-                  "key": "size",
-                  "value": "12",
-                  "template_name": "template_a"
-                }
-            ],
-            "channels": [
-                {
-                  "id": 1,
-                  "active": true,
-                  "client_id": 21,
-                  "created": "2022-09-13 09:13:39",
-                  "modified": "2022-09-13 09:13:39",
-                  "price_tier": "A",
-                  "description": "testChannel",
-                  "qty_availability": "wholesale",
-                  "sync_token": "1",
-                  "type": "trade",
-                  "meta": [
-                    {
-                      "key": "size",
-                      "value": "12",
-                      "template_name": "template_a"
-                    }
-                  ]
-                }
-            ],
-            "client_id": 21,
-            "created": "created",
-            "hash": "hash",
-            "id": 1,
-            "images": [
-                 {
-                    "id": 1,
-                    "active": true,
-                    "src": "src"
-                 }
-            ],
-            "modified": "modified",
-            "source_id": 57,
-            "source_product_code": "source_product_code",
-            "variants": [
-                {
-                    "id": 1,
-                    "image_id": 1,
-                    "client_id": 1,
-                    "product_id": 1,
-                    "hash": "hash",
-                    "source_variant_code": "source_variant_code",
-                    "sku": "sku",
-                    "active": true,
-                    "qty": 5,
-                    "qty_availability": [
-                        {
-                            "description": "description",
-                            "qty": 2
-                        }
-                    ],
-                    "price": 19.99,
-                    "price_tiers": [
-                        {
-                            "tier": "wholesale",
-                            "price": 20.00
-                        }
-                    ],
-                    "barcode": "barcode",
-                    "inventory_management": true,
-                    "grams": 20,
-                    "option1": "option1",
-                    "option2": "option2",
-                    "option3": "option3",
-                    "meta": [
-                        {
-                            "key": "key",
-                            "value": "value",
-                            "template_name": "template_name"
-                        }
-                    ]
-                }
-            ]
+        $array = [
+            "active" => null,
+            "title" => null,
+            "body_html" => null,
+            "collection" => null,
+            "product_type" => null,
+            "tags" => null,
+            "vendor" => null,
+            "options" => [],
+            "meta" => [],
+            "channels" => [[
+                "active" => false,
+                "client_id" => 719,
+                "created" => "",
+                "description" => "",
+                "id" => 71,
+                "meta" => [],
+                "modified" => null,
+                "price_tier" => "New_price",
+                "qty_availability" => null,
+                "sync_token" => "0",
+                "type" => "Woocommerce"
+            ]],
+            "client_id" => null,
+            "created" => "",
+            "hash" => "",
+            "id" => null,
+            "images" => [[
+                "src" => "",
+                "id" => 0,
+                "active" => true
+            ]],
+            "modified" => "",
+            "source_id" => null,
+            "source_product_code" => "",
+            "variants" => [[
+                "source_variant_code" => "",
+                "sku" => "",
+                "active" => false,
+                "qty" => null,
+                "qty_availability" => [],
+                "price" => null,
+                "price_tiers" => [],
+                "barcode" => null,
+                "inventory_management" => null,
+                "grams" => null,
+                "option1" => null,
+                "option2" => null,
+                "option3" => null,
+                "meta" => [],
+                "client_id" => null,
+                "hash" => "",
+                "id" => null,
+                "image_id" => null,
+                "product_id" => null
+            ]]
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "active": null,
+            "title": null,
+            "body_html": null,
+            "collection": null,
+            "product_type": null,
+            "tags": null,
+            "vendor": null,
+            "options": [],
+            "meta": [],
+            "channels": [{
+                "active": false,
+                "client_id": 719,
+                "created": "",
+                "description": "",
+                "id": 71,
+                "meta": [],
+                "modified": null,
+                "price_tier": "New_price",
+                "qty_availability": null,
+                "sync_token": "0",
+                "type": "Woocommerce"
+            }],
+            "client_id": null,
+            "created": "",
+            "hash": "",
+            "id": null,
+            "images": [{
+                "src": "",
+                "id": 0,
+                "active": true
+            }],
+            "modified": "",
+            "source_id": null,
+            "source_product_code": "",
+            "variants": [{
+                "source_variant_code": "",
+                "sku": "",
+                "active": false,
+                "qty": null,
+                "qty_availability": [],
+                "price": null,
+                "price_tiers": [],
+                "barcode": null,
+                "inventory_management": null,
+                "grams": null,
+                "option1": null,
+                "option2": null,
+                "option3": null,
+                "meta": [],
+                "client_id": null,
+                "hash": "",
+                "id": null,
+                "image_id": null,
+                "product_id": null
+            }]
         }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new SystemProduct($this->setUpArray());
+
+        $this->assertSame(null, $object->client_id);
+        $this->assertSame("", $object->created);
+        $this->assertSame("", $object->hash);
+        $this->assertSame(null, $object->id);
+        $this->assertSame("", $object->modified);
+        $this->assertSame(null, $object->source_id);
+        $this->assertSame(0, $object->images[0]->id);
+        $this->assertSame("", $object->variants[0]->sku);
+        $this->assertSame(null, $object->variants[0]->qty);
+        $this->assertSame(null, $object->variants[0]->option1);
+
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\SystemProduct", $object);
+
+        $object_attributes = [
+            "client_id",
+            "created",
+            "hash",
+            "id",
+            "modified",
+            "source_id",
+            "source_product_code"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
     }
 
     public function testSerialize(): void
-    {
-        $sp = DTO\SystemProduct::createFromJSON($this->json);
-        $serialized = json_encode($sp);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    { 
+        $array = SystemProduct::createArray($this->setUpArray())[0];
+        $json = json_encode($array->jsonSerialize());
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testInheritance(): void
-    {
-        $sp = DTO\SystemProduct::createFromJSON($this->json);
-        $this->assertSystemProduct($sp);
+    public function testJsonConversion(): void
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(SystemProduct::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    private function assertSystemProduct(DTO\SystemProduct $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
-        $this->assertIsArray($c->meta);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
-        $this->assertIsArray($c->options);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0]);
-        $this->assertIsArray($c->images);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
-        $this->assertIsArray($c->channels);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channels[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c->channels[0]);
-        $this->assertIsArray($c->variants);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c->variants[0]);
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "active" => null,
+                "title" => null,
+                "body_html" => null,
+                "collection" => null,
+                "product_type" => null,
+                "tags" => null,
+                "vendor" => null,
+                "options" => [],
+                "meta" => [],
+                "channels" => [[
+                    "active" => false,
+                    "client_id" => 719,
+                    "created" => "",
+                    "description" => "",
+                    "id" => 71,
+                    "meta" => [],
+                    "modified" => null,
+                    "price_tier" => "New_price",
+                    "qty_availability" => null,
+                    "sync_token" => "0",
+                    "type" => "Woocommerce"
+                ]],
+                "client_id" => null,
+                "created" => "",
+                "hash" => "",
+                "id" => null,
+                "images" => [[
+                    "src" => "",
+                    "id" => 0,
+                    "active" => true
+                ]],
+                "modified" => "",
+                "source_id" => null,
+                "source_product_code" => "",
+                "variants" => [[
+                    "source_variant_code" => "",
+                    "sku" => "",
+                    "active" => false,
+                    "qty" => null,
+                    "qty_availability" => [],
+                    "price" => null,
+                    "price_tiers" => [],
+                    "barcode" => null,
+                    "inventory_management" => null,
+                    "grams" => null,
+                    "option1" => null,
+                    "option2" => null,
+                    "option3" => null,
+                    "meta" => [],
+                    "client_id" => null,
+                    "hash" => "",
+                    "id" => null,
+                    "image_id" => null,
+                    "product_id" => null
+                ]]
+            ],
+            [
+                "active" => true,
+                "title" => null,
+                "body_html" => null,
+                "collection" => null,
+                "product_type" => null,
+                "tags" => null,
+                "vendor" => "vendor",
+                "options" => [],
+                "meta" => [],
+                "channels" => [[
+                    "active" => false,
+                    "client_id" => 719,
+                    "created" => "",
+                    "description" => "",
+                    "id" => 71,
+                    "meta" => [],
+                    "modified" => null,
+                    "price_tier" => "New_price",
+                    "qty_availability" => null,
+                    "sync_token" => "0",
+                    "type" => "Woocommerce"
+                ]],
+                "client_id" => null,
+                "created" => "",
+                "hash" => "",
+                "id" => null,
+                "images" => [[
+                    "src" => "",
+                    "id" => 0,
+                    "active" => true
+                ]],
+                "modified" => "",
+                "source_id" => null,
+                "source_product_code" => "",
+                "variants" => [[
+                    "source_variant_code" => "",
+                    "sku" => "",
+                    "active" => false,
+                    "qty" => 0,
+                    "qty_availability" => [],
+                    "price" => null,
+                    "price_tiers" => [],
+                    "barcode" => null,
+                    "inventory_management" => null,
+                    "grams" => null,
+                    "option1" => null,
+                    "option2" => null,
+                    "option3" => null,
+                    "meta" => [],
+                    "client_id" => null,
+                    "hash" => "",
+                    "id" => null,
+                    "image_id" => null,
+                    "product_id" => null
+                ]]
+            ]
+        ];
+        $json = json_encode(SystemProduct::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
 
-    public function testComputeHash()
+    /** @dataProvider computeHash */
+    public function testComputeHash(array $systemProduct, string $expectedValue): void 
     {
-        $mockData = $this->getTestResourceAsArray(
-            'TestSystemProduct_ComputeHash'
-        );
-        $compareProduct = 'e92d087545328d417f99424371dc370f';
-        $compareVariant = "75f83570725732c2459af21edeb6a98e";
-
-        $sp = new DTO\SystemProduct($mockData);
-        $this->assertEquals($compareProduct, $sp->computeHash());
-        $this->assertEquals($compareVariant, $sp->variants[0]->computeHash());
-
-        $mockData = $this->getTestResourceAsArray(
-            'TestSystemProduct_ComputeHash_2'
-        );
-        $compareProduct = '4a35e34194e949f97048b71255180e6d';
-        $compareVariant = "e3308f848ff13ea98d47b0024dced387";
-
-        $sp = new DTO\SystemProduct($mockData);
-        $this->assertEquals($compareProduct, $sp->computeHash());
-        $this->assertEquals($compareVariant, $sp->variants[0]->computeHash());
+        $system_product = new SystemProduct($systemProduct);
+        $this->assertEquals($expectedValue, $system_product->computeHash());
     }
 
-    /**
-     * Returns a test resources' contents as an array.
-     */
-    private function getTestResourceAsArray(string $fileName): array
+    /** @dataProvider computeHash_null */
+    public function testComputeHash_null(array $systemProducts, string $expectedValue): void 
     {
-        return json_decode(file_get_contents(
-            __DIR__ . '/TestResources/' . $fileName . '.json'
-        ), true);
+        foreach($systemProducts as $systemProduct)
+        {
+            $system_product = new SystemProduct($systemProduct);
+            $this->assertEquals($expectedValue, $system_product->computeHash());
+        }
+    }
+
+    private function computeHash(): array 
+    { 
+        return [
+            [
+                [
+                    "active" => true,
+                    "title" => "title",
+                    "body_html" => "html",
+                    "collection" => "collection",
+                    "product_type" => null,
+                    "tags" => "",
+                    "vendor" => null
+                ],
+                "d2688c1b65fbd348586a385609e0cd02"
+            ],
+            [
+                [
+                    "active" => true,
+                    "title" => "title",
+                    "body_html" => "html",
+                    "collection" => "collection",
+                    "product_type" => null,
+                    "tags" => "",
+                ],
+                "d2688c1b65fbd348586a385609e0cd02"
+            ],
+            [
+                [
+                    "active" => true,
+                    "collection" => "collection",
+                    "product_type" => null,
+                    "title" => "title",
+                    "tags" => "",
+                    "body_html" => "html",
+                    "vendor" => null
+                ],
+                "d2688c1b65fbd348586a385609e0cd02"
+            ],
+            [
+                [
+                    "active" => false,
+                    "title" => "title",
+                    "body_html" => "html",
+                    "collection" => "collection",
+                    "product_type" => "character",
+                    "tags" => "",
+                    "vendor" => "Mihoyo",
+                    "options" => [],
+                    "meta" => [],
+                    "channels" => [[
+                        "active" => false,
+                        "client_id" => 719,
+                        "created" => "",
+                        "description" => "",
+                        "id" => 71,
+                        "meta" => [],
+                        "modified" => null,
+                        "price_tier" => "New_price",
+                        "qty_availability" => null,
+                        "sync_token" => "0",
+                        "type" => "Woocommerce"
+                    ]],
+                    "client_id" => null,
+                    "created" => "",
+                    "hash" => "",
+                    "id" => null,
+                    "images" => [[
+                        "src" => "",
+                        "id" => 0,
+                        "active" => true
+                    ]],
+                    "modified" => "",
+                    "source_id" => null,
+                    "source_product_code" => "",
+                    "variants" => [[
+                        "source_variant_code" => "",
+                        "sku" => "",
+                        "active" => false,
+                        "qty" => null,
+                        "qty_availability" => [],
+                        "price" => null,
+                        "price_tiers" => [],
+                        "barcode" => null,
+                        "inventory_management" => null,
+                        "grams" => null,
+                        "option1" => null,
+                        "option2" => null,
+                        "option3" => null,
+                        "meta" => [],
+                        "client_id" => null,
+                        "hash" => "",
+                        "id" => null,
+                        "image_id" => null,
+                        "product_id" => null
+                    ]]
+                ],
+                "1c337ff0e7e1fb5e310fbd0508cbecfc"
+            ]
+        ];
+    }
+    
+    private function computeHash_null(): array 
+    { 
+        return [
+            [
+                [
+                    [],
+                    [
+                        "active" => null,
+                        "title" => null,
+                        "body_html" => null,
+                        "collection" => null,
+                        "product_type" => null,
+                        "tags" => null,
+                        "vendor" => null
+                    ]
+                ],
+                "6f359506713a29ddaf1bc89d88c4ef0c"
+            ]
+        ];
     }
 }
+
+?>

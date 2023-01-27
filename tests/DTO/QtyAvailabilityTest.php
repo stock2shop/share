@@ -2,40 +2,90 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\QtyAvailability;
 
 class QtyAvailabilityTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
+    private function setUpArray(): array
     {
-        $this->json = '
+        $array = [
+            "description" => "",
+            "qty" => "5.0"
+        ];
+        return $array;
+    }
+
+    private function setUpJson(): string
+    {
+        $json = '{
+            "description": "",
+            "qty": 5.0
+        }';
+        return $json;
+    }
+    
+    public function testClassConstructor(): void
+    { 
+        $object = new QtyAvailability($this->setUpArray());
+
+        $this->assertSame("", $object->description);
+        $this->assertSame(5.0, $object->qty);
+
+        $this->assertInstanceOf("Stock2Shop\Share\DTO\QtyAvailability", $object);
+
+        $object_attributes = [
+            "description",
+            "qty"
+        ];
+
+        for($i = 0; $i < sizeof($object_attributes); ++$i)
+        {
+            $this->assertObjectHasAttribute($object_attributes[$i], $object);
+        }
+    }
+
+    public function testSerialize(): void 
+    { 
+        $qty_availability = new QtyAvailability([
+            "description" => "description",
+            "qty" => "0"
+        ]);
+        $expectedResult = '
         {
             "description": "description",
-            "qty": 2
+            "qty": 0
         }';
+        $json = json_encode($qty_availability);
+        $this->assertJsonStringEqualsJsonString($expectedResult, $json);
     }
 
-    public function testSerialize(): void
-    {
-        $qa = DTO\QtyAvailability::createFromJSON($this->json);
-        $serialized = json_encode($qa);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(QtyAvailability::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
     }
 
-    public function testInheritance(): void
-    {
-        $qa = DTO\QtyAvailability::createFromJSON($this->json);
-        $this->assertQtyAvailability($qa);
-    }
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+            [
+                "description" => "description",
+                "qty" => 5
+            ],
+            [
+                "description" => "description_2",
+                "qty" => 10
+            ]
+        ];
+        $json = json_encode(QtyAvailability::createArray($array));
 
-    private function assertQtyAvailability(DTO\QtyAvailability $c)
-    {
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c);
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
     }
+    
 }
+
+?>

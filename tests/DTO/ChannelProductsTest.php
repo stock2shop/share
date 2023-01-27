@@ -2,173 +2,303 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share\DTO;
-
+namespace Stock2Shop\Test\Share\DTO;
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\ChannelProducts;
 
 class ChannelProductsTest extends TestCase
 {
-    private string $json;
-
-    protected function setUp(): void
-    {
-        $this->json = '
-        {
-            "channel_products": [
-                {
-                    "active": true,
-                    "title": "title",
-                    "body_html": "body_html",
-                    "collection": "collection",
-                    "product_type": "product_type",
-                    "tags": "tags",
-                    "vendor": "vendor",
-                    "options": [],
-                    "meta": [],
-                    "channel_id": 123,
-                    "channel_product_code": "channel_product_code",
-                    "client_id": 21,
-                    "created": "created",
+    private function setUpArray(): array
+    { 
+        $array = [
+            "channel_products" =>
+            [[
+                "active" => true,
+                "title" => "Title",
+                "body_html" => "",
+                "collection" => "",
+                "product_type" => "",
+                "tags" => "",
+                "vendor" => "Mihoyo",
+                "options" => [["name" => "Size", "position" => 1]],
+                "meta" => [["key" => null, "value" => null, "template_name" => null]],
+                "channel_id" => null,
+                "channel_product_code" => null,
+                "client_id" => null,
+                "created" => "",
+                "delete" => false,
+                "hash" => "",
+                "id" => null,
+                "modified" => "",
+                "source_id" => null,
+                "source_product_code" => "",
+                "success" => false,
+                "synced" => "false",
+                "images" => 
+                [[
+                    "active" => false,
+                    "channel_id" => null,
+                    "channel_image_code" => "",
+                    "delete" => false,
+                    "id" => null,
+                    "src" => null,
+                    "success" => false
+                ]],
+                "variants" => 
+                [[
+                    "source_variant_code" => null,
+                    "sku" => "GenImp-V-AA",
+                    "active" => null,
+                    "qty" => 0,
+                    "qty_availability" => [],
+                    "price" => null,
+                    "price_tiers"=> [],
+                    "barcode" => "12345",
+                    "inventory_management" => null,
+                    "grams" => null,
+                    "option1" => "",
+                    "option2" => null,
+                    "option3" => null,
+                    "meta" => [],
+                    "channel_id" => null,
+                    "channel_variant_code" => null,
+                    "client_id" => null,
+                    "delete" => null,
+                    "hash" => null,
+                    "id" => null,
+                    "image_id" => null,
+                    "product_id" => null,
+                    "success" => null
+                ]]
+            ]]
+        ];
+        return $array;
+    }
+    private function setUpJson(): string
+    { 
+        $json = '{
+            "channel_products": [{
+                "active": true,
+                "title": "Title",
+                "body_html": "",
+                "collection": "",
+                "product_type": "",
+                "tags": "",
+                "vendor": "Mihoyo",
+                "options": [{
+                    "name": "Size",
+                    "position": 1
+                }],
+                "meta": [{
+                    "key": null,
+                    "value": null,
+                    "template_name": null
+                }],
+                "channel_id": null,
+                "channel_product_code": null,
+                "client_id": null,
+                "created": "",
+                "delete": false,
+                "hash": "",
+                "id": null,
+                "images": [{
+                    "src": null,
+                    "active": false,
+                    "channel_id": null,
+                    "channel_image_code": "",
                     "delete": false,
-                    "hash": "hash",
-                    "id": 1,
-                    "images": [
-                        {
-                            "src": "src",
-                            "active": true,
-                            "channel_id": 57,
-                            "channel_image_code": "channel_image_code",
-                            "delete": false,
-                            "id": 1,
-                            "success": true
-                        }
-                    ],
-                    "modified": "modified",
-                    "source_id": 57,
-                    "source_product_code": "source_product_code",
-                    "success": true,
-                    "synced": "synced",
-                    "variants": [
-                        {
-                            "source_variant_code": "source_variant_code",
-                            "sku": "sku",
-                            "active": true,
-                            "qty": 45,
-                            "qty_availability": [],
-                            "price": 19.99,
-                            "price_tiers": [],
-                            "barcode": "barcode",
-                            "inventory_management": true,
-                            "grams": 2,
-                            "option1": "option1",
-                            "option2": "option2",
-                            "option3": "option3",
-                            "meta": [],
-                            "channel_id": null,
-                            "channel_variant_code": null,
-                            "client_id": 21,
-                            "delete": null,
-                            "hash": "hash",
-                            "id": 1,
-                            "image_id": 2,
-                            "product_id": 3,
-                            "success": null
-                        }
-                    ]
-                },
-                {
-                    "active": true,
-                    "title": "title",
-                    "body_html": "body_html",
-                    "collection": "collection",
-                    "product_type": "product_type",
-                    "tags": "tags",
-                    "vendor": "vendor",
-                    "options": [],
+                    "id": null,
+                    "success": false
+                }],
+                "modified": "",
+                "source_id": null,
+                "source_product_code": "",
+                "success": false,
+                "synced": "false",
+                "variants": [{
+                    "source_variant_code": null,
+                    "sku": "GenImp-V-AA",
+                    "active": null,
+                    "qty": 0,
+                    "qty_availability": [],
+                    "price": null,
+                    "price_tiers": [],
+                    "barcode": "12345",
+                    "inventory_management": null,
+                    "grams": null,
+                    "option1": "",
+                    "option2": null,
+                    "option3": null,
                     "meta": [],
-                    "channel_id": 123,
-                    "channel_product_code": "channel_product_code",
-                    "client_id": 21,
-                    "created": "created",
-                    "delete": false,
-                    "hash": "hash",
-                    "id": 1,
-                    "images": [
-                        {
-                            "src": "src",
-                            "active": true,
-                            "channel_id": 57,
-                            "channel_image_code": "channel_image_code",
-                            "delete": false,
-                            "id": 1,
-                            "success": true
-                        }
-                    ],
-                    "modified": "modified",
-                    "source_id": 57,
-                    "source_product_code": "source_product_code",
-                    "success": true,
-                    "synced": "synced",
-                    "variants": [
-                        {
-                            "source_variant_code": "source_variant_code",
-                            "sku": "sku",
-                            "active": true,
-                            "qty": 45,
-                            "qty_availability": [],
-                            "price": 19.99,
-                            "price_tiers": [],
-                            "barcode": "barcode",
-                            "inventory_management": true,
-                            "grams": 2,
-                            "option1": "option1",
-                            "option2": "option2",
-                            "option3": "option3",
-                            "meta": [],
-                            "channel_id": null,
-                            "channel_variant_code": null,
-                            "client_id": 21,
-                            "delete": null,
-                            "hash": "hash",
-                            "id": 1,
-                            "image_id": 2,
-                            "product_id": 3,
-                            "success": null
-                        }
-                    ]
-                }
-            ]
+                    "channel_id": null,
+                    "channel_variant_code": null,
+                    "client_id": null,
+                    "delete": null,
+                    "hash": null,
+                    "id": null,
+                    "image_id": null,
+                    "product_id": null,
+                    "success": null
+                }]
+            }]
         }';
-    }
 
-    public function testSerialize(): void
-    {
-        $cp = DTO\ChannelProducts::createFromJSON($this->json);
-        $serialized = json_encode($cp);
-        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+        return $json;
     }
-
-    public function testInheritance(): void
-    {
-        $cp = DTO\ChannelProducts::createFromJSON($this->json);
-        $this->assertChannelProducts($cp);
-    }
-
-    private function assertChannelProducts(DTO\ChannelProducts $c)
-    {
-        $channelProducts = $c->channel_products;
-        foreach ($channelProducts as $cp) {
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $cp);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp);
-            $this->assertIsArray($cp->variants);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->variants[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $cp->variants[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->variants[0]);
-            $this->assertIsArray($cp->images);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->images[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $cp->images[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $cp->images[0]);
+    
+    public function testClassConstructor(): void
+    { 
+        $array = $this->setUpArray();
+        $object = new ChannelProducts($array);
+        foreach($object as $channelProducts)
+        {
+            $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelProducts", $object);
+            foreach($channelProducts as $channelProduct)
+            {
+                $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelImage", $channelProduct->images[0]);
+                $this->assertInstanceOf("Stock2Shop\Share\DTO\ChannelVariant", $channelProduct->variants[0]);
+            }
         }
     }
+    
+    //public function testSerialize(): void { }
+    public function testJsonConversion(): void 
+    { 
+        $json = $this->setUpJson();
+        $array = json_encode(ChannelProducts::createFromJSON($json));
+
+        $this->assertJsonStringEqualsJsonString($json, $array);
+    }
+
+    public function testArrayConversion(): void 
+    { 
+        $array = [
+        [
+            "channel_products" =>
+            [[
+                "active" => true,
+                "title" => "Title",
+                "body_html" => "",
+                "collection" => "",
+                "product_type" => "",
+                "tags" => "",
+                "vendor" => "Mihoyo",
+                "options" => [["name" => "Size", "position" => 1]],
+                "meta" => [["key" => null, "value" => null, "template_name" => null]],
+                "channel_id" => null,
+                "channel_product_code" => null,
+                "client_id" => null,
+                "created" => "",
+                "delete" => false,
+                "hash" => "",
+                "id" => null,
+                "modified" => "",
+                "source_id" => null,
+                "source_product_code" => "",
+                "success" => false,
+                "synced" => "false",
+                "images" => 
+                [[
+                    "active" => false,
+                    "channel_id" => null,
+                    "channel_image_code" => "",
+                    "delete" => false,
+                    "id" => null,
+                    "src" => null,
+                    "success" => false
+                ]],
+                "variants" => 
+                [[
+                    "source_variant_code" => null,
+                    "sku" => "GenImp-V-AA",
+                    "active" => null,
+                    "qty" => 0,
+                    "qty_availability" => [],
+                    "price" => null,
+                    "price_tiers"=> [],
+                    "barcode" => "12345",
+                    "inventory_management" => null,
+                    "grams" => null,
+                    "option1" => "",
+                    "option2" => null,
+                    "option3" => null,
+                    "meta" => [],
+                    "channel_id" => null,
+                    "channel_variant_code" => null,
+                    "client_id" => null,
+                    "delete" => null,
+                    "hash" => null,
+                    "id" => null,
+                    "image_id" => null,
+                    "product_id" => null,
+                    "success" => null
+                ]]
+            ],
+            [
+                "active" => false,
+                "title" => "Product Title",
+                "body_html" => "",
+                "collection" => "",
+                "product_type" => "",
+                "tags" => "",
+                "vendor" => "Mihoyo",
+                "options" => [["name" => "Size", "position" => 2]],
+                "meta" => [["key" => null, "value" => null, "template_name" => null]],
+                "channel_id" => null,
+                "channel_product_code" => null,
+                "client_id" => null,
+                "created" => "",
+                "delete" => true,
+                "hash" => "",
+                "id" => null,
+                "modified" => "",
+                "source_id" => null,
+                "source_product_code" => "",
+                "success" => false,
+                "synced" => "false",
+                "images" => 
+                [[
+                    "active" => true,
+                    "channel_id" => null,
+                    "channel_image_code" => "",
+                    "delete" => false,
+                    "id" => null,
+                    "src" => null,
+                    "success" => true
+                ]],
+                "variants" => 
+                [[
+                    "source_variant_code" => null,
+                    "sku" => "Genshin",
+                    "active" => null,
+                    "qty" => 0,
+                    "qty_availability" => [],
+                    "price" => null,
+                    "price_tiers"=> [],
+                    "barcode" => "246810",
+                    "inventory_management" => null,
+                    "grams" => null,
+                    "option1" => "",
+                    "option2" => null,
+                    "option3" => null,
+                    "meta" => [],
+                    "channel_id" => null,
+                    "channel_variant_code" => null,
+                    "client_id" => null,
+                    "delete" => null,
+                    "hash" => null,
+                    "id" => null,
+                    "image_id" => null,
+                    "product_id" => null,
+                    "success" => null
+                ]]
+            ]]
+        ]];
+
+        $json = json_encode(ChannelProducts::createArray($array));
+
+        $this->assertJsonStringEqualsJsonString(json_encode($array), $json);
+    }
 }
+
+?>

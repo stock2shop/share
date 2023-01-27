@@ -9,7 +9,7 @@ use JsonSerializable;
 class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $description;
-    public ?float $qty;
+    public ?int $qty;
 
     public function __construct(array $data)
     {
