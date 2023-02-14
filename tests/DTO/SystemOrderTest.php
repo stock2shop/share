@@ -237,6 +237,14 @@ class SystemOrderTest extends TestCase
                     "sub_total": 3.01,
                     "sub_total_display": "sub_total_display",
                     "tax": 4.02,
+                    "tax_lines": [
+                        {
+                            "code": "ABC",
+                            "price": 19.99,
+                            "rate": 19.99,
+                            "title": "title"
+                        }
+                    ],
                     "tax_display": "tax_display",
                     "tax_per_unit": 5.03,
                     "tax_per_unit_display": "tax_per_unit_display",

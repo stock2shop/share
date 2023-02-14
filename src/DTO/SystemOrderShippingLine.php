@@ -12,6 +12,8 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
     public ?float $sub_total;
     public ?string $sub_total_display;
     public ?float $tax;
+    /** @var OrderItemTax[] $tax_lines */
+    public array $tax_lines;
     public ?string $tax_display;
     public ?float $tax_per_unit;
     public ?string $tax_per_unit_display;
@@ -24,12 +26,15 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
     {
         parent::__construct($data);
 
+        $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
+
         $this->created                = self::stringFrom($data, "created");
         $this->modified               = self::stringFrom($data, "modified");
         $this->price_display          = self::stringFrom($data, "price_display");
         $this->sub_total              = self::floatFrom($data, "sub_total");
         $this->sub_total_display      = self::stringFrom($data, "sub_total_display");
         $this->tax                    = self::floatFrom($data, "tax");
+        $this->tax_lines              = $this->sortArray($tax_lines, 'title');
         $this->tax_display            = self::stringFrom($data, "tax_display");
         $this->tax_per_unit           = self::floatFrom($data, "tax_per_unit");
         $this->tax_per_unit_display   = self::stringFrom($data, "tax_per_unit_display");
