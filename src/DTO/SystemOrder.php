@@ -41,6 +41,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?float $tax;
     public ?string $tax_display;
     public ?float $total;
+    public ?float $total_discount;
     public ?string $total_discount_display;
     public ?string $total_display;
 
@@ -82,6 +83,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->tax                    = self::floatFrom($data, "tax");
         $this->tax_display            = self::stringFrom($data, "tax_display");
         $this->total                  = self::floatFrom($data, "total");
+        $this->total_discount         = self::floatFrom($data, "total_discount");
         $this->total_discount_display = self::stringFrom($data, "total_discount_display");
         $this->total_display          = self::stringFrom($data, "total_display");
     }

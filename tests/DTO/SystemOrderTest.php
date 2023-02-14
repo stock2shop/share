@@ -264,6 +264,7 @@ class SystemOrderTest extends TestCase
             "tax": 11.11,
             "tax_display": "tax_display",
             "total": 12.12,
+            "total_discount": 0.00,
             "total_discount_display": "total_discount_display",
             "total_display": "total_display"
         }';
