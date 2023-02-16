@@ -186,6 +186,25 @@ class SystemOrderAddressTest extends TestCase
             ],
             [
                 'input'  => new DTO\SystemOrderAddress(data: [
+                    "hash"          => "hash",
+                    "address1"      => "address1",
+                    "address2"      => "address2",
+                    "city"          => "city",
+                    "country_code"  => "country_code",
+                    "company"       => "company",
+                    "country"       => "country",
+                    "first_name"    => "first_name",
+                    "last_name"     => "last_name",
+                    "phone"         => "phone",
+                    "province"      => "province",
+                    "province_code" => "province_code",
+                    "type"          => "type",
+                    "zip"           => "zip",
+                ]),
+                'output' => 'dd4c1a19162b2c4d55cd4a3f8555fd6e'
+            ],
+            [
+                'input'  => new DTO\SystemOrderAddress(data: [
                     "address1"      => "address1",
                     "address2"      => null,
                     "city"          => "city",

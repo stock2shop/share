@@ -12,6 +12,7 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
+    public ?string $hash;
     public ?string $modified;
 
     public function __construct(array $data)
@@ -22,6 +23,7 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
         $this->channel_id = self::intFrom($data, 'channel_id');
         $this->client_id  = self::intFrom($data, 'client_id');
         $this->created    = self::stringFrom($data, 'created');
+        $this->hash       = self::stringFrom($data, 'hash');
         $this->modified   = self::stringFrom($data, 'modified');
     }
 
@@ -34,6 +36,7 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
         unset($a->channel_id);
         unset($a->client_id);
         unset($a->created);
+        unset($a->hash);
         unset($a->modified);
         $json = json_encode($a);
         return md5($json);
