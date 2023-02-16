@@ -25,6 +25,20 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
         $this->modified   = self::stringFrom($data, 'modified');
     }
 
+    public function computeHash(): string
+    {
+        $a = new SystemOrderAddress((array)$this);
+
+        // unset fields that we do not want included in the hash
+        unset($a->id);
+        unset($a->channel_id);
+        unset($a->client_id);
+        unset($a->created);
+        unset($a->modified);
+        $json = json_encode($a);
+        return md5($json);
+    }
+
     public static function createFromJSON(string $json): SystemOrderAddress
     {
         $data = json_decode($json, true);
