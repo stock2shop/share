@@ -39,6 +39,13 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->zip           = self::stringFrom($data, 'zip');
     }
 
+    public function computeHash(): string
+    {
+        $p    = new Address((array)$this);
+        $json = json_encode($p);
+        return md5($json);
+    }
+
     public static function createFromJSON(string $json): Address
     {
         $data = json_decode($json, true);
