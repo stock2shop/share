@@ -12,7 +12,7 @@ class Fulfillment extends DTO implements JsonSerializable, DTOInterface
     public ?string $notes;
     public ?string $status;
     public ?string $tracking_company;
-    public ?int $tracking_number;
+    public ?string $tracking_number;
     public ?string $tracking_url;
 
     public function __construct(array $data)
@@ -21,7 +21,7 @@ class Fulfillment extends DTO implements JsonSerializable, DTOInterface
         $this->notes                         = self::stringFrom($data, 'notes');
         $this->status                        = self::stringFrom($data, 'status');
         $this->tracking_company              = self::stringFrom($data, 'tracking_company');
-        $this->tracking_number               = self::intFrom($data, 'tracking_number');
+        $this->tracking_number               = self::stringFrom($data, 'tracking_number');
         $this->tracking_url                  = self::stringFrom($data, 'tracking_url');
     }
 

@@ -19,7 +19,7 @@ class FulfillmentTest extends TestCase
             "notes": "notes",
             "status": "status",
             "tracking_company": "tracking_company",
-            "tracking_number": 123,
+            "tracking_number": "tracking_number",
             "tracking_url": "tracking_url"
         }';
     }
