@@ -26,6 +26,7 @@ class SystemOrderTest extends TestCase
                 "country": "sa",
                 "created": "created",
                 "first_name": "bob",
+                "hash": "hash",
                 "id": 1,
                 "last_name": "jones",
                 "modified": "modified",
@@ -113,7 +114,7 @@ class SystemOrderTest extends TestCase
                     "state": "state",
                     "status": "status",
                     "tracking_company": "tracking_company",
-                    "tracking_number": 456,
+                    "tracking_number": "456",
                     "tracking_url": "tracking_url",
                     "channel_id": 57,
                     "client_id": 21,
@@ -131,6 +132,7 @@ class SystemOrderTest extends TestCase
                         "country": "country",
                         "country_code": "country_code",
                         "first_name": "first_name",
+                        "hash": "hash",
                         "id": 3,
                         "last_name": "last_name",
                         "phone": "phone",
@@ -218,6 +220,7 @@ class SystemOrderTest extends TestCase
                 "country": "sa",
                 "created": "created",
                 "first_name": "john",
+                "hash": "hash",
                 "id": 2,
                 "last_name": "doe",
                 "modified": "modified",
@@ -229,6 +232,7 @@ class SystemOrderTest extends TestCase
             },
             "shipping_lines": [
                 {
+                    "id": 1,
                     "price": 99.99,
                     "title": "title",
                     "created": "created",
@@ -279,7 +283,7 @@ class SystemOrderTest extends TestCase
 
     public function testSerialize(): void
     {
-        $m = DTO\SystemOrder::createFromJSON($this->json);
+        $m          = DTO\SystemOrder::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }

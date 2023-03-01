@@ -26,6 +26,7 @@ class SystemOrderAddressTest extends TestCase
             "country": "sa",
             "created": "created",
             "first_name": "bob",
+            "hash": "hash",
             "last_name": "jones",
             "modified": "modified",
             "phone": "123456",
