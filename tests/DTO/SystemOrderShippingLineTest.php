@@ -15,6 +15,7 @@ class SystemOrderShippingLineTest extends TestCase
     {
         $this->json = '
         {
+            "id": 1,
             "price": 99.99,
             "title": "title",
             "created": "created",
