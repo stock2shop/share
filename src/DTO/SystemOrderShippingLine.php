@@ -8,6 +8,7 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
 {
     public ?string $created;
     public ?string $modified;
+    public ?int $id;
     public ?string $price_display;
     public ?float $sub_total;
     public ?string $sub_total_display;
@@ -30,6 +31,7 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
 
         $this->created                = self::stringFrom($data, "created");
         $this->modified               = self::stringFrom($data, "modified");
+        $this->id                     = self::intFrom($data, "id");
         $this->price_display          = self::stringFrom($data, "price_display");
         $this->sub_total              = self::floatFrom($data, "sub_total");
         $this->sub_total_display      = self::stringFrom($data, "sub_total_display");
