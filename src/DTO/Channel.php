@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
+use Stock2Shop\Share\Utils\Date;
 
 class Channel extends DTO implements JsonSerializable, DTOInterface
 {
@@ -27,11 +28,11 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
 
         $this->active           = self::boolFrom($data, 'active');
         $this->client_id        = self::intFrom($data, 'client_id');
-        $this->created          = self::stringFrom($data, 'created');
+        $this->created          = self::dateStringFrom($data, 'created',Date::FORMAT);
         $this->description      = self::stringFrom($data, 'description');
         $this->id               = self::intFrom($data, 'id');
         $this->meta             = $this->sortArray($meta, "key");
-        $this->modified         = self::stringFrom($data, 'modified');
+        $this->modified         = self::dateStringFrom($data, 'modified',Date::FORMAT);
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
         $this->sync_token       = self::stringFrom($data, 'sync_token');
