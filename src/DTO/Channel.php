@@ -7,6 +7,22 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
+/**
+ * @psalm-type ptChannel = array{
+ *     active: bool,
+ *     client_id: int,
+ *     created: string,
+ *     description: string,
+ *     id: int,
+ *     meta: array,
+ *     modified: string,
+ *     price_tier: string,
+ *     qty_availability: string,
+ *     sync_token: string,
+ *     type: string
+ * }
+ */
+
 class Channel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
@@ -22,6 +38,9 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     public ?string $sync_token;
     public ?string $type;
 
+    /**
+     * @param ptChannel $data
+     */
     public function __construct(array $data)
     {
         $meta = Meta::createArray(self::arrayFrom($data, "meta"));
