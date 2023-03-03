@@ -6,6 +6,24 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type ptAddress = array{
+ *     address1: string,
+ *     address2: string,
+ *     city: string,
+ *     company: string,
+ *     country: string,
+ *     country_code: string,
+ *     first_name: string,
+ *     last_name: string,
+ *     phone: string,
+ *     province: string,
+ *     province_code: string,
+ *     type: string,
+ *     zip: string
+ * }
+ */
+
 class Address extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $address1;
@@ -22,6 +40,9 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     public ?string $type;
     public ?string $zip;
 
+    /**
+     * @param ptAddress $data
+     */
     public function __construct(array $data)
     {
         $this->address1      = self::stringFrom($data, 'address1');
