@@ -6,11 +6,21 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeOrderItemTax from OrderItemTax
+ * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ */
 class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
 {
-    /** @var OrderItemTax[] $tax_lines */
+    /**
+     * @param OrderItemTax $tax_lines
+     * @var OrderItemTax[] $tax_lines
+     */
     public array $tax_lines;
 
+    /**
+     * @param TypeOrderShippingLine $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

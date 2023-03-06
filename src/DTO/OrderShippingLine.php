@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeOrderShippingLine = array{
+ *     price?: float,
+ *     title?: string
+ * }
+ */
 class OrderShippingLine extends DTO implements JsonSerializable, DTOInterface
 {
     public ?float $price;
     public ?string $title;
 
+    /**
+     * @param TypeOrderShippingLine $data
+     */
     public function __construct(array $data)
     {
         $this->price = self::floatFrom($data, 'price');

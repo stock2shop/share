@@ -14,7 +14,7 @@ use JsonSerializable;
  *     created?: string,
  *     description?: string,
  *     id?: int,
- *     meta?: TypeMeta,
+ *     meta: TypeMeta,
  *     modified?: string,
  *     price_tier?: string,
  *     qty_availability?: string,
@@ -22,7 +22,6 @@ use JsonSerializable;
  *     type?: string
  * }
  */
-
 class Channel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;

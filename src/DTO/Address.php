@@ -23,7 +23,6 @@ use JsonSerializable;
  *     zip?: string
  * }
  */
-
 class Address extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $address1;

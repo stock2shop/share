@@ -16,7 +16,6 @@ use JsonSerializable;
  *     success?: bool
  * }
  */
-
 class ChannelImage extends Image implements JsonSerializable, DTOInterface
 {
     public ?bool $active;

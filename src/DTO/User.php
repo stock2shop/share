@@ -6,6 +6,16 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeSegment from Segment
+ * @psalm-type TypeUser = array{
+ *     customer_id?: int,
+ *     id?: int,
+ *     segments: TypeSegment,
+ *     price_tier?: string,
+ *     qty_availability?: string
+ * }
+ */
 class User extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $customer_id;
@@ -15,7 +25,9 @@ class User extends DTO implements JsonSerializable, DTOInterface
     public ?string $price_tier;
     public ?string $qty_availability;
 
-
+    /**
+     * @param TypeUser $data
+     */
     public function __construct(array $data)
     {
         // TODO implement segment sort, multi key

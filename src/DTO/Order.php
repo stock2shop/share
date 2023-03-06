@@ -6,6 +6,15 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeOrder = array{
+ *     channel_id?: int,
+ *     channel_order_code?: string,
+ *     notes?: string,
+ *     total_discount?: float,
+ *     state?: string
+ * }
+ */
 class Order extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -14,6 +23,9 @@ class Order extends DTO implements JsonSerializable, DTOInterface
     public ?float $total_discount;
     public ?string $state;
 
+    /**
+     * @param TypeOrder $data
+     */
     public function __construct(array $data)
     {
         $this->channel_id         = self::intFrom($data, 'channel_id');

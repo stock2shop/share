@@ -6,10 +6,22 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeCustomer from Customer
+ * @psalm-type TypeChannelOrderCustomer = array{
+ *     channel_customer_code?: string
+ * }
+ */
 class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
+    /**
+     * @param TypeChannelOrderCustomer $channel_customer_code
+     */
     public ?string $channel_customer_code;
 
+    /**
+     * @param TypeCustomer $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

@@ -14,7 +14,6 @@ use JsonSerializable;
  *     success?: bool
  * }
  */
-
 class ChannelImageChannel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;

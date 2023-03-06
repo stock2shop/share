@@ -6,6 +6,14 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeCustomer = array{
+ *     accepts_marketing?: bool,
+ *     email?: string,
+ *     first_name?: string,
+ *     last_name?: string
+ * }
+ */
 class Customer extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $accepts_marketing;
@@ -13,6 +21,9 @@ class Customer extends DTO implements JsonSerializable, DTOInterface
     public ?string $first_name;
     public ?string $last_name;
 
+    /**
+     * @param TypeCustomer $data
+     */
     public function __construct(array $data)
     {
         $this->accepts_marketing = self::boolFrom($data, 'accepts_marketing');

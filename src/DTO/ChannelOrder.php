@@ -6,6 +6,23 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeOrder from Order
+ * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
+ * @psalm-import-type TypeOrderItem from OrderItem
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ * @psalm-type TypeChannelOrder = array{
+ *     billing_address: TypeAddress,
+ *     customer: TypeChannelOrderCustomer,
+ *     instruction?: string,
+ *     line_items: TypeOrderItem,
+ *     meta: TypeMeta,
+ *     shipping_address: TypeAddress,
+ *     shipping_lines: TypeOrderShippingLine
+ * }
+ */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
     // order instructions
@@ -31,6 +48,9 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
+    /**
+     * @param TypeChannelOrder $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);
