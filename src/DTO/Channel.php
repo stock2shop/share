@@ -1,6 +1,6 @@
 <?php
 /**
- * @psalm-import-type Meta from Meta
+ * @psalm-import-type TypeMeta from Meta
  */
 
 declare(strict_types=1);
@@ -16,7 +16,7 @@ use JsonSerializable;
  *     created: string,
  *     description: string,
  *     id: int,
- *     meta: Meta,
+ *     meta: TypeMeta,
  *     modified: string,
  *     price_tier: string,
  *     qty_availability: string,
