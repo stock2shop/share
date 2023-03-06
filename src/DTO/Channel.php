@@ -1,4 +1,7 @@
 <?php
+/**
+ * @psalm-import-type Meta from Meta
+ */
 
 declare(strict_types=1);
 
@@ -7,13 +10,13 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-type ptChannel = array{
+ * @psalm-type Channel = array{
  *     active: bool,
  *     client_id: int,
  *     created: string,
  *     description: string,
  *     id: int,
- *     meta: array,
+ *     meta: Meta,
  *     modified: string,
  *     price_tier: string,
  *     qty_availability: string,
@@ -38,7 +41,7 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     public ?string $type;
 
     /**
-     * @param ptChannel $data
+     * @param Channel $data
      */
     public function __construct(array $data)
     {
@@ -69,7 +72,7 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     }
 
     /**
-     * @return Channel[]
+     * @return self[]
      */
     public static function createArray(array $data): array
     {
