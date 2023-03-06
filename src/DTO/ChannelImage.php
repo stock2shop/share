@@ -7,7 +7,7 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-type ChannelImage = array{
+ * @psalm-type TypeChannelImage = array{
  *     active: bool,
  *     channel_id: int,
  *     channel_image_code: string,
@@ -27,7 +27,7 @@ class ChannelImage extends Image implements JsonSerializable, DTOInterface
     public ?bool $success;
 
     /**
-     * @param ChannelImage $data
+     * @param TypeChannelImage $data
      */
     public function __construct(array $data)
     {
@@ -53,7 +53,7 @@ class ChannelImage extends Image implements JsonSerializable, DTOInterface
     }
 
     /**
-     * @return self[]
+     * @return ChannelImage[]
      */
     public static function createArray(array $data): array
     {

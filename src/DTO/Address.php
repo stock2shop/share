@@ -7,7 +7,7 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-type Address = array{
+ * @psalm-type TypeAddress = array{
  *     address1: string,
  *     address2: string,
  *     city: string,
@@ -41,7 +41,7 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     public ?string $zip;
 
     /**
-     * @param Address $data
+     * @param TypeAddress $data
      */
     public function __construct(array $data)
     {
@@ -72,7 +72,7 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     }
 
     /**
-     * @return self[]
+     * @return Address[]
      */
     public static function createArray(array $data): array
     {
