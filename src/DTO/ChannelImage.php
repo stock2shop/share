@@ -8,12 +8,12 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeChannelImage = array{
- *     active: bool,
- *     channel_id: int,
- *     channel_image_code: string,
- *     delete: bool,
- *     id: int,
- *     success: bool
+ *     active?: bool,
+ *     channel_id?: int,
+ *     channel_image_code?: string,
+ *     delete?: bool,
+ *     id?: int,
+ *     success?: bool
  * }
  */
 

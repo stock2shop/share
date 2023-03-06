@@ -8,19 +8,19 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeAddress = array{
- *     address1: string,
- *     address2: string,
- *     city: string,
- *     company: string,
- *     country: string,
- *     country_code: string,
- *     first_name: string,
- *     last_name: string,
- *     phone: string,
- *     province: string,
- *     province_code: string,
- *     type: string,
- *     zip: string
+ *     address1?: string,
+ *     address2?: string,
+ *     city?: string,
+ *     company?: string,
+ *     country?: string,
+ *     country_code?: string,
+ *     first_name?: string,
+ *     last_name?: string,
+ *     phone?: string,
+ *     province?: string,
+ *     province_code?: string,
+ *     type?: string,
+ *     zip?: string
  * }
  */
 

@@ -8,13 +8,10 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeMeta = array{
- *     key: string,
- *     value: string,
- *     template_name: string
+ *     key?: string,
+ *     value?: string,
+ *     template_name?: string
  * }
- */
-
-/**
  *
  * This is used by many classes.
  * e.g. Customers, Products, Sources, Channels ...

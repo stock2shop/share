@@ -1,7 +1,4 @@
 <?php
-/**
- * @psalm-import-type TypeMeta from Meta
- */
 
 declare(strict_types=1);
 
@@ -10,18 +7,19 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
+ * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannel = array{
- *     active: bool,
- *     client_id: int,
- *     created: string,
- *     description: string,
- *     id: int,
- *     meta: TypeMeta,
- *     modified: string,
- *     price_tier: string,
- *     qty_availability: string,
- *     sync_token: string,
- *     type: string
+ *     active?: bool,
+ *     client_id?: int,
+ *     created?: string,
+ *     description?: string,
+ *     id?: int,
+ *     meta?: TypeMeta,
+ *     modified?: string,
+ *     price_tier?: string,
+ *     qty_availability?: string,
+ *     sync_token?: string,
+ *     type?: string
  * }
  */
 
