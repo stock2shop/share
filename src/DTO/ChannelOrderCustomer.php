@@ -6,6 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-import-type TypeCustomer from Customer
  * @psalm-type TypeChannelOrderCustomer = array{
@@ -14,11 +15,13 @@ use JsonSerializable;
  */
 class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
 {
+    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeChannelOrderCustomer $channel_customer_code
      */
     public ?string $channel_customer_code;
 
+    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeCustomer $data
      */

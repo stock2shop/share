@@ -6,6 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-import-type TypeOrder from Order
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
@@ -48,6 +49,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
+    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeChannelOrder $data
      */

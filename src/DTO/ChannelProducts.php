@@ -6,6 +6,11 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeChannelProducts = array{
+ *     channel_products:
+ * }
+ */
 class ChannelProducts extends DTO implements JsonSerializable, DTOInterface
 {
     /** @var ChannelProduct[] $channel_products */

@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeProductOption = array{
+ *     name?: string,
+ *     position?:int
+ * }
+ */
 class ProductOption extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $name;
     public ?int $position;
 
+    /**
+     * @param TypeProductOption $data
+     */
     public function __construct(array $data)
     {
         $this->name     = self::stringFrom($data, "name");
