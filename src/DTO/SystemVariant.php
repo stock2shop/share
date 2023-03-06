@@ -6,6 +6,31 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeQtyAvailability from QtyAvailability
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-type TypeSystemVariant = array{
+ *     client_id?: int,
+ *     hash?: string,
+ *     id?: int,
+ *     image_id?: int,
+ *     product_id?: int,
+ *     source_variant_code?: string,
+ *     sku?: string,
+ *     active?: bool,
+ *     qty?: int,
+ *     qty_availability: TypeQtyAvailability,
+ *     price?: float,
+ *     price_tiers: PriceTier,
+ *     barcode?: string,
+ *     inventory_management?: bool,
+ *     grams?: int,
+ *     option1?: string,
+ *     option2?: string,
+ *     option3?: string,
+ *     meta: TypeMeta
+ * }
+ */
 class SystemVariant extends Variant implements JsonSerializable, DTOInterface
 {
     public ?int $client_id;
@@ -14,6 +39,9 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
     public ?int $image_id;
     public ?int $product_id;
 
+    /**
+     * @param TypeSystemVariant $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

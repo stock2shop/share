@@ -6,6 +6,37 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeProductOption from ProductOption
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeChannelImage from ChannelImage
+ * @psalm-import-type TypeChannelVariant from ChannelVariant
+ * @psalm-type TypeChannelProduct = array{
+ *     channel_id?: int,
+ *     channel_product_code?: string,
+ *     client_id?: int,
+ *     created?: string,
+ *     delete?: bool,
+ *     hash?: string,
+ *     id?: int,
+ *     images: TypeChannelImage,
+ *     modified?: string,
+ *     source_id?: int,
+ *     source_product_code?: string,
+ *     success?: bool,
+ *     synced?: string,
+ *     variants: TypeChannelVariant,
+ *     active?: bool,
+ *     title?: string,
+ *     body_html?: string,
+ *     collection?: string,
+ *     product_type?: string,
+ *     tags?: string,
+ *     vendor?: string,
+ *     options: TypeProductOption,
+ *     meta: TypeMeta
+ * }
+ */
 class ChannelProduct extends Product implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -25,6 +56,9 @@ class ChannelProduct extends Product implements JsonSerializable, DTOInterface
     /** @var ChannelVariant[] $variants */
     public array $variants;
 
+    /**
+     * @param TypeChannelProduct $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

@@ -6,13 +6,11 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-import-type TypeAddress from Address
  */
 class ChannelOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
-    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeAddress $data
      */

@@ -6,6 +6,52 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
+ * @psalm-import-type TypeSystemCustomer from SystemCustomer
+ * @psalm-import-type TypeSystemFulfillment from SystemFulfillment
+ * @psalm-import-type TypeSystemOrderHistory from SystemOrderHistory
+ * @psalm-import-type TypeSystemOrderItem from SystemOrderItem
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeSystemOrderShippingLine from SystemOrderShippingLine
+ * @psalm-import-type TypeOrderSource from OrderSource
+ * @psalm-type TypeSystemOrder = array{
+ *     billing_address?: TypeSystemOrderAddress,
+ *     channel_id?: int,
+ *     client_id?: int,
+ *     created?: string,
+ *     customer: TypeSystemCustomer,
+ *     fulfillments: TypeSystemFulfillment,
+ *     history: TypeSystemOrderHistory,
+ *     id?: int,
+ *     line_item_sub_total?: float,
+ *     line_item_tax?: float,
+ *     line_items: TypeSystemOrderItem,
+ *     meta: TypeMeta,
+ *     modified?: string,
+ *     shipping_address?: TypeSystemOrderAddress,
+ *     shipping_lines: TypeSystemOrderShippingLine,
+ *     shipping_sub_total?: float,
+ *     shipping_tax?: float,
+ *     shipping_tax_display?: string,
+ *     shipping_total?: float,
+ *     shipping_total_display?: string,
+ *     sources: TypeOrderSource,
+ *     status?: string,
+ *     sub_total?: float,
+ *     sub_total_display?: string,
+ *     tax?: float,
+ *     tax_display?: string,
+ *     total?: float,
+ *     total_discount_display?: string,
+ *     total_display?:string,
+ *     channel_id?: int,
+ *     channel_order_code?: string,
+ *     notes?: string,
+ *     total_discount?: float,
+ *     state?: string
+ * }
+ */
 class SystemOrder extends Order implements JsonSerializable, DTOInterface
 {
     public ?SystemOrderAddress $billing_address;
@@ -44,6 +90,9 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?string $total_discount_display;
     public ?string $total_display;
 
+    /**
+     * @param TypeSystemOrder $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

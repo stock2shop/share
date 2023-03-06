@@ -8,20 +8,25 @@ use JsonSerializable;
 
 /** TODO Confirm how to assign types when class extends some other class */
 /**
- * @psalm-import-type TypeOrder from Order
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
- * @psalm-import-type TypeOrderItem from OrderItem
- * @psalm-import-type TypeMeta from Meta
- * @psalm-import-type TypeAddress from Address
  * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ * @psalm-import-type TypeChannelOrderItem from ChannelOrderItem
+ * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
  *     billing_address: TypeAddress,
  *     customer: TypeChannelOrderCustomer,
  *     instruction?: string,
- *     line_items: TypeOrderItem,
+ *     line_items: TypeChannelOrderItem,
  *     meta: TypeMeta,
+ *     params: array<string, string>,
  *     shipping_address: TypeAddress,
- *     shipping_lines: TypeOrderShippingLine
+ *     shipping_lines: TypeOrderShippingLine,
+ *     channel_id?: int,
+ *     channel_order_code?: string,
+ *     notes?: string,
+ *     total_discount?: float,
+ *     state?: string
  * }
  */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
@@ -49,7 +54,6 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
-    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeChannelOrder $data
      */

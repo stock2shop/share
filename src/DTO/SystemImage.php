@@ -6,11 +6,21 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeSystemImage = array{
+ *     id?: int,
+ *     active?: bool,
+ *     src?: string
+ * }
+ */
 class SystemImage extends Image implements JsonSerializable, DTOInterface
 {
     public ?int $id;
     public ?bool $active;
 
+    /**
+     * @param TypeSystemImage $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

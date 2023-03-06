@@ -6,6 +6,39 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeSystemFulfillmentLineItem from SystemFulfillmentLineItem
+ * @psalm-import-type TypeOrderItemTax from OrderItemTax
+ * @psalm-type TypeSystemOrderItem = array{
+ *     created?: string,
+ *     fulfillments: TypeSystemFulfillmentLineItem,
+ *     modified?: string,
+ *     product_id?: int,
+ *     variant_id?: int,
+ *     id?: int,
+ *     source_id?: int,
+ *     source_variant_code?: string,
+ *     price_display?: string,
+ *     total_discount?: float,
+ *     total_discount_display?: string,
+ *     tax_per_unit_display?: string,
+ *     tax?: float,
+ *     tax_display?: string,
+ *     tax_lines: TypeOrderItemTax,
+ *     sub_total?: float,
+ *     tax_per_unit?: float,
+ *     sub_total_display?: string,
+ *     total?: float,
+ *     total_display?: string,
+ *     barcode?: string,
+ *     grams?: int,
+ *     price?: float,
+ *     qty?: int,
+ *     sku?: string,
+ *     title?: string,
+ *     total_discount?: float
+ * }
+ */
 class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterface
 {
     public ?string $created;
@@ -31,6 +64,9 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?float $total;
     public ?string $total_display;
 
+    /**
+     * @param TypeSystemOrderItem $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

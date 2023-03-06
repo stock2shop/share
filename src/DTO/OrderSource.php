@@ -6,12 +6,22 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeOrderSource = array{
+ *     source_id?: int,
+ *     source_customer_code?: string,
+ *     source_order_code?: string
+ * }
+ */
 class OrderSource extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $source_id;
     public ?string $source_customer_code;
     public ?string $source_order_code;
 
+    /**
+     * @param TypeOrderSource $data
+     */
     public function __construct(array $data)
     {
         $this->source_id            = self::intFrom($data, "source_id");

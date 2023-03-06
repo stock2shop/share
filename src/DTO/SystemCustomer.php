@@ -6,6 +6,28 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeUser from User
+ * @psalm-type TypeSystemCustomer = array{
+ *     active?: bool,
+ *     addresses: TypeAddress,
+ *     channel_customer_code?: string,
+ *     channel_id?: int,
+ *     client_id?: int,
+ *     created?: string,
+ *     customer_id?: int,
+ *     id?: int,
+ *     meta: TypeMeta,
+ *     modified?: string,
+ *     user: TypeUser,
+ *     accepts_marketing?: bool,
+ *     email?: string,
+ *     first_name?: string,
+ *     last_name?: string
+ * }
+ */
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
 {
     public ?bool $active;

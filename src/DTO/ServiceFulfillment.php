@@ -6,11 +6,26 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeFulfillmentLineItem from FulfillmentLineItem
+ * @psalm-type TypeServiceFulfillment = array{
+ *     line_items: TypeFulfillmentLineItem,
+ *     fulfillmentservice_order_code?: string,
+ *     notes?: string,
+ *     status?: string,
+ *     tracking_company?: string,
+ *     tracking_number?: string,
+ *     tracking_url?: string
+ * }
+ */
 class ServiceFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
 {
     /** @var FulfillmentLineItem[] $line_items */
     public array $line_items;
 
+    /**
+     * @param TypeServiceFulfillment $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

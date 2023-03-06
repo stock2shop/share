@@ -6,23 +6,21 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-import-type TypeOrderItemTax from OrderItemTax
- * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ * @psalm-type TypeChannelOrderShippingLine = array{
+ *     tax_lines: TypeOrderItemTax,
+ *     price?: float,
+ *     title?: string
+ * }
  */
 class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
 {
-    /** TODO Confirm how to assign types when class extends some other class */
-    /**
-     * @param OrderItemTax $tax_lines
-     * @var OrderItemTax[] $tax_lines
-     */
+    /** @var OrderItemTax[] $tax_lines */
     public array $tax_lines;
 
-    /** TODO Confirm how to assign types when class extends some other class */
     /**
-     * @param TypeOrderShippingLine $data
+     * @param TypeChannelOrderShippingLine $data
      */
     public function __construct(array $data)
     {

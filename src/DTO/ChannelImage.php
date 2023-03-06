@@ -6,9 +6,9 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-type TypeChannelImage = array{
+ *     src?: string,
  *     active?: bool,
  *     channel_id?: int,
  *     channel_image_code?: string,
@@ -26,7 +26,6 @@ class ChannelImage extends Image implements JsonSerializable, DTOInterface
     public ?int $id;
     public ?bool $success;
 
-    /** TODO Confirm how to assign types when class extends some other class */
     /**
      * @param TypeChannelImage $data
      */

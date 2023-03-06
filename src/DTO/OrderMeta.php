@@ -6,6 +6,12 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeOrderMeta = array{
+ *     key?: string,
+ *     value?: string
+ * }
+ */
 class OrderMeta extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $key;
@@ -13,6 +19,7 @@ class OrderMeta extends DTO implements JsonSerializable, DTOInterface
 
     /**
      * OrderMeta constructor.
+     * @param TypeOrderMeta $data
      */
     public function __construct(array $data)
     {
