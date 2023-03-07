@@ -8,7 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeImage = array{
- *     src?: string
+ *     src?: string,
+ *     some_field?: string
  * }
  */
 class Image extends DTO implements JsonSerializable, DTOInterface
