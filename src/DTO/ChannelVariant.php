@@ -52,6 +52,7 @@ class ChannelVariant extends Variant implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->channel_id           = self::intFrom($data, 'channel_id');

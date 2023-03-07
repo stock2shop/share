@@ -59,6 +59,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $line_items     = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));

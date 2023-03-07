@@ -23,6 +23,7 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->active = self::boolFrom($data, "active");

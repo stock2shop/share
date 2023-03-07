@@ -43,6 +43,7 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->id         = self::intFrom($data, "id");

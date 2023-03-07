@@ -26,6 +26,7 @@ class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSeria
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->created    = self::stringFrom($data, 'created');

@@ -95,6 +95,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
         $fulfillments   = SystemFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
         $history        = SystemOrderHistory::createArray(self::arrayFrom($data, "history"));

@@ -24,6 +24,7 @@ class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInte
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->channel_customer_code = self::stringFrom($data, 'channel_customer_code');

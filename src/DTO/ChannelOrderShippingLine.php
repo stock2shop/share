@@ -24,6 +24,7 @@ class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializ
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));

@@ -69,6 +69,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $fulfillments = SystemFulfillmentLineItem::createArray(self::arrayFrom($data, 'fulfillments'));

@@ -61,6 +61,7 @@ class ChannelProduct extends Product implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));

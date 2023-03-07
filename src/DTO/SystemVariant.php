@@ -44,6 +44,7 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->client_id  = static::intFrom($data, 'client_id');

@@ -28,6 +28,7 @@ class ServiceFulfillment extends Fulfillment implements JsonSerializable, DTOInt
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $line_items = FulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));

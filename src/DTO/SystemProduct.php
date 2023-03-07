@@ -55,6 +55,7 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $images   = SystemImage::createArray(self::arrayFrom($data, 'images'));
