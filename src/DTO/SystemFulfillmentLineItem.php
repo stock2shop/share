@@ -8,12 +8,12 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSystemFulfillmentLineItem = array{
- *     created?: string,
- *     modified?: string,
- *     grams?: int,
- *     qty?: int,
- *     sku?: string,
- *     fulfilled_qty?: int
+ *     created?: string|null,
+ *     modified?: string|null,
+ *     grams?: int|null,
+ *     qty?: int|null,
+ *     sku?: string|null,
+ *     fulfilled_qty?: int|null
  * }
  */
 class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSerializable, DTOInterface

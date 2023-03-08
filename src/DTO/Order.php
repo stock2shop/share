@@ -8,11 +8,11 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeOrder = array{
- *     channel_id?: int,
- *     channel_order_code?: string,
- *     notes?: string,
- *     total_discount?: float,
- *     state?: string
+ *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
+ *     notes?: string|null,
+ *     total_discount?: float|null,
+ *     state?: string|null
  * }
  */
 class Order extends DTO implements JsonSerializable, DTOInterface

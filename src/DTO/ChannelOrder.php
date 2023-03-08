@@ -16,17 +16,17 @@ use JsonSerializable;
  * @psalm-type TypeChannelOrder = array{
  *     billing_address: TypeAddress,
  *     customer: TypeChannelOrderCustomer,
- *     instruction?: string,
+ *     instruction?: string|null,
  *     line_items: TypeChannelOrderItem,
  *     meta: TypeMeta,
  *     params: array<string, string>,
  *     shipping_address: TypeAddress,
  *     shipping_lines: TypeOrderShippingLine,
- *     channel_id?: int,
- *     channel_order_code?: string,
- *     notes?: string,
- *     total_discount?: float,
- *     state?: string
+ *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
+ *     notes?: string|null,
+ *     total_discount?: float|null,
+ *     state?: string|null
  * }
  */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface

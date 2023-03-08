@@ -230,22 +230,16 @@ class SystemProductsTest extends TestCase
         foreach ($c->system_products as $sp) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $sp);
-            $this->assertIsArray($sp->meta);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->meta[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $sp->meta[0]);
-            $this->assertIsArray($sp->options);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->options[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $sp->options[0]);
-            $this->assertIsArray($sp->images);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->images[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $sp->images[0]);
-            $this->assertIsArray($sp->options);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->options[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $sp->options[0]);
-            $this->assertIsArray($sp->channels);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->channels[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $sp->channels[0]);
-            $this->assertIsArray($sp->variants);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->variants[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $sp->variants[0]);
         }

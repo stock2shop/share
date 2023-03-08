@@ -11,19 +11,19 @@ use JsonSerializable;
  * @psalm-import-type TypeQtyAvailability from QtyAvailability
  * @psalm-import-type TypePriceTier from PriceTier
  * @psalm-type TypeVariant = array{
- *     source_variant_code?: string,
- *     sku?: string,
- *     active?: bool,
- *     qty?: int,
+ *     source_variant_code?: string|null,
+ *     sku?: string|null,
+ *     active?: bool|null,
+ *     qty?: int|null,
  *     qty_availability: TypeQtyAvailability,
- *     price?: float,
- *     price_tiers: PriceTier,
- *     barcode?: string,
- *     inventory_management?: bool,
- *     grams?: int,
- *     option1?: string,
- *     option2?: string,
- *     option3?: string,
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     barcode?: string|null,
+ *     inventory_management?: bool|null,
+ *     grams?: int|null,
+ *     option1?: string|null,
+ *     option2?: string|null,
+ *     option3?: string|null,
  *     meta: TypeMeta
  * }
  */

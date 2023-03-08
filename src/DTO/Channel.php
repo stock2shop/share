@@ -9,17 +9,17 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannel = array{
- *     active?: bool,
- *     client_id?: int,
- *     created?: string,
- *     description?: string,
- *     id?: int,
+ *     active?: bool|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     description?: string|null,
+ *     id?: int|null,
  *     meta: TypeMeta,
- *     modified?: string,
- *     price_tier?: string,
- *     qty_availability?: string,
- *     sync_token?: string,
- *     type?: string
+ *     modified?: string|null,
+ *     price_tier?: string|null,
+ *     qty_availability?: string|null,
+ *     sync_token?: string|null,
+ *     type?: string|null
  * }
  */
 class Channel extends DTO implements JsonSerializable, DTOInterface

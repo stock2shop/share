@@ -94,11 +94,9 @@ class ChannelProductTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertIsArray($c->variants);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c->variants[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
-        $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);

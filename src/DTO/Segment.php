@@ -8,11 +8,11 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSegment = array{
- *     type?: string,
- *     key?: string,
- *     operator?: string,
- *     value?: string,
- *     owner?: string
+ *     type?: string|null,
+ *     key?: string|null,
+ *     operator?: string|null,
+ *     value?: string|null,
+ *     owner?: string|null
  * }
  */
 class Segment extends DTO implements JsonSerializable, DTOInterface

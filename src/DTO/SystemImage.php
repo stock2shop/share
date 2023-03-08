@@ -8,9 +8,9 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSystemImage = array{
- *     id?: int,
- *     active?: bool,
- *     src?: string
+ *     id?: int|null,
+ *     active?: bool|null,
+ *     src?: string|null
  * }
  */
 class SystemImage extends Image implements JsonSerializable, DTOInterface

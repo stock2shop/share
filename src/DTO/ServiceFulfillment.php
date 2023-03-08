@@ -10,12 +10,12 @@ use JsonSerializable;
  * @psalm-import-type TypeFulfillmentLineItem from FulfillmentLineItem
  * @psalm-type TypeServiceFulfillment = array{
  *     line_items: TypeFulfillmentLineItem,
- *     fulfillmentservice_order_code?: string,
- *     notes?: string,
- *     status?: string,
- *     tracking_company?: string,
- *     tracking_number?: string,
- *     tracking_url?: string
+ *     fulfillmentservice_order_code?: string|null,
+ *     notes?: string|null,
+ *     status?: string|null,
+ *     tracking_company?: string|null,
+ *     tracking_number?: string|null,
+ *     tracking_url?: string|null
  * }
  */
 class ServiceFulfillment extends Fulfillment implements JsonSerializable, DTOInterface

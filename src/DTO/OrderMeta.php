@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeOrderMeta = array{
- *     key?: string,
- *     value?: string
+ *     key?: string|null,
+ *     value?: string|null
  * }
  */
 class OrderMeta extends DTO implements JsonSerializable, DTOInterface

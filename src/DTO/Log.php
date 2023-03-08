@@ -9,23 +9,23 @@ use Stock2Shop\Share\Utils\Date;
 
 /**
  * @psalm-type TypeLog = array{
- *     channel_id?: int,
+ *     channel_id?: int|null,
  *     client_id: int,
- *     context?: array,
- *     created?: string,
- *     ip?: string,
+ *     context?: array|null,
+ *     created?: string|null,
+ *     ip?: string|null,
  *     log_to_es: bool,
  *     level: string,
  *     message: string,
- *     method?: string,
- *     metric?: float,
+ *     method?: string|null,
+ *     metric?: float|null,
  *     origin: string,
- *     remote_addr?: string,
- *     request_path?: string,
- *     source_id?: int,
- *     tags?: string|array,
- *     trace?: string|array,
- *     user_id?: int
+ *     remote_addr?: string|null,
+ *     request_path?: string|null,
+ *     source_id?: int|null,
+ *     tags?: string|array|null,
+ *     trace?: string|array|null,
+ *     user_id?: int|null
  * }
  */
 class Log extends DTO implements JsonSerializable, DTOInterface

@@ -8,9 +8,9 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeOrderSource = array{
- *     source_id?: int,
- *     source_customer_code?: string,
- *     source_order_code?: string
+ *     source_id?: int|null,
+ *     source_customer_code?: string|null,
+ *     source_order_code?: string|null
  * }
  */
 class OrderSource extends DTO implements JsonSerializable, DTOInterface

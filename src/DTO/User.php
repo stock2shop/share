@@ -9,11 +9,11 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeSegment from Segment
  * @psalm-type TypeUser = array{
- *     customer_id?: int,
- *     id?: int,
+ *     customer_id?: int|null,
+ *     id?: int|null,
  *     segments: TypeSegment,
- *     price_tier?: string,
- *     qty_availability?: string
+ *     price_tier?: string|null,
+ *     qty_availability?: string|null
  * }
  */
 class User extends DTO implements JsonSerializable, DTOInterface

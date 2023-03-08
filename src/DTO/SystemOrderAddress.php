@@ -8,25 +8,25 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSystemOrderAddress = array{
- *     id?: int,
- *     channel_id?: int,
- *     client_id?: int,
- *     created?: string,
- *     hash?: string,
- *     modified?: string,
- *     address1?: string,
- *     address2?: string,
- *     city?: string,
- *     company?: string,
- *     country?: string,
- *     country_code?: string,
- *     first_name?: string,
- *     last_name?: string,
- *     phone?: string,
- *     province?: string,
- *     province_code?: string,
- *     type?: string,
- *     zip?: string
+ *     id?: int|null,
+ *     channel_id?: int|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     hash?: string|null,
+ *     modified?: string|null,
+ *     address1?: string|null,
+ *     address2?: string|null,
+ *     city?: string|null,
+ *     company?: string|null,
+ *     country?: string|null,
+ *     country_code?: string|null,
+ *     first_name?: string|null,
+ *     last_name?: string|null,
+ *     phone?: string|null,
+ *     province?: string|null,
+ *     province_code?: string|null,
+ *     type?: string|null,
+ *     zip?: string|null
  * }
  */
 class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface

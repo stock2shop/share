@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeProductOption = array{
- *     name?: string,
- *     position?:int
+ *     name?: string|null,
+ *     position?: int|null
  * }
  */
 class ProductOption extends DTO implements JsonSerializable, DTOInterface

@@ -8,10 +8,10 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSystemOrderHistory = array{
- *     instruction?: string,
- *     storage_code?: string,
- *     created?: string,
- *     modified?: string
+ *     instruction?: string|null,
+ *     storage_code?: string|null,
+ *     created?: string|null,
+ *     modified?: string|null
  * }
  */
 class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface

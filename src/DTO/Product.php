@@ -10,13 +10,13 @@ use JsonSerializable;
  * @psalm-import-type TypeProductOption from ProductOption
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeProduct = array{
- *     active?: bool,
- *     title?: string,
- *     body_html?: string,
- *     collection?: string,
- *     product_type?: string,
- *     tags?: string,
- *     vendor?: string,
+ *     active?: bool|null,
+ *     title?: string|null,
+ *     body_html?: string|null,
+ *     collection?: string|null,
+ *     product_type?: string|null,
+ *     tags?: string|null,
+ *     vendor?: string|null,
  *     options: TypeProductOption,
  *     meta: TypeMeta
  * }

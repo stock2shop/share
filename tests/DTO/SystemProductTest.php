@@ -129,19 +129,14 @@ class SystemProductTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $c);
-        $this->assertIsArray($c->meta);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
-        $this->assertIsArray($c->options);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->options[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $c->options[0]);
-        $this->assertIsArray($c->images);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->images[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Image', $c->images[0]);
-        $this->assertIsArray($c->channels);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->channels[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c->channels[0]);
-        $this->assertIsArray($c->variants);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->variants[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemVariant', $c->variants[0]);
     }

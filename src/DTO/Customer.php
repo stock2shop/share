@@ -8,10 +8,10 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeCustomer = array{
- *     accepts_marketing?: bool,
- *     email?: string,
- *     first_name?: string,
- *     last_name?: string
+ *     accepts_marketing?: bool|null,
+ *     email?: string|null,
+ *     first_name?: string|null,
+ *     last_name?: string|null
  * }
  */
 class Customer extends DTO implements JsonSerializable, DTOInterface

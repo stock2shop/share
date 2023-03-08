@@ -9,13 +9,13 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeImage from Image
  * @psalm-type TypeChannelImage = array{
- *     src?: string,
- *     active?: bool,
- *     channel_id?: int,
- *     channel_image_code?: string,
- *     delete?: bool,
- *     id?: int,
- *     success?: bool
+ *     src?: string|null,
+ *     active?: bool|null,
+ *     channel_id?: int|null,
+ *     channel_image_code?: string|null,
+ *     delete?: bool|null,
+ *     id?: int|null,
+ *     success?: bool|null
  * }
  */
 class ChannelImage extends Image implements JsonSerializable, DTOInterface

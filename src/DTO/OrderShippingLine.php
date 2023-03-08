@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeOrderShippingLine = array{
- *     price?: float,
- *     title?: string
+ *     price?: float|null,
+ *     title?: string|null
  * }
  */
 class OrderShippingLine extends DTO implements JsonSerializable, DTOInterface

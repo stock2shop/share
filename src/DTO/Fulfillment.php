@@ -8,12 +8,12 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeFulfillment = array{
- *     fulfillmentservice_order_code?: string,
- *     notes?: string,
- *     status?: string,
- *     tracking_company?: string,
- *     tracking_number?: string,
- *     tracking_url?: string
+ *     fulfillmentservice_order_code?: string|null,
+ *     notes?: string|null,
+ *     status?: string|null,
+ *     tracking_company?: string|null,
+ *     tracking_number?: string|null,
+ *     tracking_url?: string|null
  * }
  */
 class Fulfillment extends DTO implements JsonSerializable, DTOInterface

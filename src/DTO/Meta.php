@@ -8,9 +8,9 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeMeta = array{
- *     key?: string,
- *     value?: string,
- *     template_name?: string
+ *     key?: string|null,
+ *     value?: string|null,
+ *     template_name?: string|null
  * }
  *
  * This is used by many classes.

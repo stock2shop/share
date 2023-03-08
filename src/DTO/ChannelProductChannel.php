@@ -8,11 +8,11 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeChannelProductChannel = array{
- *     channel_id?: int,
- *     channel_product_code?: string,
- *     delete?: bool,
- *     success?: bool,
- *     synced?: string
+ *     channel_id?: int|null,
+ *     channel_product_code?: string|null,
+ *     delete?: bool|null,
+ *     success?: bool|null,
+ *     synced?: string|null
  * }
  */
 class ChannelProductChannel extends DTO implements JsonSerializable, DTOInterface

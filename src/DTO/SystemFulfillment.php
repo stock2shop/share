@@ -11,22 +11,22 @@ use Stock2Shop\Share\Utils\Date;
  * @psalm-import-type TypeSystemFulfillmentLineItem from SystemFulfillmentLineItem
  * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
  * @psalm-type TypeSystemFulfillment = array{
- *     channel_id?: int,
- *     client_id?: int,
- *     created?: string,
- *     fulfillmentservice_id?: int,
+ *     channel_id?: int|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     fulfillmentservice_id?: int|null,
  *     line_items: TypeSystemFulfillmentLineItem,
- *     modified?: string,
- *     order_id?: int,
+ *     modified?: string|null,
+ *     order_id?: int|null,
  *     shipping_address: TypeSystemOrderAddress,
- *     state?: string,
- *     channel_synced?: string,
- *     fulfillmentservice_order_code?: string,
- *     notes?: string,
- *     status?: string,
- *     tracking_company?: string,
- *     tracking_number?: string,
- *     tracking_url?: string
+ *     state?: string|null,
+ *     channel_synced?: string|null,
+ *     fulfillmentservice_order_code?: string|null,
+ *     notes?: string|null,
+ *     status?: string|null,
+ *     tracking_company?: string|null,
+ *     tracking_number?: string|null,
+ *     tracking_url?: string|null
  * }
  */
 class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInterface

@@ -55,12 +55,10 @@ class ProductTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
-        $this->assertIsArray($c->meta);
         foreach ($c->meta as $meta) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $meta);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);
         }
-        $this->assertIsArray($c->options);
         foreach ($c->options as $option) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $option);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $option);

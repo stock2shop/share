@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeQtyAvailability = array{
- *     description?: string,
- *     qty?: int
+ *     description?: string|null,
+ *     qty?: int|null
  * }
  */
 class QtyAvailability extends DTO implements JsonSerializable, DTOInterface

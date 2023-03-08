@@ -9,25 +9,26 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeQtyAvailability from QtyAvailability
  * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypePriceTier from PriceTier
  * @psalm-type TypeSystemVariant = array{
- *     client_id?: int,
- *     hash?: string,
- *     id?: int,
- *     image_id?: int,
- *     product_id?: int,
- *     source_variant_code?: string,
- *     sku?: string,
- *     active?: bool,
- *     qty?: int,
+ *     client_id?: int|null,
+ *     hash?: string|null,
+ *     id?: int|null,
+ *     image_id?: int|null,
+ *     product_id?: int|null,
+ *     source_variant_code?: string|null,
+ *     sku?: string|null,
+ *     active?: bool|null,
+ *     qty?: int|null,
  *     qty_availability: TypeQtyAvailability,
- *     price?: float,
- *     price_tiers: PriceTier,
- *     barcode?: string,
- *     inventory_management?: bool,
- *     grams?: int,
- *     option1?: string,
- *     option2?: string,
- *     option3?: string,
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     barcode?: string|null,
+ *     inventory_management?: bool|null,
+ *     grams?: int|null,
+ *     option1?: string|null,
+ *     option2?: string|null,
+ *     option3?: string|null,
  *     meta: TypeMeta
  * }
  */

@@ -8,10 +8,10 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeChannelVariantChannel = array{
- *     channel_id?: int,
- *     channel_variant_code?: string,
- *     delete?:bool,
- *     success?: bool
+ *     channel_id?: int|null,
+ *     channel_variant_code?: string|null,
+ *     delete?: bool|null,
+ *     success?: bool|null
  * }
  */
 class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterface
