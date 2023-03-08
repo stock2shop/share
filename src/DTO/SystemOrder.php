@@ -18,9 +18,10 @@ use JsonSerializable;
  * @psalm-type TypeSystemOrder = array{
  *     billing_address?: TypeSystemOrderAddress,
  *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
  *     client_id?: int|null,
- *     created?: string|null,
  *     customer: TypeSystemCustomer,
+ *     created?: string|null,
  *     fulfillments: TypeSystemFulfillment,
  *     history: TypeSystemOrderHistory,
  *     id?: int|null,
@@ -29,6 +30,7 @@ use JsonSerializable;
  *     line_items: TypeSystemOrderItem,
  *     meta: TypeMeta,
  *     modified?: string|null,
+ *     notes?: string|null,
  *     shipping_address?: TypeSystemOrderAddress,
  *     shipping_lines: TypeSystemOrderShippingLine,
  *     shipping_sub_total?: float|null,
@@ -37,6 +39,7 @@ use JsonSerializable;
  *     shipping_total?: float|null,
  *     shipping_total_display?: string|null,
  *     sources: TypeOrderSource,
+ *     state?: string|null,
  *     status?: string|null,
  *     sub_total?: float|null,
  *     sub_total_display?: string|null,
@@ -44,12 +47,7 @@ use JsonSerializable;
  *     tax_display?: string|null,
  *     total?: float|null,
  *     total_discount_display?: string|null,
- *     total_display?: string|null,
- *     channel_id?: int|null,
- *     channel_order_code?: string|null,
- *     notes?: string|null,
- *     total_discount?: float|null,
- *     state?: string|null
+ *     total_display?: string|null
  * }
  */
 class SystemOrder extends Order implements JsonSerializable, DTOInterface

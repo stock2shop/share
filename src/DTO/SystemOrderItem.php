@@ -36,7 +36,6 @@ use JsonSerializable;
  *     qty?: int|null,
  *     sku?: string|null,
  *     title?: string|null,
- *     total_discount?: float|null
  * }
  */
 class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterface
@@ -51,7 +50,6 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
     public ?int $source_id;
     public ?string $source_variant_code;
     public ?string $price_display;
-    public ?float $total_discount;
     public ?string $total_discount_display;
     public ?string $tax_per_unit_display;
     public ?float $tax;
@@ -84,7 +82,6 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
         $this->source_id              = self::intFrom($data, 'source_id');
         $this->source_variant_code    = self::stringFrom($data, 'source_variant_code');
         $this->price_display          = self::stringFrom($data, 'price_display');
-        $this->total_discount         = self::floatFrom($data, 'total_discount');
         $this->total_discount_display = self::stringFrom($data, 'total_discount_display');
         $this->tax_per_unit_display   = self::stringFrom($data, 'tax_per_unit_display');
         $this->tax                    = self::floatFrom($data, 'tax');
