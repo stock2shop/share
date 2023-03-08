@@ -38,6 +38,7 @@ class SystemOrderTest extends TestCase
             },
             "channel_order_code": "channel_order_code",
             "notes": "notes",
+            "ordered_date": "1970-01-01 00:00:00",
             "total_discount": 1.01,
             "state": "new",
             "channel_id": 2,

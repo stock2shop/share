@@ -17,6 +17,7 @@ class ChannelOrderTest extends TestCase
         {
             "channel_id": 20,
             "channel_order_code": "channel_order_code",
+            "ordered_date": "1970-01-01 00:00:00",
             "notes": "notes",
             "total_discount": 5.00,
             "state": "new",
@@ -165,43 +166,48 @@ class ChannelOrderTest extends TestCase
                     'channel_id'         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
+                    "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
                     'channel_id'         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
+                    "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
                     'channel_id'         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
+                    "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
                     "notes"              => "notes",
+                    "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                '133cb962d81ce0a796303a0245212be9'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
                     "channel_id"         => 20,
                     "channel_order_code" => "channel_order_code",
                     "notes"              => "notes",
+                    "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                     "billing_address"    => [
                         "address1"      => "address1",
@@ -316,7 +322,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'fa00890a35c9255aa9a6342dbb16b282'
+                '07b49efe0d7d73a26ba0d36ef7cf6e02'
             ],
         ];
     }
@@ -331,6 +337,7 @@ class ChannelOrderTest extends TestCase
                         "channel_id"         => null,
                         "channel_order_code" => null,
                         "notes"              => null,
+                        "ordered_date"       => null,
                         "total_discount"     => null,
                         "billing_address"    => [
                             "address1"      => null,
@@ -375,7 +382,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                'bae19b9cb25ee6a7186bbed0072f1015',
+                '9e33155b10c62e10122b770030ddd878',
             ]
         ];
     }
@@ -426,26 +433,26 @@ class ChannelOrderTest extends TestCase
                         ],
                         'shipping_lines' => [
                             [
-                                'price' => 100,
-                                'title' => '1',
+                                'price'     => 100,
+                                'title'     => '1',
                                 'tax_lines' => [
                                     [
                                         'title' => 'VAT',
                                         'price' => 20,
-                                        'rate' => 15,
-                                        'code' => 'abc',
+                                        'rate'  => 15,
+                                        'code'  => 'abc',
                                     ]
                                 ]
                             ],
                             [
-                                'price' => 200,
-                                'title' => '2',
+                                'price'     => 200,
+                                'title'     => '2',
                                 'tax_lines' => [
                                     [
                                         'title' => 'VAT',
                                         'price' => 201,
-                                        'rate' => 10,
-                                        'code' => 'xyz',
+                                        'rate'  => 10,
+                                        'code'  => 'xyz',
                                     ]
                                 ]
                             ]
@@ -492,33 +499,33 @@ class ChannelOrderTest extends TestCase
                         ],
                         'shipping_lines' => [
                             [
-                                'price' => 200,
-                                'title' => '2',
+                                'price'     => 200,
+                                'title'     => '2',
                                 'tax_lines' => [
                                     [
                                         'title' => 'VAT',
                                         'price' => 201,
-                                        'rate' => 10,
-                                        'code' => 'xyz',
+                                        'rate'  => 10,
+                                        'code'  => 'xyz',
                                     ]
                                 ]
                             ],
                             [
-                                'price' => 100,
-                                'title' => '1',
+                                'price'     => 100,
+                                'title'     => '1',
                                 'tax_lines' => [
                                     [
                                         'title' => 'VAT',
                                         'price' => 20,
-                                        'rate' => 15,
-                                        'code' => 'abc',
+                                        'rate'  => 15,
+                                        'code'  => 'abc',
                                     ]
                                 ]
                             ]
                         ]
                     ]
                 ],
-                'hash' => '5fd768cc1f77a460a0a5cd8055a051f4',
+                'hash' => '52c1d97163f3d8dd1d4a059080116534',
             ]
         ];
     }
