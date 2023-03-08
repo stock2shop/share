@@ -18,6 +18,7 @@ class OrderTest extends TestCase
             "channel_id": 20,
             "channel_order_code": "channel_order_code",
             "notes": "notes",
+            "ordered_date": "1970-01-01 00:00:00",
             "total_discount": 20.05,
             "state": "new"
         }';
