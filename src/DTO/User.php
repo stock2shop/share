@@ -11,9 +11,9 @@ use JsonSerializable;
  * @psalm-type TypeUser = array{
  *     customer_id?: int|null,
  *     id?: int|null,
- *     segments: TypeSegment,
  *     price_tier?: string|null,
- *     qty_availability?: string|null
+ *     qty_availability?: string|null,
+ *     segments: TypeSegment
  * }
  */
 class User extends DTO implements JsonSerializable, DTOInterface

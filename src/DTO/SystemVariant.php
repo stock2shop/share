@@ -11,25 +11,25 @@ use JsonSerializable;
  * @psalm-import-type TypeMeta from Meta
  * @psalm-import-type TypePriceTier from PriceTier
  * @psalm-type TypeSystemVariant = array{
+ *     active?: bool|null,
+ *     barcode?: string|null,
  *     client_id?: int|null,
+ *     grams?: int|null,
  *     hash?: string|null,
  *     id?: int|null,
  *     image_id?: int|null,
- *     product_id?: int|null,
- *     source_variant_code?: string|null,
- *     sku?: string|null,
- *     active?: bool|null,
- *     qty?: int|null,
- *     qty_availability: TypeQtyAvailability,
- *     price?: float|null,
- *     price_tiers: TypePriceTier,
- *     barcode?: string|null,
  *     inventory_management?: bool|null,
- *     grams?: int|null,
+ *     meta: TypeMeta,
  *     option1?: string|null,
  *     option2?: string|null,
  *     option3?: string|null,
- *     meta: TypeMeta
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     product_id?: int|null,
+ *     qty?: int|null,
+ *     qty_availability: TypeQtyAvailability,
+ *     sku?: string|null,
+ *     source_variant_code?: string|null
  * }
  */
 class SystemVariant extends Variant implements JsonSerializable, DTOInterface

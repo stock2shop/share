@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeChannelOrderCustomer = array{
- *     channel_customer_code?: string|null,
  *     accepts_marketing?: bool|null,
+ *     channel_customer_code?: string|null,
  *     email?: string|null,
  *     first_name?: string|null,
  *     last_name?: string|null

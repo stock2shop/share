@@ -10,8 +10,8 @@ use JsonSerializable;
  * @psalm-type TypeOrderItemTax = array{
  *     code?: string|null,
  *     price?: float|null,
- *     title?: string|null,
- *     rate?: float|null
+ *     rate?: float|null,
+ *     title?: string|null
  * }
  */
 class OrderItemTax extends DTO implements JsonSerializable, DTOInterface

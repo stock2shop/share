@@ -9,12 +9,12 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeImage from Image
  * @psalm-type TypeChannelImage = array{
- *     src?: string|null,
  *     active?: bool|null,
  *     channel_id?: int|null,
  *     channel_image_code?: string|null,
- *     delete?: bool|null,
  *     id?: int|null,
+ *     delete?: bool|null,
+ *     src?: string|null,
  *     success?: bool|null
  * }
  */

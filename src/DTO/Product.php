@@ -11,14 +11,14 @@ use JsonSerializable;
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeProduct = array{
  *     active?: bool|null,
- *     title?: string|null,
  *     body_html?: string|null,
  *     collection?: string|null,
+ *     meta: TypeMeta,
+ *     options: TypeProductOption,
  *     product_type?: string|null,
  *     tags?: string|null,
- *     vendor?: string|null,
- *     options: TypeProductOption,
- *     meta: TypeMeta
+ *     title?: string|null,
+ *     vendor?: string|null
  * }
  */
 class Product extends DTO implements JsonSerializable, DTOInterface

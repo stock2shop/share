@@ -8,8 +8,9 @@ use JsonSerializable;
  * @psalm-import-type TypeOrderItemTax from OrderItemTax
  * @psalm-type TypeSystemOrderShippingLine = array{
  *     created?: string|null,
- *     modified?: string|null,
  *     id?: int|null,
+ *     modified?: string|null,
+ *     price?: float|null,
  *     price_display?: string|null,
  *     sub_total?: float|null,
  *     sub_total_display?: string|null,
@@ -18,12 +19,11 @@ use JsonSerializable;
  *     tax_display?: string|null,
  *     tax_per_unit?: float|null,
  *     tax_per_unit_display?: string|null,
+ *     title?: string|null,
  *     total?: float|null,
  *     total_discount?: float|null,
  *     total_discount_display?: string|null,
  *     total_display?: string|null,
- *     price?: float|null,
- *     title?: string|null
  * }
  */
 class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface

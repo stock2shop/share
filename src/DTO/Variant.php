@@ -11,20 +11,20 @@ use JsonSerializable;
  * @psalm-import-type TypeQtyAvailability from QtyAvailability
  * @psalm-import-type TypePriceTier from PriceTier
  * @psalm-type TypeVariant = array{
- *     source_variant_code?: string|null,
- *     sku?: string|null,
  *     active?: bool|null,
- *     qty?: int|null,
- *     qty_availability: TypeQtyAvailability,
- *     price?: float|null,
- *     price_tiers: TypePriceTier,
  *     barcode?: string|null,
- *     inventory_management?: bool|null,
  *     grams?: int|null,
+ *     inventory_management?: bool|null,
+ *     meta: TypeMeta,
  *     option1?: string|null,
  *     option2?: string|null,
  *     option3?: string|null,
- *     meta: TypeMeta
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     qty?: int|null,
+ *     qty_availability: TypeQtyAvailability,
+ *     sku?: string|null,
+ *     source_variant_code?: string|null,
  * }
  */
 class Variant extends DTO implements JsonSerializable, DTOInterface

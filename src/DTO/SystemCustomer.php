@@ -11,6 +11,7 @@ use JsonSerializable;
  * @psalm-import-type TypeMeta from Meta
  * @psalm-import-type TypeUser from User
  * @psalm-type TypeSystemCustomer = array{
+ *     accepts_marketing?: bool|null,
  *     active?: bool|null,
  *     addresses: TypeAddress,
  *     channel_customer_code?: string|null,
@@ -18,14 +19,13 @@ use JsonSerializable;
  *     client_id?: int|null,
  *     created?: string|null,
  *     customer_id?: int|null,
- *     id?: int|null,
- *     meta: TypeMeta,
- *     modified?: string|null,
- *     user: TypeUser,
- *     accepts_marketing?: bool|null,
  *     email?: string|null,
  *     first_name?: string|null,
- *     last_name?: string|null
+ *     id?: int|null,
+ *     last_name?: string|null,
+ *     meta: TypeMeta,
+ *     modified?: string|null,
+ *     user: TypeUser
  * }
  */
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface

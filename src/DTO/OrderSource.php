@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeOrderSource = array{
- *     source_id?: int|null,
  *     source_customer_code?: string|null,
+ *     source_id?: int|null,
  *     source_order_code?: string|null
  * }
  */

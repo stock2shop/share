@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypeSystemImage = array{
- *     id?: int|null,
  *     active?: bool|null,
+ *     id?: int|null,
  *     src?: string|null
  * }
  */

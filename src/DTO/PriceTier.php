@@ -8,8 +8,8 @@ use JsonSerializable;
 
 /**
  * @psalm-type TypePriceTier = array{
- *     tier?: string|null,
- *     price?: float|null
+ *     price?: float|null,
+ *     tier?: string|null
  * }
  */
 class PriceTier extends DTO implements JsonSerializable, DTOInterface

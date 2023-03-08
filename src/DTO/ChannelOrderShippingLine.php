@@ -9,8 +9,8 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeOrderItemTax from OrderItemTax
  * @psalm-type TypeChannelOrderShippingLine = array{
- *     tax_lines: TypeOrderItemTax,
  *     price?: float|null,
+ *     tax_lines: TypeOrderItemTax,
  *     title?: string|null
  * }
  */

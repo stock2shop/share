@@ -13,25 +13,25 @@ use JsonSerializable;
  * @psalm-import-type TypeProductOption from ProductOption
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeSystemProduct = array{
+ *     active?: bool|null,
+ *     body_html?: string|null,
  *     channels: TypeChannel,
  *     client_id?: int|null,
+ *     collection?: string|null,
  *     created?: string|null,
  *     hash?: string|null,
  *     id?: int|null,
  *     images: TypeSystemImage,
+ *     meta: TypeMeta,
  *     modified?: string|null,
+ *     options: TypeProductOption,
+ *     product_type?: string|null,
  *     source_id?: int|null,
  *     source_product_code?: string|null,
- *     variants: TypeSystemVariant,
- *     active?: bool|null,
- *     title?: string|null,
- *     body_html?: string|null,
- *     collection?: string|null,
- *     product_type?: string|null,
  *     tags?: string|null,
- *     vendor?: string|null,
- *     options: TypeProductOption,
- *     meta: TypeMeta
+ *     title?: string|null,
+ *     variants: TypeSystemVariant,
+ *     vendor?: string|null
  * }
  */
 class SystemProduct extends Product implements JsonSerializable, DTOInterface

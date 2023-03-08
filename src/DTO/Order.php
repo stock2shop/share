@@ -11,8 +11,9 @@ use JsonSerializable;
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
  *     notes?: string|null,
- *     total_discount?: float|null,
- *     state?: string|null
+ *     ordered_date?: string|null,
+ *     state?: string|null,
+ *     total_discount?: float|null
  * }
  */
 class Order extends DTO implements JsonSerializable, DTOInterface

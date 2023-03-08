@@ -15,18 +15,19 @@ use JsonSerializable;
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
  *     billing_address: TypeAddress,
+ *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
  *     customer: TypeChannelOrderCustomer,
  *     instruction?: string|null,
  *     line_items: TypeChannelOrderItem,
  *     meta: TypeMeta,
+ *     notes?: string|null,
+ *     ordered_date?: string|null,
  *     params: array<string, string>,
  *     shipping_address: TypeAddress,
  *     shipping_lines: TypeOrderShippingLine,
- *     channel_id?: int|null,
- *     channel_order_code?: string|null,
- *     notes?: string|null,
- *     total_discount?: float|null,
- *     state?: string|null
+ *     state?: string|null,
+ *     total_discount?: float|null
  * }
  */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface

@@ -9,11 +9,11 @@ use JsonSerializable;
 /**
  * @psalm-type TypeSystemFulfillmentLineItem = array{
  *     created?: string|null,
- *     modified?: string|null,
+ *     fulfilled_qty?: int|null,
  *     grams?: int|null,
+ *     modified?: string|null,
  *     qty?: int|null,
- *     sku?: string|null,
- *     fulfilled_qty?: int|null
+ *     sku?: string|null
  * }
  */
 class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSerializable, DTOInterface
