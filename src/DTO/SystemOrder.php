@@ -6,6 +6,51 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
+ * @psalm-import-type TypeSystemCustomer from SystemCustomer
+ * @psalm-import-type TypeSystemFulfillment from SystemFulfillment
+ * @psalm-import-type TypeSystemOrderHistory from SystemOrderHistory
+ * @psalm-import-type TypeSystemOrderItem from SystemOrderItem
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeSystemOrderShippingLine from SystemOrderShippingLine
+ * @psalm-import-type TypeOrderSource from OrderSource
+ * @psalm-type TypeSystemOrder = array{
+ *     billing_address?: TypeSystemOrderAddress,
+ *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     customer: TypeSystemCustomer,
+ *     fulfillments: TypeSystemFulfillment,
+ *     history: TypeSystemOrderHistory,
+ *     id?: int|null,
+ *     line_item_sub_total?: float|null,
+ *     line_item_tax?: float|null,
+ *     line_items: TypeSystemOrderItem,
+ *     meta: TypeMeta,
+ *     modified?: string|null,
+ *     notes?: string|null,
+ *     ordered_date?: string|null,
+ *     shipping_address?: TypeSystemOrderAddress,
+ *     shipping_lines: TypeSystemOrderShippingLine,
+ *     shipping_sub_total?: float|null,
+ *     shipping_tax?: float|null,
+ *     shipping_tax_display?: string|null,
+ *     shipping_total?: float|null,
+ *     shipping_total_display?: string|null,
+ *     sources: TypeOrderSource,
+ *     state?: string|null,
+ *     status?: string|null,
+ *     sub_total?: float|null,
+ *     sub_total_display?: string|null,
+ *     tax?: float|null,
+ *     tax_display?: string|null,
+ *     total?: float|null,
+ *     total_discount_display?: string|null,
+ *     total_display?: string|null
+ * }
+ */
 class SystemOrder extends Order implements JsonSerializable, DTOInterface
 {
     public ?SystemOrderAddress $billing_address;
@@ -44,8 +89,12 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?string $total_discount_display;
     public ?string $total_display;
 
+    /**
+     * @param TypeSystemOrder $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
         $fulfillments   = SystemFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
         $history        = SystemOrderHistory::createArray(self::arrayFrom($data, "history"));

@@ -6,6 +6,15 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeSegment = array{
+ *     key?: string|null,
+ *     operator?: string|null,
+ *     owner?: string|null,
+ *     type?: string|null,
+ *     value?: string|null
+ * }
+ */
 class Segment extends DTO implements JsonSerializable, DTOInterface
 {
     public const TYPE_PRODUCTS = 'products';
@@ -43,7 +52,9 @@ class Segment extends DTO implements JsonSerializable, DTOInterface
     public ?string $value;
     public ?string $owner;
 
-
+    /**
+     * @param TypeSegment $data
+     */
     public function __construct(array $data)
     {
         $this->type     = self::stringFrom($data, 'type');

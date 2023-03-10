@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeQtyAvailability = array{
+ *     description?: string|null,
+ *     qty?: int|null
+ * }
+ */
 class QtyAvailability extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $description;
     public ?int $qty;
 
+    /**
+     * @param TypeQtyAvailability $data
+     */
     public function __construct(array $data)
     {
         $this->description = self::stringFrom($data, "description");

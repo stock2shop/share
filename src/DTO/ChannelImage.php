@@ -6,6 +6,18 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeImage from Image
+ * @psalm-type TypeChannelImage = array{
+ *     active?: bool|null,
+ *     channel_id?: int|null,
+ *     channel_image_code?: string|null,
+ *     id?: int|null,
+ *     delete?: bool|null,
+ *     src?: string|null,
+ *     success?: bool|null
+ * }
+ */
 class ChannelImage extends Image implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
@@ -15,8 +27,12 @@ class ChannelImage extends Image implements JsonSerializable, DTOInterface
     public ?int $id;
     public ?bool $success;
 
+    /**
+     * @param TypeChannelImage $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->active             = self::boolFrom($data, "active");

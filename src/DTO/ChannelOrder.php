@@ -6,6 +6,30 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/** TODO Confirm how to assign types when class extends some other class */
+/**
+ * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
+ * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ * @psalm-import-type TypeChannelOrderItem from ChannelOrderItem
+ * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-type TypeChannelOrder = array{
+ *     billing_address: TypeAddress,
+ *     channel_id?: int|null,
+ *     channel_order_code?: string|null,
+ *     customer: TypeChannelOrderCustomer,
+ *     instruction?: string|null,
+ *     line_items: TypeChannelOrderItem,
+ *     meta: TypeMeta,
+ *     notes?: string|null,
+ *     ordered_date?: string|null,
+ *     params: array<string, string>,
+ *     shipping_address: TypeAddress,
+ *     shipping_lines: TypeOrderShippingLine,
+ *     state?: string|null,
+ *     total_discount?: float|null
+ * }
+ */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
     // order instructions
@@ -31,8 +55,12 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
+    /**
+     * @param TypeChannelOrder $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $line_items     = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));

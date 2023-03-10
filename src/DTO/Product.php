@@ -6,6 +6,21 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeProductOption from ProductOption
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-type TypeProduct = array{
+ *     active?: bool|null,
+ *     body_html?: string|null,
+ *     collection?: string|null,
+ *     meta: TypeMeta,
+ *     options: TypeProductOption,
+ *     product_type?: string|null,
+ *     tags?: string|null,
+ *     title?: string|null,
+ *     vendor?: string|null
+ * }
+ */
 class Product extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
@@ -20,6 +35,9 @@ class Product extends DTO implements JsonSerializable, DTOInterface
     /** @var Meta[] $meta */
     public array $meta;
 
+    /**
+     * @param TypeProduct $data
+     */
     public function __construct(array $data)
     {
         $options = ProductOption::createArray(self::arrayFrom($data, "options"));

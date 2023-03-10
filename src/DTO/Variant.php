@@ -6,6 +6,27 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeQtyAvailability from QtyAvailability
+ * @psalm-import-type TypePriceTier from PriceTier
+ * @psalm-type TypeVariant = array{
+ *     active?: bool|null,
+ *     barcode?: string|null,
+ *     grams?: int|null,
+ *     inventory_management?: bool|null,
+ *     meta: TypeMeta,
+ *     option1?: string|null,
+ *     option2?: string|null,
+ *     option3?: string|null,
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     qty?: int|null,
+ *     qty_availability: TypeQtyAvailability,
+ *     sku?: string|null,
+ *     source_variant_code?: string|null,
+ * }
+ */
 class Variant extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $source_variant_code;
@@ -13,7 +34,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
     public ?bool $active;
     /**
      * See issue https://github.com/stock2shop/app/issues/1490
-     * Currently our ddb stores qty as unsigned int, meaning positive number only
+     * Currently our db stores qty as unsigned int, meaning positive number only
      * Once we allow negatives the check below should be changed
      */
     public ?int $qty;
@@ -31,6 +52,9 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
     /** @var Meta[] $meta */
     public array $meta;
 
+    /**
+     * @param TypeVariant $data
+     */
     public function __construct(array $data)
     {
         $qty              = self::intFrom($data, "qty");

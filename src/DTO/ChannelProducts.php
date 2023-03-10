@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeChannelProduct from ChannelProduct
+ * @psalm-type TypeChannelProducts = array{
+ *     channel_products: TypeChannelProduct
+ * }
+ */
 class ChannelProducts extends DTO implements JsonSerializable, DTOInterface
 {
     /** @var ChannelProduct[] $channel_products */
     public array $channel_products;
 
+    /**
+     * @param TypeChannelProducts $data
+     */
     public function __construct(array $data)
     {
         $this->channel_products = ChannelProduct::createArray(self::arrayFrom($data, 'channel_products'));

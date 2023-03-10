@@ -6,6 +6,14 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeChannelVariantChannel = array{
+ *     channel_id?: int|null,
+ *     channel_variant_code?: string|null,
+ *     delete?: bool|null,
+ *     success?: bool|null
+ * }
+ */
 class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -13,6 +21,9 @@ class ChannelVariantChannel extends DTO implements JsonSerializable, DTOInterfac
     public ?bool $delete;
     public ?bool $success;
 
+    /**
+     * @param TypeChannelVariantChannel $data
+     */
     public function __construct(array $data)
     {
         $this->channel_id           = self::intFrom($data, 'channel_id');

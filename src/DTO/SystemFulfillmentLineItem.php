@@ -6,13 +6,27 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeSystemFulfillmentLineItem = array{
+ *     created?: string|null,
+ *     fulfilled_qty?: int|null,
+ *     grams?: int|null,
+ *     modified?: string|null,
+ *     qty?: int|null,
+ *     sku?: string|null
+ * }
+ */
 class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSerializable, DTOInterface
 {
     public ?string $created;
     public ?string $modified;
 
+    /**
+     * @param TypeSystemFulfillmentLineItem $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->created    = self::stringFrom($data, 'created');

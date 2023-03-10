@@ -6,6 +6,12 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypePriceTier = array{
+ *     price?: float|null,
+ *     tier?: string|null
+ * }
+ */
 class PriceTier extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $tier;
@@ -13,6 +19,7 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
 
     /**
      * PriceTier constructor.
+     * @param TypePriceTier $data
      */
     public function __construct(array $data)
     {

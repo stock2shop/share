@@ -6,6 +6,29 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeSystemOrderAddress = array{
+ *     address1?: string|null,
+ *     address2?: string|null,
+ *     channel_id?: int|null,
+ *     city?: string|null,
+ *     client_id?: int|null,
+ *     company?: string|null,
+ *     country?: string|null,
+ *     country_code?: string|null,
+ *     created?: string|null,
+ *     first_name?: string|null,
+ *     hash?: string|null,
+ *     id?: int|null,
+ *     last_name?: string|null,
+ *     modified?: string|null,
+ *     phone?: string|null,
+ *     province?: string|null,
+ *     province_code?: string|null,
+ *     type?: string|null,
+ *     zip?: string|null
+ * }
+ */
 class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
     public ?int $id;
@@ -15,8 +38,12 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     public ?string $hash;
     public ?string $modified;
 
+    /**
+     * @param TypeSystemOrderAddress $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->id         = self::intFrom($data, "id");

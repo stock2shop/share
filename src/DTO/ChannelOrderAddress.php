@@ -6,8 +6,14 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeAddress from Address
+ */
 class ChannelOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
+    /**
+     * @param TypeAddress $data
+     */
     public function __construct(array $data)
     {
         parent::__construct($data);

@@ -236,7 +236,7 @@ class SystemOrderAddressTest extends TestCase
                     "province"      => "Western Cape",
                     "province_code" => "WC",
                     "type"          => null,
-                    "zip"           => 8000,
+                    "zip"           => "8000",
                 ]),
                 'output' => '6a51984c4e0f7b102c8d57de0a8b670a'
             ],

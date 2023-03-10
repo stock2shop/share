@@ -7,6 +7,11 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
+ * @psalm-type TypeMeta = array{
+ *     key?: string|null,
+ *     template_name?: string|null,
+ *     value?: string|null
+ * }
  *
  * This is used by many classes.
  * e.g. Customers, Products, Sources, Channels ...
@@ -22,6 +27,7 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
 
     /**
      * Meta constructor.
+     * @param TypeMeta $data
      */
     public function __construct(array $data)
     {

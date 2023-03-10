@@ -51,7 +51,6 @@ class ChannelTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Channel', $c);
-        $this->assertIsArray($c->meta);
         $this->assertEquals(true, $c->active);
         foreach ($c->meta as $meta) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $meta);

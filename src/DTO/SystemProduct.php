@@ -6,6 +6,34 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeChannel from Channel
+ * @psalm-import-type TypeSystemImage from SystemImage
+ * @psalm-import-type TypeSystemVariant from SystemVariant
+ * @psalm-import-type TypeProductOption from ProductOption
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-type TypeSystemProduct = array{
+ *     active?: bool|null,
+ *     body_html?: string|null,
+ *     channels: TypeChannel,
+ *     client_id?: int|null,
+ *     collection?: string|null,
+ *     created?: string|null,
+ *     hash?: string|null,
+ *     id?: int|null,
+ *     images: TypeSystemImage,
+ *     meta: TypeMeta,
+ *     modified?: string|null,
+ *     options: TypeProductOption,
+ *     product_type?: string|null,
+ *     source_id?: int|null,
+ *     source_product_code?: string|null,
+ *     tags?: string|null,
+ *     title?: string|null,
+ *     variants: TypeSystemVariant,
+ *     vendor?: string|null
+ * }
+ */
 class SystemProduct extends Product implements JsonSerializable, DTOInterface
 {
     /** @var Channel[] $channels */
@@ -22,8 +50,12 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
     /** @var SystemVariant[] $variants */
     public array $variants;
 
+    /**
+     * @param TypeSystemProduct $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $images   = SystemImage::createArray(self::arrayFrom($data, 'images'));

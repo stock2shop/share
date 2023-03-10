@@ -6,13 +6,25 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeOrderItemTax from OrderItemTax
+ * @psalm-type TypeChannelOrderShippingLine = array{
+ *     price?: float|null,
+ *     tax_lines: TypeOrderItemTax,
+ *     title?: string|null
+ * }
+ */
 class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
 {
     /** @var OrderItemTax[] $tax_lines */
     public array $tax_lines;
 
+    /**
+     * @param TypeChannelOrderShippingLine $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));

@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-type TypeChannelOrderWebhook = array{
+ *     payload?: string|null,
+ *     storage_code: string
+ * }
+ */
 class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface
 {
     public string $storage_code;
     public ?string $payload;
 
+    /**
+     * @param TypeChannelOrderWebhook $data
+     */
     public function __construct(array $data)
     {
         $this->storage_code = self::stringFrom($data, 'storage_code');

@@ -6,6 +6,22 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-type TypeChannel = array{
+ *     active?: bool|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     description?: string|null,
+ *     id?: int|null,
+ *     meta: TypeMeta,
+ *     modified?: string|null,
+ *     price_tier?: string|null,
+ *     qty_availability?: string|null,
+ *     sync_token?: string|null,
+ *     type?: string|null
+ * }
+ */
 class Channel extends DTO implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
@@ -21,6 +37,9 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     public ?string $sync_token;
     public ?string $type;
 
+    /**
+     * @param TypeChannel $data
+     */
     public function __construct(array $data)
     {
         $meta = Meta::createArray(self::arrayFrom($data, "meta"));

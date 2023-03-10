@@ -6,11 +6,20 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeSystemProduct from SystemProduct
+ * @psalm-type TypeSystemProducts = array{
+ *     system_products: TypeSystemProduct
+ * }
+ */
 class SystemProducts extends DTO implements JsonSerializable, DTOInterface
 {
     /** @var SystemProduct[] $system_products */
     public array $system_products;
 
+    /**
+     * @param TypeSystemProducts $data
+     */
     public function __construct(array $data)
     {
         $this->system_products = SystemProduct::createArray(self::arrayFrom($data, 'system_products'));

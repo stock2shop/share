@@ -7,6 +7,28 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
+/**
+ * @psalm-import-type TypeSystemFulfillmentLineItem from SystemFulfillmentLineItem
+ * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
+ * @psalm-type TypeSystemFulfillment = array{
+ *     channel_id?: int|null,
+ *     channel_synced?: string|null,
+ *     client_id?: int|null,
+ *     created?: string|null,
+ *     fulfillmentservice_id?: int|null,
+ *     fulfillmentservice_order_code?: string|null,
+ *     line_items: TypeSystemFulfillmentLineItem,
+ *     modified?: string|null,
+ *     notes?: string|null,
+ *     order_id?: int|null,
+ *     shipping_address: TypeSystemOrderAddress,
+ *     state?: string|null,
+ *     status?: string|null,
+ *     tracking_company?: string|null,
+ *     tracking_number?: string|null,
+ *     tracking_url?: string|null
+ * }
+ */
 class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -21,8 +43,12 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     public ?string $state;
     public ?string $channel_synced;
 
+    /**
+     * @param TypeSystemFulfillment $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $line_items = SystemFulfillmentLineItem::createArray(self::arrayFrom($data, 'line_items'));

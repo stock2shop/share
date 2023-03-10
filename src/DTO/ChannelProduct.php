@@ -6,6 +6,37 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeProductOption from ProductOption
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeChannelImage from ChannelImage
+ * @psalm-import-type TypeChannelVariant from ChannelVariant
+ * @psalm-type TypeChannelProduct = array{
+ *     active?: bool|null,
+ *     body_html?: string|null,
+ *     channel_id?: int|null,
+ *     channel_product_code?: string|null,
+ *     client_id?: int|null,
+ *     collection?: string|null,
+ *     created?: string|null,
+ *     delete?: bool|null,
+ *     hash?: string|null,
+ *     id?: int|null,
+ *     images: TypeChannelImage,
+ *     meta: TypeMeta,
+ *     modified?: string|null,
+ *     options: TypeProductOption,
+ *     product_type?: string|null,
+ *     source_id?: int|null,
+ *     source_product_code?: string|null,
+ *     success?: bool|null,
+ *     synced?: string|null,
+ *     tags?: string|null,
+ *     title?: string|null,
+ *     variants: TypeChannelVariant,
+ *     vendor?: string|null
+ * }
+ */
 class ChannelProduct extends Product implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -25,8 +56,12 @@ class ChannelProduct extends Product implements JsonSerializable, DTOInterface
     /** @var ChannelVariant[] $variants */
     public array $variants;
 
+    /**
+     * @param TypeChannelProduct $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $images   = ChannelImage::createArray(self::arrayFrom($data, 'images'));

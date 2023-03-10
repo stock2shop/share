@@ -7,6 +7,27 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
+/**
+ * @psalm-type TypeLog = array{
+ *     channel_id?: int|null,
+ *     client_id: int,
+ *     context?: array|null,
+ *     created?: string|null,
+ *     ip?: string|null,
+ *     log_to_es: bool,
+ *     level: string,
+ *     message: string,
+ *     method?: string|null,
+ *     metric?: float|null,
+ *     origin: string,
+ *     remote_addr?: string|null,
+ *     request_path?: string|null,
+ *     source_id?: int|null,
+ *     tags?: string|array|null,
+ *     trace?: string|array|null,
+ *     user_id?: int|null
+ * }
+ */
 class Log extends DTO implements JsonSerializable, DTOInterface
 {
     public const LOG_LEVEL_ERROR = 'error';
@@ -43,6 +64,9 @@ class Log extends DTO implements JsonSerializable, DTOInterface
     public ?array $trace;
     public ?int $user_id;
 
+    /**
+     * @param TypeLog $data
+     */
     public function __construct(array $data)
     {
         $this->channel_id   = self::intFrom($data, 'channel_id');

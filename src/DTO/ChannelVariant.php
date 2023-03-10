@@ -6,6 +6,36 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeQtyAvailability from QtyAvailability
+ * @psalm-import-type TypePriceTier from PriceTier
+ * @psalm-type TypeChannelVariant = array{
+ *     active?: bool|null,
+ *     barcode?: string|null,
+ *     channel_id?: int|null,
+ *     channel_variant_code?: string|null,
+ *     client_id?: int|null,
+ *     delete?: bool|null,
+ *     grams?: int|null,
+ *     hash?: string|null,
+ *     id?: int|null,
+ *     image_id?: int|null,
+ *     inventory_management?: bool|null,
+ *     meta: TypeMeta,
+ *     option1?: string|null,
+ *     option2?: string|null,
+ *     option3?: string|null,
+ *     price?: float|null,
+ *     price_tiers: TypePriceTier,
+ *     product_id?: int|null,
+ *     qty?: int|null,
+ *     qty_availability: TypeQtyAvailability,
+ *     sku?: string|null,
+ *     source_variant_code?: string|null,
+ *     success?: bool|null
+ * }
+ */
 class ChannelVariant extends Variant implements JsonSerializable, DTOInterface
 {
     public ?int $channel_id;
@@ -18,8 +48,12 @@ class ChannelVariant extends Variant implements JsonSerializable, DTOInterface
     public ?int $product_id;
     public ?bool $success;
 
+    /**
+     * @param TypeChannelVariant $data
+     */
     public function __construct(array $data)
     {
+        /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
         $this->channel_id           = self::intFrom($data, 'channel_id');
