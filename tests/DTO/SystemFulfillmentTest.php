@@ -47,7 +47,6 @@ class SystemFulfillmentTest extends TestCase
                 "country": "country",
                 "country_code": "country_code",
                 "first_name": "first_name",
-                "hash": "hash",
                 "id": 1,
                 "last_name": "last_name",
                 "phone": "phone",
