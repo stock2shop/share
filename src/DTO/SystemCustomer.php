@@ -13,7 +13,7 @@ use JsonSerializable;
  * @psalm-type TypeSystemCustomer = array{
  *     accepts_marketing?: bool|null,
  *     active?: bool|null,
- *     addresses: TypeAddress,
+ *     addresses?: array<int, TypeAddress>,
  *     channel_customer_code?: string|null,
  *     channel_id?: int|null,
  *     client_id?: int|null,
@@ -23,9 +23,9 @@ use JsonSerializable;
  *     first_name?: string|null,
  *     id?: int|null,
  *     last_name?: string|null,
- *     meta: TypeMeta,
+ *     meta?: array<int, TypeMeta>,
  *     modified?: string|null,
- *     user: TypeUser
+ *     user?: array<TypeUser>
  * }
  */
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface

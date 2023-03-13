@@ -14,7 +14,7 @@ use JsonSerializable;
  *     price?: float|null,
  *     qty?: int|null,
  *     sku?: string|null,
- *     tax_lines:TypeOrderItemTax,
+ *     tax_lines?: array<int, TypeOrderItemTax>,
  *     title?: string|null,
  *     total_discount?: float|null
  * }

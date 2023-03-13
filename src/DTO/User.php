@@ -13,7 +13,7 @@ use JsonSerializable;
  *     id?: int|null,
  *     price_tier?: string|null,
  *     qty_availability?: string|null,
- *     segments: TypeSegment
+ *     segments?: array<int, TypeSegment>
  * }
  */
 class User extends DTO implements JsonSerializable, DTOInterface

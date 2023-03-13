@@ -9,7 +9,7 @@ use JsonSerializable;
 /**
  * @psalm-type TypeChannelOrderWebhook = array{
  *     payload?: string|null,
- *     storage_code: string
+ *     storage_code?: string|null
  * }
  */
 class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface

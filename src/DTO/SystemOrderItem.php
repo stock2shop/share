@@ -12,7 +12,7 @@ use JsonSerializable;
  * @psalm-type TypeSystemOrderItem = array{
  *     barcode?: string|null,
  *     created?: string|null,
- *     fulfillments: TypeSystemFulfillmentLineItem,
+ *     fulfillments?: array<int, TypeSystemFulfillmentLineItem>,
  *     grams?: int|null,
  *     id?: int|null,
  *     modified?: string|null,
@@ -27,7 +27,7 @@ use JsonSerializable;
  *     sub_total_display?: string|null,
  *     tax?: float|null,
  *     tax_display?: string|null,
- *     tax_lines: TypeOrderItemTax,
+ *     tax_lines?: array<int, TypeOrderItemTax>,
  *     tax_per_unit?: float|null,
  *     tax_per_unit_display?: string|null,
  *     title?: string|null,

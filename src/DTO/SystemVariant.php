@@ -19,15 +19,15 @@ use JsonSerializable;
  *     id?: int|null,
  *     image_id?: int|null,
  *     inventory_management?: bool|null,
- *     meta: TypeMeta,
+ *     meta?: array<int, TypeMeta>,
  *     option1?: string|null,
  *     option2?: string|null,
  *     option3?: string|null,
  *     price?: float|null,
- *     price_tiers: TypePriceTier,
+ *     price_tiers?: array<int, TypePriceTier>,
  *     product_id?: int|null,
  *     qty?: int|null,
- *     qty_availability: TypeQtyAvailability,
+ *     qty_availability?: array<int, TypeQtyAvailability>,
  *     sku?: string|null,
  *     source_variant_code?: string|null
  * }

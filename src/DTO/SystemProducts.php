@@ -9,7 +9,7 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeSystemProduct from SystemProduct
  * @psalm-type TypeSystemProducts = array{
- *     system_products: TypeSystemProduct
+ *     system_products?: array<int, TypeSystemProduct>
  * }
  */
 class SystemProducts extends DTO implements JsonSerializable, DTOInterface
