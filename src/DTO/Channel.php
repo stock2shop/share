@@ -14,7 +14,7 @@ use JsonSerializable;
  *     created?: string|null,
  *     description?: string|null,
  *     id?: int|null,
- *     meta: TypeMeta,
+ *     meta?: array<int, TypeMeta>,
  *     modified?: string|null,
  *     price_tier?: string|null,
  *     qty_availability?: string|null,

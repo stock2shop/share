@@ -7,7 +7,6 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-import-type TypeImage from Image
  * @psalm-type TypeChannelImage = array{
  *     active?: bool|null,
  *     channel_id?: int|null,

@@ -6,7 +6,6 @@ namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
 
-/** TODO Confirm how to assign types when class extends some other class */
 /**
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
  * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
@@ -14,18 +13,18 @@ use JsonSerializable;
  * @psalm-import-type TypeAddress from Address
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
- *     billing_address: TypeAddress,
+ *     billing_address?: array<TypeAddress>,
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
- *     customer: TypeChannelOrderCustomer,
+ *     customer?: array<TypeChannelOrderCustomer>,
  *     instruction?: string|null,
- *     line_items: TypeChannelOrderItem,
- *     meta: TypeMeta,
+ *     line_items?: array<int, TypeChannelOrderItem>,
+ *     meta?: array<int, TypeMeta>,
  *     notes?: string|null,
  *     ordered_date?: string|null,
- *     params: array<string, string>,
- *     shipping_address: TypeAddress,
- *     shipping_lines: TypeOrderShippingLine,
+ *     params?: array<string, string>,
+ *     shipping_address?: array<TypeAddress>,
+ *     shipping_lines?: array<int, TypeOrderShippingLine>,
  *     state?: string|null,
  *     total_discount?: float|null
  * }

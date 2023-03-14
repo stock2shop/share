@@ -15,7 +15,7 @@ use JsonSerializable;
  *     sub_total?: float|null,
  *     sub_total_display?: string|null,
  *     tax?: float|null,
- *     tax_lines: TypeOrderItemTax,
+ *     tax_lines?: array<int, TypeOrderItemTax>,
  *     tax_display?: string|null,
  *     tax_per_unit?: float|null,
  *     tax_per_unit_display?: string|null,
