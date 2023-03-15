@@ -322,7 +322,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '07b49efe0d7d73a26ba0d36ef7cf6e02'
+                '10a6777bfd2d847be41cfe1bff5b33d8'
             ],
         ];
     }
@@ -525,7 +525,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '52c1d97163f3d8dd1d4a059080116534',
+                'hash' => 'bf5cb6e872fa2219b87a070e0e5aae1b',
             ]
         ];
     }
