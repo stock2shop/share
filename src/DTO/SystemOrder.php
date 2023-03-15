@@ -16,7 +16,7 @@ use JsonSerializable;
  * @psalm-import-type TypeSystemOrderShippingLine from SystemOrderShippingLine
  * @psalm-import-type TypeOrderSource from OrderSource
  * @psalm-type TypeSystemOrder = array{
- *     billing_address?: array<TypeSystemOrderAddress>,
+ *     billing_address?: TypeSystemOrderAddress,
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
  *     client_id?: int|null,
