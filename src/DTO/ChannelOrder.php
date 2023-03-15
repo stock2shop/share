@@ -13,17 +13,17 @@ use JsonSerializable;
  * @psalm-import-type TypeAddress from Address
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
- *     billing_address?: array<TypeAddress>,
+ *     billing_address?: TypeAddress,
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
- *     customer?: array<TypeChannelOrderCustomer>,
+ *     customer?: TypeChannelOrderCustomer,
  *     instruction?: string|null,
  *     line_items?: array<int, TypeChannelOrderItem>,
  *     meta?: array<int, TypeMeta>,
  *     notes?: string|null,
  *     ordered_date?: string|null,
  *     params?: array<string, string>,
- *     shipping_address?: array<TypeAddress>,
+ *     shipping_address?: TypeAddress,
  *     shipping_lines?: array<int, TypeOrderShippingLine>,
  *     state?: string|null,
  *     total_discount?: float|null

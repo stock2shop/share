@@ -14,10 +14,16 @@ class OrderShippingLineTest extends TestCase
     protected function setUp(): void
     {
         $this->json = '
-        {
-            "price": 19.99,
-            "title": "title"
-        }';
+             {
+                "price": 19.99,
+                "tax_lines": [{
+                    "code": "taxed",
+                    "price": 21.99,
+                    "rate": 22,
+                    "title": "title-1"
+                }],
+                "title": "title"
+            }';
     }
 
     public function testSerialize(): void
