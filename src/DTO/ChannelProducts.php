@@ -9,7 +9,7 @@ use JsonSerializable;
 /**
  * @psalm-import-type TypeChannelProduct from ChannelProduct
  * @psalm-type TypeChannelProducts = array{
- *     channel_products: TypeChannelProduct
+ *     channel_products?: array<int, TypeChannelProduct>
  * }
  */
 class ChannelProducts extends DTO implements JsonSerializable, DTOInterface

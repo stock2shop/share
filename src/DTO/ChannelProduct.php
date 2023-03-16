@@ -22,10 +22,10 @@ use JsonSerializable;
  *     delete?: bool|null,
  *     hash?: string|null,
  *     id?: int|null,
- *     images: TypeChannelImage,
- *     meta: TypeMeta,
+ *     images?: array<int, TypeChannelImage>,
+ *     meta?: array<int, TypeMeta>,
  *     modified?: string|null,
- *     options: TypeProductOption,
+ *     options?: array<int, TypeProductOption>,
  *     product_type?: string|null,
  *     source_id?: int|null,
  *     source_product_code?: string|null,
@@ -33,7 +33,7 @@ use JsonSerializable;
  *     synced?: string|null,
  *     tags?: string|null,
  *     title?: string|null,
- *     variants: TypeChannelVariant,
+ *     variants?: array<int, TypeChannelVariant>,
  *     vendor?: string|null
  * }
  */
