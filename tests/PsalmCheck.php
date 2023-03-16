@@ -9,9 +9,10 @@ use Stock2Shop\Share\DTO;
 /**
  * Check so we can see that IDE does not report errors when constructing DTOs
  */
-class PsalmCheck {
+class PsalmCheck
+{
 
-    public function TestPsalm(): void
+    public function psalmTypeCheck(): void
     {
         // Check empty constructors
         new DTO\Address([]);
@@ -65,6 +66,14 @@ class PsalmCheck {
         new DTO\SystemVariant([]);
         new DTO\User([]);
         new DTO\Variant([]);
+
+        // using either dto or array example
+        new DTO\Channel([
+            'meta' => [['key' => 'foo']]
+        ]);
+        new DTO\Channel([
+            'meta' => [new DTO\Meta(['key' => 'foo'])]
+        ]);
     }
 
 }
