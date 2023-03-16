@@ -36,7 +36,22 @@ class ChannelTest extends TestCase
 
     public function testSerialize(): void
     {
-        $chan = DTO\Channel::createFromJSON($this->json);
+        $chan       = DTO\Channel::createFromJSON($this->json);
+        $serialized = json_encode($chan);
+        $this->assertJsonStringEqualsJsonString($this->json, $serialized);
+    }
+
+    public function testSerializeWithDTO(): void
+    {
+        $arr         = json_decode($this->json, true);
+        $arr['meta'] = [
+            new DTO\Meta([
+                'key' => 'size',
+                'value' => '12',
+                'template_name' => 'template_a',
+            ])
+        ];
+        $chan       = new DTO\Channel($arr);
         $serialized = json_encode($chan);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
