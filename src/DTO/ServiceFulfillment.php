@@ -10,7 +10,7 @@ use JsonSerializable;
  * @psalm-import-type TypeFulfillmentLineItem from FulfillmentLineItem
  * @psalm-type TypeServiceFulfillment = array{
  *     fulfillmentservice_order_code?: string|null,
- *     line_items?: array<int, TypeFulfillmentLineItem>,
+ *     line_items?: array<int, TypeFulfillmentLineItem>|array<int, FulfillmentLineItem>,
  *     notes?: string|null,
  *     status?: string|null,
  *     tracking_company?: string|null,

@@ -10,7 +10,7 @@ use JsonSerializable;
  * @psalm-import-type TypeOrderItemTax from OrderItemTax
  * @psalm-type TypeOrderShippingLine = array{
  *     price?: float|null,
- *     tax_lines?: array<int, TypeOrderItemTax>,
+ *     tax_lines?: array<int, TypeOrderItemTax>|array<int, OrderItemTax>,
  *     title?: string|null
  * }
  */
