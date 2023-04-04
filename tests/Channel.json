@@ -1,0 +1,19 @@
+{
+    "id": 1,
+    "created": "1970-01-01 00:00:00",
+    "description": "description-1",
+    "modified": "1970-01-01 00:00:00",
+    "client_id": 21,
+    "active": true,
+    "type": "trade",
+    "price_tier": "price_tier-1",
+    "qty_availability": "qty_availability-1",
+    "sync_token": "sync_token-1",
+    "meta": [
+        {
+            "key": "key-1",
+            "value": "value-1",
+            "template_name": null
+        }
+    ]
+}

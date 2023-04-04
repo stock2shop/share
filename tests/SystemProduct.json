@@ -1,0 +1,98 @@
+{
+    "id": 1,
+    "synced": "2022-01-01 00:00:00.000001",
+    "created": "1970-01-01 00:00:00",
+    "active": true,
+    "source_product_code": "1",
+    "modified": "1970-01-01 00:00:00",
+    "client_id": 21,
+    "source_id": 1,
+    "body_html": "body_html-1",
+    "collection": "collection-1",
+    "title": "testPopulate",
+    "product_type": "product_type-1",
+    "vendor": "vendor-1",
+    "hash": "hash-1",
+    "tags": "a,b",
+    "options": [
+        {
+            "id": 1,
+            "created": null,
+            "name": "size",
+            "position": 1,
+            "value": null,
+            "modified": null,
+            "product_id": 1,
+            "client_id": 21
+        }
+    ],
+    "meta": [
+        {
+            "created": "1970-01-01 00:00:00",
+            "key": "key-1",
+            "value": "value-1",
+            "modified": "1970-01-01 00:00:00",
+            "product_id": 1,
+            "template_name": null,
+            "client_id": 21,
+            "active": true
+        }
+    ],
+    "images": [],
+    "channels": [
+        {
+            "id": 1,
+            "created": "1970-01-01 00:00:00",
+            "description": "channel-1",
+            "modified": "1970-01-01 00:00:00",
+            "client_id": 21,
+            "active": 1,
+            "type": "trade",
+            "price_tier": "price_tier-1",
+            "qty_availability": "qty_availability-1",
+            "sync_token": "sync_token-1"
+        }
+    ],
+    "variants": [
+        {
+            "id": 1,
+            "created": "1970-01-01 00:00:00",
+            "source_variant_code": "source_variant_code-1",
+            "modified": "1970-01-01 00:00:00",
+            "client_id": 21,
+            "product_id": 1,
+            "price": "101.00",
+            "barcode": "barcode-1",
+            "sku": "sku-1",
+            "qty": 1,
+            "grams": 0,
+            "inventory_management": 1,
+            "active": true,
+            "hash": "hash-1",
+            "image_id": null,
+            "option1": "s",
+            "option2": null,
+            "option3": null,
+            "price_tiers": [
+                {
+                    "created": "1970-01-01 00:00:00",
+                    "price": "10.00",
+                    "modified": "1970-01-01 00:00:00",
+                    "variant_id": 1,
+                    "tier": "price_tier-1",
+                    "client_id": 21
+                }
+            ],
+            "qty_availability": [
+                {
+                    "created": "1970-01-01 00:00:00",
+                    "qty": 10,
+                    "modified": "1970-01-01 00:00:00",
+                    "variant_id": 1,
+                    "description": "qty_availability-1",
+                    "client_id": 21
+                }
+            ]
+        }
+    ]
+}
