@@ -17,6 +17,7 @@ class ChannelOrderAddressTest extends TestCase
         {
             "address1": "abc",
             "address2": null,
+            "address_code": "address_code",
             "city": "jhb",
             "country_code": "ZA",
             "company": "s2s",

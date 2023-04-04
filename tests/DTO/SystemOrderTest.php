@@ -18,6 +18,7 @@ class SystemOrderTest extends TestCase
             "billing_address": {
                 "address1": "abc",
                 "address2": null,
+                "address_code": "address_code",
                 "channel_id": 56,
                 "city": "jhb",
                 "client_id": 21,
@@ -54,6 +55,7 @@ class SystemOrderTest extends TestCase
                     {
                         "address1": "abc",
                         "address2": null,
+                        "address_code": "address_code",
                         "city": "jhb",
                         "country_code": "ZA",
                         "company": "s2s",
@@ -125,6 +127,7 @@ class SystemOrderTest extends TestCase
                     "shipping_address": {
                         "address1": "address1",
                         "address2": "address2",
+                        "address_code": "address_code",
                         "channel_id": 1,
                         "city": "city",
                         "client_id": 2,
@@ -211,6 +214,7 @@ class SystemOrderTest extends TestCase
             "shipping_address": {
                 "address1": "def",
                 "address2": null,
+                "address_code": "address_code",
                 "channel_id": 56,
                 "city": "cpt",
                 "client_id": 21,

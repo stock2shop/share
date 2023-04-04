@@ -25,6 +25,7 @@ class SystemCustomerTest extends TestCase
                 {
                     "address1": "abc",
                     "address2": null,
+                    "address_code": "address_code",
                     "city": "jhb",
                     "country_code": "ZA",
                     "company": "s2s",
@@ -71,7 +72,7 @@ class SystemCustomerTest extends TestCase
 
     public function testSerialize(): void
     {
-        $sp = DTO\SystemCustomer::createFromJSON($this->json);
+        $sp         = DTO\SystemCustomer::createFromJSON($this->json);
         $serialized = json_encode($sp);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }

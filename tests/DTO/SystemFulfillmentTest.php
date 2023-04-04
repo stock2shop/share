@@ -42,6 +42,7 @@ class SystemFulfillmentTest extends TestCase
             "shipping_address": {
                 "address1": "address1",
                 "address2": "address2",
+                "address_code": "address_code",
                 "city": "city",
                 "company": "company",
                 "country": "country",
@@ -64,7 +65,7 @@ class SystemFulfillmentTest extends TestCase
 
     public function testSerialize(): void
     {
-        $m = DTO\SystemFulfillment::createFromJSON($this->json);
+        $m          = DTO\SystemFulfillment::createFromJSON($this->json);
         $serialized = json_encode($m);
         $this->assertJsonStringEqualsJsonString($this->json, $serialized);
     }
