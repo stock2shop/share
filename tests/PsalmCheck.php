@@ -46,7 +46,7 @@ class PsalmCheck
         new DTO\ProductOption([]);
         new DTO\QtyAvailability([]);
         new DTO\Segment([]);
-        new DTO\ServiceFulfillment([]);
+        new DTO\FulfillmentService([]);
         new DTO\SystemCustomer([]);
         new DTO\SystemFulfillment([]);
         new DTO\SystemFulfillmentLineItem([]);
