@@ -80,6 +80,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?string $shipping_total_display;
     /** @var OrderSource[] $sources */
     public array $sources;
+    public ?string $state;
     public ?string $status;
     public ?float $sub_total;
     public ?string $sub_total_display;
@@ -125,6 +126,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->shipping_total         = self::floatFrom($data, "shipping_total");
         $this->shipping_total_display = self::stringFrom($data, "shipping_total_display");
         $this->sources                = $this->sortArray($sources, 'source_order_code');
+        $this->state                  = self::stringFrom($data, 'state');
         $this->status                 = self::stringFrom($data, "status");
         $this->sub_total              = self::floatFrom($data, "sub_total");
         $this->sub_total_display      = self::stringFrom($data, "sub_total_display");
@@ -156,5 +158,15 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
             $a[] = new SystemOrder((array)$item);
         }
         return $a;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
     }
 }

@@ -32,7 +32,6 @@ class SystemOrderTest extends TestCase
                 "phone": "123456",
                 "province": "somewhere",
                 "province_code": null,
-                "type": "billing",
                 "zip": "1234"
             },
             "channel_order_code": "channel_order_code",
@@ -142,7 +141,6 @@ class SystemOrderTest extends TestCase
                         "phone": "phone",
                         "province": "province",
                         "province_code": "province_code",
-                        "type": "type",
                         "zip": "zip",
                         "created": "created",
                         "modified": "modified"
@@ -230,7 +228,6 @@ class SystemOrderTest extends TestCase
                 "phone": "123456",
                 "province": "somewhere",
                 "province_code": null,
-                "type": "billing",
                 "zip": "1234"
             },
             "shipping_lines": [

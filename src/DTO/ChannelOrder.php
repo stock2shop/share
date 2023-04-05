@@ -25,7 +25,6 @@ use JsonSerializable;
  *     params?: array<string, string>,
  *     shipping_address?: TypeChannelOrderAddress|ChannelOrderAddress,
  *     shipping_lines?: array<int, TypeChannelOrderShippingLine>|array<int, ChannelOrderShippingLine>,
- *     state?: string|null,
  *     total_discount?: float|null
  * }
  */

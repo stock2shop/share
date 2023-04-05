@@ -24,7 +24,6 @@ use JsonSerializable;
  *     phone?: string|null,
  *     province?: string|null,
  *     province_code?: string|null,
- *     type?: string|null,
  *     zip?: string|null
  * }
  */

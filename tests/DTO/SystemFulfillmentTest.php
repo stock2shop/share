@@ -52,7 +52,6 @@ class SystemFulfillmentTest extends TestCase
                 "phone": "phone",
                 "province": "province",
                 "province_code": "province_code",
-                "type": "type",
                 "zip": "zip",
                 "channel_id": 57,
                 "client_id": 21,

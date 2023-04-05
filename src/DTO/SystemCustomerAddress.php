@@ -35,6 +35,7 @@ class SystemCustomerAddress extends CustomerAddress implements JsonSerializable,
     public ?string $created;
     public ?string $hash;
     public ?string $modified;
+    public ?string $type;
 
     /**
      * @param TypeSystemCustomerAddress $data
@@ -48,6 +49,7 @@ class SystemCustomerAddress extends CustomerAddress implements JsonSerializable,
         $this->client_id  = self::intFrom($data, 'client_id');
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
+        $this->type   = self::stringFrom($data, 'type');
     }
 
     public static function createFromJSON(string $json): SystemCustomerAddress
