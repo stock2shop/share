@@ -20,7 +20,6 @@ class ChannelOrderTest extends TestCase
             "ordered_date": "1970-01-01 00:00:00",
             "notes": "notes",
             "total_discount": 5.00,
-            "state": "new",
             "billing_address": {
                 "address1": "address1",
                 "address2": "address2",
@@ -33,7 +32,6 @@ class ChannelOrderTest extends TestCase
                 "phone": "phone",
                 "province": "province",
                 "province_code": "province_code",
-                "type": "type",
                 "zip": "zip"
             },
             "customer": {
@@ -85,7 +83,6 @@ class ChannelOrderTest extends TestCase
                 "phone": "phone",
                 "province": "province",
                 "province_code": "province_code",
-                "type": "type",
                 "zip": "zip"
             },
             "shipping_lines": [
@@ -170,7 +167,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                '97962fc7dc4c014891c9da22b8fe5f2c'
+                'a12c2de493b1d0e749779984ad7aa36b'
             ],
             [
                 [
@@ -180,17 +177,7 @@ class ChannelOrderTest extends TestCase
                     "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                 ],
-                '97962fc7dc4c014891c9da22b8fe5f2c'
-            ],
-            [
-                [
-                    'channel_id'         => 20,
-                    "channel_order_code" => "channel_order_code",
-                    "notes"              => "notes",
-                    "ordered_date"       => "1970-01-01 00:00:00",
-                    "total_discount"     => 5.00
-                ],
-                '97962fc7dc4c014891c9da22b8fe5f2c'
+                'a12c2de493b1d0e749779984ad7aa36b'
             ],
             [
                 [
@@ -200,7 +187,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                '97962fc7dc4c014891c9da22b8fe5f2c'
+                'a12c2de493b1d0e749779984ad7aa36b'
             ],
             [
                 [
@@ -322,7 +309,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                '07b49efe0d7d73a26ba0d36ef7cf6e02'
+                'e0004e56dbcfc671745b725e0b515b7d'
             ],
         ];
     }
@@ -382,7 +369,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '9e33155b10c62e10122b770030ddd878',
+                '1143df55718bd2ce12696343e569be3b',
             ]
         ];
     }
@@ -525,7 +512,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '52c1d97163f3d8dd1d4a059080116534',
+                'hash' => '8e9a447587439c92dbb960c6cf9e7b32',
             ]
         ];
     }

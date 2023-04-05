@@ -20,6 +20,8 @@ class SystemVariantTest extends TestCase
             "client_id": 1,
             "product_id": 1,
             "hash": "hash",
+            "created": "2022-09-13 09:13:39",
+            "modified": "2022-09-13 09:13:39",
             "source_variant_code": "source_variant_code",
             "sku": "sku",
             "active": true,

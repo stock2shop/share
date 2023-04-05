@@ -1,0 +1,85 @@
+{
+    "channel_order_code": "channel_order_code-1",
+    "channel_id": 1,
+    "notes": "notes-1",
+    "total_discount": 0,
+    "ordered_date" : "1970-01-01 00:00:00",
+    "instruction" : "add_order",
+    "params" : {
+        "param-1": "param-1"
+    },
+    "customer": {
+        "channel_customer_code": "channel_customer_code-1",
+        "email": "email-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "accepts_marketing": true
+    },
+    "line_items": [
+        {
+            "barcode": "barcode",
+            "price": 35000,
+            "qty": 1,
+            "sku": "sku-1",
+            "title": "title-1",
+            "grams": 10,
+            "total_discount": 0,
+            "tax_lines": [
+                {
+                    "price": 5250,
+                    "rate": 15,
+                    "title": "title-1",
+                    "code": "taxed"
+                }
+            ]
+        }
+    ],
+    "shipping_lines": [
+        {
+            "price": 100,
+            "title": "Next Day",
+            "tax_lines": [
+                {
+                    "price": 15,
+                    "rate": 15,
+                    "title": "VAT",
+                    "code": "taxed"
+                }
+            ]
+        }
+    ],
+    "meta": [
+        {
+            "key": "key-1",
+            "value": "value-1"
+        }
+    ],
+    "shipping_address": {
+        "address1": "address1-1",
+        "address2": "address2-1",
+        "city": "city-1",
+        "company": "company-1",
+        "country": "country-1",
+        "country_code": "country_code-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "phone": "phone-1",
+        "province": "province-1",
+        "province_code": "province_code-1",
+        "zip": "zip-1"
+    },
+    "billing_address": {
+        "address1": "address1-1",
+        "address2": "address2-1",
+        "city": "city-1",
+        "company": "company-1",
+        "country": "country-1",
+        "country_code": "country_code-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "phone": "phone-1",
+        "province": "province-1",
+        "province_code": "province_code-1",
+        "zip": "zip-1"
+    }
+}

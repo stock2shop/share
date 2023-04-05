@@ -15,22 +15,22 @@ use JsonSerializable;
  * @psalm-type TypeSystemProduct = array{
  *     active?: bool|null,
  *     body_html?: string|null,
- *     channels?: array<int, TypeChannel>,
+ *     channels?: array<int, TypeChannel>|array<int, Channel>,
  *     client_id?: int|null,
  *     collection?: string|null,
  *     created?: string|null,
  *     hash?: string|null,
  *     id?: int|null,
- *     images?: array<int, TypeSystemImage>,
- *     meta?: array<int,TypeMeta>,
+ *     images?: array<int, TypeSystemImage>|array<int, SystemImage>,
+ *     meta?: array<int, TypeMeta>|array<int, Meta>,
  *     modified?: string|null,
- *     options?: array<int, TypeProductOption>,
+ *     options?: array<int, TypeProductOption>|array<int, ProductOption>,
  *     product_type?: string|null,
  *     source_id?: int|null,
  *     source_product_code?: string|null,
  *     tags?: string|null,
  *     title?: string|null,
- *     variants?: array<int, TypeSystemVariant>,
+ *     variants?: array<int, TypeSystemVariant>|array<int, SystemVariant>,
  *     vendor?: string|null
  * }
  */

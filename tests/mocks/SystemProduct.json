@@ -1,0 +1,86 @@
+{
+    "id": 1,
+    "created": "1970-01-01 00:00:00",
+    "active": true,
+    "source_product_code": "1",
+    "modified": "1970-01-01 00:00:00",
+    "client_id": 21,
+    "source_id": 1,
+    "body_html": "body_html-1",
+    "collection": "collection-1",
+    "title": "testPopulate",
+    "product_type": "product_type-1",
+    "vendor": "vendor-1",
+    "hash": "hash-1",
+    "tags": "a,b",
+    "options": [
+        {
+            "name": "size",
+            "position": 1
+        }
+    ],
+    "meta": [
+        {
+            "key": "key-1",
+            "value": "value-1",
+            "template_name": "template_name-1"
+        }
+    ],
+    "images": [],
+    "channels": [
+        {
+            "id": 1,
+            "created": "1970-01-01 00:00:00",
+            "description": "channel-1",
+            "modified": "1970-01-01 00:00:00",
+            "client_id": 21,
+            "active": true,
+            "type": "trade",
+            "price_tier": "price_tier-1",
+            "qty_availability": "qty_availability-1",
+            "sync_token": "sync_token-1",
+            "meta": [
+                {
+                    "key": "key-1",
+                    "value": "value-1",
+                    "template_name": "template_name-1"
+                }
+            ]
+        }
+    ],
+    "variants": [
+        {
+            "id": 1,
+            "created": "1970-01-01 00:00:00",
+            "source_variant_code": "source_variant_code-1",
+            "modified": "1970-01-01 00:00:00",
+            "client_id": 21,
+            "product_id": 1,
+            "price": 101.01,
+            "barcode": "barcode-1",
+            "sku": "sku-1",
+            "qty": 1,
+            "grams": 0,
+            "inventory_management": true,
+            "active": true,
+            "hash": "hash-1",
+            "image_id": null,
+            "option1": "s",
+            "option2": null,
+            "option3": null,
+            "price_tiers": [
+                {
+                    "price": "10.00",
+                    "tier": "price_tier-1"
+                }
+            ],
+            "qty_availability": [
+                {
+                    "qty": 10,
+                    "description": "qty_availability-1"
+                }
+            ],
+            "meta": []
+        }
+    ]
+}

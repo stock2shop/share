@@ -7,12 +7,25 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-import-type TypeAddress from Address
+ * @psalm-type TypeChannelOrderAddress = array{
+ *     address1?: string|null,
+ *     address2?: string|null,
+ *     city?: string|null,
+ *     company?: string|null,
+ *     country?: string|null,
+ *     country_code?: string|null,
+ *     first_name?: string|null,
+ *     last_name?: string|null,
+ *     phone?: string|null,
+ *     province?: string|null,
+ *     province_code?: string|null,
+ *     zip?: string|null
+ *}
  */
 class ChannelOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
     /**
-     * @param TypeAddress $data
+     * @param TypeChannelOrderAddress $data
      */
     public function __construct(array $data)
     {

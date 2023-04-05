@@ -7,10 +7,10 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-type TypeSystemOrderAddress = array{
+ * @psalm-type TypeSystemCustomerAddress = array{
  *     address1?: string|null,
  *     address2?: string|null,
- *     channel_id?: int|null,
+ *     address2_code: string|null,
  *     city?: string|null,
  *     client_id?: int|null,
  *     company?: string|null,
@@ -24,19 +24,21 @@ use JsonSerializable;
  *     phone?: string|null,
  *     province?: string|null,
  *     province_code?: string|null,
+ *     type?: string|null,
  *     zip?: string|null
- * }
+ *}
  */
-class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface
+class SystemCustomerAddress extends CustomerAddress implements JsonSerializable, DTOInterface
 {
     public ?int $id;
-    public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
+    public ?string $hash;
     public ?string $modified;
+    public ?string $type;
 
     /**
-     * @param TypeSystemOrderAddress $data
+     * @param TypeSystemCustomerAddress $data
      */
     public function __construct(array $data)
     {
@@ -44,16 +46,16 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
         parent::__construct($data);
 
         $this->id         = self::intFrom($data, "id");
-        $this->channel_id = self::intFrom($data, 'channel_id');
         $this->client_id  = self::intFrom($data, 'client_id');
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
+        $this->type   = self::stringFrom($data, 'type');
     }
 
-    public static function createFromJSON(string $json): SystemOrderAddress
+    public static function createFromJSON(string $json): SystemCustomerAddress
     {
         $data = json_decode($json, true);
-        return new SystemOrderAddress($data);
+        return new SystemCustomerAddress($data);
     }
 
     public function jsonSerialize(): array
@@ -62,13 +64,13 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     }
 
     /**
-     * @return SystemOrderAddress[]
+     * @return SystemCustomerAddress[]
      */
     public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemOrderAddress((array)$item);
+            $a[] = new SystemCustomerAddress((array)$item);
         }
         return $a;
     }

@@ -8,24 +8,23 @@ use JsonSerializable;
 
 /**
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
- * @psalm-import-type TypeOrderShippingLine from OrderShippingLine
+ * @psalm-import-type TypeChannelOrderShippingLine from ChannelOrderShippingLine
  * @psalm-import-type TypeChannelOrderItem from ChannelOrderItem
- * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeChannelOrderAddress from ChannelOrderAddress
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
- *     billing_address?: array<TypeAddress>,
+ *     billing_address?: TypeChannelOrderAddress|ChannelOrderAddress,
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
- *     customer?: array<TypeChannelOrderCustomer>,
+ *     customer?: TypeChannelOrderCustomer,
  *     instruction?: string|null,
- *     line_items?: array<int, TypeChannelOrderItem>,
- *     meta?: array<int, TypeMeta>,
+ *     line_items?: array<int, TypeChannelOrderItem>|array<int, ChannelOrderItem>,
+ *     meta?: array<int, TypeMeta>|array<int, Meta>,
  *     notes?: string|null,
  *     ordered_date?: string|null,
  *     params?: array<string, string>,
- *     shipping_address?: array<TypeAddress>,
- *     shipping_lines?: array<int, TypeOrderShippingLine>,
- *     state?: string|null,
+ *     shipping_address?: TypeChannelOrderAddress|ChannelOrderAddress,
+ *     shipping_lines?: array<int, TypeChannelOrderShippingLine>|array<int, ChannelOrderShippingLine>,
  *     total_discount?: float|null
  * }
  */

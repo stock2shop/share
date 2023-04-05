@@ -7,37 +7,35 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeSystemCustomerAddress from SystemCustomerAddress
  * @psalm-import-type TypeMeta from Meta
  * @psalm-import-type TypeUser from User
  * @psalm-type TypeSystemCustomer = array{
  *     accepts_marketing?: bool|null,
  *     active?: bool|null,
- *     addresses?: array<int, TypeAddress>,
+ *     addresses?: array<int, TypeSystemCustomerAddress>|array<int, Address>,
  *     channel_customer_code?: string|null,
  *     channel_id?: int|null,
  *     client_id?: int|null,
  *     created?: string|null,
- *     customer_id?: int|null,
  *     email?: string|null,
  *     first_name?: string|null,
  *     id?: int|null,
  *     last_name?: string|null,
- *     meta?: array<int, TypeMeta>,
+ *     meta?: array<int, TypeMeta>|array<int, Meta>,
  *     modified?: string|null,
- *     user?: array<TypeUser>
+ *     user?: TypeUser|User
  * }
  */
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
-    /** @var Address[] $addresses */
+    /** @var SystemCustomerAddress[] $addresses */
     public array $addresses;
     public ?string $channel_customer_code;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
-    public ?int $customer_id;
     public ?int $id;
     /** @var Meta[] $meta */
     public array $meta;
@@ -48,7 +46,7 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $addresses = Address::createArray(self::arrayFrom($data, 'addresses'));
+        $addresses = SystemCustomerAddress::createArray(self::arrayFrom($data, 'addresses'));
         $meta      = Meta::createArray(self::arrayFrom($data, 'meta'));
 
         $this->active                = self::boolFrom($data, 'active');
@@ -57,7 +55,6 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         $this->channel_id            = self::intFrom($data, 'channel_id');
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
-        $this->customer_id           = self::intFrom($data, "customer_id");
         $this->id                    = self::intFrom($data, "id");
         $this->meta                  = $this->sortArray($meta, 'key');
         $this->modified              = self::stringFrom($data, 'modified');

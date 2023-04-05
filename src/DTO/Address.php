@@ -19,7 +19,6 @@ use JsonSerializable;
  *     phone?: string|null,
  *     province?: string|null,
  *     province_code?: string|null,
- *     type?: string|null,
  *     zip?: string|null
  * }
  */
@@ -36,7 +35,6 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     public ?string $phone;
     public ?string $province;
     public ?string $province_code;
-    public ?string $type;
     public ?string $zip;
 
     /**
@@ -55,7 +53,6 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->phone         = self::stringFrom($data, 'phone');
         $this->province      = self::stringFrom($data, 'province');
         $this->province_code = self::stringFrom($data, 'province_code');
-        $this->type          = self::stringFrom($data, 'type');
         $this->zip           = self::stringFrom($data, 'zip');
     }
 

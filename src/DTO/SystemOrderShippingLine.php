@@ -5,7 +5,6 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-import-type TypeOrderItemTax from OrderItemTax
  * @psalm-type TypeSystemOrderShippingLine = array{
  *     created?: string|null,
  *     id?: int|null,
@@ -15,7 +14,6 @@ use JsonSerializable;
  *     sub_total?: float|null,
  *     sub_total_display?: string|null,
  *     tax?: float|null,
- *     tax_lines?: array<int, TypeOrderItemTax>,
  *     tax_display?: string|null,
  *     tax_per_unit?: float|null,
  *     tax_per_unit_display?: string|null,
@@ -35,8 +33,6 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
     public ?float $sub_total;
     public ?string $sub_total_display;
     public ?float $tax;
-    /** @var OrderItemTax[] $tax_lines */
-    public array $tax_lines;
     public ?string $tax_display;
     public ?float $tax_per_unit;
     public ?string $tax_per_unit_display;
@@ -53,8 +49,6 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
         /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
-        $tax_lines = OrderItemTax::createArray(self::arrayFrom($data, 'tax_lines'));
-
         $this->created                = self::stringFrom($data, "created");
         $this->modified               = self::stringFrom($data, "modified");
         $this->id                     = self::intFrom($data, "id");
@@ -62,7 +56,6 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
         $this->sub_total              = self::floatFrom($data, "sub_total");
         $this->sub_total_display      = self::stringFrom($data, "sub_total_display");
         $this->tax                    = self::floatFrom($data, "tax");
-        $this->tax_lines              = $this->sortArray($tax_lines, 'title');
         $this->tax_display            = self::stringFrom($data, "tax_display");
         $this->tax_per_unit           = self::floatFrom($data, "tax_per_unit");
         $this->tax_per_unit_display   = self::stringFrom($data, "tax_per_unit_display");

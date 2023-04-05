@@ -31,7 +31,6 @@ class SystemOrderAddressTest extends TestCase
             "phone": "123456",
             "province": "somewhere",
             "province_code": null,
-            "type": "billing",
             "zip": "1234"
         }';
     }

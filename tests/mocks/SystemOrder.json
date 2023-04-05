@@ -1,0 +1,316 @@
+{
+    "id": 1,
+    "created": "1970-01-01 00:00:00",
+    "channel_order_code": "channel_order_code-1",
+    "modified": "1970-01-01 00:00:00",
+    "channel_id": 1,
+    "client_id": 21,
+    "notes": "notes-1",
+    "state": "saved",
+    "status": "processing",
+    "total_discount": 0,
+    "ordered_date": "1970-01-01 00:00:00",
+    "line_item_sub_total": 0,
+    "line_item_tax": 0,
+    "shipping_sub_total": 0,
+    "shipping_tax": 15,
+    "sub_total": 45000,
+    "tax": 6765,
+    "total": 51865,
+    "customer": {
+        "channel_customer_code": "channel_customer_code-1",
+        "email": "email-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "id": 1,
+        "created": "1970-01-01 00:00:00",
+        "modified": "1970-01-01 00:00:00",
+        "channel_id": 1,
+        "client_id": 21,
+        "accepts_marketing": true,
+        "active": true,
+        "meta": [
+            {
+                "key": "key-1",
+                "value": "value-1",
+                "template_name": "template_name-1"
+            }
+        ],
+        "user": {
+            "customer_id" : 1,
+            "id" : 1,
+            "segments" : [
+                {
+                    "type" : "product",
+                    "key" : "title",
+                    "operator" : "equals",
+                    "value" : "value-1",
+                    "owner" : "source"
+                }
+            ],
+            "price_tier" : "price_tier-1",
+            "qty_availability" : "qty_availability-1"
+        },
+        "addresses": [
+            {
+                "address1": "address1-1",
+                "address2": "address2-1",
+                "city": "city-1",
+                "company": "company-1",
+                "country": "country-1",
+                "country_code": "country_code-1",
+                "first_name": "first_name-1",
+                "last_name": "last_name-1",
+                "phone": "phone-1",
+                "province": "province-1",
+                "province_code": "province_code-1",
+                "zip": "zip-1",
+                "created": "1970-01-01 00:00:00",
+                "modified": "1970-01-01 00:00:00",
+                "client_id": 21,
+                "id": 1,
+                "type": "shipping",
+                "address_code" : "address_code",
+                "default" : true
+            }
+        ]
+    },
+    "sources": [
+        {
+            "source_id": 1,
+            "source_order_code": "source_order_code-1",
+            "source_customer_code": "source_customer_code-1"
+        }
+    ],
+    "line_items": [
+        {
+            "created": "1970-01-01 00:00:00",
+            "barcode": "barcode",
+            "price": 35000,
+            "qty": 1,
+            "sku": "sku-1",
+            "modified": "1970-01-01 00:00:00",
+            "source_id": 1,
+            "variant_id": 1,
+            "title": "title-1",
+            "grams": 10,
+            "total_discount": 0,
+            "product_id": 1,
+            "source_variant_code": "source_variant_code-1",
+            "tax_lines": [
+                {
+                    "price": 5250,
+                    "rate": 15,
+                    "title": "title-1",
+                    "code": "taxed"
+                }
+            ],
+            "sub_total": 35000,
+            "tax": 5250,
+            "tax_per_unit": 5250,
+            "total": 40250,
+            "sub_total_display": "35 000.00",
+            "tax_display": "5 250.00",
+            "tax_per_unit_display": "5 250.00",
+            "total_display": "40 250.00",
+            "price_display": "35 000.00",
+            "total_discount_display": "0.00",
+            "fulfillments": [],
+            "id": 1
+        },
+        {
+            "created": "1970-01-01 00:00:00",
+            "barcode": "barcode-1",
+            "price": 10000,
+            "qty": 1,
+            "sku": "sku-2",
+            "modified": "1970-01-01 00:00:00",
+            "source_id": 1,
+            "variant_id": 2,
+            "title": "title-2",
+            "grams": 10,
+            "total_discount": 0,
+            "product_id": 1,
+            "source_variant_code": "source_variant_code-2",
+            "tax_lines": [
+                {
+                    "price": 1500,
+                    "rate": 15,
+                    "title": "TAX",
+                    "code": "taxed"
+                }
+            ],
+            "sub_total": 10000,
+            "tax": 1500,
+            "tax_per_unit": 1500,
+            "total": 11500,
+            "sub_total_display": "10 000.00",
+            "tax_display": "1 500.00",
+            "tax_per_unit_display": "1 500.00",
+            "total_display": "11 500.00",
+            "price_display": "10 000.00",
+            "total_discount_display": "0.00",
+            "fulfillments": [],
+            "id": 1
+        }
+    ],
+    "shipping_lines": [
+        {
+            "id": 1,
+            "created": "1970-01-01 00:00:00",
+            "price": 100,
+            "title": "Next Day",
+            "total_discount": 0,
+            "tax_lines": [
+                {
+                    "price": 15,
+                    "rate": 15,
+                    "title": "VAT",
+                    "code": "taxed"
+                }
+            ],
+            "sub_total": 100,
+            "tax": 15,
+            "tax_per_unit": 15,
+            "total": 115,
+            "sub_total_display": "100.00",
+            "tax_display": "15.00",
+            "tax_per_unit_display": "15.00",
+            "total_display": "115.00",
+            "price_display": "100.00",
+            "total_discount_display": "0.00",
+            "modified" : "1970-01-01 00:00:00"
+
+        }
+    ],
+    "meta": [
+        {
+            "key": "key-1",
+            "value": "value-1"
+        },
+        {
+            "key": "key-2",
+            "value": "value-2"
+        }
+    ],
+    "shipping_address": {
+        "address1": "address1-1",
+        "address2": "address2-1",
+        "city": "city-1",
+        "company": "company-1",
+        "country": "country-1",
+        "country_code": "country_code-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "phone": "phone-1",
+        "province": "province-1",
+        "province_code": "province_code-1",
+        "zip": "zip-1",
+        "created": "1970-01-01 00:00:00",
+        "modified": "1970-01-01 00:00:00",
+        "client_id": 21,
+        "id": 1,
+        "channel_id": 1
+    },
+    "billing_address": {
+        "address1": "address1-1",
+        "address2": "address2-1",
+        "city": "city-1",
+        "company": "company-1",
+        "country": "country-1",
+        "country_code": "country_code-1",
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "phone": "phone-1",
+        "province": "province-1",
+        "province_code": "province_code-1",
+        "zip": "zip-1",
+        "id": 2308914,
+        "created": "1970-01-01 00:00:00",
+        "modified": "1970-01-01 00:00:00",
+        "client_id": 21,
+        "channel_id": 1
+    },
+    "fulfillments": [
+        {
+            "created": "1970-01-01 00:00:00",
+            "status": "status-1",
+            "tracking_number": "tracking_number-1",
+            "tracking_company": "tracking_company-1",
+            "tracking_url": "tracking_url-1",
+            "notes": "notes-1",
+            "modified": "1970-01-01 00:00:00",
+            "order_id": 1,
+            "fulfillmentservice_id": 1,
+            "fulfillmentservice_order_code": "fulfillmentservice_order_code-1",
+            "client_id": 21,
+            "channel_id": 1,
+            "state": "pending",
+            "channel_synced": "1970-01-01 00:00:00.000000",
+            "line_items": [
+                {
+                    "grams": 10,
+                    "qty": 1,
+                    "sku": "sku-1",
+                    "fulfilled_qty": 0,
+                    "created": "1970-01-01 00:00:00",
+                    "modified": "1970-01-01 00:00:00"
+                },
+                {
+                    "grams": 10,
+                    "qty": 1,
+                    "sku": "sku-2",
+                    "fulfilled_qty": 0,
+                    "created": "1970-01-01 00:00:00",
+                    "modified": "1970-01-01 00:00:00"
+                }
+            ],
+            "shipping_address": {
+                "address1": "address1-1",
+                "address2": "address2-1",
+                "city": "city-1",
+                "company": "company-1",
+                "country": "country-1",
+                "country_code": "country_code-1",
+                "first_name": "first_name-1",
+                "last_name": "last_name-1",
+                "phone": "phone-1",
+                "province": "province-1",
+                "province_code": "province_code-1",
+                "zip": "zip-1",
+                "created": "1970-01-01 00:00:00",
+                "modified": "1970-01-01 00:00:00",
+                "client_id": 21,
+                "id": 1,
+                "channel_id": 1
+            }
+        }
+    ],
+    "history": [
+        {
+            "created": "1970-01-01 00:00:00",
+            "modified": "1970-01-01 00:00:00",
+            "instruction": "sync_order",
+            "storage_code": "storage_code-1"
+        },
+        {
+            "created": "1970-01-01 00:00:01",
+            "modified": "1970-01-01 00:00:01",
+            "instruction": "unpaid_order",
+            "storage_code": "storage_code-1"
+        },
+        {
+            "created": "1970-01-01 00:00:02",
+            "modified": "1970-01-01 00:00:02",
+            "instruction": "provisionally_paid",
+            "storage_code": "storage_code-1"
+        }
+    ],
+    "shipping_total": 100,
+    "sub_total_display": "45 000.00",
+    "shipping_total_display": "100.00",
+    "shipping_tax_display": "15.00",
+    "tax_display": "6 765.00",
+    "total_display": "51 865.00",
+    "total_discount_display": "0.00"
+}
