@@ -10,7 +10,6 @@ use JsonSerializable;
  * @psalm-type TypeAddress = array{
  *     address1?: string|null,
  *     address2?: string|null,
- *     address_code?: string|null,
  *     city?: string|null,
  *     company?: string|null,
  *     country?: string|null,
@@ -28,7 +27,6 @@ class Address extends DTO implements JsonSerializable, DTOInterface
 {
     public ?string $address1;
     public ?string $address2;
-    public ?string $address_code;
     public ?string $city;
     public ?string $company;
     public ?string $country;
@@ -48,7 +46,6 @@ class Address extends DTO implements JsonSerializable, DTOInterface
     {
         $this->address1      = self::stringFrom($data, 'address1');
         $this->address2      = self::stringFrom($data, 'address2');
-        $this->address_code  = self::stringFrom($data, 'address_code');
         $this->city          = self::stringFrom($data, 'city');
         $this->company       = self::stringFrom($data, 'company');
         $this->country       = self::stringFrom($data, 'country');

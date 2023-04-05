@@ -24,7 +24,6 @@ class ChannelOrderTest extends TestCase
             "billing_address": {
                 "address1": "address1",
                 "address2": "address2",
-                "address_code": "address_code",
                 "city": "city",
                 "company": "company",
                 "country": "country",
@@ -77,7 +76,6 @@ class ChannelOrderTest extends TestCase
             "shipping_address": {
                 "address1": "address1",
                 "address2": "address2",
-                "address_code": "address_code",
                 "city": "city",
                 "company": "company",
                 "country": "country",
@@ -172,7 +170,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                '100ba4cda88dc76f8a6dc0f10bce1c0d'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
@@ -182,7 +180,7 @@ class ChannelOrderTest extends TestCase
                     "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                 ],
-                '100ba4cda88dc76f8a6dc0f10bce1c0d'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
@@ -192,7 +190,7 @@ class ChannelOrderTest extends TestCase
                     "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00
                 ],
-                '100ba4cda88dc76f8a6dc0f10bce1c0d'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
@@ -202,7 +200,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                '100ba4cda88dc76f8a6dc0f10bce1c0d'
+                '97962fc7dc4c014891c9da22b8fe5f2c'
             ],
             [
                 [
@@ -324,7 +322,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'b17698d264d3c47688eb08b613b05c80'
+                '10a6777bfd2d847be41cfe1bff5b33d8'
             ],
         ];
     }
@@ -384,7 +382,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                'ed338148bafcbd3b71f0709368c9eacd',
+                '9e33155b10c62e10122b770030ddd878',
             ]
         ];
     }
@@ -527,7 +525,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '6d8fe1e21c2364afb49676fa0c80cc30',
+                'hash' => 'bf5cb6e872fa2219b87a070e0e5aae1b',
             ]
         ];
     }

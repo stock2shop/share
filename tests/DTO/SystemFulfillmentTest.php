@@ -42,7 +42,6 @@ class SystemFulfillmentTest extends TestCase
             "shipping_address": {
                 "address1": "address1",
                 "address2": "address2",
-                "address_code": "address_code",
                 "city": "city",
                 "company": "company",
                 "country": "country",

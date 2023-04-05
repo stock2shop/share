@@ -31,12 +31,13 @@ use JsonSerializable;
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
-    /** @var Address[] $addresses */
+    /** @var SystemCustomerAddress[] $addresses */
     public array $addresses;
     public ?string $channel_customer_code;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
+    // todo - do we need id and customer_id?
     public ?int $customer_id;
     public ?int $id;
     /** @var Meta[] $meta */
@@ -48,7 +49,7 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $addresses = Address::createArray(self::arrayFrom($data, 'addresses'));
+        $addresses = SystemCustomerAddress::createArray(self::arrayFrom($data, 'addresses'));
         $meta      = Meta::createArray(self::arrayFrom($data, 'meta'));
 
         $this->active                = self::boolFrom($data, 'active');
