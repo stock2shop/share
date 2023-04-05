@@ -17,6 +17,7 @@ class FulfillmentTest extends TestCase
         {
             "fulfillmentservice_order_code": "fulfillmentservice_order_code",
             "notes": "notes",
+            "state": "pending",
             "status": "status",
             "tracking_company": "tracking_company",
             "tracking_number": "tracking_number",

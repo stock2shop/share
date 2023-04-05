@@ -34,7 +34,6 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
-    public ?string $hash;
     public ?string $modified;
 
     /**
