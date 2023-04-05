@@ -7,13 +7,13 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-import-type TypeAddress from Address
+ * @psalm-import-type TypeSystemCustomerAddress from SystemCustomerAddress
  * @psalm-import-type TypeMeta from Meta
  * @psalm-import-type TypeUser from User
  * @psalm-type TypeSystemCustomer = array{
  *     accepts_marketing?: bool|null,
  *     active?: bool|null,
- *     addresses?: array<int, TypeAddress>|array<int, Address>,
+ *     addresses?: array<int, TypeSystemCustomerAddress>|array<int, Address>,
  *     channel_customer_code?: string|null,
  *     channel_id?: int|null,
  *     client_id?: int|null,
