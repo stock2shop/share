@@ -7,9 +7,10 @@ namespace Stock2Shop\Share\DTO;
 use JsonSerializable;
 
 /**
- * @psalm-type TypeSystemOrderAddress = array{
+ * @psalm-type TypeCustomerAddress = array{
  *     address1?: string|null,
  *     address2?: string|null,
+ *     address_code?: string|null,
  *     channel_id?: int|null,
  *     city?: string|null,
  *     client_id?: int|null,
@@ -28,33 +29,27 @@ use JsonSerializable;
  *     zip?: string|null
  * }
  */
-class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface
+class CustomerAddress extends Address implements JsonSerializable, DTOInterface
 {
-    public ?int $id;
-    public ?int $channel_id;
-    public ?int $client_id;
-    public ?string $created;
-    public ?string $modified;
+    public ?string $address_code;
+    public ?bool $default;
 
     /**
-     * @param TypeSystemOrderAddress $data
+     * @param TypeCustomerAddress $data
      */
     public function __construct(array $data)
     {
         /** @psalm-suppress InvalidArgument */
         parent::__construct($data);
 
-        $this->id         = self::intFrom($data, "id");
-        $this->channel_id = self::intFrom($data, 'channel_id');
-        $this->client_id  = self::intFrom($data, 'client_id');
-        $this->created    = self::stringFrom($data, 'created');
-        $this->modified   = self::stringFrom($data, 'modified');
+        $this->address_code = self::stringFrom($data, 'address_code');
+        $this->default      = self::boolFrom($data, 'default');
     }
 
-    public static function createFromJSON(string $json): SystemOrderAddress
+    public static function createFromJSON(string $json): CustomerAddress
     {
         $data = json_decode($json, true);
-        return new SystemOrderAddress($data);
+        return new CustomerAddress($data);
     }
 
     public function jsonSerialize(): array
@@ -63,13 +58,13 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
     }
 
     /**
-     * @return SystemOrderAddress[]
+     * @return CustomerAddress[]
      */
     public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
-            $a[] = new SystemOrderAddress((array)$item);
+            $a[] = new CustomerAddress((array)$item);
         }
         return $a;
     }

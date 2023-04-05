@@ -18,7 +18,6 @@ use JsonSerializable;
  *     channel_id?: int|null,
  *     client_id?: int|null,
  *     created?: string|null,
- *     customer_id?: int|null,
  *     email?: string|null,
  *     first_name?: string|null,
  *     id?: int|null,
@@ -31,13 +30,12 @@ use JsonSerializable;
 class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
 {
     public ?bool $active;
-    /** @var Address[] $addresses */
+    /** @var SystemCustomerAddress[] $addresses */
     public array $addresses;
     public ?string $channel_customer_code;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
-    public ?int $customer_id;
     public ?int $id;
     /** @var Meta[] $meta */
     public array $meta;
@@ -48,7 +46,7 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
     {
         parent::__construct($data);
 
-        $addresses = Address::createArray(self::arrayFrom($data, 'addresses'));
+        $addresses = SystemCustomerAddress::createArray(self::arrayFrom($data, 'addresses'));
         $meta      = Meta::createArray(self::arrayFrom($data, 'meta'));
 
         $this->active                = self::boolFrom($data, 'active');
@@ -57,7 +55,6 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         $this->channel_id            = self::intFrom($data, 'channel_id');
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
-        $this->customer_id           = self::intFrom($data, "customer_id");
         $this->id                    = self::intFrom($data, "id");
         $this->meta                  = $this->sortArray($meta, 'key');
         $this->modified              = self::stringFrom($data, 'modified');

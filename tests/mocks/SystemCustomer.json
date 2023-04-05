@@ -1,0 +1,58 @@
+{
+    "channel_customer_code": "channel_customer_code-1",
+    "email": "email-1",
+    "first_name": "first_name-1",
+    "last_name": "last_name-1",
+    "id": 1,
+    "created": "1970-01-01 00:00:00",
+    "modified": "1970-01-01 00:00:00",
+    "channel_id": 1,
+    "client_id": 21,
+    "accepts_marketing": false,
+    "active": true,
+    "meta": [
+        {
+            "key": "key-1",
+            "value": "value-1",
+            "template_name": "template_name-1"
+        }
+    ],
+    "addresses": [
+        {
+            "address1": "address1-1",
+            "address2": "address2-1",
+            "address_code": "address_code-1",
+            "city": "city-1",
+            "company": "company-1",
+            "country": "country-1",
+            "country_code": "country_code-1",
+            "default": true,
+            "first_name": "first_name-1",
+            "id": 1,
+            "last_name": "last_name-1",
+            "phone": "phone-1",
+            "province": "province-1",
+            "province_code": "province_code-1",
+            "zip": "zip-1",
+            "created": "1970-01-01 00:00:00",
+            "modified": "1970-01-01 00:00:00",
+            "client_id": 21,
+            "type": "shipping"
+        }
+    ],
+    "user": {
+        "customer_id" : 1,
+        "id" : 1,
+        "segments" : [
+            {
+                "type" : "product",
+                "key" : "title",
+                "operator" : "equals",
+                "value" : "value-1",
+                "owner" : "source"
+            }
+        ],
+        "price_tier" : "price_tier-1",
+        "qty_availability" : "qty_availability-1"
+    }
+}

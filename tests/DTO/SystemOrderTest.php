@@ -54,12 +54,18 @@ class SystemOrderTest extends TestCase
                     {
                         "address1": "abc",
                         "address2": null,
+                        "address_code": "address_code",
                         "city": "jhb",
+                        "client_id": 21,
                         "country_code": "ZA",
                         "company": "s2s",
                         "country": "sa",
+                        "created": "created",
+                        "default": true,
                         "first_name": "bob",
+                        "id": 1,
                         "last_name": "jones",
+                        "modified": "modified",
                         "phone": "123456",
                         "province": "somewhere",
                         "province_code": null,
@@ -71,7 +77,6 @@ class SystemOrderTest extends TestCase
                 "channel_id": null,
                 "client_id": 21,
                 "created": "2022-01-01",
-                "customer_id": 123,
                 "meta": [
                     {
                         "key": "group",
