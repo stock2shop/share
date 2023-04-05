@@ -25,11 +25,11 @@ class ConstructorTest extends TestCase
 
     private function constructProvider(): \Generator
     {
-        foreach (scandir(__DIR__) as $file) {
+        foreach (scandir(__DIR__ . '/mocks') as $file) {
             if (str_contains($file, '.json')) {
                 $class    = 'Stock2Shop\\Share\\DTO\\' . str_replace('.json', '', $file);
                 $contents = json_decode(
-                    file_get_contents(__DIR__ . '/' . $file),
+                    file_get_contents(__DIR__ . '/mocks/' . $file),
                     true
                 );
                 yield $class => [

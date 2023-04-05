@@ -15,11 +15,6 @@
             "key": "key-1",
             "value": "value-1",
             "template_name": "template_name-1"
-        },
-        {
-            "key": "key-2",
-            "value": "value-2",
-            "template_name": "template_name-2"
         }
     ],
     "addresses": [
@@ -43,27 +38,21 @@
             "modified": "1970-01-01 00:00:00",
             "client_id": 21,
             "type": "shipping"
-        },
-        {
-            "address1": "address1-2",
-            "address2": "address2-2",
-            "address_code": "address_code-2",
-            "city": "city-2",
-            "company": "company-2",
-            "country": "country-2",
-            "country_code": "country_code-2",
-            "default": false,
-            "first_name": "first_name-2",
-            "id": 2,
-            "last_name": "last_name-2",
-            "phone": "phone-2",
-            "province": "province-2",
-            "province_code": "province_code-2",
-            "zip": "zip-2",
-            "created": "1970-01-01 00:00:00",
-            "modified": "1970-01-01 00:00:00",
-            "client_id": 21,
-            "type": "billing"
         }
-    ]
+    ],
+    "user": {
+        "customer_id" : 1,
+        "id" : 1,
+        "segments" : [
+            {
+                "type" : "product",
+                "key" : "title",
+                "operator" : "equals",
+                "value" : "value-1",
+                "owner" : "source"
+            }
+        ],
+        "price_tier" : "price_tier-1",
+        "qty_availability" : "qty_availability-1"
+    }
 }

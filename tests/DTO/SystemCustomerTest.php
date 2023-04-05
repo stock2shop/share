@@ -48,7 +48,6 @@ class SystemCustomerTest extends TestCase
             "channel_id": null,
             "client_id": 21,
             "created": "2022-01-01",
-            "customer_id": 123,
             "meta": [
                 {
                   "key": "group",

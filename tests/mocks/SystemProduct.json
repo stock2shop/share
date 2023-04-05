@@ -1,6 +1,5 @@
 {
     "id": 1,
-    "synced": "2022-01-01 00:00:00.000001",
     "created": "1970-01-01 00:00:00",
     "active": true,
     "source_product_code": "1",
@@ -16,26 +15,15 @@
     "tags": "a,b",
     "options": [
         {
-            "id": 1,
-            "created": null,
             "name": "size",
-            "position": 1,
-            "value": null,
-            "modified": null,
-            "product_id": 1,
-            "client_id": 21
+            "position": 1
         }
     ],
     "meta": [
         {
-            "created": "1970-01-01 00:00:00",
             "key": "key-1",
             "value": "value-1",
-            "modified": "1970-01-01 00:00:00",
-            "product_id": 1,
-            "template_name": null,
-            "client_id": 21,
-            "active": true
+            "template_name": "template_name-1"
         }
     ],
     "images": [],
@@ -46,11 +34,18 @@
             "description": "channel-1",
             "modified": "1970-01-01 00:00:00",
             "client_id": 21,
-            "active": 1,
+            "active": true,
             "type": "trade",
             "price_tier": "price_tier-1",
             "qty_availability": "qty_availability-1",
-            "sync_token": "sync_token-1"
+            "sync_token": "sync_token-1",
+            "meta": [
+                {
+                    "key": "key-1",
+                    "value": "value-1",
+                    "template_name": "template_name-1"
+                }
+            ]
         }
     ],
     "variants": [
@@ -61,12 +56,12 @@
             "modified": "1970-01-01 00:00:00",
             "client_id": 21,
             "product_id": 1,
-            "price": "101.00",
+            "price": 101.01,
             "barcode": "barcode-1",
             "sku": "sku-1",
             "qty": 1,
             "grams": 0,
-            "inventory_management": 1,
+            "inventory_management": true,
             "active": true,
             "hash": "hash-1",
             "image_id": null,
@@ -75,24 +70,17 @@
             "option3": null,
             "price_tiers": [
                 {
-                    "created": "1970-01-01 00:00:00",
                     "price": "10.00",
-                    "modified": "1970-01-01 00:00:00",
-                    "variant_id": 1,
-                    "tier": "price_tier-1",
-                    "client_id": 21
+                    "tier": "price_tier-1"
                 }
             ],
             "qty_availability": [
                 {
-                    "created": "1970-01-01 00:00:00",
                     "qty": 10,
-                    "modified": "1970-01-01 00:00:00",
-                    "variant_id": 1,
-                    "description": "qty_availability-1",
-                    "client_id": 21
+                    "description": "qty_availability-1"
                 }
-            ]
+            ],
+            "meta": []
         }
     ]
 }

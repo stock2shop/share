@@ -75,6 +75,8 @@ class SystemProductTest extends TestCase
                     "id": 1,
                     "image_id": 1,
                     "client_id": 1,
+                    "created": "2022-09-13 09:13:39",
+                    "modified": "2022-09-13 09:13:39",
                     "product_id": 1,
                     "hash": "hash",
                     "source_variant_code": "source_variant_code",
