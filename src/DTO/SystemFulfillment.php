@@ -40,7 +40,6 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     public ?string $modified;
     public ?int $order_id;
     public SystemOrderAddress $shipping_address;
-    public ?string $state;
     public ?string $channel_synced;
 
     /**
@@ -62,7 +61,6 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
         $this->modified              = self::stringFrom($data, 'modified');
         $this->order_id              = self::intFrom($data, 'order_id');
         $this->shipping_address      = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
-        $this->state                 = self::stringFrom($data, 'state');
     }
 
     public static function createFromJSON(string $json): SystemFulfillment
