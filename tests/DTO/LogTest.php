@@ -62,9 +62,6 @@ class LogTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Log', $c);
-        $this->assertIsArray($c->tags);
-        $this->assertIsArray($c->trace);
-        $this->assertIsArray($c->context);
     }
 
     private function assertLogNull(DTO\Log $c)

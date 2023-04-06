@@ -53,7 +53,7 @@ use JsonSerializable;
  */
 class SystemOrder extends Order implements JsonSerializable, DTOInterface
 {
-    public ?SystemOrderAddress $billing_address;
+    public SystemOrderAddress $billing_address;
     public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
@@ -70,7 +70,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     /** @var OrderMeta[] $meta */
     public array $meta;
     public ?string $modified;
-    public ?SystemOrderAddress $shipping_address;
+    public SystemOrderAddress $shipping_address;
     /** @var SystemOrderShippingLine[] $shipping_lines */
     public array $shipping_lines;
     public ?float $shipping_sub_total;

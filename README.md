@@ -27,3 +27,7 @@ composer install
 ```
 ./vendor/bin/phpunit
 ```
+
+## JSON Examples
+
+To view a list of "high level" JSON representations of DTOs, look in the [mocks directory](tests/mocks).

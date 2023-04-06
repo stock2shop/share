@@ -10,21 +10,21 @@ use Stock2Shop\Share\Utils\Date;
 /**
  * @psalm-type TypeLog = array{
  *     channel_id?: int|null,
- *     client_id: int,
+ *     client_id?: int,
  *     context?: array|null,
  *     created?: string|null,
  *     ip?: string|null,
- *     log_to_es: bool,
- *     level: string|null,
- *     message: string|null,
+ *     log_to_es?: bool,
+ *     level?: string|null,
+ *     message?: string|null,
  *     method?: string|null,
  *     metric?: float|null,
  *     origin?: string|null,
  *     remote_addr?: string|null,
  *     request_path?: string|null,
  *     source_id?: int|null,
- *     tags?: string|array|null,
- *     trace?: string|array|null,
+ *     tags?: array|null,
+ *     trace?: array|null,
  *     user_id?: int|null
  * }
  */
@@ -44,24 +44,24 @@ class Log extends DTO implements JsonSerializable, DTOInterface
     ];
 
     public ?int $channel_id;
-    public int $client_id;
-    /** @var array|null associative array */
-    public ?array $context;
+    public ?int $client_id;
+    /** @var array associative array */
+    public array $context;
     public ?string $created;
     public ?string $ip;
-    public bool $log_to_es;
-    public string $level;
-    public string $message;
+    public ?bool $log_to_es;
+    public ?string $level;
+    public ?string $message;
     public ?string $method;
     public ?float $metric;
-    public string $origin;
+    public ?string $origin;
     public ?string $remote_addr;
     public ?string $request_path;
     public ?int $source_id;
     /** @var string[]|null */
-    public ?array $tags;
+    public array $tags;
     /** @var string[]|null */
-    public ?array $trace;
+    public array $trace;
     public ?int $user_id;
 
     /**
