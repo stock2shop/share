@@ -14,7 +14,7 @@ use JsonSerializable;
  */
 class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface
 {
-    public string $storage_code;
+    public ?string $storage_code;
     public ?string $payload;
 
     /**
