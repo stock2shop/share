@@ -17,6 +17,7 @@ use Stock2Shop\Share\Utils\Date;
  *     created?: string|null,
  *     fulfillmentservice_id?: int|null,
  *     fulfillmentservice_order_code?: string|null,
+ *     id?: int|null,
  *     line_items?: array<int, TypeSystemFulfillmentLineItem>|array<int, SystemFulfillmentLineItem>,
  *     modified?: string|null,
  *     notes?: string|null,
@@ -36,6 +37,7 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     public ?string $created;
     public ?int $fulfillmentservice_id;
     /** @var SystemFulfillmentLineItem[] $line_items */
+    public ?int $id;
     public array $line_items;
     public ?string $modified;
     public ?int $order_id;
@@ -57,6 +59,7 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
         $this->fulfillmentservice_id = self::intFrom($data, 'fulfillmentservice_id');
+        $this->id                    = self::intFrom($data, 'id');
         $this->line_items            = self::sortArray($line_items, 'sku');
         $this->modified              = self::stringFrom($data, 'modified');
         $this->order_id              = self::intFrom($data, 'order_id');
