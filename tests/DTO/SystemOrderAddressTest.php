@@ -18,7 +18,6 @@ class SystemOrderAddressTest extends TestCase
             "id": 1,
             "address1": "abc",
             "address2": null,
-            "channel_id": 56,
             "city": "jhb",
             "client_id": 21,
             "country_code": "ZA",

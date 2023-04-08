@@ -10,7 +10,6 @@ use JsonSerializable;
  * @psalm-type TypeSystemOrderAddress = array{
  *     address1?: string|null,
  *     address2?: string|null,
- *     channel_id?: int|null,
  *     city?: string|null,
  *     client_id?: int|null,
  *     company?: string|null,
@@ -30,7 +29,6 @@ use JsonSerializable;
 class SystemOrderAddress extends Address implements JsonSerializable, DTOInterface
 {
     public ?int $id;
-    public ?int $channel_id;
     public ?int $client_id;
     public ?string $created;
     public ?string $modified;
@@ -44,7 +42,6 @@ class SystemOrderAddress extends Address implements JsonSerializable, DTOInterfa
         parent::__construct($data);
 
         $this->id         = self::intFrom($data, "id");
-        $this->channel_id = self::intFrom($data, 'channel_id');
         $this->client_id  = self::intFrom($data, 'client_id');
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
