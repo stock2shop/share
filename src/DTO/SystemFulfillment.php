@@ -36,8 +36,8 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
     public ?int $client_id;
     public ?string $created;
     public ?int $fulfillmentservice_id;
-    /** @var SystemFulfillmentLineItem[] $line_items */
     public ?int $id;
+    /** @var SystemFulfillmentLineItem[] $line_items */
     public array $line_items;
     public ?string $modified;
     public ?int $order_id;

@@ -10,10 +10,10 @@ use JsonSerializable;
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
  * @psalm-import-type TypeChannelOrderShippingLine from ChannelOrderShippingLine
  * @psalm-import-type TypeChannelOrderItem from ChannelOrderItem
- * @psalm-import-type TypeChannelOrderAddress from ChannelOrderAddress
+ * @psalm-import-type TypeAddress from Address
  * @psalm-import-type TypeMeta from Meta
  * @psalm-type TypeChannelOrder = array{
- *     billing_address?: TypeChannelOrderAddress|ChannelOrderAddress,
+ *     billing_address?: TypeAddress|ChannelOrderAddress,
  *     channel_id?: int|null,
  *     channel_order_code?: string|null,
  *     customer?: TypeChannelOrderCustomer,
@@ -23,7 +23,7 @@ use JsonSerializable;
  *     notes?: string|null,
  *     ordered_date?: string|null,
  *     params?: array<string, string>,
- *     shipping_address?: TypeChannelOrderAddress|ChannelOrderAddress,
+ *     shipping_address?: TypeAddress|ChannelOrderAddress,
  *     shipping_lines?: array<int, TypeChannelOrderShippingLine>|array<int, ChannelOrderShippingLine>,
  *     total_discount?: float|null
  * }
@@ -40,7 +40,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
         self::INSTRUCTION_UNPAID_ORDER
     ];
 
-    public ChannelOrderAddress $billing_address;
+    public Address $billing_address;
     public ChannelOrderCustomer $customer;
     public ?string $instruction;
     /** @var ChannelOrderItem[] */
@@ -49,7 +49,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
     public array $meta;
     /** @var array<string, string> */
     public array $params;
-    public ChannelOrderAddress $shipping_address;
+    public Address $shipping_address;
     /** @var ChannelOrderShippingLine[] */
     public array $shipping_lines;
 
@@ -69,13 +69,13 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
         // sort params
         ksort($params, SORT_STRING);
 
-        $this->billing_address  = new ChannelOrderAddress(self::arrayFrom($data, 'billing_address'));
+        $this->billing_address  = new Address(self::arrayFrom($data, 'billing_address'));
         $this->customer         = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
         $this->instruction      = self::stringFrom($data, 'instruction');
         $this->line_items       = $this->sortArray($line_items, 'sku');
         $this->meta             = $this->sortArray($meta, 'key');
         $this->params           = $params;
-        $this->shipping_address = new ChannelOrderAddress(self::arrayFrom($data, 'shipping_address'));
+        $this->shipping_address = new Address(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
 
         // set instruction to empty if not valid

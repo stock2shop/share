@@ -121,8 +121,8 @@ class ChannelOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Order', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrder', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderCustomer', $c->customer);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->shipping_address);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderAddress', $c->billing_address);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c->shipping_address);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Address', $c->billing_address);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->shipping_lines[0]->tax_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderItem', $c->line_items[0]);

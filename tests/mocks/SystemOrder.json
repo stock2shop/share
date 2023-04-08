@@ -209,8 +209,7 @@
         "created": "1970-01-01 00:00:00",
         "modified": "1970-01-01 00:00:00",
         "client_id": 21,
-        "id": 1,
-        "channel_id": 1
+        "id": 1
     },
     "billing_address": {
         "address1": "address1-1",
@@ -228,8 +227,7 @@
         "id": 2308914,
         "created": "1970-01-01 00:00:00",
         "modified": "1970-01-01 00:00:00",
-        "client_id": 21,
-        "channel_id": 1
+        "client_id": 21
     },
     "fulfillments": [
         {
@@ -282,8 +280,7 @@
                 "created": "1970-01-01 00:00:00",
                 "modified": "1970-01-01 00:00:00",
                 "client_id": 21,
-                "id": 1,
-                "channel_id": 1
+                "id": 1
             }
         }
     ],
