@@ -11,7 +11,7 @@ namespace Stock2Shop\Share\Channel;
  */
 abstract class ChannelCreator
 {
-    abstract public function createChannelProducts(): ChannelProductsInterface;
+    abstract public function createChannelProducts(ConfigInterface $config): ChannelProductsInterface;
 
-    abstract public function createChannelOrders(): ChannelOrdersInterface;
+    abstract public function createChannelOrders(ConfigInterface $config): ChannelOrdersInterface;
 }
