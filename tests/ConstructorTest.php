@@ -64,7 +64,8 @@ class ConstructorTest extends TestCase
             $msg = 'in ' . $class . ' property ' . $property->getName() . ' with type ' . $type ;
             if(
                 str_contains($type, 'DTO') ||
-                $type === 'array'
+                $type === 'array' ||
+                $type === 'Stock2Shop\Share\Iterator'
             ) {
                 $this->assertFalse($property->getType()->allowsNull(), $msg . ' Cannot be nullable');
             } else {

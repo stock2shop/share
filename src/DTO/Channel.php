@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use JsonSerializable;
+use Stock2Shop\Share\Iterator;
 
 /**
  * @psalm-import-type TypeMeta from Meta
@@ -29,8 +30,8 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
     public ?string $created;
     public ?string $description;
     public ?int $id;
-    /** @var Meta[] $meta */
-    public array $meta;
+    /** @var Iterator<Meta> $meta */
+    public Iterator $meta;
     public ?string $modified;
     public ?string $price_tier;
     public ?string $qty_availability;
@@ -42,14 +43,13 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
      */
     public function __construct(array $data)
     {
-        $meta = Meta::createArray(self::arrayFrom($data, "meta"));
-
         $this->active           = self::boolFrom($data, 'active');
         $this->client_id        = self::intFrom($data, 'client_id');
         $this->created          = self::stringFrom($data, 'created');
         $this->description      = self::stringFrom($data, 'description');
         $this->id               = self::intFrom($data, 'id');
-        $this->meta             = $this->sortArray($meta, "key");
+        $this->meta             = Meta::createIterable(self::arrayFrom($data, "meta"));
+        ;
         $this->modified         = self::stringFrom($data, 'modified');
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');

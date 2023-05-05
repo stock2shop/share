@@ -14,6 +14,11 @@
             "key": "key-1",
             "value": "value-1",
             "template_name": null
+        },
+        {
+            "key": "key-2",
+            "value": "value-2",
+            "template_name": null
         }
     ]
 }
