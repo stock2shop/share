@@ -49,7 +49,6 @@ class Channel extends DTO implements JsonSerializable, DTOInterface
         $this->description      = self::stringFrom($data, 'description');
         $this->id               = self::intFrom($data, 'id');
         $this->meta             = Meta::createIterable(self::arrayFrom($data, "meta"));
-        ;
         $this->modified         = self::stringFrom($data, 'modified');
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
