@@ -30,14 +30,44 @@ use JsonSerializable;
  */
 class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 {
-    // order instructions
-    public const INSTRUCTION_ADD_ORDER = 'add_order';
-    public const INSTRUCTION_EMPTY = '';
-    public const INSTRUCTION_UNPAID_ORDER = 'unpaid_order';
+    /**
+     * send order to source/ERP
+     */
+    public const INSTRUCTION_ADD = 'add_order';
+    /**
+     * Missing instructions, synonymous to "sync_order"
+     */
+    public const INSTRUCTION_MISSING = '';
+    /**
+     *  Order edited manually, only allowed if state is "saved"
+     */
+    public const INSTRUCTION_SYSTEM = 'system';
+    /**
+     * Payment confirmed with gateway. This is a S2S trade store feature
+     */
+    public const INSTRUCTION_PROVISIONALLY_PAID = 'provisionally_paid';
+    /**
+     * Awaiting payment gateway confirmation. This is a S2S trade store feature
+     */
+    public const INSTRUCTION_UNPAID = 'unpaid_order';
+    /**
+     * Save Order to s2s, no further processing (i.e. does not get added to source/ERP)
+     */
+    public const INSTRUCTION_SYNC = 'sync_order';
+
+    /**
+     * Reset order back to saved state
+     */
+    public const INSTRUCTION_RESET = 'reset_order';
+
     public const ALLOWED_INSTRUCTIONS = [
-        self::INSTRUCTION_ADD_ORDER,
-        self::INSTRUCTION_EMPTY,
-        self::INSTRUCTION_UNPAID_ORDER
+        self::INSTRUCTION_ADD,
+        self::INSTRUCTION_MISSING,
+        self::INSTRUCTION_SYSTEM,
+        self::INSTRUCTION_PROVISIONALLY_PAID,
+        self::INSTRUCTION_UNPAID,
+        self::INSTRUCTION_SYNC,
+        self::INSTRUCTION_RESET
     ];
 
     public Address $billing_address;
@@ -80,7 +110,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
 
         // set instruction to empty if not valid
         if (!in_array($this->instruction, self::ALLOWED_INSTRUCTIONS)) {
-            $this->instruction = self::INSTRUCTION_EMPTY;
+            $this->instruction = self::INSTRUCTION_MISSING;
         }
     }
 
