@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeFulfillment = array{
  *     fulfillmentservice_order_code?: string|null,
@@ -16,7 +14,7 @@ use JsonSerializable;
  *     tracking_url?: string|null
  * }
  */
-class Fulfillment extends DTO implements JsonSerializable, DTOInterface
+class Fulfillment extends DTO
 {
     public ?string $fulfillmentservice_order_code;
     public ?string $notes;
@@ -46,10 +44,7 @@ class Fulfillment extends DTO implements JsonSerializable, DTOInterface
         return new Fulfillment($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return Fulfillment[]

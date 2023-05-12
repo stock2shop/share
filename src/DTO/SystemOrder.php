@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
  * @psalm-import-type TypeSystemCustomer from SystemCustomer
@@ -51,7 +49,7 @@ use JsonSerializable;
  *     total_display?: string|null
  * }
  */
-class SystemOrder extends Order implements JsonSerializable, DTOInterface
+class SystemOrder extends Order
 {
     public SystemOrderAddress $billing_address;
     public ?int $channel_id;
@@ -137,10 +135,7 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->total_display          = self::stringFrom($data, "total_display");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): SystemOrder
     {

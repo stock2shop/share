@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
+use Stock2Shop\Share\DTO\Maps\Metas;
 
 /**
  * @psalm-import-type TypeMeta from Meta
@@ -27,7 +27,7 @@ use JsonSerializable;
  *     source_variant_code?: string|null,
  * }
  */
-class Variant extends DTO implements JsonSerializable, DTOInterface
+class Variant extends DTO
 {
     public ?string $source_variant_code;
     public ?string $sku;
@@ -49,8 +49,8 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
     public ?string $option1;
     public ?string $option2;
     public ?string $option3;
-    /** @var Meta[] $meta */
-    public array $meta;
+    /** @var Metas $meta */
+    public Metas $meta;
 
     /**
      * @param TypeVariant $data
@@ -60,7 +60,6 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
         $qty              = self::intFrom($data, "qty");
         $qty_availability = QtyAvailability::createArray(self::arrayFrom($data, "qty_availability"));
         $price_tiers      = PriceTier::createArray(self::arrayFrom($data, "price_tiers"));
-        $meta             = Meta::createArray(self::arrayFrom($data, "meta"));
 
         $this->source_variant_code  = self::stringFrom($data, "source_variant_code");
         $this->sku                  = self::stringFrom($data, "sku");
@@ -75,7 +74,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
         $this->option1              = self::stringFrom($data, "option1");
         $this->option2              = self::stringFrom($data, "option2");
         $this->option3              = self::stringFrom($data, "option3");
-        $this->meta                 = $this->sortArray($meta, "key");
+        $this->meta                 = new Metas(self::arrayFrom($data, "meta"));
     }
 
     /**
@@ -83,7 +82,7 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
      */
     public function computeHash(): string
     {
-        $v    = new Variant((array)$this);
+        $v    = new Variant($this->toArray());
         $json = json_encode($v);
         return md5($json);
     }
@@ -96,7 +95,14 @@ class Variant extends DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array)$this;
+        return $this->toArray();
+    }
+
+    public function toArray(): array {
+        $meta = $this->meta->toArray();
+        $arr = (array)$this;
+        $arr['meta'] = $meta;
+        return $arr;
     }
 
     /**

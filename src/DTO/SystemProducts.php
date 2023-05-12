@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeSystemProduct from SystemProduct
  * @psalm-type TypeSystemProducts = array{
  *     system_products?: array<int, TypeSystemProduct>|array<int, SystemProduct>
  * }
  */
-class SystemProducts extends DTO implements JsonSerializable, DTOInterface
+class SystemProducts extends DTO
 {
     /** @var SystemProduct[] $system_products */
     public array $system_products;
@@ -31,10 +29,7 @@ class SystemProducts extends DTO implements JsonSerializable, DTOInterface
         return new SystemProducts($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return SystemProducts[]

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeChannelOrderCustomer from ChannelOrderCustomer
  * @psalm-import-type TypeChannelOrderShippingLine from ChannelOrderShippingLine
@@ -28,7 +26,7 @@ use JsonSerializable;
  *     total_discount?: float|null
  * }
  */
-class ChannelOrder extends Order implements JsonSerializable, DTOInterface
+class ChannelOrder extends Order
 {
     // order instructions
     public const INSTRUCTION_ADD_ORDER = 'add_order';
@@ -95,10 +93,7 @@ class ChannelOrder extends Order implements JsonSerializable, DTOInterface
         return md5($json);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): ChannelOrder
     {

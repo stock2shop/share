@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
 /**
@@ -30,7 +29,7 @@ use Stock2Shop\Share\Utils\Date;
  *     tracking_url?: string|null
  * }
  */
-class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
+class SystemFulfillment extends Fulfillment
 {
     public ?int $channel_id;
     public ?int $client_id;
@@ -72,10 +71,7 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
         return new SystemFulfillment($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return SystemFulfillment[]

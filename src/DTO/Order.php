@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeOrder = array{
  *     channel_id?: int|null,
@@ -15,7 +13,7 @@ use JsonSerializable;
  *     total_discount?: float|null
  * }
  */
-class Order extends DTO implements JsonSerializable, DTOInterface
+class Order extends DTO
 {
     public ?int $channel_id;
     public ?string $channel_order_code;
@@ -35,10 +33,7 @@ class Order extends DTO implements JsonSerializable, DTOInterface
         $this->total_discount     = self::floatFrom($data, 'total_discount');
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): Order
     {

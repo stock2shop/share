@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeImage = array{
  *     src?: string|null
  * }
  */
-class Image extends DTO implements JsonSerializable, DTOInterface
+class Image extends DTO
 {
     public ?string $src;
 
@@ -29,10 +27,7 @@ class Image extends DTO implements JsonSerializable, DTOInterface
         return new Image($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return Image[]

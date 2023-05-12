@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeOrderSource = array{
  *     source_customer_code?: string|null,
@@ -13,7 +11,7 @@ use JsonSerializable;
  *     source_order_code?: string|null
  * }
  */
-class OrderSource extends DTO implements JsonSerializable, DTOInterface
+class OrderSource extends DTO
 {
     public ?int $source_id;
     public ?string $source_customer_code;
@@ -35,10 +33,7 @@ class OrderSource extends DTO implements JsonSerializable, DTOInterface
         return new OrderSource($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return OrderSource[]

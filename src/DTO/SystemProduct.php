@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeChannel from Channel
  * @psalm-import-type TypeSystemImage from SystemImage
@@ -34,7 +32,7 @@ use JsonSerializable;
  *     vendor?: string|null
  * }
  */
-class SystemProduct extends Product implements JsonSerializable, DTOInterface
+class SystemProduct extends Product
 {
     /** @var Channel[] $channels */
     public array $channels;
@@ -78,11 +76,6 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
     {
         $data = json_decode($json, true);
         return new SystemProduct($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
     }
 
     public function computeHash(): string

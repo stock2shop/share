@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeFulfillmentLineItem = array{
  *     fulfilled_qty?: int|null,
@@ -14,7 +12,7 @@ use JsonSerializable;
  *     sku?: string|null
  * }
  */
-class FulfillmentLineItem extends DTO implements JsonSerializable, DTOInterface
+class FulfillmentLineItem extends DTO
 {
     public ?int $grams;
     public ?int $qty;
@@ -32,10 +30,7 @@ class FulfillmentLineItem extends DTO implements JsonSerializable, DTOInterface
         $this->fulfilled_qty = self::intFrom($data, "fulfilled_qty");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): FulfillmentLineItem
     {

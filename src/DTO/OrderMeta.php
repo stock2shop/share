@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeOrderMeta = array{
  *     key?: string|null,
  *     value?: string|null
  * }
  */
-class OrderMeta extends DTO implements JsonSerializable, DTOInterface
+class OrderMeta extends DTO
 {
     public ?string $key;
     public ?string $value;
@@ -33,10 +31,7 @@ class OrderMeta extends DTO implements JsonSerializable, DTOInterface
         return new OrderMeta($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return OrderMeta[]

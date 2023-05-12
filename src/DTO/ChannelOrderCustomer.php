@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeChannelOrderCustomer = array{
  *     accepts_marketing?: bool|null,
@@ -15,7 +13,7 @@ use JsonSerializable;
  *     last_name?: string|null
  * }
  */
-class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInterface
+class ChannelOrderCustomer extends Customer
 {
     public ?string $channel_customer_code;
 
@@ -30,10 +28,7 @@ class ChannelOrderCustomer extends Customer implements JsonSerializable, DTOInte
         $this->channel_customer_code = self::stringFrom($data, 'channel_customer_code');
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): ChannelOrderCustomer
     {

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeSystemOrderHistory = array{
  *     created?: string|null,
@@ -14,7 +12,7 @@ use JsonSerializable;
  *     storage_code?: string|null
  * }
  */
-class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface
+class SystemOrderHistory extends DTO
 {
     public ?string $instruction;
     public ?string $storage_code;
@@ -32,10 +30,7 @@ class SystemOrderHistory extends DTO implements JsonSerializable, DTOInterface
         $this->modified     = self::stringFrom($data, "modified");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): SystemOrderHistory
     {

@@ -234,8 +234,8 @@ class SystemProductsTest extends TestCase
         foreach ($c->system_products as $sp) {
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemProduct', $sp);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->meta[0]);
-            $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $sp->meta[0]);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->meta['size']);
+            $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $sp->meta['size']);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->options[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\ProductOption', $sp->options[0]);
             $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $sp->images[0]);

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeSegment = array{
  *     key?: string|null,
@@ -15,7 +13,7 @@ use JsonSerializable;
  *     value?: string|null
  * }
  */
-class Segment extends DTO implements JsonSerializable, DTOInterface
+class Segment extends DTO
 {
     public const TYPE_PRODUCTS = 'products';
     public const TYPE_CUSTOMERS = 'customers';
@@ -70,10 +68,7 @@ class Segment extends DTO implements JsonSerializable, DTOInterface
         return new Segment($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return Segment[]

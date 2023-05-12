@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeChannelOrderAddress = array{
  *     address1?: string|null,
@@ -22,7 +20,7 @@ use JsonSerializable;
  *     zip?: string|null
  *}
  */
-class ChannelOrderAddress extends Address implements JsonSerializable, DTOInterface
+class ChannelOrderAddress extends Address
 {
     /**
      * @param TypeChannelOrderAddress $data
@@ -38,10 +36,7 @@ class ChannelOrderAddress extends Address implements JsonSerializable, DTOInterf
         return new ChannelOrderAddress($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return ChannelOrderAddress[]

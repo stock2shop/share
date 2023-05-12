@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeQtyAvailability from QtyAvailability
  * @psalm-import-type TypeMeta from Meta
@@ -34,7 +32,7 @@ use JsonSerializable;
  *     source_variant_code?: string|null
  * }
  */
-class SystemVariant extends Variant implements JsonSerializable, DTOInterface
+class SystemVariant extends Variant
 {
     public ?int $client_id;
     public ?string $created;
@@ -67,10 +65,7 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
         return new SystemVariant($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return SystemVariant[]

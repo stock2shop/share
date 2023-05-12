@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-use Stock2Shop\Share\Iterator;
+use Stock2Shop\Share\DTO\Maps\Metas;
 
 /**
  * This is used by many classes.
@@ -18,7 +17,7 @@ use Stock2Shop\Share\Iterator;
  * }
  *
  */
-class Meta extends DTO implements JsonSerializable, DTOInterface
+class Meta extends DTO
 {
     public ?string $key;
     public ?string $value;
@@ -41,33 +40,15 @@ class Meta extends DTO implements JsonSerializable, DTOInterface
         return new Meta($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
 
-    /**
-     * @return Meta[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Meta((array)$item);
-        }
-        return $a;
-    }
 
     /**
      * @param array $data
-     * @return Iterator<Meta>
+     * @return Metas
      */
-    public static function createIterable(array $data): Iterator
+    public static function createArray(array $data): Metas
     {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Meta((array)$item);
-        }
-        return new Iterator($a, 'key');
+        return new Metas($data);
     }
+
 }

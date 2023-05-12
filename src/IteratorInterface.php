@@ -10,9 +10,10 @@ use IteratorAggregate;
 use JsonSerializable;
 
 /**
- * @template T
- * @template-extends ArrayAccess<string, T>
- * @template-extends IteratorAggregate<string, T>
+ * @template TKey
+ * @template TValue
+ * @template-extends ArrayAccess<TKey, TValue>
+ * @template-extends IteratorAggregate<TKey, TValue>
  * @template-extends Countable
  * @template-extends JsonSerializable
  */

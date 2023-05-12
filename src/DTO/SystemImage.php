@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeSystemImage = array{
  *     active?: bool|null,
@@ -13,7 +11,7 @@ use JsonSerializable;
  *     src?: string|null
  * }
  */
-class SystemImage extends Image implements JsonSerializable, DTOInterface
+class SystemImage extends Image
 {
     public ?int $id;
     public ?bool $active;
@@ -36,10 +34,7 @@ class SystemImage extends Image implements JsonSerializable, DTOInterface
         return new SystemImage($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return SystemImage[]

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeCustomerAddress = array{
  *     address1?: string|null,
@@ -29,7 +27,7 @@ use JsonSerializable;
  *     zip?: string|null
  * }
  */
-class CustomerAddress extends Address implements JsonSerializable, DTOInterface
+class CustomerAddress extends Address
 {
     public ?string $address_code;
     public ?bool $default;
@@ -52,10 +50,7 @@ class CustomerAddress extends Address implements JsonSerializable, DTOInterface
         return new CustomerAddress($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return CustomerAddress[]

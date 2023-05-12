@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeChannelOrderShippingLine = array{
  *     price?: float|null,
  *     title?: string|null
  * }
  */
-class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
+class ChannelOrderShippingLine extends OrderShippingLine
 {
     /**
      * @param TypeChannelOrderShippingLine $data
@@ -29,10 +27,7 @@ class ChannelOrderShippingLine extends OrderShippingLine implements JsonSerializ
         return new ChannelOrderShippingLine($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return ChannelOrderShippingLine[]

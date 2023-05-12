@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeOrderItemTax = array{
  *     code?: string|null,
@@ -14,7 +12,7 @@ use JsonSerializable;
  *     title?: string|null
  * }
  */
-class OrderItemTax extends DTO implements JsonSerializable, DTOInterface
+class OrderItemTax extends DTO
 {
     public ?string $code;
     public ?float $price;
@@ -32,10 +30,7 @@ class OrderItemTax extends DTO implements JsonSerializable, DTOInterface
         $this->rate  = self::floatFrom($data, "rate");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): OrderItemTax
     {

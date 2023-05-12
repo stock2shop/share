@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
-abstract class DTO
+abstract class DTO implements JsonSerializable, DTOInterface
 {
     /**
      * Sorts a multidimensional array by key name.
@@ -182,5 +183,10 @@ abstract class DTO
             return null;
         }
         return (int)$num;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
     }
 }

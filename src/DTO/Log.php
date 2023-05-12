@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
 /**
@@ -28,7 +27,7 @@ use Stock2Shop\Share\Utils\Date;
  *     user_id?: int|null
  * }
  */
-class Log extends DTO implements JsonSerializable, DTOInterface
+class Log extends DTO
 {
     public const LOG_LEVEL_ERROR = 'error';
     public const LOG_LEVEL_DEBUG = 'debug';
@@ -91,10 +90,7 @@ class Log extends DTO implements JsonSerializable, DTOInterface
         }
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): Log
     {

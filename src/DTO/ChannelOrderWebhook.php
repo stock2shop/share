@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeChannelOrderWebhook = array{
  *     payload?: string|null,
  *     storage_code?: string|null
  * }
  */
-class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface
+class ChannelOrderWebhook extends DTO
 {
     public ?string $storage_code;
     public ?string $payload;
@@ -32,10 +30,7 @@ class ChannelOrderWebhook extends DTO implements JsonSerializable, DTOInterface
         return new ChannelOrderWebhook($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return ChannelOrderWebhook[]

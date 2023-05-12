@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeOrderItem = array{
  *     barcode?: string|null,
@@ -17,7 +15,7 @@ use JsonSerializable;
  *     total_discount?: float|null
  * }
  */
-class OrderItem extends DTO implements JsonSerializable, DTOInterface
+class OrderItem extends DTO
 {
     public ?string $barcode;
     public ?int $grams;
@@ -41,10 +39,7 @@ class OrderItem extends DTO implements JsonSerializable, DTOInterface
         $this->total_discount = self::floatFrom($data, "total_discount");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): OrderItem
     {

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeSystemFulfillmentLineItem from SystemFulfillmentLineItem
  * @psalm-import-type TypeOrderItemTax from OrderItemTax
@@ -38,7 +36,7 @@ use JsonSerializable;
  *     variant_id?: int|null
  * }
  */
-class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterface
+class SystemOrderItem extends OrderItem
 {
     public ?string $created;
     /** @var SystemFulfillmentLineItem[] $fulfillments */
@@ -95,10 +93,7 @@ class SystemOrderItem extends OrderItem implements JsonSerializable, DTOInterfac
         $this->fulfillments           = self::sortArray($fulfillments, 'fulfillment_id');
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     public static function createFromJSON(string $json): SystemOrderItem
     {

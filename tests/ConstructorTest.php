@@ -65,7 +65,7 @@ class ConstructorTest extends TestCase
             if(
                 str_contains($type, 'DTO') ||
                 $type === 'array' ||
-                $type === 'Stock2Shop\Share\Iterator'
+                $type === 'Stock2Shop\Share\Map'
             ) {
                 $this->assertFalse($property->getType()->allowsNull(), $msg . ' Cannot be nullable');
             } else {
@@ -78,7 +78,7 @@ class ConstructorTest extends TestCase
     {
         foreach (scandir(__DIR__ . '/../src/DTO') as $file) {
             if (
-                !in_array($file, ['DTO.php', 'DTOInterface.php']) &&
+                !in_array($file, ['DTO.php', 'DTOInterface.php', 'Maps']) &&
                 $file !== '.' &&
                 $file !== '..'
             ) {

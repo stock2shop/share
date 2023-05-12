@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypePriceTier = array{
  *     price?: float|null,
  *     tier?: string|null
  * }
  */
-class PriceTier extends DTO implements JsonSerializable, DTOInterface
+class PriceTier extends DTO
 {
     public ?string $tier;
     public ?float $price;
@@ -33,10 +31,7 @@ class PriceTier extends DTO implements JsonSerializable, DTOInterface
         return new PriceTier($data);
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
+
 
     /**
      * @return PriceTier[]
