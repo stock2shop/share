@@ -61,24 +61,4 @@ class Segment extends DTO
         $this->value    = self::stringFrom($data, 'value');
         $this->owner    = self::stringFrom($data, 'owner');
     }
-
-    public static function createFromJSON(string $json): Segment
-    {
-        $data = json_decode($json, true);
-        return new Segment($data);
-    }
-
-
-
-    /**
-     * @return Segment[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Segment((array)$item);
-        }
-        return $a;
-    }
 }

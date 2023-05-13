@@ -20,24 +20,4 @@ class Image extends DTO
     {
         $this->src = self::stringFrom($data, 'src');
     }
-
-    public static function createFromJSON(string $json): Image
-    {
-        $data = json_decode($json, true);
-        return new Image($data);
-    }
-
-
-
-    /**
-     * @return Image[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Image((array)$item);
-        }
-        return $a;
-    }
 }

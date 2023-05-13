@@ -304,7 +304,7 @@ class SystemOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemFulfillmentLineItem', $c->line_items[0]->fulfillments[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta['src']);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\SystemOrderShippingLine', $c->shipping_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderSource', $c->sources[0]);

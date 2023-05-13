@@ -64,24 +64,4 @@ class ChannelVariant extends Variant
         $this->product_id           = static::intFrom($data, 'product_id');
         $this->success              = self::boolFrom($data, 'success');
     }
-
-    public static function createFromJSON(string $json): ChannelVariant
-    {
-        $data = json_decode($json, true);
-        return new ChannelVariant($data);
-    }
-
-
-
-    /**
-     * @return ChannelVariant[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelVariant((array)$item);
-        }
-        return $a;
-    }
 }

@@ -37,24 +37,4 @@ class User extends DTO
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
     }
-
-    public static function createFromJSON(string $json): User
-    {
-        $data = json_decode($json, true);
-        return new User($data);
-    }
-
-
-
-    /**
-     * @return User[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new User((array)$item);
-        }
-        return $a;
-    }
 }

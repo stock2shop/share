@@ -23,24 +23,4 @@ class ProductOption extends DTO
         $this->name     = self::stringFrom($data, "name");
         $this->position = self::intFrom($data, "position");
     }
-
-    public static function createFromJSON(string $json): ProductOption
-    {
-        $data = json_decode($json, true);
-        return new ProductOption($data);
-    }
-
-
-
-    /**
-     * @return ProductOption[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ProductOption((array)$item);
-        }
-        return $a;
-    }
 }

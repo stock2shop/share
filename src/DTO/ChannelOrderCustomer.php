@@ -27,24 +27,4 @@ class ChannelOrderCustomer extends Customer
 
         $this->channel_customer_code = self::stringFrom($data, 'channel_customer_code');
     }
-
-
-
-    public static function createFromJSON(string $json): ChannelOrderCustomer
-    {
-        $data = json_decode($json, true);
-        return new ChannelOrderCustomer($data);
-    }
-
-    /**
-     * @return ChannelOrderCustomer[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelOrderCustomer((array)$item);
-        }
-        return $a;
-    }
 }

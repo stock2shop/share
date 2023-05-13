@@ -64,24 +64,4 @@ class SystemFulfillment extends Fulfillment
         $this->order_id              = self::intFrom($data, 'order_id');
         $this->shipping_address      = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
     }
-
-    public static function createFromJSON(string $json): SystemFulfillment
-    {
-        $data = json_decode($json, true);
-        return new SystemFulfillment($data);
-    }
-
-
-
-    /**
-     * @return SystemFulfillment[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemFulfillment((array)$item);
-        }
-        return $a;
-    }
 }

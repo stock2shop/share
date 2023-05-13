@@ -29,24 +29,4 @@ class OrderItemTax extends DTO
         $this->title = self::stringFrom($data, "title");
         $this->rate  = self::floatFrom($data, "rate");
     }
-
-
-
-    public static function createFromJSON(string $json): OrderItemTax
-    {
-        $data = json_decode($json, true);
-        return new OrderItemTax($data);
-    }
-
-    /**
-     * @return OrderItemTax[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new OrderItemTax((array)$item);
-        }
-        return $a;
-    }
 }

@@ -38,24 +38,4 @@ class OrderItem extends DTO
         $this->title          = self::stringFrom($data, "title");
         $this->total_discount = self::floatFrom($data, "total_discount");
     }
-
-
-
-    public static function createFromJSON(string $json): OrderItem
-    {
-        $data = json_decode($json, true);
-        return new OrderItem($data);
-    }
-
-    /**
-     * @return OrderItem[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new OrderItem((array)$item);
-        }
-        return $a;
-    }
 }

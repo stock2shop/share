@@ -22,24 +22,4 @@ class SystemProducts extends DTO
     {
         $this->system_products = SystemProduct::createArray(self::arrayFrom($data, 'system_products'));
     }
-
-    public static function createFromJSON(string $json): SystemProducts
-    {
-        $data = json_decode($json, true);
-        return new SystemProducts($data);
-    }
-
-
-
-    /**
-     * @return SystemProducts[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemProducts((array)$item);
-        }
-        return $a;
-    }
 }

@@ -89,24 +89,4 @@ class Log extends DTO
             throw new \InvalidArgumentException(sprintf('Invalid log level %s', $this->level));
         }
     }
-
-
-
-    public static function createFromJSON(string $json): Log
-    {
-        $data = json_decode($json, true);
-        return new Log($data);
-    }
-
-    /**
-     * @return Log[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Log((array)$item);
-        }
-        return $a;
-    }
 }

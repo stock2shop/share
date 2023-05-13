@@ -58,24 +58,4 @@ class SystemVariant extends Variant
         $this->modified   = self::stringFrom($data, 'modified');
         $this->product_id = static::intFrom($data, 'product_id');
     }
-
-    public static function createFromJSON(string $json): SystemVariant
-    {
-        $data = json_decode($json, true);
-        return new SystemVariant($data);
-    }
-
-
-
-    /**
-     * @return SystemVariant[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemVariant((array)$item);
-        }
-        return $a;
-    }
 }

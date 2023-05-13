@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\DTO\Maps\Metas;
+use Stock2Shop\Share\Map;
 
 /**
  * @psalm-import-type TypeMeta from Meta
@@ -27,8 +27,8 @@ class FulfillmentService extends DTO
     public ?string $description;
     public ?int $id;
     public ?bool $is_warehouse;
-    /** @var Metas $meta */
-    public Metas $meta;
+    /** @var Map<string, Meta> $meta */
+    public Map $meta;
     public ?string $modified;
     public ?string $type;
 
@@ -37,35 +37,17 @@ class FulfillmentService extends DTO
      */
     public function __construct(array $data)
     {
-
         $this->active       = self::boolFrom($data, 'active');
         $this->client_id    = self::intFrom($data, 'client_id');
         $this->created      = self::stringFrom($data, 'created');
         $this->description  = self::stringFrom($data, 'description');
         $this->id           = self::intFrom($data, 'id');
         $this->is_warehouse = self::boolFrom($data, 'is_warehouse');
-        $this->meta         = new Metas(self::arrayFrom($data, "meta"));
+        $this->meta         = new Map(
+            Meta::createArray(self::arrayFrom($data, 'meta')),
+            'key'
+        );
         $this->modified     = self::stringFrom($data, 'modified');
         $this->type         = self::stringFrom($data, 'type');
-    }
-
-    public static function createFromJSON(string $json): FulfillmentService
-    {
-        $data = json_decode($json, true);
-        return new FulfillmentService($data);
-    }
-
-
-
-    /**
-     * @return FulfillmentService[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new FulfillmentService((array)$item);
-        }
-        return $a;
     }
 }

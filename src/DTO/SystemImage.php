@@ -27,24 +27,4 @@ class SystemImage extends Image
         $this->active = self::boolFrom($data, "active");
         $this->id     = self::intFrom($data, 'id');
     }
-
-    public static function createFromJSON(string $json): SystemImage
-    {
-        $data = json_decode($json, true);
-        return new SystemImage($data);
-    }
-
-
-
-    /**
-     * @return SystemImage[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemImage((array)$item);
-        }
-        return $a;
-    }
 }

@@ -140,7 +140,9 @@ class MapTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $data     = [];
         $iterator = new Map($data, self::KEY);
+        /** @psalm-suppress InvalidArgument */
         $iterator['x'] = new DTO\Meta(self::LIST_OF_ARRAYS[0]);
+        /** @psalm-suppress InvalidArgument */
         $iterator['y'] = new DTO\OrderMeta(self::LIST_OF_ARRAYS[1]);
     }
 

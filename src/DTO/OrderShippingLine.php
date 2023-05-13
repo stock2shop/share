@@ -30,24 +30,4 @@ class OrderShippingLine extends DTO
         $this->tax_lines = $this->sortArray($tax_lines, 'title');
         $this->title     = self::stringFrom($data, 'title');
     }
-
-
-
-    public static function createFromJSON(string $json): OrderShippingLine
-    {
-        $data = json_decode($json, true);
-        return new OrderShippingLine($data);
-    }
-
-    /**
-     * @return OrderShippingLine[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new OrderShippingLine((array)$item);
-        }
-        return $a;
-    }
 }

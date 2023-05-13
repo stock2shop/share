@@ -69,7 +69,6 @@ class Map implements IteratorInterface
      */
     private function getKey(mixed $item): mixed
     {
-
         if (is_array($item)) {
             if (
                 !isset($item[$this->key])) {
@@ -162,7 +161,7 @@ class Map implements IteratorInterface
     {
         $arr = [];
         foreach ($this->map as $v) {
-            $arr[] = $v;
+            $arr[] = (array)$v;
         }
         return $arr;
     }

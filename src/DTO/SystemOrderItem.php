@@ -92,24 +92,4 @@ class SystemOrderItem extends OrderItem
         $this->total_display          = self::stringFrom($data, 'total_display');
         $this->fulfillments           = self::sortArray($fulfillments, 'fulfillment_id');
     }
-
-
-
-    public static function createFromJSON(string $json): SystemOrderItem
-    {
-        $data = json_decode($json, true);
-        return new SystemOrderItem($data);
-    }
-
-    /**
-     * @return SystemOrderItem[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemOrderItem((array)$item);
-        }
-        return $a;
-    }
 }

@@ -29,24 +29,4 @@ class FulfillmentLineItem extends DTO
         $this->sku           = self::stringFrom($data, "sku");
         $this->fulfilled_qty = self::intFrom($data, "fulfilled_qty");
     }
-
-
-
-    public static function createFromJSON(string $json): FulfillmentLineItem
-    {
-        $data = json_decode($json, true);
-        return new FulfillmentLineItem($data);
-    }
-
-    /**
-     * @return FulfillmentLineItem[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new FulfillmentLineItem((array)$item);
-        }
-        return $a;
-    }
 }

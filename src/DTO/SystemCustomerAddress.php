@@ -49,24 +49,4 @@ class SystemCustomerAddress extends CustomerAddress
         $this->modified   = self::stringFrom($data, 'modified');
         $this->type   = self::stringFrom($data, 'type');
     }
-
-    public static function createFromJSON(string $json): SystemCustomerAddress
-    {
-        $data = json_decode($json, true);
-        return new SystemCustomerAddress($data);
-    }
-
-
-
-    /**
-     * @return SystemCustomerAddress[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemCustomerAddress((array)$item);
-        }
-        return $a;
-    }
 }

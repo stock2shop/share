@@ -34,24 +34,4 @@ class ChannelOrderItem extends OrderItem
 
         $this->tax_lines            = self::sortArray($tax_lines, 'title');
     }
-
-
-
-    public static function createFromJSON(string $json): ChannelOrderItem
-    {
-        $data = json_decode($json, true);
-        return new ChannelOrderItem($data);
-    }
-
-    /**
-     * @return ChannelOrderItem[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelOrderItem((array)$item);
-        }
-        return $a;
-    }
 }

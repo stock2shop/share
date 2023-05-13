@@ -19,9 +19,4 @@ use JsonSerializable;
  */
 interface IteratorInterface extends ArrayAccess, IteratorAggregate, Countable, JsonSerializable
 {
-    /**
-     * Sorts iterator values
-     * @return void
-     */
-    public function sort(): void;
 }

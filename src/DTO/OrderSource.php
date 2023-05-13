@@ -26,24 +26,4 @@ class OrderSource extends DTO
         $this->source_customer_code = self::stringFrom($data, "source_customer_code");
         $this->source_order_code    = self::stringFrom($data, "source_order_code");
     }
-
-    public static function createFromJSON(string $json): OrderSource
-    {
-        $data = json_decode($json, true);
-        return new OrderSource($data);
-    }
-
-
-
-    /**
-     * @return OrderSource[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new OrderSource((array)$item);
-        }
-        return $a;
-    }
 }

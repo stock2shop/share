@@ -62,24 +62,4 @@ class SystemOrderShippingLine extends OrderShippingLine
         $this->total_discount_display = self::stringFrom($data, "total_discount_display");
         $this->total_display          = self::stringFrom($data, "total_display");
     }
-
-
-
-    public static function createFromJSON(string $json): SystemOrderShippingLine
-    {
-        $data = json_decode($json, true);
-        return new SystemOrderShippingLine($data);
-    }
-
-    /**
-     * @return SystemOrderShippingLine[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemOrderShippingLine((array)$item);
-        }
-        return $a;
-    }
 }

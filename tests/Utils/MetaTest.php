@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Stock2Shop\Tests\Share\Utils;
 
 use PHPUnit\Framework\TestCase;
+use Stock2Shop\Share\Map;
 use Stock2Shop\Share\DTO;
-use Stock2Shop\Share\DTO\Maps\Metas;
 use Stock2Shop\Share\Utils\Meta;
 
 class MetaTest extends TestCase
@@ -41,7 +41,7 @@ class MetaTest extends TestCase
     /**
      * @dataProvider IsTrueDataProvider
      */
-    public function testIsTrue(Metas $meta, string $key, bool $expects): void
+    public function testIsTrue(Map $meta, string $key, bool $expects): void
     {
         $bool = Meta::isTrue($meta, $key);
         $this->assertEquals($expects, $bool);
@@ -50,7 +50,7 @@ class MetaTest extends TestCase
     /**
      * @dataProvider GetValueDataProvider
      */
-    public function testGetValue(Metas $meta, string $key, ?string $expects): void
+    public function testGetValue(Map $meta, string $key, ?string $expects): void
     {
         $bool = Meta::isTrue($meta, $key);
         $this->assertEquals($expects, $bool);
@@ -58,7 +58,10 @@ class MetaTest extends TestCase
 
     private function GetValueDataProvider(): array
     {
-        $meta = new Metas(self::$meta);
+        $meta = new Map(
+            DTO\Meta::createArray(self::$meta),
+            'key'
+        );
         return [
             [
                 $meta,
@@ -85,7 +88,10 @@ class MetaTest extends TestCase
 
     private function IsTrueDataProvider(): array
     {
-        $meta = DTO\Meta::createArray(self::$meta);
+        $meta = new Map(
+            DTO\Meta::createArray(self::$meta),
+            'key'
+        );
         return [
             [
                 $meta,

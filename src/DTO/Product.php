@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\DTO\Maps\Metas;
+use Stock2Shop\Share\Map;
 
 /**
  * @psalm-import-type TypeProductOption from ProductOption
@@ -32,8 +32,8 @@ class Product extends DTO
     public ?string $vendor;
     /** @var ProductOption[] $options */
     public array $options;
-    /** @var Metas $meta */
-    public Metas $meta;
+    /** @var Map<string, Meta> $meta */
+    public Map $meta;
 
     /**
      * @param TypeProduct $data
@@ -51,7 +51,10 @@ class Product extends DTO
         $this->tags         = $this->sortCSV($tags);
         $this->vendor       = self::stringFrom($data, "vendor");
         $this->options      = $this->sortArray($options, "name");
-        $this->meta         = new Metas(self::arrayFrom($data, "meta"));
+        $this->meta         = new Map(
+            Meta::createArray(self::arrayFrom($data, 'meta')),
+            'key'
+        );
     }
 
     public function computeHash(): string
@@ -59,35 +62,5 @@ class Product extends DTO
         $p    = new Product($this->toArray());
         $json = json_encode($p);
         return md5($json);
-    }
-
-    public static function createFromJSON(string $json): Product
-    {
-        $data = json_decode($json, true);
-        return new Product($data);
-    }
-
-    /**
-     * @return Product[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Product((array)$item);
-        }
-        return $a;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
-    }
-
-    public function toArray(): array {
-        $meta = $this->meta->toArray();
-        $arr = (array)$this;
-        $arr['meta'] = $meta;
-        return $arr;
     }
 }

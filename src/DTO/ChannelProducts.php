@@ -22,24 +22,4 @@ class ChannelProducts extends DTO
     {
         $this->channel_products = ChannelProduct::createArray(self::arrayFrom($data, 'channel_products'));
     }
-
-
-
-    public static function createFromJSON(string $json): ChannelProducts
-    {
-        $data = json_decode($json, true);
-        return new ChannelProducts($data);
-    }
-
-    /**
-     * @return ChannelProducts[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelProducts((array)$item);
-        }
-        return $a;
-    }
 }

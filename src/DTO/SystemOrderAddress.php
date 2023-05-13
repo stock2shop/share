@@ -44,24 +44,4 @@ class SystemOrderAddress extends Address
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
     }
-
-    public static function createFromJSON(string $json): SystemOrderAddress
-    {
-        $data = json_decode($json, true);
-        return new SystemOrderAddress($data);
-    }
-
-
-
-    /**
-     * @return SystemOrderAddress[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemOrderAddress((array)$item);
-        }
-        return $a;
-    }
 }

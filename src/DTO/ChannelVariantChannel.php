@@ -41,24 +41,4 @@ class ChannelVariantChannel extends DTO
             $this->channel_variant_code !== ''
         );
     }
-
-    public static function createFromJSON(string $json): ChannelVariantChannel
-    {
-        $data = json_decode($json, true);
-        return new ChannelVariantChannel($data);
-    }
-
-
-
-    /**
-     * @return ChannelVariantChannel[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelVariantChannel((array)$item);
-        }
-        return $a;
-    }
 }

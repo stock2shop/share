@@ -81,14 +81,6 @@ class ChannelProduct extends Product
         $this->variants             = $this->sortArray($variants, 'id');
     }
 
-    public static function createFromJSON(string $json): ChannelProduct
-    {
-        $data = json_decode($json, true);
-        return new ChannelProduct($data);
-    }
-
-
-
     /**
      * Computes a hash of the ChannelProduct
      */
@@ -104,17 +96,5 @@ class ChannelProduct extends Product
             $productHash .= sprintf("\nvariant_%d=%s", $v->id, $v->computeHash());
         }
         return md5($productHash);
-    }
-
-    /**
-     * @return ChannelProduct[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelProduct((array)$item);
-        }
-        return $a;
     }
 }

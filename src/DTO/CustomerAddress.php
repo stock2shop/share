@@ -43,24 +43,4 @@ class CustomerAddress extends Address
         $this->address_code = self::stringFrom($data, 'address_code');
         $this->default      = self::boolFrom($data, 'default');
     }
-
-    public static function createFromJSON(string $json): CustomerAddress
-    {
-        $data = json_decode($json, true);
-        return new CustomerAddress($data);
-    }
-
-
-
-    /**
-     * @return CustomerAddress[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new CustomerAddress((array)$item);
-        }
-        return $a;
-    }
 }

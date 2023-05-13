@@ -90,7 +90,7 @@ class ChannelProductTest extends TestCase
         $this->assertChannelProduct($cp);
     }
 
-    private function assertChannelProduct(DTO\ChannelProduct $c)
+    private function assertChannelProduct(DTO\ChannelProduct $c): void
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Product', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);

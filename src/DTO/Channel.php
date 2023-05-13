@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\DTO\Maps\Metas;
+use Stock2Shop\Share\Map;
 
 /**
  * @psalm-import-type TypeMeta from Meta
@@ -29,8 +29,8 @@ class Channel extends DTO
     public ?string $created;
     public ?string $description;
     public ?int $id;
-    /** @var Metas $meta */
-    public Metas $meta;
+    /** @var Map<string, Meta> $meta */
+    public Map $meta;
     public ?string $modified;
     public ?string $price_tier;
     public ?string $qty_availability;
@@ -47,31 +47,14 @@ class Channel extends DTO
         $this->created          = self::stringFrom($data, 'created');
         $this->description      = self::stringFrom($data, 'description');
         $this->id               = self::intFrom($data, 'id');
-        $this->meta             = new Metas(self::arrayFrom($data, "meta"));
+        $this->meta             = new Map(
+            Meta::createArray(self::arrayFrom($data, 'meta')),
+            'key'
+        );
         $this->modified         = self::stringFrom($data, 'modified');
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
         $this->sync_token       = self::stringFrom($data, 'sync_token');
         $this->type             = self::stringFrom($data, 'type');
-    }
-
-
-
-    public static function createFromJSON(string $json): Channel
-    {
-        $data = json_decode($json, true);
-        return new Channel($data);
-    }
-
-    /**
-     * @return Channel[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Channel((array)$item);
-        }
-        return $a;
     }
 }

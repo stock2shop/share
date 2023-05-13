@@ -30,26 +30,6 @@ class Customer extends DTO
         $this->last_name         = self::stringFrom($data, 'last_name');
     }
 
-    public static function createFromJSON(string $json): Customer
-    {
-        $data = json_decode($json, true);
-        return new Customer($data);
-    }
-
-
-
-    /**
-     * @return Customer[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Customer((array)$item);
-        }
-        return $a;
-    }
-
     public function computeHash(): string
     {
         $p    = new Customer((array)$this);

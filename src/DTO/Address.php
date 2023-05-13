@@ -53,24 +53,4 @@ class Address extends DTO
         $this->province_code = self::stringFrom($data, 'province_code');
         $this->zip           = self::stringFrom($data, 'zip');
     }
-
-    public static function createFromJSON(string $json): Address
-    {
-        $data = json_decode($json, true);
-        return new Address($data);
-    }
-
-
-
-    /**
-     * @return Address[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Address((array)$item);
-        }
-        return $a;
-    }
 }

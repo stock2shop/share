@@ -42,24 +42,4 @@ class ChannelImageChannel extends DTO
 
         );
     }
-
-    public static function createFromJSON(string $json): ChannelImageChannel
-    {
-        $data = json_decode($json, true);
-        return new ChannelImageChannel($data);
-    }
-
-
-
-    /**
-     * @return ChannelImageChannel[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelImageChannel((array)$item);
-        }
-        return $a;
-    }
 }

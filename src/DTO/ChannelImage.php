@@ -39,24 +39,4 @@ class ChannelImage extends Image
         $this->id                 = self::intFrom($data, 'id');
         $this->success            = self::boolFrom($data, 'success');
     }
-
-    public static function createFromJSON(string $json): ChannelImage
-    {
-        $data = json_decode($json, true);
-        return new ChannelImage($data);
-    }
-
-
-
-    /**
-     * @return ChannelImage[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelImage((array)$item);
-        }
-        return $a;
-    }
 }

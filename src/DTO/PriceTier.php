@@ -24,24 +24,4 @@ class PriceTier extends DTO
         $this->tier  = self::stringFrom($data, "tier");
         $this->price = self::floatFrom($data, "price");
     }
-
-    public static function createFromJSON(string $json): PriceTier
-    {
-        $data = json_decode($json, true);
-        return new PriceTier($data);
-    }
-
-
-
-    /**
-     * @return PriceTier[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new PriceTier((array)$item);
-        }
-        return $a;
-    }
 }

@@ -24,24 +24,4 @@ class OrderMeta extends DTO
         $this->key           = self::stringFrom($data, "key");
         $this->value         = self::stringFrom($data, "value");
     }
-
-    public static function createFromJSON(string $json): OrderMeta
-    {
-        $data = json_decode($json, true);
-        return new OrderMeta($data);
-    }
-
-
-
-    /**
-     * @return OrderMeta[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new OrderMeta((array)$item);
-        }
-        return $a;
-    }
 }

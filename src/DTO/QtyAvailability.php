@@ -23,24 +23,4 @@ class QtyAvailability extends DTO
         $this->description = self::stringFrom($data, "description");
         $this->qty         = self::intFrom($data, "qty");
     }
-
-    public static function createFromJSON(string $json): QtyAvailability
-    {
-        $data = json_decode($json, true);
-        return new QtyAvailability($data);
-    }
-
-
-
-    /**
-     * @return QtyAvailability[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new QtyAvailability((array)$item);
-        }
-        return $a;
-    }
 }

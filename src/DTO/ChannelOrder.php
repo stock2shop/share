@@ -9,7 +9,7 @@ namespace Stock2Shop\Share\DTO;
  * @psalm-import-type TypeChannelOrderShippingLine from ChannelOrderShippingLine
  * @psalm-import-type TypeChannelOrderItem from ChannelOrderItem
  * @psalm-import-type TypeAddress from Address
- * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeOrderMeta from OrderMeta
  * @psalm-type TypeChannelOrder = array{
  *     billing_address?: TypeAddress|ChannelOrderAddress,
  *     channel_id?: int|null,
@@ -17,7 +17,7 @@ namespace Stock2Shop\Share\DTO;
  *     customer?: TypeChannelOrderCustomer,
  *     instruction?: string|null,
  *     line_items?: array<int, TypeChannelOrderItem>|array<int, ChannelOrderItem>,
- *     meta?: array<int, TypeMeta>|array<int, Meta>,
+ *     meta?: array<int, TypeOrderMeta>|array<int, OrderMeta>,
  *     notes?: string|null,
  *     ordered_date?: string|null,
  *     params?: array<string, string>,
@@ -73,8 +73,7 @@ class ChannelOrder extends Order
     public ?string $instruction;
     /** @var ChannelOrderItem[] */
     public array $line_items;
-    /** @var OrderMeta[] */
-    public array $meta;
+
     /** @var array<string, string> */
     public array $params;
     public Address $shipping_address;
@@ -90,7 +89,6 @@ class ChannelOrder extends Order
         parent::__construct($data);
 
         $line_items     = ChannelOrderItem::createArray(self::arrayFrom($data, 'line_items'));
-        $meta           = OrderMeta::createArray(self::arrayFrom($data, 'meta'));
         $params         = self::arrayFrom($data, 'params');
         $shipping_lines = ChannelOrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
 
@@ -101,7 +99,6 @@ class ChannelOrder extends Order
         $this->customer         = new ChannelOrderCustomer(self::arrayFrom($data, 'customer'));
         $this->instruction      = self::stringFrom($data, 'instruction');
         $this->line_items       = $this->sortArray($line_items, 'sku');
-        $this->meta             = $this->sortArray($meta, 'key');
         $this->params           = $params;
         $this->shipping_address = new Address(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines   = $this->sortArray($shipping_lines, 'title');
@@ -117,29 +114,10 @@ class ChannelOrder extends Order
      */
     public function computeHash(): string
     {
-        $p = new ChannelOrder((array)$this);
-        unset($p->instruction);
+        $arr = $this->toArray();
+        unset($arr['instruction']);
+        $p = new ChannelOrder($arr);
         $json = json_encode($p);
         return md5($json);
-    }
-
-
-
-    public static function createFromJSON(string $json): ChannelOrder
-    {
-        $data = json_decode($json, true);
-        return new ChannelOrder($data);
-    }
-
-    /**
-     * @return ChannelOrder[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelOrder((array)$item);
-        }
-        return $a;
     }
 }

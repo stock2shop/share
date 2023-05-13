@@ -44,24 +44,4 @@ class ChannelProductChannel extends DTO
             $this->channel_product_code !== ''
         );
     }
-
-    public static function createFromJSON(string $json): ChannelProductChannel
-    {
-        $data = json_decode($json, true);
-        return new ChannelProductChannel($data);
-    }
-
-
-
-    /**
-     * @return ChannelProductChannel[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelProductChannel((array)$item);
-        }
-        return $a;
-    }
 }

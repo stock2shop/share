@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\DTO\Maps\Metas;
-
 /**
  * This is used by many classes.
  * e.g. Customers, Products, Sources, Channels ...
@@ -34,21 +32,12 @@ class Meta extends DTO
         $this->template_name = self::stringFrom($data, "template_name");
     }
 
-    public static function createFromJSON(string $json): Meta
-    {
-        $data = json_decode($json, true);
-        return new Meta($data);
-    }
-
-
-
-    /**
-     * @param array $data
-     * @return Metas
-     */
-    public static function createArray(array $data): Metas
-    {
-        return new Metas($data);
-    }
-
+//    /**
+//     * @param array $data
+//     * @return Metas
+//     */
+//    public static function createArray(array $data): Metas
+//    {
+//        return new Metas($data);
+//    }
 }

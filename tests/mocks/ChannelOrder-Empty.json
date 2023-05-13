@@ -1,0 +1,47 @@
+{
+    "channel_order_code": null,
+    "channel_id": null,
+    "notes": null,
+    "total_discount": null,
+    "ordered_date" : null,
+    "instruction" : null,
+    "params" : {},
+    "customer": {
+        "channel_customer_code": null,
+        "email": null,
+        "first_name": null,
+        "last_name": null,
+        "accepts_marketing": null
+    },
+    "line_items": [],
+    "shipping_lines": [],
+    "meta": [],
+    "shipping_address": {
+        "address1": null,
+        "address2": null,
+        "city": null,
+        "company": null,
+        "country": null,
+        "country_code": null,
+        "first_name": null,
+        "last_name": null,
+        "phone": null,
+        "province": null,
+        "province_code": null,
+        "zip": null
+    },
+    "billing_address": {
+        "address1": null,
+        "address2": null,
+        "city": null,
+        "company": null,
+        "country": null,
+        "country_code": null,
+        "first_name": null,
+        "last_name": null,
+        "phone": null,
+        "province": null,
+        "province_code": null,
+        "zip": null
+    }
+}

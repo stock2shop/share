@@ -127,7 +127,7 @@ class ChannelOrderTest extends TestCase
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->shipping_lines[0]->tax_lines[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelOrderItem', $c->line_items[0]);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderItemTax', $c->line_items[0]->tax_lines[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\OrderMeta', $c->meta['key']);
     }
 
     /** @dataProvider computeHashArrayOrderingDataProvider */
@@ -167,7 +167,7 @@ class ChannelOrderTest extends TestCase
                     "total_discount"     => 5.00,
                     "state"              => null,
                 ],
-                'a12c2de493b1d0e749779984ad7aa36b'
+                '28798f9034bbb23118a37db5a94c6ac0'
             ],
             [
                 [
@@ -177,7 +177,7 @@ class ChannelOrderTest extends TestCase
                     "ordered_date"       => "1970-01-01 00:00:00",
                     "total_discount"     => 5.00,
                 ],
-                'a12c2de493b1d0e749779984ad7aa36b'
+                '28798f9034bbb23118a37db5a94c6ac0'
             ],
             [
                 [
@@ -187,7 +187,7 @@ class ChannelOrderTest extends TestCase
                     "channel_order_code" => "channel_order_code",
                     'channel_id'         => 20,
                 ],
-                'a12c2de493b1d0e749779984ad7aa36b'
+                '28798f9034bbb23118a37db5a94c6ac0'
             ],
             [
                 [
@@ -309,7 +309,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'e0004e56dbcfc671745b725e0b515b7d'
+                'e1f8ffa46d7d56cfe2f3e8d8cb316400'
             ],
         ];
     }
@@ -369,7 +369,7 @@ class ChannelOrderTest extends TestCase
                         "shipping_lines"     => []
                     ],
                 ],
-                '1143df55718bd2ce12696343e569be3b',
+                '4a958c3857ad9fdf13d654177001919e',
             ]
         ];
     }
@@ -512,7 +512,7 @@ class ChannelOrderTest extends TestCase
                         ]
                     ]
                 ],
-                'hash' => '8e9a447587439c92dbb960c6cf9e7b32',
+                'hash' => '180ca0c772dfacee99ce01d54e01cd42',
             ]
         ];
     }

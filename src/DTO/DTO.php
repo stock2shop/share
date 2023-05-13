@@ -6,6 +6,7 @@ namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
 use JsonSerializable;
+use Stock2Shop\Share\Map;
 use Stock2Shop\Share\Utils\Date;
 
 abstract class DTO implements JsonSerializable, DTOInterface
@@ -187,6 +188,70 @@ abstract class DTO implements JsonSerializable, DTOInterface
 
     public function jsonSerialize(): array
     {
-        return (array)$this;
+        return $this->toArray();
+    }
+
+    /**
+     * Creates concrete DTO instance from JSON string.
+     * @param string $json
+     * @return static
+     */
+    public static function createFromJSON(string $json): static
+    {
+        $data = json_decode($json, true);
+        /** @psalm-suppress TooManyArguments */
+        return new static($data);
+    }
+
+    /**
+     * Converts DTO to an array
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->dto_to_array($this);
+    }
+
+    /**
+     * Recursively cast to array
+     * @param mixed $dto
+     * @return array
+     */
+    protected function dto_to_array(mixed $dto): array
+    {
+        $ret = (array)$dto;
+        foreach ($ret as &$item) {
+            // for maps (custom iterators) we need to cast each
+            // property into an array manually
+            // "(array) $map" wont work here...
+            if ($item instanceof Map) {
+                if (count($item) === 0) {
+                    $item = [];
+                } else {
+                    $item = $item->toArray();
+                }
+            }
+            if (!empty($item)) {
+                if (is_object($item) || is_array($item)) {
+                    $item = $this->dto_to_array($item);
+                }
+            }
+        }
+        return $ret;
+    }
+
+    /**
+     * Creates an array of concrete instances
+     * @param array $data
+     * @return static[]|Map
+     */
+    public static function createArray(array $data): array|Map
+    {
+        $a = [];
+        foreach ($data as $item) {
+            /** @psalm-suppress TooManyArguments */
+            $a[] = new static((array)$item);
+        }
+        return $a;
     }
 }

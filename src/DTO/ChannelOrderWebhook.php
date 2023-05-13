@@ -23,24 +23,4 @@ class ChannelOrderWebhook extends DTO
         $this->storage_code = self::stringFrom($data, 'storage_code');
         $this->payload      = self::stringFrom($data, 'payload');
     }
-
-    public static function createFromJSON(string $json): ChannelOrderWebhook
-    {
-        $data = json_decode($json, true);
-        return new ChannelOrderWebhook($data);
-    }
-
-
-
-    /**
-     * @return ChannelOrderWebhook[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelOrderWebhook((array)$item);
-        }
-        return $a;
-    }
 }

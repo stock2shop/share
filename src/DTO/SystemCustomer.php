@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\DTO\Maps\Metas;
+use Stock2Shop\Share\Map;
 
 /**
  * @psalm-import-type TypeSystemCustomerAddress from SystemCustomerAddress
@@ -37,8 +37,8 @@ class SystemCustomer extends Customer
     public ?int $client_id;
     public ?string $created;
     public ?int $id;
-    /** @var Metas $meta */
-    public Metas $meta;
+    /** @var Map<string, Meta> $meta */
+    public Map $meta;
     public ?string $modified;
     public User $user;
 
@@ -55,26 +55,11 @@ class SystemCustomer extends Customer
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
         $this->id                    = self::intFrom($data, "id");
-        $this->meta                  = new Metas(self::arrayFrom($data, 'meta'));
+        $this->meta                  = new Map(
+            Meta::createArray(self::arrayFrom($data, 'meta')),
+            'key'
+        );
         $this->modified              = self::stringFrom($data, 'modified');
         $this->user                  = new User(self::arrayFrom($data, 'user'));
-    }
-
-    public static function createFromJSON(string $json): SystemCustomer
-    {
-        $data = json_decode($json, true);
-        return new SystemCustomer($data);
-    }
-
-    /**
-     * @return SystemCustomer[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemCustomer((array)$item);
-        }
-        return $a;
     }
 }

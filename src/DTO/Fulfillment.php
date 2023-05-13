@@ -37,34 +37,4 @@ class Fulfillment extends DTO
         $this->tracking_number               = self::stringFrom($data, 'tracking_number');
         $this->tracking_url                  = self::stringFrom($data, 'tracking_url');
     }
-
-    public static function createFromJSON(string $json): Fulfillment
-    {
-        $data = json_decode($json, true);
-        return new Fulfillment($data);
-    }
-
-
-
-    /**
-     * @return Fulfillment[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Fulfillment((array)$item);
-        }
-        return $a;
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function setState(?string $state): void
-    {
-        $this->state = $state;
-    }
 }
