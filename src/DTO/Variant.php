@@ -38,8 +38,8 @@ class Variant extends DTO
      * Once we allow negatives the check below should be changed
      */
     public ?int $qty;
-    /** @var QtyAvailability[] $qty_availability */
-    public array $qty_availability;
+    /** @var Map<string, QtyAvailability> $qty_availability */
+    public Map $qty_availability;
     public ?float $price;
     /** @var Map<string, PriceTier> $price_tiers */
     public Map $price_tiers;
@@ -64,7 +64,10 @@ class Variant extends DTO
         $this->sku                  = self::stringFrom($data, "sku");
         $this->active               = self::boolFrom($data, "active");
         $this->qty                  = ($qty < 0) ? 0 : $qty;
-        $this->qty_availability     = $this->sortArray($qty_availability, "description");
+        $this->qty_availability     = new Map(
+            QtyAvailability::createArray(self::arrayFrom($data, 'qty_availability')),
+            'description'
+        );
         $this->price                = self::floatFrom($data, "price");
         $this->price_tiers          = new Map(
             PriceTier::createArray(self::arrayFrom($data, 'price_tiers')),
