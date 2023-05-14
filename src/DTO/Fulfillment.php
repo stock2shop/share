@@ -37,4 +37,23 @@ class Fulfillment extends DTO
         $this->tracking_number               = self::stringFrom($data, 'tracking_number');
         $this->tracking_url                  = self::stringFrom($data, 'tracking_url');
     }
+
+    /**
+     * Method used by state machine
+     * @return string|null
+     */
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    /**
+     * Method used by state machine
+     * @param string|null $state
+     * @return void
+     */
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
+    }
 }

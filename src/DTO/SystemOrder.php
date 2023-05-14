@@ -130,4 +130,23 @@ class SystemOrder extends Order
         $this->total_discount_display = self::stringFrom($data, "total_discount_display");
         $this->total_display          = self::stringFrom($data, "total_display");
     }
+
+    /**
+     * Method used by state machine
+     * @return string|null
+     */
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    /**
+     * Method used by state machine
+     * @param string|null $state
+     * @return void
+     */
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
+    }
 }
