@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Tests\Share;
+namespace Stock2Shop\Tests\Share\Utils;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
-use Stock2Shop\Share\Map;
+use Stock2Shop\Share\Utils\Map;
 
 class MapTest extends TestCase
 {
@@ -144,6 +144,12 @@ class MapTest extends TestCase
         $iterator['x'] = new DTO\Meta(self::LIST_OF_ARRAYS[0]);
         /** @psalm-suppress InvalidArgument */
         $iterator['y'] = new DTO\OrderMeta(self::LIST_OF_ARRAYS[1]);
+    }
+
+    public function testGetKeys(): void {
+        $iterator = new Map(self::LIST_OF_ARRAYS, self::KEY);
+        $keys = $iterator->getKeys();
+        $this->assertEquals(self::KEYS_IN_LIST_SORTED, $keys);
     }
 
     public function testNullOrEmpty(): void

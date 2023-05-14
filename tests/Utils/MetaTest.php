@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Stock2Shop\Tests\Share\Utils;
 
 use PHPUnit\Framework\TestCase;
-use Stock2Shop\Share\Map;
 use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\Utils\Map;
 use Stock2Shop\Share\Utils\Meta;
 
 class MetaTest extends TestCase

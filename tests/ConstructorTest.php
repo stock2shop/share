@@ -90,7 +90,7 @@ class ConstructorTest extends TestCase
             if(
                 str_contains($type, 'DTO') ||
                 $type === 'array' ||
-                $type === 'Stock2Shop\Share\Map'
+                $type === 'Stock2Shop\Share\Utils\Map'
             ) {
                 $this->assertFalse($property->getType()->allowsNull(), $msg . ' Cannot be nullable');
             } else {

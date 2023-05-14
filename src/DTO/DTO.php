@@ -6,8 +6,8 @@ namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
 use JsonSerializable;
-use Stock2Shop\Share\Map;
 use Stock2Shop\Share\Utils\Date;
+use Stock2Shop\Share\Utils\Map;
 
 abstract class DTO implements JsonSerializable, DTOInterface
 {

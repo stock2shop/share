@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Stock2Shop\Share;
+namespace Stock2Shop\Share\Utils;
 
+use Stock2Shop\Share\IteratorInterface;
 use Traversable;
 
 /**
@@ -173,5 +174,13 @@ class Map implements IteratorInterface
     public function sort(): void
     {
         ksort($this->map, SORT_REGULAR);
+    }
+
+    /**
+     * @return array<int, TKey>
+     */
+    public function getKeys(): array
+    {
+        return array_keys($this->map);
     }
 }

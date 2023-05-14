@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use Stock2Shop\Share\Map;
+use Stock2Shop\Share\Utils\Map;
 
 /**
  * @psalm-import-type TypeProductOption from ProductOption

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\Utils;
 
-use Stock2Shop\Share\Map;
-
 class Meta
 {
     /**
