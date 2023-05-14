@@ -225,11 +225,7 @@ abstract class DTO implements JsonSerializable, DTOInterface
             // property into an array manually
             // "(array) $map" wont work here...
             if ($item instanceof Map) {
-                if (count($item) === 0) {
-                    $item = [];
-                } else {
-                    $item = $item->toArray();
-                }
+                $item = $item->toArray();
             }
             if (!empty($item)) {
                 if (is_object($item) || is_array($item)) {
@@ -243,9 +239,9 @@ abstract class DTO implements JsonSerializable, DTOInterface
     /**
      * Creates an array of concrete instances
      * @param array $data
-     * @return static[]|Map
+     * @return static[]
      */
-    public static function createArray(array $data): array|Map
+    public static function createArray(array $data): array
     {
         $a = [];
         foreach ($data as $item) {
