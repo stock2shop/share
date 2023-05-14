@@ -1,0 +1,22 @@
+{
+    "channel_customer_code": null,
+    "email": null,
+    "first_name": null,
+    "last_name": null,
+    "id": null,
+    "created": null,
+    "modified": null,
+    "channel_id": null,
+    "client_id": null,
+    "accepts_marketing": null,
+    "active": null,
+    "meta": [],
+    "addresses": [],
+    "user": {
+        "customer_id" : null,
+        "id" : null,
+        "segments" : [],
+        "price_tier" : null,
+        "qty_availability" : null
+    }
+}

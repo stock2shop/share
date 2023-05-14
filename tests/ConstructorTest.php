@@ -42,6 +42,16 @@ class ConstructorTest extends TestCase
         $c = $class::createArray([$data]);
         $result = json_decode(json_encode($c), true);
         $this->assertEquals([$data], $result);
+
+        // if the data is empty, we should get the same result
+        // when constructing an empty DTO.
+        /** @psalm-suppress InternalMethod */
+        $name = $this->getName();
+        if(str_contains($name, 'Empty')) {
+            $c      = new $class([]);
+            $result = json_decode(json_encode($c), true);
+            $this->assertEquals($data, $result);
+        }
     }
 
     private function constructProvider(): \Generator
