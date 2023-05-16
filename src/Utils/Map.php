@@ -136,7 +136,7 @@ class Map implements IteratorInterface
     }
 
     /**
-     * @param TKey $offset
+     * @param TKey|null $offset
      * @param TValue $value
      * @return void
      */
