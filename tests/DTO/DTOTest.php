@@ -6,6 +6,7 @@ namespace Stock2Shop\Tests\Share\DTO;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Stock2Shop\Share\DTO\Customer;
 use Stock2Shop\Share\DTO\DTO;
 use Stock2Shop\Share\Utils\Map;
 
@@ -181,6 +182,11 @@ class DTOTest extends TestCase
         $map    = ['meta' => new Map($arr['meta'], 'key')];
         $result = DTO::arrayFrom($map, 'meta');
         $this->assertEquals($arr['meta'], $result);
+
+        // from DTO
+        $customer = new Customer([]);
+        $result = DTO::arrayFrom(['customer' => $customer], 'customer');
+        $this->assertEquals((array) $customer, $result);
 
         // from scalar
         $this->expectExceptionMessage('value is not an array or map');

@@ -110,12 +110,15 @@ abstract class DTO implements JsonSerializable, DTOInterface
         if (!array_key_exists($key, $data)) {
             return [];
         }
-        if(empty($data[$key])) {
+        if (empty($data[$key])) {
             return [];
         }
         if (is_array($data[$key])) {
             return $data[$key];
-        } elseif ($data[$key] instanceof Map) {
+        } elseif (
+            $data[$key] instanceof Map ||
+            $data[$key] instanceof DTO
+        ) {
             return $data[$key]->toArray();
         } else {
             throw new InvalidArgumentException('value is not an array or map');
