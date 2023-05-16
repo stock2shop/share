@@ -99,17 +99,27 @@ abstract class DTO implements JsonSerializable, DTOInterface
         return null;
     }
 
+    /**
+     * Creates a array from a Map or array
+     * @param array $data
+     * @param string $key
+     * @return array
+     */
     public static function arrayFrom(array $data, string $key): array
     {
-        if (array_key_exists($key, $data)) {
-            switch (gettype($data[$key])) {
-                case "object":
-                    return (array)$data[$key];
-                case "array":
-                    return $data[$key];
-            }
+        if (!array_key_exists($key, $data)) {
+            return [];
         }
-        return [];
+        if(empty($data[$key])) {
+            return [];
+        }
+        if (is_array($data[$key])) {
+            return $data[$key];
+        } elseif ($data[$key] instanceof Map) {
+            return $data[$key]->toArray();
+        } else {
+            throw new InvalidArgumentException('value is not an array or map');
+        }
     }
 
     private static function toBool($arg): ?bool

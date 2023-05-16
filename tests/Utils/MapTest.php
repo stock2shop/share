@@ -7,6 +7,7 @@ namespace Stock2Shop\Tests\Share\Utils;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\DTO\Meta;
 use Stock2Shop\Share\Utils\Map;
 
 class MapTest extends TestCase
