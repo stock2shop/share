@@ -8,6 +8,19 @@ use Stock2Shop\Share\IteratorInterface;
 use Traversable;
 
 /**
+ * Turns a list into a map, keyed on a specific property.
+ * Unlike php array access, the key used to access the array is case-insensitive.
+ * Keys are converted to lowercase.
+ *
+ * e.g.
+ * <code>
+ * $map = new Map(['key' => 'A', 'value' => 'b']);
+ * $b = $map['a']->value;
+ * </code>
+ *
+ * The list can be any object or array with a unique key property.
+ * The map must consist of the same objects or arrays.
+ *
  * @template TKey
  * @template TValue
  * @implements IteratorInterface<TKey, TValue>
@@ -24,9 +37,9 @@ class Map implements IteratorInterface
 
     /**
      * @param array<int, TValue> $data
-     * @param string $key
+     * @param string $key_property
      */
-    public function __construct(array $data, private readonly string $key)
+    public function __construct(array $data, private readonly string $key_property)
     {
         $this->map = [];
         foreach ($data as $item) {
@@ -66,21 +79,22 @@ class Map implements IteratorInterface
     /**
      * TODO allowing blank keys for time being, remove once fixed hash tests.
      * @param mixed $item
-     * @return mixed
+     * @param bool $trim
+     * @return TKey
      */
-    private function getKey(mixed $item): mixed
+    private function getKey(mixed $item, bool $trim = true): mixed
     {
         if (is_array($item)) {
             if (
-                !isset($item[$this->key])) {
+                !isset($item[$this->key_property])) {
                 throw new \InvalidArgumentException('Empty key');
             }
-            return $item[$this->key];
+            return ($trim) ? $this->trimToLower($item[$this->key_property]) : $item[$this->key_property];
         } elseif (is_object($item)) {
-            if (!isset($item->{$this->key})) {
+            if (!isset($item->{$this->key_property})) {
                 throw new \InvalidArgumentException('Empty key');
             }
-            return $item->{$this->key};
+            return ($trim) ? $this->trimToLower($item->{$this->key_property}) : $item->{$this->key_property};
         }
         throw new \InvalidArgumentException('Invalid list');
     }
@@ -90,7 +104,12 @@ class Map implements IteratorInterface
      */
     public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->map);
+        // set original key (which does not change casing)
+        $data = [];
+        foreach ($this->map as $v) {
+            $data[$this->getKey($v, false)] = $v;
+        }
+        return new \ArrayIterator($data);
     }
 
     /**
@@ -99,7 +118,8 @@ class Map implements IteratorInterface
      */
     public function offsetExists(mixed $offset): bool
     {
-        return isset($this->map[$offset]);
+        $key = $this->trimToLower($offset);
+        return isset($this->map[$key]);
     }
 
     /**
@@ -108,8 +128,9 @@ class Map implements IteratorInterface
      */
     public function offsetGet(mixed $offset): mixed
     {
-        if (isset($this->map[$offset])) {
-            return $this->map[$offset];
+        $key = $this->trimToLower($offset);
+        if (isset($this->map[$key])) {
+            return $this->map[$key];
         }
         return null;
     }
@@ -123,7 +144,9 @@ class Map implements IteratorInterface
     {
         // check type is valid for existing map
         $this->validateType($value);
-        $this->map[$offset] = $value;
+        /** @var TKey $key */
+        $key             = $this->trimToLower($offset);
+        $this->map[$key] = $value;
         $this->sort();
     }
 
@@ -135,7 +158,8 @@ class Map implements IteratorInterface
      */
     public function offsetUnset(mixed $offset): void
     {
-        unset($this->map[$offset]);
+        $key = $this->trimToLower($offset);
+        unset($this->map[$key]);
     }
 
     public function count(): int
@@ -181,6 +205,15 @@ class Map implements IteratorInterface
      */
     public function getKeys(): array
     {
-        return array_keys($this->map);
+        $arr = [];
+        foreach ($this->map as $v) {
+            $arr[] = $this->getKey($v, false);
+        }
+        return $arr;
+    }
+
+    private function trimToLower(mixed $val)
+    {
+        return (is_string($val))? trim(strtolower($val)): $val;
     }
 }

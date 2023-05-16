@@ -14,9 +14,9 @@ class MapTest extends TestCase
     const KEY = 'key';
 
     const LIST_OF_ARRAYS = [
-        ['key' => 'foo', 'value' => '1', 'template_name' => null],
+        ['key' => 'Foo', 'value' => '1', 'template_name' => null],
         ['key' => 'bar', 'value' => '2', 'template_name' => null],
-        ['key' => 'baz', 'value' => '3', 'template_name' => null],
+        ['key' => 'Baz', 'value' => '3', 'template_name' => null],
     ];
 
     const LIST_OF_ARRAYS_SORTED = [
@@ -27,8 +27,8 @@ class MapTest extends TestCase
 
     const KEYS_IN_LIST_SORTED = [
         'bar',
-        'baz',
-        'foo'
+        'Baz',
+        'Foo'
     ];
     const VALUES_IN_LIST_SORTED = [
         '2',
