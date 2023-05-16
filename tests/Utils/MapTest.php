@@ -60,9 +60,9 @@ class MapTest extends TestCase
 
         // add back value
         if(is_array($iterator['bar'])) {
-            $iterator['baz'] = self::LIST_OF_ARRAYS[2];
+            $iterator[] = self::LIST_OF_ARRAYS[2];
         } else {
-            $iterator['baz'] = new DTO\Meta(self::LIST_OF_ARRAYS[2]);
+            $iterator[] = new DTO\Meta(self::LIST_OF_ARRAYS[2]);
         }
         $this->assertSortedIterationAndArrayAccess(
             self::KEYS_IN_LIST_SORTED,

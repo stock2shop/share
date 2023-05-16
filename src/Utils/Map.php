@@ -144,8 +144,18 @@ class Map implements IteratorInterface
     {
         // check type is valid for existing map
         $this->validateType($value);
-        /** @var TKey $key */
-        $key             = $this->trimToLower($offset);
+
+        // Null offset might arise when appending:
+        // $map[] = $object;
+        // To support append try figure out the key from the object.
+        $key = $this->getKey($value);
+
+        // if the key is given, it should match the key from the object
+        if (!is_null($offset)) {
+            if ($key !== $this->trimToLower($offset)) {
+                throw new \InvalidArgumentException('Invalid Key');
+            }
+        }
         $this->map[$key] = $value;
         $this->sort();
     }
@@ -214,6 +224,6 @@ class Map implements IteratorInterface
 
     private function trimToLower(mixed $val)
     {
-        return (is_string($val))? trim(strtolower($val)): $val;
+        return (is_string($val)) ? trim(strtolower($val)) : $val;
     }
 }
