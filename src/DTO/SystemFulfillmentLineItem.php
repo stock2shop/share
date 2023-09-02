@@ -16,7 +16,7 @@ use JsonSerializable;
  *     sku?: string|null
  * }
  */
-class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSerializable, DTOInterface
+class SystemFulfillmentLineItem extends FulfillmentLineItem
 {
     public ?string $created;
     public ?string $modified;
@@ -31,28 +31,5 @@ class SystemFulfillmentLineItem extends FulfillmentLineItem implements JsonSeria
 
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    public static function createFromJSON(string $json): SystemFulfillmentLineItem
-    {
-        $data = json_decode($json, true);
-        return new SystemFulfillmentLineItem($data);
-    }
-
-    /**
-     * @return SystemFulfillmentLineItem[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemFulfillmentLineItem((array)$item);
-        }
-        return $a;
     }
 }

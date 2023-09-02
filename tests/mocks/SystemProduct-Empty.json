@@ -1,0 +1,21 @@
+{
+    "id": null,
+    "created": null,
+    "active": null,
+    "source_product_code": null,
+    "modified": null,
+    "client_id": null,
+    "source_id": null,
+    "body_html": null,
+    "collection": null,
+    "title": null,
+    "product_type": null,
+    "vendor": null,
+    "hash": null,
+    "tags": null,
+    "options": [],
+    "meta": [],
+    "images": [],
+    "channels": [],
+    "variants": []
+}

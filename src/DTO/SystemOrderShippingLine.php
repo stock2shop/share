@@ -2,8 +2,6 @@
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeSystemOrderShippingLine = array{
  *     created?: string|null,
@@ -24,7 +22,7 @@ use JsonSerializable;
  *     total_display?: string|null,
  * }
  */
-class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializable, DTOInterface
+class SystemOrderShippingLine extends OrderShippingLine
 {
     public ?string $created;
     public ?string $modified;
@@ -63,28 +61,5 @@ class SystemOrderShippingLine extends OrderShippingLine implements JsonSerializa
         $this->total_discount         = self::floatFrom($data, "total_discount");
         $this->total_discount_display = self::stringFrom($data, "total_discount_display");
         $this->total_display          = self::stringFrom($data, "total_display");
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    public static function createFromJSON(string $json): SystemOrderShippingLine
-    {
-        $data = json_decode($json, true);
-        return new SystemOrderShippingLine($data);
-    }
-
-    /**
-     * @return SystemOrderShippingLine[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemOrderShippingLine((array)$item);
-        }
-        return $a;
     }
 }

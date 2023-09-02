@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
+use Stock2Shop\Share\Utils\Map;
 
 /**
  * @psalm-import-type TypeSystemCustomerAddress from SystemCustomerAddress
@@ -27,7 +27,7 @@ use JsonSerializable;
  *     user?: TypeUser|User
  * }
  */
-class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
+class SystemCustomer extends Customer
 {
     public ?bool $active;
     /** @var SystemCustomerAddress[] $addresses */
@@ -37,8 +37,8 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
     public ?int $client_id;
     public ?string $created;
     public ?int $id;
-    /** @var Meta[] $meta */
-    public array $meta;
+    /** @var Map<string, Meta> $meta */
+    public Map $meta;
     public ?string $modified;
     public User $user;
 
@@ -47,7 +47,6 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         parent::__construct($data);
 
         $addresses = SystemCustomerAddress::createArray(self::arrayFrom($data, 'addresses'));
-        $meta      = Meta::createArray(self::arrayFrom($data, 'meta'));
 
         $this->active                = self::boolFrom($data, 'active');
         $this->addresses             = $this->sortArray($addresses, 'address_code');
@@ -56,31 +55,11 @@ class SystemCustomer extends Customer implements JsonSerializable, DTOInterface
         $this->client_id             = self::intFrom($data, 'client_id');
         $this->created               = self::stringFrom($data, 'created');
         $this->id                    = self::intFrom($data, "id");
-        $this->meta                  = $this->sortArray($meta, 'key');
+        $this->meta                  = new Map(
+            Meta::createArray(self::arrayFrom($data, 'meta')),
+            'key'
+        );
         $this->modified              = self::stringFrom($data, 'modified');
         $this->user                  = new User(self::arrayFrom($data, 'user'));
-    }
-
-    public static function createFromJSON(string $json): SystemCustomer
-    {
-        $data = json_decode($json, true);
-        return new SystemCustomer($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return SystemCustomer[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemCustomer((array)$item);
-        }
-        return $a;
     }
 }

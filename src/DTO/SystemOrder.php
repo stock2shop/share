@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeSystemOrderAddress from SystemOrderAddress
  * @psalm-import-type TypeSystemCustomer from SystemCustomer
  * @psalm-import-type TypeSystemFulfillment from SystemFulfillment
  * @psalm-import-type TypeSystemOrderHistory from SystemOrderHistory
  * @psalm-import-type TypeSystemOrderItem from SystemOrderItem
- * @psalm-import-type TypeMeta from Meta
+ * @psalm-import-type TypeOrderMeta from OrderMeta
  * @psalm-import-type TypeSystemOrderShippingLine from SystemOrderShippingLine
  * @psalm-import-type TypeOrderSource from OrderSource
  * @psalm-type TypeSystemOrder = array{
@@ -28,7 +26,7 @@ use JsonSerializable;
  *     line_item_sub_total?: float|null,
  *     line_item_tax?: float|null,
  *     line_items?: array<int, TypeSystemOrderItem>|array<int, SystemOrderItem>,
- *     meta?: array<int, TypeMeta>|array<int, Meta>,
+ *     meta?: array<int, TypeOrderMeta>|array<int, OrderMeta>,
  *     modified?: string|null,
  *     notes?: string|null,
  *     ordered_date?: string|null,
@@ -51,7 +49,7 @@ use JsonSerializable;
  *     total_display?: string|null
  * }
  */
-class SystemOrder extends Order implements JsonSerializable, DTOInterface
+class SystemOrder extends Order
 {
     public SystemOrderAddress $billing_address;
     public ?int $channel_id;
@@ -67,8 +65,6 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
     public ?float $line_item_tax;
     /** @var SystemOrderItem[] $line_items */
     public array $line_items;
-    /** @var OrderMeta[] $meta */
-    public array $meta;
     public ?string $modified;
     public SystemOrderAddress $shipping_address;
     /** @var SystemOrderShippingLine[] $shipping_lines */
@@ -100,7 +96,6 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $fulfillments   = SystemFulfillment::createArray(self::arrayFrom($data, "fulfillments"));
         $history        = SystemOrderHistory::createArray(self::arrayFrom($data, "history"));
         $line_items     = SystemOrderItem::createArray(self::arrayFrom($data, 'line_items'));
-        $meta           = OrderMeta::createArray(self::arrayFrom($data, "meta"));
         $shipping_lines = SystemOrderShippingLine::createArray(self::arrayFrom($data, 'shipping_lines'));
         $sources        = OrderSource::createArray(self::arrayFrom($data, 'sources'));
 
@@ -116,7 +111,6 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->line_item_sub_total    = self::floatFrom($data, 'line_item_sub_total');
         $this->line_item_tax          = self::floatFrom($data, 'line_item_tax');
         $this->line_items             = $this->sortArray($line_items, 'sku');
-        $this->meta                   = $this->sortArray($meta, 'key');
         $this->modified               = self::stringFrom($data, "modified");
         $this->shipping_address       = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
         $this->shipping_lines         = $this->sortArray($shipping_lines, 'title');
@@ -137,34 +131,20 @@ class SystemOrder extends Order implements JsonSerializable, DTOInterface
         $this->total_display          = self::stringFrom($data, "total_display");
     }
 
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    public static function createFromJSON(string $json): SystemOrder
-    {
-        $data = json_decode($json, true);
-        return new SystemOrder($data);
-    }
-
     /**
-     * @return SystemOrder[]
+     * Method used by state machine
+     * @return string|null
      */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemOrder((array)$item);
-        }
-        return $a;
-    }
-
     public function getState(): ?string
     {
         return $this->state;
     }
 
+    /**
+     * Method used by state machine
+     * @param string|null $state
+     * @return void
+     */
     public function setState(?string $state): void
     {
         $this->state = $state;

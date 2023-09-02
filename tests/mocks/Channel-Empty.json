@@ -1,0 +1,13 @@
+{
+    "id": null,
+    "created": null,
+    "description": null,
+    "modified": null,
+    "client_id": null,
+    "active": null,
+    "type": null,
+    "price_tier": null,
+    "qty_availability": null,
+    "sync_token": null,
+    "meta": []
+}

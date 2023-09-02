@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeSystemCustomerAddress = array{
  *     address1?: string|null,
@@ -28,7 +26,7 @@ use JsonSerializable;
  *     zip?: string|null
  *}
  */
-class SystemCustomerAddress extends CustomerAddress implements JsonSerializable, DTOInterface
+class SystemCustomerAddress extends CustomerAddress
 {
     public ?int $id;
     public ?int $client_id;
@@ -50,28 +48,5 @@ class SystemCustomerAddress extends CustomerAddress implements JsonSerializable,
         $this->created    = self::stringFrom($data, 'created');
         $this->modified   = self::stringFrom($data, 'modified');
         $this->type   = self::stringFrom($data, 'type');
-    }
-
-    public static function createFromJSON(string $json): SystemCustomerAddress
-    {
-        $data = json_decode($json, true);
-        return new SystemCustomerAddress($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return SystemCustomerAddress[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemCustomerAddress((array)$item);
-        }
-        return $a;
     }
 }

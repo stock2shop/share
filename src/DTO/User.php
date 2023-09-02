@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeSegment from Segment
  * @psalm-type TypeUser = array{
@@ -16,7 +14,7 @@ use JsonSerializable;
  *     segments?: array<int, TypeSegment>|array<int, Segment>
  * }
  */
-class User extends DTO implements JsonSerializable, DTOInterface
+class User extends DTO
 {
     public ?int $customer_id;
     public ?int $id;
@@ -38,28 +36,5 @@ class User extends DTO implements JsonSerializable, DTOInterface
         $this->segments         = $segments;
         $this->price_tier       = self::stringFrom($data, 'price_tier');
         $this->qty_availability = self::stringFrom($data, 'qty_availability');
-    }
-
-    public static function createFromJSON(string $json): User
-    {
-        $data = json_decode($json, true);
-        return new User($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return User[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new User((array)$item);
-        }
-        return $a;
     }
 }

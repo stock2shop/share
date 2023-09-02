@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
 /**
@@ -30,7 +29,7 @@ use Stock2Shop\Share\Utils\Date;
  *     tracking_url?: string|null
  * }
  */
-class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInterface
+class SystemFulfillment extends Fulfillment
 {
     public ?int $channel_id;
     public ?int $client_id;
@@ -64,28 +63,5 @@ class SystemFulfillment extends Fulfillment implements JsonSerializable, DTOInte
         $this->modified              = self::stringFrom($data, 'modified');
         $this->order_id              = self::intFrom($data, 'order_id');
         $this->shipping_address      = new SystemOrderAddress(self::arrayFrom($data, 'shipping_address'));
-    }
-
-    public static function createFromJSON(string $json): SystemFulfillment
-    {
-        $data = json_decode($json, true);
-        return new SystemFulfillment($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return SystemFulfillment[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemFulfillment((array)$item);
-        }
-        return $a;
     }
 }

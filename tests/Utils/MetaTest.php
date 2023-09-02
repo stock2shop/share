@@ -6,6 +6,7 @@ namespace Stock2Shop\Tests\Share\Utils;
 
 use PHPUnit\Framework\TestCase;
 use Stock2Shop\Share\DTO;
+use Stock2Shop\Share\Utils\Map;
 use Stock2Shop\Share\Utils\Meta;
 
 class MetaTest extends TestCase
@@ -16,11 +17,11 @@ class MetaTest extends TestCase
             'value' => 'True '
         ],
         [
-            'key' => 'True_2',
+            'key' => 'true_2',
             'value' => ' 1'
         ],
         [
-            'key' => 'True_3',
+            'key' => 'true_3',
             'value' => '1'
         ],
         [
@@ -34,17 +35,13 @@ class MetaTest extends TestCase
         [
             'key' => 'false_3',
             'value' => null
-        ],
-        [
-            'key' => null,
-            'value' => null
         ]
     ];
 
     /**
      * @dataProvider IsTrueDataProvider
      */
-    public function testIsTrue(array $meta, string $key, bool $expects): void
+    public function testIsTrue(Map $meta, string $key, bool $expects): void
     {
         $bool = Meta::isTrue($meta, $key);
         $this->assertEquals($expects, $bool);
@@ -53,7 +50,7 @@ class MetaTest extends TestCase
     /**
      * @dataProvider GetValueDataProvider
      */
-    public function testGetValue(array $meta, string $key, ?string $expects): void
+    public function testGetValue(Map $meta, string $key, ?string $expects): void
     {
         $bool = Meta::isTrue($meta, $key);
         $this->assertEquals($expects, $bool);
@@ -61,17 +58,20 @@ class MetaTest extends TestCase
 
     private function GetValueDataProvider(): array
     {
-        $meta = DTO\Meta::createArray(self::$meta);
+        $meta = new Map(
+            DTO\Meta::createArray(self::$meta),
+            'key'
+        );
         return [
             [
                 $meta,
-                'tRue_1',
-                $meta[0]->value
+                'true_1',
+                $meta['true_1']->value
             ],
             [
                 $meta,
                 'true_2',
-                $meta[1]->value
+                $meta['true_2']->value
             ],
             [
                 $meta,
@@ -88,11 +88,14 @@ class MetaTest extends TestCase
 
     private function IsTrueDataProvider(): array
     {
-        $meta = DTO\Meta::createArray(self::$meta);
+        $meta = new Map(
+            DTO\Meta::createArray(self::$meta),
+            'key'
+        );
         return [
             [
                 $meta,
-                'tRue_1',
+                'true_1',
                 true
             ],
             [

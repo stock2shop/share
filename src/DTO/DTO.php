@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Stock2Shop\Share\DTO;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
+use Stock2Shop\Share\Utils\Map;
 
-abstract class DTO
+abstract class DTO implements JsonSerializable, DTOInterface
 {
     /**
      * Sorts a multidimensional array by key name.
@@ -97,17 +99,30 @@ abstract class DTO
         return null;
     }
 
+    /**
+     * Creates a array from a Map or array
+     * @param array $data
+     * @param string $key
+     * @return array
+     */
     public static function arrayFrom(array $data, string $key): array
     {
-        if (array_key_exists($key, $data)) {
-            switch (gettype($data[$key])) {
-                case "object":
-                    return (array)$data[$key];
-                case "array":
-                    return $data[$key];
-            }
+        if (!array_key_exists($key, $data)) {
+            return [];
         }
-        return [];
+        if (empty($data[$key])) {
+            return [];
+        }
+        if (is_array($data[$key])) {
+            return $data[$key];
+        } elseif (
+            $data[$key] instanceof Map ||
+            $data[$key] instanceof DTO
+        ) {
+            return $data[$key]->toArray();
+        } else {
+            throw new InvalidArgumentException('value is not an array or map');
+        }
     }
 
     private static function toBool($arg): ?bool
@@ -182,5 +197,70 @@ abstract class DTO
             return null;
         }
         return (int)$num;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * Creates concrete DTO instance from JSON string.
+     * @param string $json
+     * @return static
+     */
+    public static function createFromJSON(string $json): static
+    {
+        $data = json_decode($json, true);
+        /** @psalm-suppress TooManyArguments */
+        return new static($data);
+    }
+
+    /**
+     * Converts DTO to an array
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->dto_to_array($this);
+    }
+
+    /**
+     * Recursively cast to array
+     * @param mixed $dto
+     * @return array
+     */
+    protected function dto_to_array(mixed $dto): array
+    {
+        $ret = (array)$dto;
+        foreach ($ret as &$item) {
+            // for maps (custom iterators) we need to cast each
+            // property into an array manually
+            // "(array) $map" wont work here...
+            if ($item instanceof Map) {
+                $item = $item->toArray();
+            }
+            if (!empty($item)) {
+                if (is_object($item) || is_array($item)) {
+                    $item = $this->dto_to_array($item);
+                }
+            }
+        }
+        return $ret;
+    }
+
+    /**
+     * Creates an array of concrete instances
+     * @param array $data
+     * @return static[]
+     */
+    public static function createArray(array $data): array
+    {
+        $a = [];
+        foreach ($data as $item) {
+            /** @psalm-suppress TooManyArguments */
+            $a[] = new static((array)$item);
+        }
+        return $a;
     }
 }

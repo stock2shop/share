@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeChannel from Channel
  * @psalm-import-type TypeSystemImage from SystemImage
@@ -34,7 +32,7 @@ use JsonSerializable;
  *     vendor?: string|null
  * }
  */
-class SystemProduct extends Product implements JsonSerializable, DTOInterface
+class SystemProduct extends Product
 {
     /** @var Channel[] $channels */
     public array $channels;
@@ -74,17 +72,6 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
         $this->variants            = $this->sortArray($variants, 'id');
     }
 
-    public static function createFromJSON(string $json): SystemProduct
-    {
-        $data = json_decode($json, true);
-        return new SystemProduct($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
     public function computeHash(): string
     {
         $productHash = parent::computeHash();
@@ -93,17 +80,5 @@ class SystemProduct extends Product implements JsonSerializable, DTOInterface
             $productHash .= sprintf("\nimage_%d=%s", $i->id, $i->src);
         }
         return md5($productHash);
-    }
-
-    /**
-     * @return SystemProduct[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemProduct((array)$item);
-        }
-        return $a;
     }
 }

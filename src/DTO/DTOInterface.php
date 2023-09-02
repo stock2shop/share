@@ -9,4 +9,6 @@ interface DTOInterface
     public static function createFromJSON(string $json): DTO;
 
     public static function createArray(array $data): array;
+
+    public function toArray(): array;
 }

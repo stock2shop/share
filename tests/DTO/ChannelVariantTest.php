@@ -54,12 +54,12 @@ class ChannelVariantTest extends TestCase
         $this->assertChannelVariant($cv);
     }
 
-    private function assertChannelVariant(DTO\ChannelVariant $c)
+    private function assertChannelVariant(DTO\ChannelVariant $c): void
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\ChannelVariant', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
-        $this->assertEquals(true, $c->success);
-        $this->assertEquals(false, $c->delete);
+        $this->assertTrue($c->success);
+        $this->assertFalse($c->delete);
     }
 }

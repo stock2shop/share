@@ -6,7 +6,9 @@ namespace Stock2Shop\Tests\Share\DTO;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Stock2Shop\Share\DTO\Customer;
 use Stock2Shop\Share\DTO\DTO;
+use Stock2Shop\Share\Utils\Map;
 
 class DTOTest extends TestCase
 {
@@ -161,5 +163,39 @@ class DTOTest extends TestCase
 
         // Newline as null.
         $this->assertNull(DTO::floatFrom(["v" => "\n"], "v"));
+    }
+
+    // Test DTO::arrayFrom data types
+    public function testArrayFrom()
+    {
+        // from array
+        $arr    = [
+            'meta' => [
+                ['key' => 'a', 'value' => 'a'],
+                ['key' => 'b', 'value' => 'b']
+            ]
+        ];
+        $result = DTO::arrayFrom($arr, 'meta');
+        $this->assertEquals($arr['meta'], $result);
+
+        // from map
+        $map    = ['meta' => new Map($arr['meta'], 'key')];
+        $result = DTO::arrayFrom($map, 'meta');
+        $this->assertEquals($arr['meta'], $result);
+
+        // from DTO
+        $customer = new Customer([]);
+        $result = DTO::arrayFrom(['customer' => $customer], 'customer');
+        $this->assertEquals((array) $customer, $result);
+
+        // from scalar
+        $this->expectExceptionMessage('value is not an array or map');
+        $this->assertEmpty(DTO::arrayFrom(['meta' => 'a'], 'meta'));
+
+        // from null
+        $this->assertEmpty(DTO::arrayFrom(['meta' => null], 'meta'));
+
+        // from missing
+        $this->assertEmpty(DTO::arrayFrom([], 'meta'));
     }
 }

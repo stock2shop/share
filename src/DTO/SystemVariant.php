@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-import-type TypeQtyAvailability from QtyAvailability
  * @psalm-import-type TypeMeta from Meta
@@ -34,7 +32,7 @@ use JsonSerializable;
  *     source_variant_code?: string|null
  * }
  */
-class SystemVariant extends Variant implements JsonSerializable, DTOInterface
+class SystemVariant extends Variant
 {
     public ?int $client_id;
     public ?string $created;
@@ -59,28 +57,5 @@ class SystemVariant extends Variant implements JsonSerializable, DTOInterface
         $this->image_id   = static::intFrom($data, 'image_id');
         $this->modified   = self::stringFrom($data, 'modified');
         $this->product_id = static::intFrom($data, 'product_id');
-    }
-
-    public static function createFromJSON(string $json): SystemVariant
-    {
-        $data = json_decode($json, true);
-        return new SystemVariant($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return SystemVariant[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new SystemVariant((array)$item);
-        }
-        return $a;
     }
 }

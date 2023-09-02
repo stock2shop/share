@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeCustomer = array{
  *     accepts_marketing?: bool|null,
@@ -14,7 +12,7 @@ use JsonSerializable;
  *     last_name?: string|null
  * }
  */
-class Customer extends DTO implements JsonSerializable, DTOInterface
+class Customer extends DTO
 {
     public ?bool $accepts_marketing;
     public ?string $email;
@@ -30,29 +28,6 @@ class Customer extends DTO implements JsonSerializable, DTOInterface
         $this->email             = self::stringFrom($data, 'email');
         $this->first_name        = self::stringFrom($data, 'first_name');
         $this->last_name         = self::stringFrom($data, 'last_name');
-    }
-
-    public static function createFromJSON(string $json): Customer
-    {
-        $data = json_decode($json, true);
-        return new Customer($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return Customer[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Customer((array)$item);
-        }
-        return $a;
     }
 
     public function computeHash(): string

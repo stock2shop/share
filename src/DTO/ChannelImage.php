@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeChannelImage = array{
  *     active?: bool|null,
@@ -17,7 +15,7 @@ use JsonSerializable;
  *     success?: bool|null
  * }
  */
-class ChannelImage extends Image implements JsonSerializable, DTOInterface
+class ChannelImage extends Image
 {
     public ?bool $active;
     public ?int $channel_id;
@@ -40,28 +38,5 @@ class ChannelImage extends Image implements JsonSerializable, DTOInterface
         $this->delete             = self::boolFrom($data, 'delete');
         $this->id                 = self::intFrom($data, 'id');
         $this->success            = self::boolFrom($data, 'success');
-    }
-
-    public static function createFromJSON(string $json): ChannelImage
-    {
-        $data = json_decode($json, true);
-        return new ChannelImage($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return ChannelImage[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new ChannelImage((array)$item);
-        }
-        return $a;
     }
 }

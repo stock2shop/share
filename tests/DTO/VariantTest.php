@@ -65,12 +65,12 @@ class VariantTest extends TestCase
     {
         $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c);
         $this->assertInstanceOf('Stock2Shop\Share\DTO\Variant', $c);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->qty_availability[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c->qty_availability[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->price_tiers[0]);
-        $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c->price_tiers[0]);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->meta['key']);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\Meta', $c->meta['key']);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->qty_availability['description']);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\QtyAvailability', $c->qty_availability['description']);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\DTO', $c->price_tiers['wholesale']);
+        $this->assertInstanceOf('Stock2Shop\Share\DTO\PriceTier', $c->price_tiers['wholesale']);
     }
 
     public function testComputeHash()

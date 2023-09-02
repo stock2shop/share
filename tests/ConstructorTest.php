@@ -17,26 +17,51 @@ class ConstructorTest extends TestCase
      *
      * @dataProvider constructProvider
      * @param class-string<DTO\DTOInterface> $class
-     * @param array $data
+     * @param string $json
      * @return void
      */
-    public function testConstruct(string $class, array $data): void
+    public function testConstruct(string $class, string $json): void
     {
+        $data = json_decode($json, true);
+
+        // create from json
+        $c = $class::createFromJSON($json);
+        $result = json_decode(json_encode($c), true);
+        $this->assertEquals($data, $result);
+
+        // using constructor
         $c      = new $class($data);
         $result = json_decode(json_encode($c), true);
         $this->assertEquals($data, $result);
+
+        // check to array
+        $arr = $c->toArray();
+        $this->assertEquals($data, $arr);
+
+        // using createArray
+        $c = $class::createArray([$data]);
+        $result = json_decode(json_encode($c), true);
+        $this->assertEquals([$data], $result);
+
+        // if the data is empty, we should get the same result
+        // when constructing an empty DTO.
+        /** @psalm-suppress InternalMethod */
+        $name = $this->getName();
+        if(str_contains($name, 'Empty')) {
+            $c      = new $class([]);
+            $result = json_decode(json_encode($c), true);
+            $this->assertEquals($data, $result);
+        }
     }
 
     private function constructProvider(): \Generator
     {
         foreach (scandir(__DIR__ . '/mocks') as $file) {
             if (str_contains($file, '.json')) {
-                $class    = 'Stock2Shop\\Share\\DTO\\' . str_replace('.json', '', $file);
-                $contents = json_decode(
-                    file_get_contents(__DIR__ . '/mocks/' . $file),
-                    true
-                );
-                yield $class => [
+                $parts = explode('-', $file);
+                $class    = 'Stock2Shop\\Share\\DTO\\' . str_replace('.json', '', $parts[0]);
+                $contents = file_get_contents(__DIR__ . '/mocks/' . $file);
+                yield $file => [
                     $class,
                     $contents
                 ];
@@ -64,7 +89,8 @@ class ConstructorTest extends TestCase
             $msg = 'in ' . $class . ' property ' . $property->getName() . ' with type ' . $type ;
             if(
                 str_contains($type, 'DTO') ||
-                $type === 'array'
+                $type === 'array' ||
+                $type === 'Stock2Shop\Share\Utils\Map'
             ) {
                 $this->assertFalse($property->getType()->allowsNull(), $msg . ' Cannot be nullable');
             } else {
@@ -77,7 +103,7 @@ class ConstructorTest extends TestCase
     {
         foreach (scandir(__DIR__ . '/../src/DTO') as $file) {
             if (
-                !in_array($file, ['DTO.php', 'DTOInterface.php']) &&
+                !in_array($file, ['DTO.php', 'DTOInterface.php', 'Maps']) &&
                 $file !== '.' &&
                 $file !== '..'
             ) {

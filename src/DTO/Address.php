@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
-
 /**
  * @psalm-type TypeAddress = array{
  *     address1?: string|null,
@@ -22,7 +20,7 @@ use JsonSerializable;
  *     zip?: string|null
  * }
  */
-class Address extends DTO implements JsonSerializable, DTOInterface
+class Address extends DTO
 {
     public ?string $address1;
     public ?string $address2;
@@ -54,28 +52,5 @@ class Address extends DTO implements JsonSerializable, DTOInterface
         $this->province      = self::stringFrom($data, 'province');
         $this->province_code = self::stringFrom($data, 'province_code');
         $this->zip           = self::stringFrom($data, 'zip');
-    }
-
-    public static function createFromJSON(string $json): Address
-    {
-        $data = json_decode($json, true);
-        return new Address($data);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    /**
-     * @return Address[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Address((array)$item);
-        }
-        return $a;
     }
 }

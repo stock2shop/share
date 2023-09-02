@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stock2Shop\Share\DTO;
 
-use JsonSerializable;
 use Stock2Shop\Share\Utils\Date;
 
 /**
@@ -28,7 +27,7 @@ use Stock2Shop\Share\Utils\Date;
  *     user_id?: int|null
  * }
  */
-class Log extends DTO implements JsonSerializable, DTOInterface
+class Log extends DTO
 {
     public const LOG_LEVEL_ERROR = 'error';
     public const LOG_LEVEL_DEBUG = 'debug';
@@ -89,28 +88,5 @@ class Log extends DTO implements JsonSerializable, DTOInterface
         if (!in_array($this->level, self::ALLOWED_LOG_LEVEL)) {
             throw new \InvalidArgumentException(sprintf('Invalid log level %s', $this->level));
         }
-    }
-
-    public function jsonSerialize(): array
-    {
-        return (array)$this;
-    }
-
-    public static function createFromJSON(string $json): Log
-    {
-        $data = json_decode($json, true);
-        return new Log($data);
-    }
-
-    /**
-     * @return Log[]
-     */
-    public static function createArray(array $data): array
-    {
-        $a = [];
-        foreach ($data as $item) {
-            $a[] = new Log((array)$item);
-        }
-        return $a;
     }
 }
